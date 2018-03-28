@@ -106,31 +106,6 @@
   </entry>
   
   <entry>
-    <title>composer安装与使用</title>
-    <link href="https://zhipenwang.github.io/2017/04/21/composer-1/"/>
-    <id>https://zhipenwang.github.io/2017/04/21/composer-1/</id>
-    <published>2017-04-21T11:21:01.000Z</published>
-    <updated>2018-03-28T10:28:36.135Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>1、点击下载：<a href="https://getcomposer.org/download/" target="_blank" rel="external">composer</a></p><center><br><img src="/img/composer-1-1.png" alt=""><br></center><br>2、下载好之后双击直接安装，Next即可：<br><br><center><br><img src="/img/composer-1-2.png" alt=""><br></center><br>3、然后选择php.exe文件：<br><br><center><br><img src="/img/composer-1-3.png" alt=""><br></center><p>接下来就一直next到安装完成即可。</p><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><blockquote><p>[info]使用composer安装ThinkPHP5</p></blockquote><p>通过<a href="https://pkg.phpcomposer.com/" target="_blank" rel="external">composer中国镜像</a>进行初步了解<br><img src="/img/composer-1-4.png" alt=""></p><p>##开始命令行操作</p><h3 id="1、中国镜像下载"><a href="#1、中国镜像下载" class="headerlink" title="1、中国镜像下载"></a>1、中国镜像下载</h3><p>参考<a href="http://www.kancloud.cn/thinkphp/thinkphp5_quickstart/145249" target="_blank" rel="external">tp5看云文档</a></p><p>由于国外网站访问很慢，国内提供了很好的镜像，所以使用国内镜像：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Composer config -g repo.packagist composer https://packagist.phpcomposer.com</div></pre></td></tr></table></figure></p><p><img src="/img/composer-1-5.png" alt=""></p><h3 id="2、下载tp5框架"><a href="#2、下载tp5框架" class="headerlink" title="2、下载tp5框架"></a>2、下载tp5框架</h3><p>进入站点根目录www操作命令行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer create-project topthink/think tp5  --prefer-dist</div></pre></td></tr></table></figure></p><p>其中tp5可写填写任何你愿意的名称<br><img src="/img/composer-1-6.png" alt=""></p><h2 id="框架安装完成"><a href="#框架安装完成" class="headerlink" title="框架安装完成"></a>框架安装完成</h2><p>耐心等待几分钟的安装过程，安装完成之后本地已经生成了tp5的新框架内容<br><img src="/img/composer-1-7.png" alt=""></p><h2 id="composer主要的功能：安装扩展包"><a href="#composer主要的功能：安装扩展包" class="headerlink" title="composer主要的功能：安装扩展包"></a>composer主要的功能：安装扩展包</h2><p>composer的最主要的功能：dependency manager for PHP<br>进入项目目录tp5，执行命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer require riverslei/payment</div></pre></td></tr></table></figure></p><p>下载riverslei/payment 集成支付宝、微信支付等流行的支付接口到项目中：<br>Composer.json中新增了这一句：<br><img src="/img/composer-1-8.png" alt=""></p><p>项目目录中也已经安装好了扩展包：<br><img src="/img/composer-1-9.png" alt=""></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;p&gt;1、点击下载：&lt;a href=&quot;https://getcomposer.org/download/&quot; target=&quot;_blank&quot; rel
-      
-    
-    </summary>
-    
-      <category term="composer使用" scheme="https://zhipenwang.github.io/categories/composer%E4%BD%BF%E7%94%A8/"/>
-    
-    
-      <category term="Composer" scheme="https://zhipenwang.github.io/tags/Composer/"/>
-    
-  </entry>
-  
-  <entry>
     <title>composer构建PHP框架——构建路由</title>
     <link href="https://zhipenwang.github.io/2017/04/21/composer-3/"/>
     <id>https://zhipenwang.github.io/2017/04/21/composer-3/</id>
@@ -144,6 +119,31 @@
       
       
         &lt;h2 id=&quot;路由选择安装&quot;&gt;&lt;a href=&quot;#路由选择安装&quot; class=&quot;headerlink&quot; title=&quot;路由选择安装&quot;&gt;&lt;/a&gt;路由选择安装&lt;/h2&gt;&lt;p&gt;本节开始构建路由，先去 GitHub 搜一下：&lt;a href=&quot;https://github.com/sea
+      
+    
+    </summary>
+    
+      <category term="composer使用" scheme="https://zhipenwang.github.io/categories/composer%E4%BD%BF%E7%94%A8/"/>
+    
+    
+      <category term="Composer" scheme="https://zhipenwang.github.io/tags/Composer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>composer安装与使用</title>
+    <link href="https://zhipenwang.github.io/2017/04/21/composer-1/"/>
+    <id>https://zhipenwang.github.io/2017/04/21/composer-1/</id>
+    <published>2017-04-21T11:21:01.000Z</published>
+    <updated>2018-03-28T10:28:36.135Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>1、点击下载：<a href="https://getcomposer.org/download/" target="_blank" rel="external">composer</a></p><center><br><img src="/img/composer-1-1.png" alt=""><br></center><br>2、下载好之后双击直接安装，Next即可：<br><br><center><br><img src="/img/composer-1-2.png" alt=""><br></center><br>3、然后选择php.exe文件：<br><br><center><br><img src="/img/composer-1-3.png" alt=""><br></center><p>接下来就一直next到安装完成即可。</p><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><blockquote><p>[info]使用composer安装ThinkPHP5</p></blockquote><p>通过<a href="https://pkg.phpcomposer.com/" target="_blank" rel="external">composer中国镜像</a>进行初步了解<br><img src="/img/composer-1-4.png" alt=""></p><p>##开始命令行操作</p><h3 id="1、中国镜像下载"><a href="#1、中国镜像下载" class="headerlink" title="1、中国镜像下载"></a>1、中国镜像下载</h3><p>参考<a href="http://www.kancloud.cn/thinkphp/thinkphp5_quickstart/145249" target="_blank" rel="external">tp5看云文档</a></p><p>由于国外网站访问很慢，国内提供了很好的镜像，所以使用国内镜像：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Composer config -g repo.packagist composer https://packagist.phpcomposer.com</div></pre></td></tr></table></figure></p><p><img src="/img/composer-1-5.png" alt=""></p><h3 id="2、下载tp5框架"><a href="#2、下载tp5框架" class="headerlink" title="2、下载tp5框架"></a>2、下载tp5框架</h3><p>进入站点根目录www操作命令行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer create-project topthink/think tp5  --prefer-dist</div></pre></td></tr></table></figure></p><p>其中tp5可写填写任何你愿意的名称<br><img src="/img/composer-1-6.png" alt=""></p><h2 id="框架安装完成"><a href="#框架安装完成" class="headerlink" title="框架安装完成"></a>框架安装完成</h2><p>耐心等待几分钟的安装过程，安装完成之后本地已经生成了tp5的新框架内容<br><img src="/img/composer-1-7.png" alt=""></p><h2 id="composer主要的功能：安装扩展包"><a href="#composer主要的功能：安装扩展包" class="headerlink" title="composer主要的功能：安装扩展包"></a>composer主要的功能：安装扩展包</h2><p>composer的最主要的功能：dependency manager for PHP<br>进入项目目录tp5，执行命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer require riverslei/payment</div></pre></td></tr></table></figure></p><p>下载riverslei/payment 集成支付宝、微信支付等流行的支付接口到项目中：<br>Composer.json中新增了这一句：<br><img src="/img/composer-1-8.png" alt=""></p><p>项目目录中也已经安装好了扩展包：<br><img src="/img/composer-1-9.png" alt=""></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;p&gt;1、点击下载：&lt;a href=&quot;https://getcomposer.org/download/&quot; target=&quot;_blank&quot; rel
       
     
     </summary>
@@ -289,6 +289,34 @@
       <category term="hexo" scheme="https://zhipenwang.github.io/tags/hexo/"/>
     
       <category term="next" scheme="https://zhipenwang.github.io/tags/next/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexo发布文章</title>
+    <link href="https://zhipenwang.github.io/2017/03/19/hexo_new_blog/"/>
+    <id>https://zhipenwang.github.io/2017/03/19/hexo_new_blog/</id>
+    <published>2017-03-19T10:21:01.000Z</published>
+    <updated>2018-03-28T12:22:07.667Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>在部署和搭建好hexo博客后，怎么写好一篇博客并发布到在线地址呢？</li></ul><p>1、找到你本地的博客地址，在source/_posts目录下新建新文件，后缀为md，写一篇markdown文章<br>2、打开git bash命令端<br>本地预览：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo server</div></pre></td></tr></table></figure></p><p>提交到git仓库，同步到在线博客<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo clean</div><div class="line">hexo generate</div><div class="line">hexo deploy</div></pre></td></tr></table></figure></p><p>然后就可以在你的博客看到更新的文章了。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ul&gt;
+&lt;li&gt;在部署和搭建好hexo博客后，怎么写好一篇博客并发布到在线地址呢？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;1、找到你本地的博客地址，在source/_posts目录下新建新文件，后缀为md，写一篇markdown文章&lt;br&gt;2、打开git bash命令端&lt;br&gt;本地预览：
+      
+    
+    </summary>
+    
+      <category term="搭建博客" scheme="https://zhipenwang.github.io/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+      <category term="Article" scheme="https://zhipenwang.github.io/tags/Article/"/>
     
   </entry>
   
