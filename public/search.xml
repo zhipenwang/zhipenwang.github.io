@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[初始算法]]></title>
+    <url>%2F2018%2F02%2F13%2Falgorithm%2F</url>
+    <content type="text"><![CDATA[算法：程序的灵魂 算法：algorithm 算法五大特征： 1、有穷性：保证执行有限步骤后结束 2、确切性：每一步骤都有确切的意义 3、输入：每个算法都有零个或多个输入，以刻画运算对象的初始情况，所谓零个输入是指算法本身定除了初始条件 4、输出：每个算法都有一个或多个输出，显示对输入数据加工后的结果。没有输出的算法是毫无意义的 5、可行性：在原则上算法能够精确地运行，进行优先次运算后即可完成的一种运算。 算法的逻辑、流程。计算机中的算法，分为两大类：数值运算算法（求解数值）、非数值运算算法（事务管理领域）。算法是计算机处理信息的本质，因为计算机程序本质上是一个算法，告诉计算机确切的步骤来执行一个指定的任务。 著名计算机科学家沃思公式：数据结构+算法=程序。 一个程序应当采用结构化程序设计方法进行程序设计，并且用某一种计算机语言来表示，因此，下面的公式更加贴切： 程序=算法+数据结构+程序设计方法+语言和环境 流程图来表示算法： 流程图的结构：顺序结构、选择结构、循环结构 N-S图 N-S流程图：代表计算机的算法。由一些特定意义的图像、流程线及简要的文字说明构成，能够清晰明确的表示程序的运行过程。（整个程序写在一个大框图内，由若干个小的基础框图构成，简称N-S图） 计算机语言的算法表示计算机语言表示算法的时候，必须严格遵循使用语言的语法规则。 学好算法的秘诀1、学的深入，基础扎实2、恒心、演练、举一反三3、语言之争的时代更要学会坚持]]></content>
+      <categories>
+        <category>算法与结构</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[composer构建PHP框架——初始化]]></title>
+    <url>%2F2017%2F04%2F21%2Fcomposer-2%2F</url>
+    <content type="text"><![CDATA[“一个时代结束了，另一个时代开始了。”Framework Interoperability Group（框架可互用性小组），简称 FIG，成立于 2009 年。FIG 最初由几位知名 PHP 框架开发者发起，在吸纳了许多优秀的大脑和强健的体魄后，提出了 PSR-0 到 PSR-4 五套 PHP 非官方规范： 123456789* PSR-0 (Autoloading Standard) 自动加载标准* PSR-1 (Basic Coding Standard) 基础编码标准* PSR-2 (Coding Style Guide) 编码风格向导* PSR-3 (Logger Interface) 日志接口* PSR-4 (Improved Autoloading) 自动加载优化标准 创建composer.json在网站根目录下创建新文件夹 my-framework （My First Framework based on Composer），然后在此文件夹内创建 composer.json 文件12345&#123; &quot;require&quot;:&#123; &#125;&#125; 初始化composer打开命令行cmd，进入刚刚新建的目录 my_framework，执行命令1composer update 执行成功后生成了扩展包vendor 此时目录为： 到此，composer初始化完成！]]></content>
+      <categories>
+        <category>composer使用</category>
+      </categories>
+      <tags>
+        <tag>Composer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[composer安装与使用]]></title>
+    <url>%2F2017%2F04%2F21%2Fcomposer-1%2F</url>
+    <content type="text"><![CDATA[安装1、点击下载：composer 2、下载好之后双击直接安装，Next即可：3、然后选择php.exe文件： 接下来就一直next到安装完成即可。 使用 [info]使用composer安装ThinkPHP5 通过composer中国镜像进行初步了解 ##开始命令行操作 1、中国镜像下载参考tp5看云文档 由于国外网站访问很慢，国内提供了很好的镜像，所以使用国内镜像：1Composer config -g repo.packagist composer https://packagist.phpcomposer.com 2、下载tp5框架进入站点根目录www操作命令行：1composer create-project topthink/think tp5 --prefer-dist 其中tp5可写填写任何你愿意的名称 框架安装完成耐心等待几分钟的安装过程，安装完成之后本地已经生成了tp5的新框架内容 composer主要的功能：安装扩展包composer的最主要的功能：dependency manager for PHP进入项目目录tp5，执行命令：1composer require riverslei/payment 下载riverslei/payment 集成支付宝、微信支付等流行的支付接口到项目中：Composer.json中新增了这一句： 项目目录中也已经安装好了扩展包：]]></content>
+      <categories>
+        <category>composer使用</category>
+      </categories>
+      <tags>
+        <tag>Composer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[composer构建PHP框架——构建路由]]></title>
+    <url>%2F2017%2F04%2F21%2Fcomposer-3%2F</url>
+    <content type="text"><![CDATA[路由选择安装本节开始构建路由，先去 GitHub 搜一下：点此查看搜索结果 推荐 https://github.com/NoahBuscher/Macaw，对应的 Composer 包为 noahbuscher/macaw 。 下面开始安装它，更改 composer.json：12345&#123; &quot;require&quot;:&#123; &quot;noahbuscher/macaw&quot;: &quot;dev-master&quot; &#125;&#125; 运行 composer update，成功之后将得到以下目录： 至此，Macaw安装成功！ 站点入口文件与环境在项目目录下新建public 文件夹，这个文件夹将是用户唯一可见的部分。在文件夹下新建 index.php 文件：1234567&lt;?php// Autoload 自动载入require &apos;../vendor/autoload.php&apos;;// 路由配置require &apos;../config/routes.php&apos;; 上面一行表示引入 Composer 的自动载入功能，下面一行表示载入路由配置文件。然后继续在项目目录下新建config文件夹，在config文件夹内新建 routs.php 文件，内容如下：12345678910111213&lt;?phpuse NoahBuscher\Macaw\Macaw;Macaw::get(&apos;fuck&apos;, function() &#123; echo &quot;成功！&quot;;&#125;);Macaw::get(&apos;(:all)&apos;, function($fu) &#123; echo &apos;未匹配到路由&lt;br&gt;&apos;.$fu;&#125;);Macaw::dispatch(); 然后访问你的地址即可：http://127.0.0.66/index.php/fuck 注意：如果要配置域名地址进行映射要指向 public/index.php 文件]]></content>
+      <categories>
+        <category>composer使用</category>
+      </categories>
+      <tags>
+        <tag>Composer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hexo NexT主题内接入网页在线联系功能]]></title>
+    <url>%2F2017%2F04%2F20%2Fconnect%2F</url>
+    <content type="text"><![CDATA[Hexo博客如何添加在线联系功能呢,发现了一个不错的网站可以提供在线联系的服务，当有用户在网页上给你留言后会通过邮件或者微信通知你，可以及时的解答用户的疑问。 注册首先在(DaoVoice)[http://www.daovoice.io/]注册个账号。登录上去之后进行配置，配置方法如下:首先到DaoVoice上注册一个账号,注册完成后会得到一个app_id，获取appid的步骤如下图所示: 以next主题为例,打开/themes/next/layout/_partials/head.swig文件添加如下代码：123456789&#123;% if theme.daovoice %&#125; &lt;script&gt; (function(i,s,o,g,r,a,m)&#123;i[&quot;DaoVoiceObject&quot;]=r;i[r]=i[r]||function()&#123;(i[r].q=i[r].q||[]).push(arguments)&#125;,i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset=&quot;utf-8&quot;;m.parentNode.insertBefore(a,m)&#125;)(window,document,&quot;script&quot;,(&apos;https:&apos; == document.location.protocol ? &apos;https:&apos; : &apos;http:&apos;) + &quot;//widget.daovoice.io/widget/0f81ff2f.js&quot;,&quot;daovoice&quot;) daovoice(&apos;init&apos;, &#123; app_id: &quot;&#123;&#123;theme.daovoice_app_id&#125;&#125;&quot; &#125;); daovoice(&apos;update&apos;); &lt;/script&gt;&#123;% endif %&#125; 接着打开主题配置文件_config.yml，添加如下代码：123# Online contact daovoice: truedaovoice_app_id: 这里输入前面获取的app_id 需要注意的是,next主题下聊天的按钮会和其他按钮重叠到一起，可以到聊天设置，修改下按钮的位置:最后到右上角选择管理员，微信绑定,可以绑定你的微信号，关注公众号后打开小程序，就可以实时收发消息，有新的消息也会通过微信通知，设置页面如下:]]></content>
+      <categories>
+        <category>搭建博客</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>next</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hexo添加字数统计、阅读时长、浏览次数]]></title>
+    <url>%2F2017%2F04%2F19%2Fblog_view%2F</url>
+    <content type="text"><![CDATA[统计插件配置NexT 主题默认已经集成了文章【浏览次数】、【字数统计】、【阅读时长】统计功能，如果我们需要使用，只需要修改主题配置文件 _config.yml 即可。如下所示：配置浏览次数123456789101112131415busuanzi_count: # count values only if the other configs are false enable: true # custom uv span for the whole site site_uv: true site_uv_header: &lt;i class=&quot;fa fa-user&quot;&gt;&lt;/i&gt; 访问人数 site_uv_footer: # custom pv span for the whole site site_pv: true site_pv_header: &lt;i class=&quot;fa fa-eye&quot;&gt;&lt;/i&gt; 总访问量 site_pv_footer: # custom pv span for one page only page_pv: true page_pv_header: &lt;i class=&quot;fa fa-file-o&quot;&gt;&lt;/i&gt; 浏览 page_pv_footer: 次 配置字数统计、阅读时长，wordcount与min2read统计功能12345678# Post wordcount display settings# Dependencies: https://github.com/willin/hexo-wordcountpost_wordcount: item_text: true wordcount: true # 单篇 字数统计 min2read: true # 单篇 阅读时长 totalcount: false # 网站 字数统计 separated_meta: true 预览的时候如果出现字数统计和阅读时长失效的情况，一般是因为没有安装 hexo-wordcount 插件，查看 Hexo 插件：12345hexo --debug``### 安装如果没有安装 hexo-wordcount 插件，先安装该插件： npm i –save hexo-wordcount1*** Node 版本 7.6.0 之前,请安装 2.x 版本 (Node.js v7.6.0 and previous) ，安装命令如下：*** npm install hexo-wordcount@2 –save```安装完成后，重新执行启动服务预览就可以了。 显示文字打开post.swig文件，路径如下：xxx_blog/themes/next/layout/_macro/post.swig]]></content>
+      <categories>
+        <category>搭建博客</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>next</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hexo NexT主题内给每篇文章后添加结束标语]]></title>
+    <url>%2F2017%2F04%2F18%2Fhexo_next_end%2F</url>
+    <content type="text"><![CDATA[给文章后面添加结束标语 新建文件在\themes\next\layout\_macro中新建passage-end-tag.swig文件，添加代码至该文件中：12345&lt;div&gt; &#123;% if not is_index %&#125; &lt;div style=&quot;text-align:center;color: #ccc;font-size:22px;&quot;&gt;-------------本文结束&lt;i class=&quot;fa fa-paw&quot;&gt;&lt;/i&gt;感谢您的阅读-------------&lt;/div&gt; &#123;% endif %&#125;&lt;/div&gt; 修改post.swig打开\themes\next\layout_macro\post.swig文件，在post-body后，post-footer前，添加下面内容：12345&lt;div&gt; &#123;% if not is_index %&#125; &#123;% include &apos;passage-end-tag.swig&apos; %&#125; &#123;% endif %&#125;&lt;/div&gt; 修改_config打开主题配置文件（_config.yml),在末尾添加：123# 文章末尾添加“本文结束”标记passage_end_tag: enabled: true 至此，就完成了关于添加文章结束标语的功能，具体的效果，此刻，想必你也看到了，就在下边。]]></content>
+      <categories>
+        <category>搭建博客</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>next</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hexo NexT主题添加点击爱心效果]]></title>
+    <url>%2F2017%2F04%2F17%2Fclickheart%2F</url>
+    <content type="text"><![CDATA[给NexT主题内添加页面点击出现爱心的效果 创建js文件在/themes/next/source/js/src下新建文件clicklove.js，接着把该链接下的代码拷贝粘贴到clicklove.js文件中。代码如下：1!function(e,t,a)&#123;function n()&#123;c(&quot;.heart&#123;width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);&#125;.heart:after,.heart:before&#123;content: &apos;&apos;;width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;&#125;.heart:after&#123;top: -5px;&#125;.heart:before&#123;left: -5px;&#125;&quot;),o(),r()&#125;function r()&#123;for(var e=0;e&lt;d.length;e++)d[e].alpha&lt;=0?(t.body.removeChild(d[e].el),d.splice(e,1)):(d[e].y--,d[e].scale+=.004,d[e].alpha-=.013,d[e].el.style.cssText=&quot;left:&quot;+d[e].x+&quot;px;top:&quot;+d[e].y+&quot;px;opacity:&quot;+d[e].alpha+&quot;;transform:scale(&quot;+d[e].scale+&quot;,&quot;+d[e].scale+&quot;) rotate(45deg);background:&quot;+d[e].color+&quot;;z-index:99999&quot;);requestAnimationFrame(r)&#125;function o()&#123;var t=&quot;function&quot;==typeof e.onclick&amp;&amp;e.onclick;e.onclick=function(e)&#123;t&amp;&amp;t(),i(e)&#125;&#125;function i(e)&#123;var a=t.createElement(&quot;div&quot;);a.className=&quot;heart&quot;,d.push(&#123;el:a,x:e.clientX-5,y:e.clientY-5,scale:1,alpha:1,color:s()&#125;),t.body.appendChild(a)&#125;function c(e)&#123;var a=t.createElement(&quot;style&quot;);a.type=&quot;text/css&quot;;try&#123;a.appendChild(t.createTextNode(e))&#125;catch(t)&#123;a.styleSheet.cssText=e&#125;t.getElementsByTagName(&quot;head&quot;)[0].appendChild(a)&#125;function s()&#123;return&quot;rgb(&quot;+~~(255*Math.random())+&quot;,&quot;+~~(255*Math.random())+&quot;,&quot;+~~(255*Math.random())+&quot;)&quot;&#125;var d=[];e.requestAnimationFrame=function()&#123;return e.requestAnimationFrame||e.webkitRequestAnimationFrame||e.mozRequestAnimationFrame||e.oRequestAnimationFrame||e.msRequestAnimationFrame||function(e)&#123;setTimeout(e,1e3/60)&#125;&#125;(),n()&#125;(window,document); 修改_layout.swig在\themes\next\layout\_layout.swig文件末尾添加：12&lt;!-- 页面点击小红心 --&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;/js/src/clicklove.js&quot;&gt;&lt;/script&gt;]]></content>
+      <categories>
+        <category>搭建博客</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>next</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[github+hexo搭建个人博客]]></title>
+    <url>%2F2017%2F03%2F18%2Fcreate-blog%2F</url>
+    <content type="text"><![CDATA[各位有兴趣搭建博客或者正在搭建博客却遇到问题的朋友们，不妨抽空来围观一下我搭建的过程中遇到的坑和填的土。。 声明一点，以下所有步骤都是基于Windows系统的搭建，由于本人没有真正在其他系统上搭建过，就不画蛇添足了，所以其他系统的小心不要入错入坑咯 下面先说一下基本思路（给大家一个清晰的搭建过程）： 1、在Windows系统下搭建运行hexo环境的前提是先搭建nodejs跟git2、搭建好nodejs跟git后就可以在系统中搭建hexo环境3、申请github.com帐号，创建自己的repository（仓库）——注意仓库名必须是：yourusername.github.io，具体原因及内容后面细讲、4、本地hexo环境部署到github上 5、yourusername.github.io查看自己的博客，成功！ 第一步：搭建nodejs环境参考菜鸟教程的nodejs，很是详细：nodejs-菜鸟教程 大家可以去nodejs官网下载，记得要下载跟自己Windows系统一致的版本。（64bit的下载window-install的64-bit；同理：32bit的下载32-bit的）。下载之后双击安装，选择自己要安装的路径地址，一直next到finish就可以了安装后检测PATH环境变量是否配置了Node.js，点击开始=》运行=》输入”cmd” =&gt; 输入命令”path”，输出结果中有nodejs的环境变量说明安装成功。（如下我的环境变量已经有nodejs了）1234PATH=C:\oraclexe\app\oracle\product\10.2.0\server\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;c:\python32\python;C:\MinGW\bin;C:\Program Files\GTK2-Runtime\lib;C:\Program Files\MySQL\MySQL Server 5.5\bin;C:\Program Files\nodejs\; 然后可以检查一下Node.js版本，直接命令行输入 node –versionok，nodejs环境到此完成。 第二步：搭建GIT环境同样，大家可以参考百度经验 下载地址可以前往git官网进行下载，同样下载跟自己系统位数一致的版本下载之后双击选择自己要安装的路径地址一键next安装就好了安装好之后在任意位置右键都可以看到关于git的一些菜单选项：ok，至此git安装完成。 第三步：搭建hexo环境在E盘下建立hexo文件夹（或者你选择的任何路径）在nodejs和git环境都搭建完成后，在刚刚建立好的hexo文件夹中点击鼠标右键，选择git bash，输入以下命令安装hexo1npm install -g hexo 接下来是比较重要的步骤，都是在git bash命令行操作，要认真看清楚： 1、初始化你的博客1hexo init 执行后hexo会在你的站点目录下生成网站所需的文件 2、安装node_modules：1npm install 在此目录中生成node_modules 3、本地浏览器查看：1hexo server (此命令也可以简写为 hexo s) 这时候会出现如下信息：[info] Hexo is running at http://localhost:4000/.Press Ctrl+C to stop. 这个时候在你的浏览器输入http://localhost:4000/你就可以看到本地的博客搭建成功。这个时候可以轻松一下，随便浏览一下自己的博客熟悉一下 第四步：本地hexo部署到github上1、首先要有github帐号，可以前往github官网注册一个自己的github帐号，登录成功后，点击右上角的+号新建一个仓库注意，仓库名必须跟自己的username一致，格式是username.github.io]]></content>
+      <categories>
+        <category>搭建博客</category>
+      </categories>
+      <tags>
+        <tag>Article</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[博客的意义]]></title>
+    <url>%2F2017%2F03%2F17%2Fblog%2F</url>
+    <content type="text"><![CDATA[文中内容仅是个人观点，不喜随便喷，如有雷同，欢迎交流 为什么有开博客的想法呢？作为一名后端攻城狮，在各种“撸码”的过程中经常会碰到一些萝卜坑，当然及时植入了萝卜。开始填的时候也不以为常，管他下次会不会被挖再露出坑，慢慢学习的过程中遇到了更多的坑，觉得有点烧闹了，开始各种方式去学着记录，D、E、F盘塞了各种记录文本，慢慢发现这种方式查阅起来很是麻烦，而且最关键的是，有一次打开我记录了几千行的笔记，结果发现乱码了（原因是一直用gbk去写的，某一次脑短路用了默认utf格式的编辑器打开，整篇文档都乱码，又手贱的去直接在编辑器中点错了其他格式还保存，果然是自作孽不可活），后来各种软件编辑器尝试，越来越不认识其字符了，不过对咱来说，没法补救的东西失去了那就从头再来呗。这个时候开始打算换一种方式来记录一些自己遇到的坑和一些有价值的内容，同时也可以在一个平台上跟其他有深度的人沟通学习成长，所以打算在大平台去搭建一个属于个人的主页。 其中， 新浪博客、QQ空间、CSDN等“个人主页”都流行很久了，所以有越来越多的人开始考虑搭建一个真正属于自己的“个人主页”，个人博客建站也越来越流行。那么搭建个人博客的目的无非是以下几点： 作为一个展示个性的平台搭建一个展示个人观点、爱好、经历的良好平台，跟那些流行的新浪博客和QQ空间不一样，个人博客可以很灵活自由的去设计ownerstyle的网站。 作为一个知识积累的海洋不管是从事文学、管理、IT开发，都可以通过这个平台去记录一些有价值对自己有影响的内容，积累成一个属于自己知识的海洋 作为一个交流分享的平台不仅仅把自己的知识积累下来，更大程度的去分享，了解别人的一些不同看法，沟通完善一些自我的缺陷，学习别人更广的知识 作为一个攻城狮，要时刻去接触互联网新的思想，去真正参与到互联网中，既然决定了写博客，那么自己动手去搭建一个专属的博客，然后一步步去推广，不仅仅会带来前进的动力，其实也会慢慢去接触学习到什么才是真正的SEO（搜索引擎–百度搜索排行其实很大程度就是靠这个），也会去认识到网络推广。对目前的我而言，那就是希望坚持下去，作为一个自我价值的体现，在未来的工作或者社交中能够以这个平台去让别人了解自己，成为自我的一个标识。]]></content>
+      <categories>
+        <category>博客思维</category>
+      </categories>
+      <tags>
+        <tag>Article</tag>
+      </tags>
+  </entry>
+</search>

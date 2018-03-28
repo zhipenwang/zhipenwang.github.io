@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>王志鹏</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://zhipenwang.github.io/"/>
+  <updated>2018-02-13T09:51:25.189Z</updated>
+  <id>https://zhipenwang.github.io/</id>
+  
+  <author>
+    <name>王志鹏</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>初始算法</title>
+    <link href="https://zhipenwang.github.io/2018/02/13/algorithm/"/>
+    <id>https://zhipenwang.github.io/2018/02/13/algorithm/</id>
+    <published>2018-02-13T09:21:01.000Z</published>
+    <updated>2018-02-13T09:51:25.189Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>算法：程序的灵魂</p><p>算法：algorithm</p></blockquote><p>算法五大特征：</p><ul><li>1、有穷性：保证执行有限步骤后结束</li><li>2、确切性：每一步骤都有确切的意义</li><li>3、输入：每个算法都有零个或多个输入，以刻画运算对象的初始情况，所谓零个输入是指算法本身定除了初始条件</li><li>4、输出：每个算法都有一个或多个输出，显示对输入数据加工后的结果。没有输出的算法是毫无意义的</li><li>5、可行性：在原则上算法能够精确地运行，进行优先次运算后即可完成的一种运算。</li></ul><blockquote><p>算法的逻辑、流程。<br>计算机中的算法，分为两大类：数值运算算法（求解数值）、非数值运算算法（事务管理领域）。<br>算法是计算机处理信息的本质，因为计算机程序本质上是一个算法，告诉计算机确切的步骤来执行一个指定的任务。</p><p>著名计算机科学家沃思公式：数据结构+算法=程序。</p></blockquote><p>一个程序应当采用结构化程序设计方法进行程序设计，并且用某一种计算机语言来表示，因此，下面的公式更加贴切：</p><blockquote><p>程序=算法+数据结构+程序设计方法+语言和环境</p></blockquote><h3 id="流程图来表示算法："><a href="#流程图来表示算法：" class="headerlink" title="流程图来表示算法："></a>流程图来表示算法：</h3><p><img src="/img/screenshot_1513006093776.png" alt=""></p><blockquote><p>流程图的结构：顺序结构、选择结构、循环结构</p></blockquote><h3 id="N-S图"><a href="#N-S图" class="headerlink" title="N-S图"></a>N-S图</h3><blockquote><p>N-S流程图：代表计算机的算法。由一些特定意义的图像、流程线及简要的文字说明构成，能够清晰明确的表示程序的运行过程。（整个程序写在一个大框图内，由若干个小的基础框图构成，简称N-S图）</p></blockquote><p><img src="/img/screenshot_1513006588835.png" alt=""></p><h3 id="计算机语言的算法表示"><a href="#计算机语言的算法表示" class="headerlink" title="计算机语言的算法表示"></a>计算机语言的算法表示</h3><p>计算机语言表示算法的时候，必须严格遵循使用语言的语法规则。</p><h3 id="学好算法的秘诀"><a href="#学好算法的秘诀" class="headerlink" title="学好算法的秘诀"></a>学好算法的秘诀</h3><p>1、学的深入，基础扎实<br>2、恒心、演练、举一反三<br>3、语言之争的时代更要学会坚持</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;算法：程序的灵魂&lt;/p&gt;
+&lt;p&gt;算法：algorithm&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;算法五大特征：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;1、有穷性：保证执行有限步骤后结束&lt;/li&gt;
+&lt;li&gt;2、确切性：每一步骤都有确切的意义&lt;/li&gt;
+&lt;li
+      
+    
+    </summary>
+    
+      <category term="算法与结构" scheme="https://zhipenwang.github.io/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E7%BB%93%E6%9E%84/"/>
+    
+    
+      <category term="算法" scheme="https://zhipenwang.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="结构" scheme="https://zhipenwang.github.io/tags/%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>composer构建PHP框架——初始化</title>
+    <link href="https://zhipenwang.github.io/2017/04/21/composer-2/"/>
+    <id>https://zhipenwang.github.io/2017/04/21/composer-2/</id>
+    <published>2017-04-21T11:21:01.000Z</published>
+    <updated>2018-02-13T09:07:47.733Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>“一个时代结束了，另一个时代开始了。”<br>Framework Interoperability Group（框架可互用性小组），简称 FIG，成立于 2009 年。FIG 最初由几位知名 PHP 框架开发者发起，在吸纳了许多优秀的大脑和强健的体魄后，提出了 PSR-0 到 PSR-4 五套 PHP 非官方规范：</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">* PSR-0 (Autoloading Standard) 自动加载标准</div><div class="line"></div><div class="line">* PSR-1 (Basic Coding Standard) 基础编码标准</div><div class="line"></div><div class="line">* PSR-2 (Coding Style Guide) 编码风格向导</div><div class="line"></div><div class="line">* PSR-3 (Logger Interface) 日志接口</div><div class="line"></div><div class="line">* PSR-4 (Improved Autoloading) 自动加载优化标准</div></pre></td></tr></table></figure><h3 id="创建composer-json"><a href="#创建composer-json" class="headerlink" title="创建composer.json"></a>创建composer.json</h3><p>在网站根目录下创建新文件夹 <code>my-framework</code> （My First Framework based on Composer），然后在此文件夹内创建 <code>composer.json</code> 文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">&quot;require&quot;:&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p><h3 id="初始化composer"><a href="#初始化composer" class="headerlink" title="初始化composer"></a>初始化composer</h3><p>打开命令行cmd，进入刚刚新建的目录 <code>my_framework</code>，执行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer update</div></pre></td></tr></table></figure></p><p>执行成功后生成了扩展包<code>vendor</code></p><center><br><img src="/img/composer-2-1.png" alt=""><br></center><br>此时目录为：<br><center><br><img src="/img/composer-2-2.png" alt=""><br></center><p>到此，composer初始化完成！</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;“一个时代结束了，另一个时代开始了。”&lt;br&gt;Framework Interoperability Group（框架可互用性小组），简称 FIG，成立于 2009 年。FIG 最初由几位知名 PHP 框架开发者发起，在吸纳了许多优秀的大脑和强健的体
+      
+    
+    </summary>
+    
+      <category term="composer使用" scheme="https://zhipenwang.github.io/categories/composer%E4%BD%BF%E7%94%A8/"/>
+    
+    
+      <category term="Composer" scheme="https://zhipenwang.github.io/tags/Composer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>composer安装与使用</title>
+    <link href="https://zhipenwang.github.io/2017/04/21/composer-1/"/>
+    <id>https://zhipenwang.github.io/2017/04/21/composer-1/</id>
+    <published>2017-04-21T11:21:01.000Z</published>
+    <updated>2018-02-13T09:07:37.857Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>1、点击下载：<a href="https://getcomposer.org/download/" target="_blank" rel="external">composer</a></p><center><br><img src="/img/composer-1-1.png" alt=""><br></center><br>2、下载好之后双击直接安装，Next即可：<br><br><center><br><img src="/img/composer-1-2.png" alt=""><br></center><br>3、然后选择php.exe文件：<br><br><center><br><img src="/img/composer-1-3.png" alt=""><br></center><p>接下来就一直next到安装完成即可。</p><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><blockquote><p>[info]使用composer安装ThinkPHP5</p></blockquote><p>通过<a href="https://pkg.phpcomposer.com/" target="_blank" rel="external">composer中国镜像</a>进行初步了解<br><img src="/img/composer-1-4.png" alt=""></p><p>##开始命令行操作</p><h3 id="1、中国镜像下载"><a href="#1、中国镜像下载" class="headerlink" title="1、中国镜像下载"></a>1、中国镜像下载</h3><p>参考<a href="http://www.kancloud.cn/thinkphp/thinkphp5_quickstart/145249" target="_blank" rel="external">tp5看云文档</a></p><p>由于国外网站访问很慢，国内提供了很好的镜像，所以使用国内镜像：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Composer config -g repo.packagist composer https://packagist.phpcomposer.com</div></pre></td></tr></table></figure></p><p><img src="/img/composer-1-5.png" alt=""></p><h3 id="2、下载tp5框架"><a href="#2、下载tp5框架" class="headerlink" title="2、下载tp5框架"></a>2、下载tp5框架</h3><p>进入站点根目录www操作命令行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer create-project topthink/think tp5  --prefer-dist</div></pre></td></tr></table></figure></p><p>其中tp5可写填写任何你愿意的名称<br><img src="/img/composer-1-6.png" alt=""></p><h2 id="框架安装完成"><a href="#框架安装完成" class="headerlink" title="框架安装完成"></a>框架安装完成</h2><p>耐心等待几分钟的安装过程，安装完成之后本地已经生成了tp5的新框架内容<br><img src="/img/composer-1-7.png" alt=""></p><h2 id="composer主要的功能：安装扩展包"><a href="#composer主要的功能：安装扩展包" class="headerlink" title="composer主要的功能：安装扩展包"></a>composer主要的功能：安装扩展包</h2><p>composer的最主要的功能：dependency manager for PHP<br>进入项目目录tp5，执行命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer require riverslei/payment</div></pre></td></tr></table></figure></p><p>下载riverslei/payment 集成支付宝、微信支付等流行的支付接口到项目中：<br>Composer.json中新增了这一句：<br><img src="/img/composer-1-8.png" alt=""></p><p>项目目录中也已经安装好了扩展包：<br><img src="/img/composer-1-9.png" alt=""></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;p&gt;1、点击下载：&lt;a href=&quot;https://getcomposer.org/download/&quot; target=&quot;_blank&quot; rel
+      
+    
+    </summary>
+    
+      <category term="composer使用" scheme="https://zhipenwang.github.io/categories/composer%E4%BD%BF%E7%94%A8/"/>
+    
+    
+      <category term="Composer" scheme="https://zhipenwang.github.io/tags/Composer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>composer构建PHP框架——构建路由</title>
+    <link href="https://zhipenwang.github.io/2017/04/21/composer-3/"/>
+    <id>https://zhipenwang.github.io/2017/04/21/composer-3/</id>
+    <published>2017-04-21T11:21:01.000Z</published>
+    <updated>2018-02-13T09:07:51.593Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="路由选择安装"><a href="#路由选择安装" class="headerlink" title="路由选择安装"></a>路由选择安装</h2><p>本节开始构建路由，先去 GitHub 搜一下：<a href="https://github.com/search?l=PHP&amp;o=desc&amp;q=router&amp;ref=searchresults&amp;s=stars&amp;type=Repositories&amp;utf8=%E2%9C%93" target="_blank" rel="external">点此查看搜索结果</a></p><p>推荐 <a href="https://github.com/NoahBuscher/Macaw" target="_blank" rel="external">https://github.com/NoahBuscher/Macaw</a>，对应的 Composer 包为 noahbuscher/macaw 。</p><p>下面开始安装它，更改 composer.json：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">&quot;require&quot;:&#123;</div><div class="line">&quot;noahbuscher/macaw&quot;: &quot;dev-master&quot;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p><p>运行 composer update，成功之后将得到以下目录：</p><p><center><br><img src="/img/composer-3-1.png" alt=""><br></center><br>至此，Macaw安装成功！</p><h2 id="站点入口文件与环境"><a href="#站点入口文件与环境" class="headerlink" title="站点入口文件与环境"></a>站点入口文件与环境</h2><p>在项目目录下新建public 文件夹，这个文件夹将是用户唯一可见的部分。在文件夹下新建 index.php 文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line"></div><div class="line">// Autoload 自动载入</div><div class="line">require &apos;../vendor/autoload.php&apos;;</div><div class="line"></div><div class="line">// 路由配置</div><div class="line">require &apos;../config/routes.php&apos;;</div></pre></td></tr></table></figure></p><p>上面一行表示引入 Composer 的自动载入功能，下面一行表示载入路由配置文件。<br>然后继续在项目目录下新建config文件夹，在config文件夹内新建 routs.php 文件，内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line"></div><div class="line">use NoahBuscher\Macaw\Macaw;</div><div class="line"></div><div class="line">Macaw::get(&apos;fuck&apos;, function() &#123;</div><div class="line">  echo &quot;成功！&quot;;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">Macaw::get(&apos;(:all)&apos;, function($fu) &#123;</div><div class="line">  echo &apos;未匹配到路由&lt;br&gt;&apos;.$fu;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">Macaw::dispatch();</div></pre></td></tr></table></figure></p><p>然后访问你的地址即可：<a href="http://127.0.0.66/index.php/fuck" target="_blank" rel="external">http://127.0.0.66/index.php/fuck</a></p><p>注意：如果要配置域名地址进行映射要指向 <code>public/index.php</code> 文件<br><img src="/img/composer-3-2.png" alt=""></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;路由选择安装&quot;&gt;&lt;a href=&quot;#路由选择安装&quot; class=&quot;headerlink&quot; title=&quot;路由选择安装&quot;&gt;&lt;/a&gt;路由选择安装&lt;/h2&gt;&lt;p&gt;本节开始构建路由，先去 GitHub 搜一下：&lt;a href=&quot;https://github.com/sea
+      
+    
+    </summary>
+    
+      <category term="composer使用" scheme="https://zhipenwang.github.io/categories/composer%E4%BD%BF%E7%94%A8/"/>
+    
+    
+      <category term="Composer" scheme="https://zhipenwang.github.io/tags/Composer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo NexT主题内接入网页在线联系功能</title>
+    <link href="https://zhipenwang.github.io/2017/04/20/connect/"/>
+    <id>https://zhipenwang.github.io/2017/04/20/connect/</id>
+    <published>2017-04-20T11:12:49.000Z</published>
+    <updated>2018-02-13T12:04:27.367Z</updated>
+    
+    <content type="html"><![CDATA[<p>Hexo博客如何添加在线联系功能呢,发现了一个不错的网站可以提供在线联系的服务，当有用户在网页上给你留言后会通过邮件或者微信通知你，可以及时的解答用户的疑问。</p><h3 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h3><p>首先在(DaoVoice)[<a href="http://www.daovoice.io/]注册个账号。" target="_blank" rel="external">http://www.daovoice.io/]注册个账号。</a><br>登录上去之后进行配置，配置方法如下:<br>首先到DaoVoice上注册一个账号,注册完成后会得到一个app_id，获取appid的步骤如下图所示:<br><img src="/img/daovoice.png" alt=""></p><p>以next主题为例,打开/themes/next/layout/_partials/head.swig文件添加如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;% if theme.daovoice %&#125;</div><div class="line">  &lt;script&gt;</div><div class="line">  (function(i,s,o,g,r,a,m)&#123;i[&quot;DaoVoiceObject&quot;]=r;i[r]=i[r]||function()&#123;(i[r].q=i[r].q||[]).push(arguments)&#125;,i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset=&quot;utf-8&quot;;m.parentNode.insertBefore(a,m)&#125;)(window,document,&quot;script&quot;,(&apos;https:&apos; == document.location.protocol ? &apos;https:&apos; : &apos;http:&apos;) + &quot;//widget.daovoice.io/widget/0f81ff2f.js&quot;,&quot;daovoice&quot;)</div><div class="line">  daovoice(&apos;init&apos;, &#123;</div><div class="line">      app_id: &quot;&#123;&#123;theme.daovoice_app_id&#125;&#125;&quot;</div><div class="line">    &#125;);</div><div class="line">  daovoice(&apos;update&apos;);</div><div class="line">  &lt;/script&gt;</div><div class="line">&#123;% endif %&#125;</div></pre></td></tr></table></figure></p><p>接着打开主题配置文件_config.yml，添加如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># Online contact </div><div class="line">daovoice: true</div><div class="line">daovoice_app_id: 这里输入前面获取的app_id</div></pre></td></tr></table></figure></p><p>需要注意的是,next主题下聊天的按钮会和其他按钮重叠到一起，可以到聊天设置，修改下按钮的位置:<br><img src="/img/chat.png" alt=""><br>最后到右上角选择管理员，微信绑定,可以绑定你的微信号，关注公众号后打开小程序，就可以实时收发消息，有新的消息也会通过微信通知，设置页面如下:<br><img src="/img/wechat.png" alt=""></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Hexo博客如何添加在线联系功能呢,发现了一个不错的网站可以提供在线联系的服务，当有用户在网页上给你留言后会通过邮件或者微信通知你，可以及时的解答用户的疑问。&lt;/p&gt;
+&lt;h3 id=&quot;注册&quot;&gt;&lt;a href=&quot;#注册&quot; class=&quot;headerlink&quot; title=&quot;注
+      
+    
+    </summary>
+    
+      <category term="搭建博客" scheme="https://zhipenwang.github.io/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+      <category term="hexo" scheme="https://zhipenwang.github.io/tags/hexo/"/>
+    
+      <category term="next" scheme="https://zhipenwang.github.io/tags/next/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo添加字数统计、阅读时长、浏览次数</title>
+    <link href="https://zhipenwang.github.io/2017/04/19/blog_view/"/>
+    <id>https://zhipenwang.github.io/2017/04/19/blog_view/</id>
+    <published>2017-04-19T11:21:01.000Z</published>
+    <updated>2018-02-13T11:53:16.464Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="统计插件"><a href="#统计插件" class="headerlink" title="统计插件"></a>统计插件</h2><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>NexT 主题默认已经集成了文章【浏览次数】、【字数统计】、【阅读时长】统计功能，如果我们需要使用，只需要修改主题配置文件 _config.yml 即可。如下所示：<br>配置浏览次数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">busuanzi_count:</div><div class="line">  # count values only if the other configs are false</div><div class="line">  enable: true</div><div class="line">  # custom uv span for the whole site</div><div class="line">  site_uv: true</div><div class="line">  site_uv_header: &lt;i class=&quot;fa fa-user&quot;&gt;&lt;/i&gt; 访问人数</div><div class="line">  site_uv_footer:</div><div class="line">  # custom pv span for the whole site</div><div class="line">  site_pv: true</div><div class="line">  site_pv_header: &lt;i class=&quot;fa fa-eye&quot;&gt;&lt;/i&gt; 总访问量</div><div class="line">  site_pv_footer:</div><div class="line">  # custom pv span for one page only</div><div class="line">  page_pv: true</div><div class="line">  page_pv_header: &lt;i class=&quot;fa fa-file-o&quot;&gt;&lt;/i&gt; 浏览</div><div class="line">  page_pv_footer: 次</div></pre></td></tr></table></figure></p><p>配置字数统计、阅读时长，wordcount与min2read统计功能<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># Post wordcount display settings</div><div class="line"># Dependencies: https://github.com/willin/hexo-wordcount</div><div class="line">post_wordcount:</div><div class="line">  item_text: true</div><div class="line">  wordcount: true         # 单篇 字数统计</div><div class="line">  min2read: true          # 单篇 阅读时长</div><div class="line">  totalcount: false       # 网站 字数统计</div><div class="line">  separated_meta: true</div></pre></td></tr></table></figure></p><p>预览的时候如果出现字数统计和阅读时长失效的情况，一般是因为没有安装 hexo-wordcount 插件，查看 Hexo 插件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">hexo --debug</div><div class="line">``</div><div class="line">### 安装</div><div class="line"></div><div class="line">如果没有安装 hexo-wordcount 插件，先安装该插件：</div></pre></td></tr></table></figure></p><p>npm i –save hexo-wordcount<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">*** Node 版本 7.6.0 之前,请安装 2.x 版本 (Node.js v7.6.0 and previous) ，安装命令如下：***</div></pre></td></tr></table></figure></p><p>npm install hexo-wordcount@2 –save<br>```<br>安装完成后，重新执行启动服务预览就可以了。</p><h3 id="显示文字"><a href="#显示文字" class="headerlink" title="显示文字"></a>显示文字</h3><p>打开<code>post.swig</code>文件，路径如下：<code>xxx_blog/themes/next/layout/_macro/post.swig</code></p><p><img src="/img/view_count.png" alt=""></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;统计插件&quot;&gt;&lt;a href=&quot;#统计插件&quot; class=&quot;headerlink&quot; title=&quot;统计插件&quot;&gt;&lt;/a&gt;统计插件&lt;/h2&gt;&lt;h3 id=&quot;配置&quot;&gt;&lt;a href=&quot;#配置&quot; class=&quot;headerlink&quot; title=&quot;配置&quot;&gt;&lt;/a&gt;配置&lt;/h
+      
+    
+    </summary>
+    
+      <category term="搭建博客" scheme="https://zhipenwang.github.io/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+      <category term="hexo" scheme="https://zhipenwang.github.io/tags/hexo/"/>
+    
+      <category term="next" scheme="https://zhipenwang.github.io/tags/next/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo NexT主题内给每篇文章后添加结束标语</title>
+    <link href="https://zhipenwang.github.io/2017/04/18/hexo_next_end/"/>
+    <id>https://zhipenwang.github.io/2017/04/18/hexo_next_end/</id>
+    <published>2017-04-18T11:21:01.000Z</published>
+    <updated>2018-02-13T10:52:44.048Z</updated>
+    
+    <content type="html"><![CDATA[<p>给文章后面添加结束标语</p><h3 id="新建文件"><a href="#新建文件" class="headerlink" title="新建文件"></a>新建文件</h3><p>在<code>\themes\next\layout\_macro</code>中新建<code>passage-end-tag.swig</code>文件，添加代码至该文件中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;div&gt;</div><div class="line">    &#123;% if not is_index %&#125;</div><div class="line">        &lt;div style=&quot;text-align:center;color: #ccc;font-size:22px;&quot;&gt;-------------本文结束&lt;i class=&quot;fa fa-paw&quot;&gt;&lt;/i&gt;感谢您的阅读-------------&lt;/div&gt;</div><div class="line">    &#123;% endif %&#125;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p><h3 id="修改post-swig"><a href="#修改post-swig" class="headerlink" title="修改post.swig"></a>修改post.swig</h3><p>打开\themes\next\layout_macro\post.swig文件，在post-body后，post-footer前，添加下面内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;div&gt;</div><div class="line">  &#123;% if not is_index %&#125;</div><div class="line">    &#123;% include &apos;passage-end-tag.swig&apos; %&#125;</div><div class="line">  &#123;% endif %&#125;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p><h3 id="修改-config"><a href="#修改-config" class="headerlink" title="修改_config"></a>修改_config</h3><p>打开主题配置文件（_config.yml),在末尾添加：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># 文章末尾添加“本文结束”标记</div><div class="line">passage_end_tag:</div><div class="line">  enabled: true</div></pre></td></tr></table></figure></p><p>至此，就完成了关于添加文章结束标语的功能，具体的效果，此刻，想必你也看到了，就在下边。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;给文章后面添加结束标语&lt;/p&gt;
+&lt;h3 id=&quot;新建文件&quot;&gt;&lt;a href=&quot;#新建文件&quot; class=&quot;headerlink&quot; title=&quot;新建文件&quot;&gt;&lt;/a&gt;新建文件&lt;/h3&gt;&lt;p&gt;在&lt;code&gt;\themes\next\layout\_macro&lt;/code&gt;中新建
+      
+    
+    </summary>
+    
+      <category term="搭建博客" scheme="https://zhipenwang.github.io/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+      <category term="hexo" scheme="https://zhipenwang.github.io/tags/hexo/"/>
+    
+      <category term="next" scheme="https://zhipenwang.github.io/tags/next/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo NexT主题添加点击爱心效果</title>
+    <link href="https://zhipenwang.github.io/2017/04/17/clickheart/"/>
+    <id>https://zhipenwang.github.io/2017/04/17/clickheart/</id>
+    <published>2017-04-17T11:21:01.000Z</published>
+    <updated>2018-02-13T10:37:24.536Z</updated>
+    
+    <content type="html"><![CDATA[<p>给NexT主题内添加页面点击出现爱心的效果</p><h3 id="创建js文件"><a href="#创建js文件" class="headerlink" title="创建js文件"></a>创建js文件</h3><p>在<code>/themes/next/source/js/src</code>下新建文件<code>clicklove.js</code>，接着把该<a href="http://7u2ss1.com1.z0.glb.clouddn.com/love.js" target="_blank" rel="external">链接</a>下的代码拷贝粘贴到<code>clicklove.js</code>文件中。<br>代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">!function(e,t,a)&#123;function n()&#123;c(&quot;.heart&#123;width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);&#125;.heart:after,.heart:before&#123;content: &apos;&apos;;width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;&#125;.heart:after&#123;top: -5px;&#125;.heart:before&#123;left: -5px;&#125;&quot;),o(),r()&#125;function r()&#123;for(var e=0;e&lt;d.length;e++)d[e].alpha&lt;=0?(t.body.removeChild(d[e].el),d.splice(e,1)):(d[e].y--,d[e].scale+=.004,d[e].alpha-=.013,d[e].el.style.cssText=&quot;left:&quot;+d[e].x+&quot;px;top:&quot;+d[e].y+&quot;px;opacity:&quot;+d[e].alpha+&quot;;transform:scale(&quot;+d[e].scale+&quot;,&quot;+d[e].scale+&quot;) rotate(45deg);background:&quot;+d[e].color+&quot;;z-index:99999&quot;);requestAnimationFrame(r)&#125;function o()&#123;var t=&quot;function&quot;==typeof e.onclick&amp;&amp;e.onclick;e.onclick=function(e)&#123;t&amp;&amp;t(),i(e)&#125;&#125;function i(e)&#123;var a=t.createElement(&quot;div&quot;);a.className=&quot;heart&quot;,d.push(&#123;el:a,x:e.clientX-5,y:e.clientY-5,scale:1,alpha:1,color:s()&#125;),t.body.appendChild(a)&#125;function c(e)&#123;var a=t.createElement(&quot;style&quot;);a.type=&quot;text/css&quot;;try&#123;a.appendChild(t.createTextNode(e))&#125;catch(t)&#123;a.styleSheet.cssText=e&#125;t.getElementsByTagName(&quot;head&quot;)[0].appendChild(a)&#125;function s()&#123;return&quot;rgb(&quot;+~~(255*Math.random())+&quot;,&quot;+~~(255*Math.random())+&quot;,&quot;+~~(255*Math.random())+&quot;)&quot;&#125;var d=[];e.requestAnimationFrame=function()&#123;return e.requestAnimationFrame||e.webkitRequestAnimationFrame||e.mozRequestAnimationFrame||e.oRequestAnimationFrame||e.msRequestAnimationFrame||function(e)&#123;setTimeout(e,1e3/60)&#125;&#125;(),n()&#125;(window,document);</div></pre></td></tr></table></figure></p><h3 id="修改-layout-swig"><a href="#修改-layout-swig" class="headerlink" title="修改_layout.swig"></a>修改_layout.swig</h3><p>在<code>\themes\next\layout\_layout.swig</code>文件末尾添加：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 页面点击小红心 --&gt;</div><div class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;/js/src/clicklove.js&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;给NexT主题内添加页面点击出现爱心的效果&lt;/p&gt;
+&lt;h3 id=&quot;创建js文件&quot;&gt;&lt;a href=&quot;#创建js文件&quot; class=&quot;headerlink&quot; title=&quot;创建js文件&quot;&gt;&lt;/a&gt;创建js文件&lt;/h3&gt;&lt;p&gt;在&lt;code&gt;/themes/next/sourc
+      
+    
+    </summary>
+    
+      <category term="搭建博客" scheme="https://zhipenwang.github.io/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+      <category term="hexo" scheme="https://zhipenwang.github.io/tags/hexo/"/>
+    
+      <category term="next" scheme="https://zhipenwang.github.io/tags/next/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>github+hexo搭建个人博客</title>
+    <link href="https://zhipenwang.github.io/2017/03/18/create-blog/"/>
+    <id>https://zhipenwang.github.io/2017/03/18/create-blog/</id>
+    <published>2017-03-18T11:21:01.000Z</published>
+    <updated>2018-02-13T09:08:02.898Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>各位有兴趣搭建博客或者正在搭建博客却遇到问题的朋友们，不妨抽空来围观一下我搭建的过程中遇到的坑和填的土。。</strong></p><p><em>声明一点，以下所有步骤都是基于Windows系统的搭建，由于本人没有真正在其他系统上搭建过，就不画蛇添足了，所以其他系统的小心不要入错入坑咯</em></p><p>下面先说一下基本思路（给大家一个清晰的搭建过程）：</p><blockquote><p>1、在Windows系统下搭建运行hexo环境的前提是先搭建<strong>nodejs</strong>跟<strong>git</strong><br>2、搭建好nodejs跟git后就可以在系统中搭建hexo环境<br>3、申请github.com帐号，创建自己的repository（仓库）——注意仓库名必须是：yourusername.github.io，具体原因及内容后面细讲、<br>4、本地hexo环境部署到github上 5、yourusername.github.io查看自己的博客，成功！</p></blockquote><h3 id="第一步：搭建nodejs环境"><a href="#第一步：搭建nodejs环境" class="headerlink" title="第一步：搭建nodejs环境"></a>第一步：搭建nodejs环境</h3><p>参考菜鸟教程的nodejs，很是详细：<a href="http://www.runoob.com/nodejs/nodejs-install-setup.html" target="_blank" rel="external">nodejs-菜鸟教程</a></p><p>大家可以去<a href="https://nodejs.org/en/download/" target="_blank" rel="external">nodejs</a>官网下载，记得要下载跟自己Windows系统一致的版本。（64bit的下载window-install的64-bit；同理：32bit的下载32-bit的）。<br>下载之后双击安装，选择自己要安装的路径地址，一直next到finish就可以了<br><img src="/img/install-node-msi-version-on-windows-step5.png" alt=""><br>安装后检测PATH环境变量是否配置了Node.js，点击开始=》运行=》输入”cmd” =&gt; 输入命令”path”，输出结果中有nodejs的环境变量说明安装成功。（如下我的环境变量已经有nodejs了）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">PATH=C:\oraclexe\app\oracle\product\10.2.0\server\bin;C:\Windows\system32;</div><div class="line">C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;</div><div class="line">c:\python32\python;C:\MinGW\bin;C:\Program Files\GTK2-Runtime\lib;</div><div class="line">C:\Program Files\MySQL\MySQL Server 5.5\bin;C:\Program Files\nodejs\;</div></pre></td></tr></table></figure></p><p>然后可以检查一下Node.js版本，直接命令行输入 node –version<br><img src="/img/node-version.png" alt=""><br>ok，nodejs环境到此完成。</p><h3 id="第二步：搭建GIT环境"><a href="#第二步：搭建GIT环境" class="headerlink" title="第二步：搭建GIT环境"></a>第二步：搭建GIT环境</h3><p>同样，大家可以参考<a href="http://jingyan.baidu.com/article/90895e0fb3495f64ed6b0b50.html" target="_blank" rel="external">百度经验</a></p><p>下载地址可以前往<a href="http://msysgit.github.io/" target="_blank" rel="external">git官网</a>进行下载，同样下载跟自己系统位数一致的版本<br>下载之后双击选择自己要安装的路径地址一键next安装就好了<br><img src="/img/git-install.jpg" alt=""><br>安装好之后在任意位置右键都可以看到关于git的一些菜单选项：<br><img src="/img/git_menu.png" alt=""><br>ok，至此git安装完成。</p><h3 id="第三步：搭建hexo环境"><a href="#第三步：搭建hexo环境" class="headerlink" title="第三步：搭建hexo环境"></a>第三步：搭建hexo环境</h3><p>在E盘下建立hexo文件夹（或者你选择的任何路径）<br>在nodejs和git环境都搭建完成后，在刚刚建立好的hexo文件夹中点击鼠标右键，选择<strong>git bash</strong>，<br>输入以下命令安装hexo<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo</div></pre></td></tr></table></figure></p><p>接下来是比较重要的步骤，都是在git bash命令行操作，要认真看清楚：</p><ul><li>1、初始化你的博客<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo init</div></pre></td></tr></table></figure></li></ul><blockquote><p>执行后hexo会在你的站点目录下生成网站所需的文件</p></blockquote><ul><li>2、安装node_modules：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install</div></pre></td></tr></table></figure></li></ul><blockquote><p>在此目录中生成node_modules</p></blockquote><ul><li>3、本地浏览器查看：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo server  (此命令也可以简写为 hexo s)</div></pre></td></tr></table></figure></li></ul><blockquote><p>这时候会出现如下信息：<br>[info] Hexo is running at <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a>.<br>Press Ctrl+C to stop. </p></blockquote><p>这个时候在你的浏览器输入<a href="http://localhost:4000/你就可以看到本地的博客搭建成功。" target="_blank" rel="external">http://localhost:4000/你就可以看到本地的博客搭建成功。</a><br>这个时候可以轻松一下，随便浏览一下自己的博客熟悉一下</p><h3 id="第四步：本地hexo部署到github上"><a href="#第四步：本地hexo部署到github上" class="headerlink" title="第四步：本地hexo部署到github上"></a>第四步：本地hexo部署到github上</h3><p>1、首先要有github帐号，可以前往<a href="http://www.github.com/" target="_blank" rel="external">github官网</a>注册一个自己的github帐号，登录成功后，点击右上角的+号新建一个仓库<br><img src="/img/new_repository.png" alt=""><br>注意，仓库名必须跟自己的username一致，格式是username.github.io<br><img src="/img/username_git.png" alt=""></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;strong&gt;各位有兴趣搭建博客或者正在搭建博客却遇到问题的朋友们，不妨抽空来围观一下我搭建的过程中遇到的坑和填的土。。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;声明一点，以下所有步骤都是基于Windows系统的搭建，由于本人没有真正在其他系统上搭建过，就不画蛇添足了，所
+      
+    
+    </summary>
+    
+      <category term="搭建博客" scheme="https://zhipenwang.github.io/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+      <category term="Article" scheme="https://zhipenwang.github.io/tags/Article/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>博客的意义</title>
+    <link href="https://zhipenwang.github.io/2017/03/17/blog/"/>
+    <id>https://zhipenwang.github.io/2017/03/17/blog/</id>
+    <published>2017-03-17T11:21:01.000Z</published>
+    <updated>2018-02-13T09:07:03.250Z</updated>
+    
+    <content type="html"><![CDATA[<p><em>文中内容仅是个人观点，不喜随便喷，如有雷同，欢迎交流</em></p><h2 id="为什么有开博客的想法呢？"><a href="#为什么有开博客的想法呢？" class="headerlink" title="为什么有开博客的想法呢？"></a>为什么有开博客的想法呢？</h2><p>作为一名后端攻城狮，在各种“撸码”的过程中经常会碰到一些萝卜坑，当然及时植入了萝卜。开始填的时候也不以为常，管他下次会不会被挖再露出坑，慢慢学习的过程中遇到了更多的坑，觉得有点烧闹了，开始各种方式去学着记录，D、E、F盘塞了各种记录文本，慢慢发现这种方式查阅起来很是麻烦，而且最关键的是，有一次打开我记录了几千行的笔记，结果发现乱码了（原因是一直用gbk去写的，某一次脑短路用了默认utf格式的编辑器打开，整篇文档都乱码，又手贱的去直接在编辑器中点错了其他格式还保存，果然是自作孽不可活），后来各种软件编辑器尝试，越来越不认识其字符了，不过对咱来说，没法补救的东西失去了那就从头再来呗。这个时候开始打算换一种方式来记录一些自己遇到的坑和一些有价值的内容，同时也可以在一个平台上跟其他有深度的人沟通学习成长，所以打算在大平台去搭建一个属于个人的主页。</p><p>其中， 新浪博客、QQ空间、CSDN等“个人主页”都流行很久了，所以有越来越多的人开始考虑搭建一个真正属于自己的“个人主页”，个人博客建站也越来越流行。<br>那么搭建个人博客的目的无非是以下几点：</p><blockquote><ul><li>作为一个展示个性的平台<br>搭建一个展示个人观点、爱好、经历的良好平台，跟那些流行的新浪博客和QQ空间不一样，个人博客可以很灵活自由的去设计ownerstyle的网站。</li><li>作为一个知识积累的海洋<br>不管是从事文学、管理、IT开发，都可以通过这个平台去记录一些有价值对自己有影响的内容，积累成一个属于自己知识的海洋</li><li>作为一个交流分享的平台<br>不仅仅把自己的知识积累下来，更大程度的去分享，了解别人的一些不同看法，沟通完善一些自我的缺陷，学习别人更广的知识</li></ul></blockquote><p>作为一个攻城狮，要时刻去接触互联网新的思想，去真正参与到互联网中，既然决定了写博客，那么自己动手去搭建一个专属的博客，然后一步步去推广，不仅仅会带来前进的动力，其实也会慢慢去接触学习到什么才是真正的SEO（搜索引擎–百度搜索排行其实很大程度就是靠这个），也会去认识到网络推广。<br>对目前的我而言，那就是希望坚持下去，作为一个自我价值的体现，在未来的工作或者社交中能够以这个平台去让别人了解自己，成为自我的一个标识。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;em&gt;文中内容仅是个人观点，不喜随便喷，如有雷同，欢迎交流&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&quot;为什么有开博客的想法呢？&quot;&gt;&lt;a href=&quot;#为什么有开博客的想法呢？&quot; class=&quot;headerlink&quot; title=&quot;为什么有开博客的想法呢？&quot;&gt;&lt;/a&gt;为什么有开博客
+      
+    
+    </summary>
+    
+      <category term="博客思维" scheme="https://zhipenwang.github.io/categories/%E5%8D%9A%E5%AE%A2%E6%80%9D%E7%BB%B4/"/>
+    
+    
+      <category term="Article" scheme="https://zhipenwang.github.io/tags/Article/"/>
+    
+  </entry>
+  
+</feed>
