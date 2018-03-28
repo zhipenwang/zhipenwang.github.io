@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[git 误删分支恢复方法]]></title>
+    <url>%2F2018%2F03%2F28%2Fgit_recover_branch%2F</url>
+    <content type="text"><![CDATA[在使用git的时候，有时候会因为人为因素导致分支（commit）被删除，可以使用如下步骤进行恢复。 首先使用以下步骤创建一个新分支，修改一些文件后删除，以便进行恢复1、创建分支hexo1git branch hexo 2、查看分支列表123git branch -a * master hexo 3、切换到hexo分支，随便修改一下东西后commit123456git checkout hexoecho &apos;hexo&apos; &gt; test.txtgit add .git commit -m &apos;add test.txt&apos; 4、删除分支1git branch -D hexo 5、查看分支列表，hexo分支已经不存在12git branch -a * master 恢复步骤如下1、使用git log -g 找回之前提交的commit1234567commit 3eac14d05bc1264cda54a7c21f04c3892f32406aReflog: HEAD@&#123;1&#125; (fdipzone &lt;fdipzone@sina.com&gt;)Reflog message: commit: add test.txtAuthor: fdipzone &lt;fdipzone@sina.com&gt;Date: Sun Jan 31 22:26:33 2016 +0800 add test.txt 2、使用 git branch recover_branch[新分支] commit_id 命令，用这个commit创建一个分支12345git branch recover_branch_hexo 3eac14d05bc1264cda54a7c21f04c3892f32406agit branch -a* master recover_branch_hexo 这个时候，可以看到 recover_branch_hexo分支已经创建了。3、切换到recover_branch_hexo分支，检查文件是否存在12git checkout recover_branch_hexols -lt 这样就可以恢复误删除的分支了。]]></content>
+      <categories>
+        <category>GIT</category>
+      </categories>
+      <tags>
+        <tag>GIT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[git 配置ssh密钥]]></title>
+    <url>%2F2018%2F03%2F27%2Fssh_key%2F</url>
+    <content type="text"><![CDATA[在github帐号注册好之后，将项目clone到本地，加入git bash命令。1、输入cd ~/.ssh 回车，查看是否有ssh key密钥，有了就备份 2、创建ssh key，输入下面命令回车，之后会让你输入github的账号密码，如图12345ssh-keygen -t rsa -C &quot;youremail@youremail.com&quot;Creates a new ssh key using the provided email # Generating public/private rsa key pair.Enter file in which to save the key (/home/you/.ssh/id_rsa): 直接按Enter就行。然后，会提示你输入密码，如下(建议输一个，安全一点，当然不输也行，应该不会有人闲的无聊冒充你去修改你的代码)：1Enter same passphrase again: [Type passphrase again] 完了之后，大概是这样：12Your public key has been saved in /home/you/.ssh/id_rsa.pub.The key fingerprint is: # 01:0f:f4:3b:ca:85:d6:17:a1:7d:f0:68:9d:f0:a2:db your_email@youremail.com 3、找到本地id_rsa.pub文件，复制里面的内容，这就是ssh密钥，可以通过pwd命令来查看当前文件位置 4、登录github，在个人中心的setting中，找到 SSH and GPG keys 点击 new ssh key，将复制的ssh密钥粘贴进 “key”文本框，title随便输入即可。点击add key。添加ssh密钥到远程仓库完成。5、验证ssh是否可用1ssh -T git@github.com 返回如下表示正常可用。1Hi xxx! You&apos;ve successfully authenticated, but GitHub does not # provide shell access. 6、此时查看你的远程分支地址是否是ssh协议的123git remote -vorigin https://github.com/zhipenwang/zhipenwang.git (fetch)origin https://github.com/zhipenwang/zhipenwang.git (push) 如果是https协议，修改为ssh协议：1git remote set-url origin git@github.com:zhipenwang/zhipenwang.git 这个时候就可以进行push了。]]></content>
+      <categories>
+        <category>GIT</category>
+      </categories>
+      <tags>
+        <tag>GIT</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[初始算法]]></title>
     <url>%2F2018%2F02%2F13%2Falgorithm%2F</url>
     <content type="text"><![CDATA[算法：程序的灵魂 算法：algorithm 算法五大特征： 1、有穷性：保证执行有限步骤后结束 2、确切性：每一步骤都有确切的意义 3、输入：每个算法都有零个或多个输入，以刻画运算对象的初始情况，所谓零个输入是指算法本身定除了初始条件 4、输出：每个算法都有一个或多个输出，显示对输入数据加工后的结果。没有输出的算法是毫无意义的 5、可行性：在原则上算法能够精确地运行，进行优先次运算后即可完成的一种运算。 算法的逻辑、流程。计算机中的算法，分为两大类：数值运算算法（求解数值）、非数值运算算法（事务管理领域）。算法是计算机处理信息的本质，因为计算机程序本质上是一个算法，告诉计算机确切的步骤来执行一个指定的任务。 著名计算机科学家沃思公式：数据结构+算法=程序。 一个程序应当采用结构化程序设计方法进行程序设计，并且用某一种计算机语言来表示，因此，下面的公式更加贴切： 程序=算法+数据结构+程序设计方法+语言和环境 流程图来表示算法： 流程图的结构：顺序结构、选择结构、循环结构 N-S图 N-S流程图：代表计算机的算法。由一些特定意义的图像、流程线及简要的文字说明构成，能够清晰明确的表示程序的运行过程。（整个程序写在一个大框图内，由若干个小的基础框图构成，简称N-S图） 计算机语言的算法表示计算机语言表示算法的时候，必须严格遵循使用语言的语法规则。 学好算法的秘诀1、学的深入，基础扎实2、恒心、演练、举一反三3、语言之争的时代更要学会坚持]]></content>
@@ -10,17 +32,6 @@
       <tags>
         <tag>算法</tag>
         <tag>结构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[composer构建PHP框架——初始化]]></title>
-    <url>%2F2017%2F04%2F21%2Fcomposer-2%2F</url>
-    <content type="text"><![CDATA[“一个时代结束了，另一个时代开始了。”Framework Interoperability Group（框架可互用性小组），简称 FIG，成立于 2009 年。FIG 最初由几位知名 PHP 框架开发者发起，在吸纳了许多优秀的大脑和强健的体魄后，提出了 PSR-0 到 PSR-4 五套 PHP 非官方规范： 123456789* PSR-0 (Autoloading Standard) 自动加载标准* PSR-1 (Basic Coding Standard) 基础编码标准* PSR-2 (Coding Style Guide) 编码风格向导* PSR-3 (Logger Interface) 日志接口* PSR-4 (Improved Autoloading) 自动加载优化标准 创建composer.json在网站根目录下创建新文件夹 my-framework （My First Framework based on Composer），然后在此文件夹内创建 composer.json 文件12345&#123; &quot;require&quot;:&#123; &#125;&#125; 初始化composer打开命令行cmd，进入刚刚新建的目录 my_framework，执行命令1composer update 执行成功后生成了扩展包vendor 此时目录为： 到此，composer初始化完成！]]></content>
-      <categories>
-        <category>composer使用</category>
-      </categories>
-      <tags>
-        <tag>Composer</tag>
       </tags>
   </entry>
   <entry>
@@ -38,6 +49,17 @@
     <title><![CDATA[composer构建PHP框架——构建路由]]></title>
     <url>%2F2017%2F04%2F21%2Fcomposer-3%2F</url>
     <content type="text"><![CDATA[路由选择安装本节开始构建路由，先去 GitHub 搜一下：点此查看搜索结果 推荐 https://github.com/NoahBuscher/Macaw，对应的 Composer 包为 noahbuscher/macaw 。 下面开始安装它，更改 composer.json：12345&#123; &quot;require&quot;:&#123; &quot;noahbuscher/macaw&quot;: &quot;dev-master&quot; &#125;&#125; 运行 composer update，成功之后将得到以下目录： 至此，Macaw安装成功！ 站点入口文件与环境在项目目录下新建public 文件夹，这个文件夹将是用户唯一可见的部分。在文件夹下新建 index.php 文件：1234567&lt;?php// Autoload 自动载入require &apos;../vendor/autoload.php&apos;;// 路由配置require &apos;../config/routes.php&apos;; 上面一行表示引入 Composer 的自动载入功能，下面一行表示载入路由配置文件。然后继续在项目目录下新建config文件夹，在config文件夹内新建 routs.php 文件，内容如下：12345678910111213&lt;?phpuse NoahBuscher\Macaw\Macaw;Macaw::get(&apos;fuck&apos;, function() &#123; echo &quot;成功！&quot;;&#125;);Macaw::get(&apos;(:all)&apos;, function($fu) &#123; echo &apos;未匹配到路由&lt;br&gt;&apos;.$fu;&#125;);Macaw::dispatch(); 然后访问你的地址即可：http://127.0.0.66/index.php/fuck 注意：如果要配置域名地址进行映射要指向 public/index.php 文件]]></content>
+      <categories>
+        <category>composer使用</category>
+      </categories>
+      <tags>
+        <tag>Composer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[composer构建PHP框架——初始化]]></title>
+    <url>%2F2017%2F04%2F21%2Fcomposer-2%2F</url>
+    <content type="text"><![CDATA[“一个时代结束了，另一个时代开始了。”Framework Interoperability Group（框架可互用性小组），简称 FIG，成立于 2009 年。FIG 最初由几位知名 PHP 框架开发者发起，在吸纳了许多优秀的大脑和强健的体魄后，提出了 PSR-0 到 PSR-4 五套 PHP 非官方规范： 123456789* PSR-0 (Autoloading Standard) 自动加载标准* PSR-1 (Basic Coding Standard) 基础编码标准* PSR-2 (Coding Style Guide) 编码风格向导* PSR-3 (Logger Interface) 日志接口* PSR-4 (Improved Autoloading) 自动加载优化标准 创建composer.json在网站根目录下创建新文件夹 my-framework （My First Framework based on Composer），然后在此文件夹内创建 composer.json 文件12345&#123; &quot;require&quot;:&#123; &#125;&#125; 初始化composer打开命令行cmd，进入刚刚新建的目录 my_framework，执行命令1composer update 执行成功后生成了扩展包vendor 此时目录为： 到此，composer初始化完成！]]></content>
       <categories>
         <category>composer使用</category>
       </categories>
