@@ -89,34 +89,24 @@
 
 
 
-<meta name="description" content="各位有兴趣搭建博客或者正在搭建博客却遇到问题的朋友们，不妨抽空来围观一下我搭建的过程中遇到的坑和填的土。。
-声明一点，以下所有步骤都是基于Windows系统的搭建，由于本人没有真正在其他系统上搭建过，就不画蛇添足了，所以其他系统的小心不要入错入坑咯
-下面先说一下基本思路（给大家一个清晰的搭建过程）：
-
-1、在Windows系统下搭建运行hexo环境的前提是先搭建nodejs跟git2、搭建好nod">
+<meta name="description" content="各位有兴趣搭建博客或者正在搭建博客却遇到问题的朋友们，不妨抽空来围观一下我搭建的过程中遇到的坑和填的土。。 声明一点，以下所有步骤都是基于Windows系统的搭建，由于本人没有真正在其他系统上搭建过，就不画蛇添足了，所以其他系统的小心不要入错入坑咯 下面先说一下基本思路（给大家一个清晰的搭建过程）：  1、在Windows系统下搭建运行hexo环境的前提是先搭建nodejs跟git2、搭建好nod">
+<meta name="keywords" content="Article">
 <meta property="og:type" content="article">
 <meta property="og:title" content="github+hexo搭建个人博客">
 <meta property="og:url" content="https://zhipenwang.github.io/2017/03/18/create-blog/index.html">
 <meta property="og:site_name" content="王志鹏">
-<meta property="og:description" content="各位有兴趣搭建博客或者正在搭建博客却遇到问题的朋友们，不妨抽空来围观一下我搭建的过程中遇到的坑和填的土。。
-声明一点，以下所有步骤都是基于Windows系统的搭建，由于本人没有真正在其他系统上搭建过，就不画蛇添足了，所以其他系统的小心不要入错入坑咯
-下面先说一下基本思路（给大家一个清晰的搭建过程）：
-
-1、在Windows系统下搭建运行hexo环境的前提是先搭建nodejs跟git2、搭建好nod">
+<meta property="og:description" content="各位有兴趣搭建博客或者正在搭建博客却遇到问题的朋友们，不妨抽空来围观一下我搭建的过程中遇到的坑和填的土。。 声明一点，以下所有步骤都是基于Windows系统的搭建，由于本人没有真正在其他系统上搭建过，就不画蛇添足了，所以其他系统的小心不要入错入坑咯 下面先说一下基本思路（给大家一个清晰的搭建过程）：  1、在Windows系统下搭建运行hexo环境的前提是先搭建nodejs跟git2、搭建好nod">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://zhipenwang.github.io/img/install-node-msi-version-on-windows-step5.png">
 <meta property="og:image" content="https://zhipenwang.github.io/img/node-version.png">
 <meta property="og:image" content="https://zhipenwang.github.io/img/git-install.jpg">
 <meta property="og:image" content="https://zhipenwang.github.io/img/git_menu.png">
 <meta property="og:image" content="https://zhipenwang.github.io/img/new_repository.png">
 <meta property="og:image" content="https://zhipenwang.github.io/img/username_git.png">
-<meta property="og:updated_time" content="2018-03-28T10:28:36.137Z">
+<meta property="og:updated_time" content="2018-04-04T01:35:45.050Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="github+hexo搭建个人博客">
-<meta name="twitter:description" content="各位有兴趣搭建博客或者正在搭建博客却遇到问题的朋友们，不妨抽空来围观一下我搭建的过程中遇到的坑和填的土。。
-声明一点，以下所有步骤都是基于Windows系统的搭建，由于本人没有真正在其他系统上搭建过，就不画蛇添足了，所以其他系统的小心不要入错入坑咯
-下面先说一下基本思路（给大家一个清晰的搭建过程）：
-
-1、在Windows系统下搭建运行hexo环境的前提是先搭建nodejs跟git2、搭建好nod">
+<meta name="twitter:description" content="各位有兴趣搭建博客或者正在搭建博客却遇到问题的朋友们，不妨抽空来围观一下我搭建的过程中遇到的坑和填的土。。 声明一点，以下所有步骤都是基于Windows系统的搭建，由于本人没有真正在其他系统上搭建过，就不画蛇添足了，所以其他系统的小心不要入错入坑咯 下面先说一下基本思路（给大家一个清晰的搭建过程）：  1、在Windows系统下搭建运行hexo环境的前提是先搭建nodejs跟git2、搭建好nod">
 <meta name="twitter:image" content="https://zhipenwang.github.io/img/install-node-msi-version-on-windows-step5.png">
 
 
@@ -447,7 +437,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  899 字
+                  902 字
                 </span>
               
 
@@ -488,36 +478,36 @@
 <blockquote>
 <p>1、在Windows系统下搭建运行hexo环境的前提是先搭建<strong>nodejs</strong>跟<strong>git</strong><br>2、搭建好nodejs跟git后就可以在系统中搭建hexo环境<br>3、申请github.com帐号，创建自己的repository（仓库）——注意仓库名必须是：yourusername.github.io，具体原因及内容后面细讲、<br>4、本地hexo环境部署到github上 5、yourusername.github.io查看自己的博客，成功！</p>
 </blockquote>
-<h3 id="第一步：搭建nodejs环境"><a href="#第一步：搭建nodejs环境" class="headerlink" title="第一步：搭建nodejs环境"></a>第一步：搭建nodejs环境</h3><p>参考菜鸟教程的nodejs，很是详细：<a href="http://www.runoob.com/nodejs/nodejs-install-setup.html" target="_blank" rel="external">nodejs-菜鸟教程</a></p>
-<p>大家可以去<a href="https://nodejs.org/en/download/" target="_blank" rel="external">nodejs</a>官网下载，记得要下载跟自己Windows系统一致的版本。（64bit的下载window-install的64-bit；同理：32bit的下载32-bit的）。<br>下载之后双击安装，选择自己要安装的路径地址，一直next到finish就可以了<br><img src="/img/install-node-msi-version-on-windows-step5.png" alt=""><br>安装后检测PATH环境变量是否配置了Node.js，点击开始=》运行=》输入”cmd” =&gt; 输入命令”path”，输出结果中有nodejs的环境变量说明安装成功。（如下我的环境变量已经有nodejs了）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">PATH=C:\oraclexe\app\oracle\product\10.2.0\server\bin;C:\Windows\system32;</div><div class="line">C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;</div><div class="line">c:\python32\python;C:\MinGW\bin;C:\Program Files\GTK2-Runtime\lib;</div><div class="line">C:\Program Files\MySQL\MySQL Server 5.5\bin;C:\Program Files\nodejs\;</div></pre></td></tr></table></figure></p>
+<h3 id="第一步：搭建nodejs环境"><a href="#第一步：搭建nodejs环境" class="headerlink" title="第一步：搭建nodejs环境"></a>第一步：搭建nodejs环境</h3><p>参考菜鸟教程的nodejs，很是详细：<a href="http://www.runoob.com/nodejs/nodejs-install-setup.html" target="_blank" rel="noopener">nodejs-菜鸟教程</a></p>
+<p>大家可以去<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">nodejs</a>官网下载，记得要下载跟自己Windows系统一致的版本。（64bit的下载window-install的64-bit；同理：32bit的下载32-bit的）。<br>下载之后双击安装，选择自己要安装的路径地址，一直next到finish就可以了<br><img src="/img/install-node-msi-version-on-windows-step5.png" alt=""><br>安装后检测PATH环境变量是否配置了Node.js，点击开始=》运行=》输入”cmd” =&gt; 输入命令”path”，输出结果中有nodejs的环境变量说明安装成功。（如下我的环境变量已经有nodejs了）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PATH=C:\oraclexe\app\oracle\product\10.2.0\server\bin;C:\Windows\system32;</span><br><span class="line">C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;</span><br><span class="line">c:\python32\python;C:\MinGW\bin;C:\Program Files\GTK2-Runtime\lib;</span><br><span class="line">C:\Program Files\MySQL\MySQL Server 5.5\bin;C:\Program Files\nodejs\;</span><br></pre></td></tr></table></figure></p>
 <p>然后可以检查一下Node.js版本，直接命令行输入 node –version<br><img src="/img/node-version.png" alt=""><br>ok，nodejs环境到此完成。</p>
-<h3 id="第二步：搭建GIT环境"><a href="#第二步：搭建GIT环境" class="headerlink" title="第二步：搭建GIT环境"></a>第二步：搭建GIT环境</h3><p>同样，大家可以参考<a href="http://jingyan.baidu.com/article/90895e0fb3495f64ed6b0b50.html" target="_blank" rel="external">百度经验</a></p>
-<p>下载地址可以前往<a href="http://msysgit.github.io/" target="_blank" rel="external">git官网</a>进行下载，同样下载跟自己系统位数一致的版本<br>下载之后双击选择自己要安装的路径地址一键next安装就好了<br><img src="/img/git-install.jpg" alt=""><br>安装好之后在任意位置右键都可以看到关于git的一些菜单选项：<br><img src="/img/git_menu.png" alt=""><br>ok，至此git安装完成。</p>
-<h3 id="第三步：搭建hexo环境"><a href="#第三步：搭建hexo环境" class="headerlink" title="第三步：搭建hexo环境"></a>第三步：搭建hexo环境</h3><p>在E盘下建立hexo文件夹（或者你选择的任何路径）<br>在nodejs和git环境都搭建完成后，在刚刚建立好的hexo文件夹中点击鼠标右键，选择<strong>git bash</strong>，<br>输入以下命令安装hexo<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo</div></pre></td></tr></table></figure></p>
+<h3 id="第二步：搭建GIT环境"><a href="#第二步：搭建GIT环境" class="headerlink" title="第二步：搭建GIT环境"></a>第二步：搭建GIT环境</h3><p>同样，大家可以参考<a href="http://jingyan.baidu.com/article/90895e0fb3495f64ed6b0b50.html" target="_blank" rel="noopener">百度经验</a></p>
+<p>下载地址可以前往<a href="http://msysgit.github.io/" target="_blank" rel="noopener">git官网</a>进行下载，同样下载跟自己系统位数一致的版本<br>下载之后双击选择自己要安装的路径地址一键next安装就好了<br><img src="/img/git-install.jpg" alt=""><br>安装好之后在任意位置右键都可以看到关于git的一些菜单选项：<br><img src="/img/git_menu.png" alt=""><br>ok，至此git安装完成。</p>
+<h3 id="第三步：搭建hexo环境"><a href="#第三步：搭建hexo环境" class="headerlink" title="第三步：搭建hexo环境"></a>第三步：搭建hexo环境</h3><p>在E盘下建立hexo文件夹（或者你选择的任何路径）<br>在nodejs和git环境都搭建完成后，在刚刚建立好的hexo文件夹中点击鼠标右键，选择<strong>git bash</strong>，<br>输入以下命令安装hexo<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo</span><br></pre></td></tr></table></figure></p>
 <p>接下来是比较重要的步骤，都是在git bash命令行操作，要认真看清楚：</p>
 <ul>
-<li>1、初始化你的博客<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo init</div></pre></td></tr></table></figure>
+<li>1、初始化你的博客<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <blockquote>
 <p>执行后hexo会在你的站点目录下生成网站所需的文件</p>
 </blockquote>
 <ul>
-<li>2、安装node_modules：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install</div></pre></td></tr></table></figure>
+<li>2、安装node_modules：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <blockquote>
 <p>在此目录中生成node_modules</p>
 </blockquote>
 <ul>
-<li>3、本地浏览器查看：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo server  (此命令也可以简写为 hexo s)</div></pre></td></tr></table></figure>
+<li>3、本地浏览器查看：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server  (此命令也可以简写为 hexo s)</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <blockquote>
-<p>这时候会出现如下信息：<br>[info] Hexo is running at <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a>.<br>Press Ctrl+C to stop. </p>
+<p>这时候会出现如下信息：<br>[info] Hexo is running at <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a>.<br>Press Ctrl+C to stop. </p>
 </blockquote>
-<p>这个时候在你的浏览器输入<a href="http://localhost:4000/你就可以看到本地的博客搭建成功。" target="_blank" rel="external">http://localhost:4000/你就可以看到本地的博客搭建成功。</a><br>这个时候可以轻松一下，随便浏览一下自己的博客熟悉一下</p>
-<h3 id="第四步：本地hexo部署到github上"><a href="#第四步：本地hexo部署到github上" class="headerlink" title="第四步：本地hexo部署到github上"></a>第四步：本地hexo部署到github上</h3><p>1、首先要有github帐号，可以前往<a href="http://www.github.com/" target="_blank" rel="external">github官网</a>注册一个自己的github帐号，登录成功后，点击右上角的+号新建一个仓库<br><img src="/img/new_repository.png" alt=""><br>注意，仓库名必须跟自己的username一致，格式是username.github.io<br><img src="/img/username_git.png" alt=""></p>
+<p>这个时候在你的浏览器输入<a href="http://localhost:4000/你就可以看到本地的博客搭建成功。" target="_blank" rel="noopener">http://localhost:4000/你就可以看到本地的博客搭建成功。</a><br>这个时候可以轻松一下，随便浏览一下自己的博客熟悉一下</p>
+<h3 id="第四步：本地hexo部署到github上"><a href="#第四步：本地hexo部署到github上" class="headerlink" title="第四步：本地hexo部署到github上"></a>第四步：本地hexo部署到github上</h3><p>1、首先要有github帐号，可以前往<a href="http://www.github.com/" target="_blank" rel="noopener">github官网</a>注册一个自己的github帐号，登录成功后，点击右上角的+号新建一个仓库<br><img src="/img/new_repository.png" alt=""><br>注意，仓库名必须跟自己的username一致，格式是username.github.io<br><img src="/img/username_git.png" alt=""></p>
 
       
     </div>
@@ -656,7 +646,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

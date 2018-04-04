@@ -89,19 +89,18 @@
 
 
 
-<meta name="description" content="给文章后面添加结束标语
-新建文件在\themes\next\layout\_macro中新建passage-end-tag.swig文件，添加代码至该文件中：12345&amp;lt;div&amp;gt;    &amp;#123;% if not is_index %&amp;#125;        &amp;lt;div style=&amp;quot;text-align:center;color: #ccc;font-size:22">
+<meta name="description" content="给文章后面添加结束标语 新建文件在\themes\next\layout\_macro中新建passage-end-tag.swig文件，添加代码至该文件中：12345&amp;lt;div&amp;gt;    &amp;#123;% if not is_index %&amp;#125;        &amp;lt;div style=&amp;quot;text-align:center;color: #ccc;font-size:22">
+<meta name="keywords" content="hexo,next">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo NexT主题内给每篇文章后添加结束标语">
 <meta property="og:url" content="https://zhipenwang.github.io/2017/04/18/hexo_next_end/index.html">
 <meta property="og:site_name" content="王志鹏">
-<meta property="og:description" content="给文章后面添加结束标语
-新建文件在\themes\next\layout\_macro中新建passage-end-tag.swig文件，添加代码至该文件中：12345&amp;lt;div&amp;gt;    &amp;#123;% if not is_index %&amp;#125;        &amp;lt;div style=&amp;quot;text-align:center;color: #ccc;font-size:22">
-<meta property="og:updated_time" content="2018-03-28T10:28:36.138Z">
+<meta property="og:description" content="给文章后面添加结束标语 新建文件在\themes\next\layout\_macro中新建passage-end-tag.swig文件，添加代码至该文件中：12345&amp;lt;div&amp;gt;    &amp;#123;% if not is_index %&amp;#125;        &amp;lt;div style=&amp;quot;text-align:center;color: #ccc;font-size:22">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-04T01:35:45.052Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo NexT主题内给每篇文章后添加结束标语">
-<meta name="twitter:description" content="给文章后面添加结束标语
-新建文件在\themes\next\layout\_macro中新建passage-end-tag.swig文件，添加代码至该文件中：12345&amp;lt;div&amp;gt;    &amp;#123;% if not is_index %&amp;#125;        &amp;lt;div style=&amp;quot;text-align:center;color: #ccc;font-size:22">
+<meta name="twitter:description" content="给文章后面添加结束标语 新建文件在\themes\next\layout\_macro中新建passage-end-tag.swig文件，添加代码至该文件中：12345&amp;lt;div&amp;gt;    &amp;#123;% if not is_index %&amp;#125;        &amp;lt;div style=&amp;quot;text-align:center;color: #ccc;font-size:22">
 
 
 
@@ -431,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  180 字
+                  190 字
                 </span>
               
 
@@ -467,9 +466,9 @@
 
       
         <p>给文章后面添加结束标语</p>
-<h3 id="新建文件"><a href="#新建文件" class="headerlink" title="新建文件"></a>新建文件</h3><p>在<code>\themes\next\layout\_macro</code>中新建<code>passage-end-tag.swig</code>文件，添加代码至该文件中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;div&gt;</div><div class="line">    &#123;% if not is_index %&#125;</div><div class="line">        &lt;div style=&quot;text-align:center;color: #ccc;font-size:22px;&quot;&gt;-------------本文结束&lt;i class=&quot;fa fa-paw&quot;&gt;&lt;/i&gt;感谢您的阅读-------------&lt;/div&gt;</div><div class="line">    &#123;% endif %&#125;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
-<h3 id="修改post-swig"><a href="#修改post-swig" class="headerlink" title="修改post.swig"></a>修改post.swig</h3><p>打开\themes\next\layout_macro\post.swig文件，在post-body后，post-footer前，添加下面内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;div&gt;</div><div class="line">  &#123;% if not is_index %&#125;</div><div class="line">    &#123;% include &apos;passage-end-tag.swig&apos; %&#125;</div><div class="line">  &#123;% endif %&#125;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
-<h3 id="修改-config"><a href="#修改-config" class="headerlink" title="修改_config"></a>修改_config</h3><p>打开主题配置文件（_config.yml),在末尾添加：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># 文章末尾添加“本文结束”标记</div><div class="line">passage_end_tag:</div><div class="line">  enabled: true</div></pre></td></tr></table></figure></p>
+<h3 id="新建文件"><a href="#新建文件" class="headerlink" title="新建文件"></a>新建文件</h3><p>在<code>\themes\next\layout\_macro</code>中新建<code>passage-end-tag.swig</code>文件，添加代码至该文件中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &#123;% if not is_index %&#125;</span><br><span class="line">        &lt;div style=&quot;text-align:center;color: #ccc;font-size:22px;&quot;&gt;-------------本文结束&lt;i class=&quot;fa fa-paw&quot;&gt;&lt;/i&gt;感谢您的阅读-------------&lt;/div&gt;</span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="修改post-swig"><a href="#修改post-swig" class="headerlink" title="修改post.swig"></a>修改post.swig</h3><p>打开\themes\next\layout_macro\post.swig文件，在post-body后，post-footer前，添加下面内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &#123;% if not is_index %&#125;</span><br><span class="line">    &#123;% include &apos;passage-end-tag.swig&apos; %&#125;</span><br><span class="line">  &#123;% endif %&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="修改-config"><a href="#修改-config" class="headerlink" title="修改_config"></a>修改_config</h3><p>打开主题配置文件（_config.yml),在末尾添加：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 文章末尾添加“本文结束”标记</span><br><span class="line">passage_end_tag:</span><br><span class="line">  enabled: true</span><br></pre></td></tr></table></figure></p>
 <p>至此，就完成了关于添加文章结束标语的功能，具体的效果，此刻，想必你也看到了，就在下边。</p>
 
       
@@ -611,7 +610,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
