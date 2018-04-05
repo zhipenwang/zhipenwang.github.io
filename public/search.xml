@@ -46,9 +46,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[composer安装与使用]]></title>
-    <url>%2F2017%2F04%2F21%2Fcomposer-1%2F</url>
-    <content type="text"><![CDATA[安装1、点击下载：composer 2、下载好之后双击直接安装，Next即可：3、然后选择php.exe文件： 接下来就一直next到安装完成即可。 使用 [info]使用composer安装ThinkPHP5 通过composer中国镜像进行初步了解 ##开始命令行操作 1、中国镜像下载参考tp5看云文档 由于国外网站访问很慢，国内提供了很好的镜像，所以使用国内镜像：1Composer config -g repo.packagist composer https://packagist.phpcomposer.com 2、下载tp5框架进入站点根目录www操作命令行：1composer create-project topthink/think tp5 --prefer-dist 其中tp5可写填写任何你愿意的名称 框架安装完成耐心等待几分钟的安装过程，安装完成之后本地已经生成了tp5的新框架内容 composer主要的功能：安装扩展包composer的最主要的功能：dependency manager for PHP进入项目目录tp5，执行命令：1composer require riverslei/payment 下载riverslei/payment 集成支付宝、微信支付等流行的支付接口到项目中：Composer.json中新增了这一句： 项目目录中也已经安装好了扩展包：]]></content>
+    <title><![CDATA[composer构建PHP框架——构建路由]]></title>
+    <url>%2F2017%2F04%2F21%2Fcomposer-3%2F</url>
+    <content type="text"><![CDATA[路由选择安装本节开始构建路由，先去 GitHub 搜一下：点此查看搜索结果 推荐 https://github.com/NoahBuscher/Macaw，对应的 Composer 包为 noahbuscher/macaw 。 下面开始安装它，更改 composer.json：12345&#123; &quot;require&quot;:&#123; &quot;noahbuscher/macaw&quot;: &quot;dev-master&quot; &#125;&#125; 运行 composer update，成功之后将得到以下目录： 至此，Macaw安装成功！ 站点入口文件与环境在项目目录下新建public 文件夹，这个文件夹将是用户唯一可见的部分。在文件夹下新建 index.php 文件：1234567&lt;?php// Autoload 自动载入require &apos;../vendor/autoload.php&apos;;// 路由配置require &apos;../config/routes.php&apos;; 上面一行表示引入 Composer 的自动载入功能，下面一行表示载入路由配置文件。然后继续在项目目录下新建config文件夹，在config文件夹内新建 routs.php 文件，内容如下：12345678910111213&lt;?phpuse NoahBuscher\Macaw\Macaw;Macaw::get(&apos;fuck&apos;, function() &#123; echo &quot;成功！&quot;;&#125;);Macaw::get(&apos;(:all)&apos;, function($fu) &#123; echo &apos;未匹配到路由&lt;br&gt;&apos;.$fu;&#125;);Macaw::dispatch(); 然后访问你的地址即可：http://127.0.0.66/index.php/fuck 注意：如果要配置域名地址进行映射要指向 public/index.php 文件]]></content>
       <categories>
         <category>composer使用</category>
       </categories>
@@ -68,9 +68,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[composer构建PHP框架——构建路由]]></title>
-    <url>%2F2017%2F04%2F21%2Fcomposer-3%2F</url>
-    <content type="text"><![CDATA[路由选择安装本节开始构建路由，先去 GitHub 搜一下：点此查看搜索结果 推荐 https://github.com/NoahBuscher/Macaw，对应的 Composer 包为 noahbuscher/macaw 。 下面开始安装它，更改 composer.json：12345&#123; &quot;require&quot;:&#123; &quot;noahbuscher/macaw&quot;: &quot;dev-master&quot; &#125;&#125; 运行 composer update，成功之后将得到以下目录： 至此，Macaw安装成功！ 站点入口文件与环境在项目目录下新建public 文件夹，这个文件夹将是用户唯一可见的部分。在文件夹下新建 index.php 文件：1234567&lt;?php// Autoload 自动载入require &apos;../vendor/autoload.php&apos;;// 路由配置require &apos;../config/routes.php&apos;; 上面一行表示引入 Composer 的自动载入功能，下面一行表示载入路由配置文件。然后继续在项目目录下新建config文件夹，在config文件夹内新建 routs.php 文件，内容如下：12345678910111213&lt;?phpuse NoahBuscher\Macaw\Macaw;Macaw::get(&apos;fuck&apos;, function() &#123; echo &quot;成功！&quot;;&#125;);Macaw::get(&apos;(:all)&apos;, function($fu) &#123; echo &apos;未匹配到路由&lt;br&gt;&apos;.$fu;&#125;);Macaw::dispatch(); 然后访问你的地址即可：http://127.0.0.66/index.php/fuck 注意：如果要配置域名地址进行映射要指向 public/index.php 文件]]></content>
+    <title><![CDATA[composer安装与使用]]></title>
+    <url>%2F2017%2F04%2F21%2Fcomposer-1%2F</url>
+    <content type="text"><![CDATA[安装1、点击下载：composer 2、下载好之后双击直接安装，Next即可：3、然后选择php.exe文件： 接下来就一直next到安装完成即可。 使用 [info]使用composer安装ThinkPHP5 通过composer中国镜像进行初步了解 ##开始命令行操作 1、中国镜像下载参考tp5看云文档 由于国外网站访问很慢，国内提供了很好的镜像，所以使用国内镜像：1Composer config -g repo.packagist composer https://packagist.phpcomposer.com 2、下载tp5框架进入站点根目录www操作命令行：1composer create-project topthink/think tp5 --prefer-dist 其中tp5可写填写任何你愿意的名称 框架安装完成耐心等待几分钟的安装过程，安装完成之后本地已经生成了tp5的新框架内容 composer主要的功能：安装扩展包composer的最主要的功能：dependency manager for PHP进入项目目录tp5，执行命令：1composer require riverslei/payment 下载riverslei/payment 集成支付宝、微信支付等流行的支付接口到项目中：Composer.json中新增了这一句： 项目目录中也已经安装好了扩展包：]]></content>
       <categories>
         <category>composer使用</category>
       </categories>
@@ -93,7 +93,7 @@
   <entry>
     <title><![CDATA[Hexo添加字数统计、阅读时长、浏览次数]]></title>
     <url>%2F2017%2F04%2F19%2Fblog_view%2F</url>
-    <content type="text"><![CDATA[统计插件配置NexT 主题默认已经集成了文章【浏览次数】、【字数统计】、【阅读时长】统计功能，如果我们需要使用，只需要修改主题配置文件 _config.yml 即可。如下所示：配置浏览次数123456789101112131415busuanzi_count: # count values only if the other configs are false enable: true # custom uv span for the whole site site_uv: true site_uv_header: &lt;i class=&quot;fa fa-user&quot;&gt;&lt;/i&gt; 访问人数 site_uv_footer: # custom pv span for the whole site site_pv: true site_pv_header: &lt;i class=&quot;fa fa-eye&quot;&gt;&lt;/i&gt; 总访问量 site_pv_footer: # custom pv span for one page only page_pv: true page_pv_header: &lt;i class=&quot;fa fa-file-o&quot;&gt;&lt;/i&gt; 浏览 page_pv_footer: 次 配置字数统计、阅读时长，wordcount与min2read统计功能12345678# Post wordcount display settings# Dependencies: https://github.com/willin/hexo-wordcountpost_wordcount: item_text: true wordcount: true # 单篇 字数统计 min2read: true # 单篇 阅读时长 totalcount: false # 网站 字数统计 separated_meta: true 预览的时候如果出现字数统计和阅读时长失效的情况，一般是因为没有安装 hexo-wordcount 插件，查看 Hexo 插件：12345hexo --debug``### 安装如果没有安装 hexo-wordcount 插件，先安装该插件： npm i –save hexo-wordcount1*** Node 版本 7.6.0 之前,请安装 2.x 版本 (Node.js v7.6.0 and previous) ，安装命令如下：*** npm install hexo-wordcount@2 –save`安装完成后，重新执行启动服务预览就可以了。 显示文字打开post.swig文件，路径如下：xxx_blog/themes/next/layout/_macro/post.swig]]></content>
+    <content type="text"><![CDATA[统计插件配置NexT 主题默认已经集成了文章【浏览次数】、【字数统计】、【阅读时长】统计功能，如果我们需要使用，只需要修改主题配置文件 _config.yml 即可。如下所示：配置浏览次数123456789101112131415busuanzi_count: # count values only if the other configs are false enable: true # custom uv span for the whole site site_uv: true site_uv_header: &lt;i class=&quot;fa fa-user&quot;&gt;&lt;/i&gt; 访问人数 site_uv_footer: # custom pv span for the whole site site_pv: true site_pv_header: &lt;i class=&quot;fa fa-eye&quot;&gt;&lt;/i&gt; 总访问量 site_pv_footer: # custom pv span for one page only page_pv: true page_pv_header: &lt;i class=&quot;fa fa-file-o&quot;&gt;&lt;/i&gt; 浏览 page_pv_footer: 次 配置字数统计、阅读时长，wordcount与min2read统计功能12345678# Post wordcount display settings# Dependencies: https://github.com/willin/hexo-wordcountpost_wordcount: item_text: true wordcount: true # 单篇 字数统计 min2read: true # 单篇 阅读时长 totalcount: false # 网站 字数统计 separated_meta: true 预览的时候如果出现字数统计和阅读时长失效的情况，一般是因为没有安装 hexo-wordcount 插件，查看 Hexo 插件：12345hexo --debug``### 安装如果没有安装 hexo-wordcount 插件，先安装该插件： npm i –save hexo-wordcount1*** Node 版本 7.6.0 之前,请安装 2.x 版本 (Node.js v7.6.0 and previous) ，安装命令如下：*** npm install hexo-wordcount@2 –save```安装完成后，重新执行启动服务预览就可以了。 显示文字打开post.swig文件，路径如下：xxx_blog/themes/next/layout/_macro/post.swig]]></content>
       <categories>
         <category>搭建博客</category>
       </categories>
