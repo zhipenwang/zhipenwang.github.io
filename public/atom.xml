@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhipenwang.github.io/"/>
-  <updated>2018-04-21T12:33:19.344Z</updated>
+  <updated>2018-05-01T03:01:56.396Z</updated>
   <id>https://zhipenwang.github.io/</id>
   
   <author>
@@ -17,11 +17,39 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>jQuery对于父子、同级元素的处理方式</title>
+    <link href="https://zhipenwang.github.io/2018/05/01/js_2/"/>
+    <id>https://zhipenwang.github.io/2018/05/01/js_2/</id>
+    <published>2018-05-01T02:48:45.663Z</published>
+    <updated>2018-05-01T03:01:56.396Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>上一节介绍了一些关于表单处理的元素内容<br>本节介绍jquery对于父、同级、子元素的处理方式。</p></blockquote><h3 id="父窗口与子窗口处理"><a href="#父窗口与子窗口处理" class="headerlink" title="父窗口与子窗口处理"></a>父窗口与子窗口处理</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">父窗口：</div><div class="line">&lt;input name=&apos;img&apos; type=&apos;text&apos; /&gt;</div><div class="line">&lt;img id=&apos;img&apos; src=&apos;&apos; /&gt;</div><div class="line">layer.open(&#123;</div><div class="line">    type: 2,</div><div class="line">    title: &apos;title&apos;,</div><div class="line">    area: [&apos;500px&apos;, &apos;350px&apos;],</div><div class="line">    content &apos;son.html&apos;</div><div class="line">&#125;)</div><div class="line"></div><div class="line">子窗口：</div><div class="line">var img_url;</div><div class="line">parent.$(&quot;input[name=&apos;img&apos;]&quot;).val(img_url);</div><div class="line">parent.$(&apos;#img&apos;).attr(&apos;src&apos;, img_url);</div><div class="line">parent.layer.closeAll();</div></pre></td></tr></table></figure><h2 id="jQuery获取父元素节点、子元素节点及兄弟元素节点的方法"><a href="#jQuery获取父元素节点、子元素节点及兄弟元素节点的方法" class="headerlink" title="jQuery获取父元素节点、子元素节点及兄弟元素节点的方法"></a>jQuery获取父元素节点、子元素节点及兄弟元素节点的方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;ul class=&quot;par&quot;&gt;</div><div class="line">&lt;li id=&quot;firstli&quot;&gt;</div><div class="line">&lt;h3 class=&quot;title&quot;&gt;one&lt;/h3&gt;</div><div class="line">&lt;ul class=&quot;par&quot;&gt;</div><div class="line">&lt;li id=&quot;one&quot;&gt;one_first&lt;/li&gt;</div><div class="line">&lt;li&gt;two_first&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div><div class="line">&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure><h3 id="jquery父节点的获取"><a href="#jquery父节点的获取" class="headerlink" title="jquery父节点的获取"></a>jquery父节点的获取</h3><h4 id="使用parent-获取父节点"><a href="#使用parent-获取父节点" class="headerlink" title="使用parent()获取父节点"></a>使用parent()获取父节点</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(&quot;#one&quot;).parent().parent();  // 获取 id为firstli的li标签节点</div><div class="line">$(&quot;#one&quot;).parent().parent(&apos;.par&apos;); // 获取最上面 class为par的ul节点</div><div class="line">$(&quot;#one&quot;).parent(&apos;.par&apos;); // 获取 id为one的上一级class为par的ul节点</div></pre></td></tr></table></figure><h4 id="使用parents-和closest-获取父节点"><a href="#使用parents-和closest-获取父节点" class="headerlink" title="使用parents()和closest()获取父节点"></a>使用parents()和closest()获取父节点</h4><blockquote><ol><li>closest从当前元素开始匹配寻找，逐级向上寻找直到找到匹配的元素后就停止了，返回0或者1个元素</li><li>parents从父元素开始匹配寻找，一直向上查找直到找到根元素，将所有元素放到另外一个集合中，返回0、1或者更多元素<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$(&quot;#one&quot;).parnets(&apos;.par&apos;);  // 找出所有class为par的父节点/父父节点</div><div class="line">$(&quot;one&quot;).closest(&apos;.par&apos;);  // 获取最近一层的父级class为par的ul节点</div></pre></td></tr></table></figure></li></ol></blockquote><h3 id="jquery兄弟节点的获取"><a href="#jquery兄弟节点的获取" class="headerlink" title="jquery兄弟节点的获取"></a>jquery兄弟节点的获取</h3><h4 id="parent父节点再find子节点"><a href="#parent父节点再find子节点" class="headerlink" title="parent父节点再find子节点"></a>parent父节点再find子节点</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(&apos;.title&apos;).parent().find(&apos;ul&apos;);  // 找到class为title的兄弟节点ul，即class为par的ul</div></pre></td></tr></table></figure><h4 id="sibingls-获取兄弟节点"><a href="#sibingls-获取兄弟节点" class="headerlink" title="sibingls()获取兄弟节点"></a>sibingls()获取兄弟节点</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(&apos;.title&apos;).sibings(&apos;ul&apos;);  // 找到class为title的兄弟节点ul，即class为par的ul</div></pre></td></tr></table></figure><h3 id="jquery子节点的获取"><a href="#jquery子节点的获取" class="headerlink" title="jquery子节点的获取"></a>jquery子节点的获取</h3><h4 id="first方式"><a href="#first方式" class="headerlink" title=":first方式"></a>:first方式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(&apos;.par:first-child&apos;);  // 获取id为firstli的li节点</div></pre></td></tr></table></figure><h4 id="选择器获取"><a href="#选择器获取" class="headerlink" title="选择器获取"></a>选择器获取</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(&apos;#firstli h3.title&apos;);  // 获取class为title的h3节点</div></pre></td></tr></table></figure><h4 id="find-函数"><a href="#find-函数" class="headerlink" title="find()函数"></a>find()函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(&apos;#firstli&apos;).find(&apos;h3&apos;);  // 获取class为title的h3节点</div></pre></td></tr></table></figure><h4 id="children-函数"><a href="#children-函数" class="headerlink" title="children()函数"></a>children()函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(&apos;#firstli&apos;).children(&apos;h3.title&apos;);   // 获取class为title的h3节点</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;上一节介绍了一些关于表单处理的元素内容&lt;br&gt;本节介绍jquery对于父、同级、子元素的处理方式。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;父窗口与子窗口处理&quot;&gt;&lt;a href=&quot;#父窗口与子窗口处理&quot; class=&quot;headerlin
+      
+    
+    </summary>
+    
+      <category term="jQuery" scheme="https://zhipenwang.github.io/categories/jQuery/"/>
+    
+    
+      <category term="Web前端" scheme="https://zhipenwang.github.io/tags/Web%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
     <title>jQuery获取表单值及属性内容</title>
     <link href="https://zhipenwang.github.io/2018/04/21/js_1/"/>
     <id>https://zhipenwang.github.io/2018/04/21/js_1/</id>
     <published>2018-04-21T12:21:01.000Z</published>
-    <updated>2018-04-21T12:33:19.344Z</updated>
+    <updated>2018-05-01T03:01:27.933Z</updated>
     
     <content type="html"><![CDATA[<blockquote><p>平时前端在处理表单数据的时候，总是需要通过表单属性或者值来进行一些用户看不到的处理。<br>比如：联动选项的处理、数据的验证过滤等。<br>本节针对不同的表单内容进行了不同的获取方式。</p></blockquote><h3 id="获取当前表单元素的值"><a href="#获取当前表单元素的值" class="headerlink" title="获取当前表单元素的值"></a>获取当前表单元素的值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;input type=&quot;text&quot; name=&quot;name&quot; onblur=&quot;getValue(this)&quot;&gt;</div><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">function getValue(obj)&#123;</div><div class="line">    // 获取值</div><div class="line">$(obj).val();</div><div class="line">&#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure><h3 id="获取表单元素值及属性内容"><a href="#获取表单元素值及属性内容" class="headerlink" title="获取表单元素值及属性内容"></a>获取表单元素值及属性内容</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&lt;input type=&quot;text&quot; name=&quot;name&quot;&gt;</div><div class="line">&lt;select name=&quot;sex&quot; data-type=&quot;sex&quot; field=&quot;sex&quot;&gt;</div><div class="line">&lt;option value=&quot;man&quot;&gt;男&lt;/option&gt;</div><div class="line">&lt;option value=&quot;woman&quot;&gt;女&lt;/option&gt;</div><div class="line">&lt;/select&gt;</div><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">function do_submit(obj)&#123;</div><div class="line">    // 获取值</div><div class="line">var name = $(&quot;input[name=&apos;name&apos;]&quot;).val();</div><div class="line">var sex_value = $(&quot;select[name=&apos;sex&apos;]&quot;).val();</div><div class="line">// 获取特定文本值的数据</div><div class="line">    $(&apos;select[name=&quot;data[select]&quot;] [value=&quot;man&quot;]&apos;).val();</div><div class="line">// 获取文本值</div><div class="line">var sex_text = $(&quot;select[name=&apos;sex&apos;]&quot;).find(&apos;option:selected&apos;).text();</div><div class="line">// 获取data-type属性值</div><div class="line">var sex_type = $(&quot;select[name=&apos;sex&apos;]&quot;).data(&apos;type&apos;);</div><div class="line">var sex_type = $(&quot;select[name=&apos;sex&apos;]&quot;).attr(&apos;data-type&apos;);</div><div class="line">// 获取field属性值</div><div class="line">var sex_field = $(&quot;select[name=&apos;sex&apos;]&quot;).attr(&apos;field&apos;);</div><div class="line">&#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure><h3 id="获取多个多行文本框内容值"><a href="#获取多个多行文本框内容值" class="headerlink" title="获取多个多行文本框内容值"></a>获取多个多行文本框内容值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;textarea name=&quot;formula[]&quot; class=&quot;text&quot;&gt;&lt;/textarea&gt;</div><div class="line">&lt;textarea name=&quot;formula[]&quot; class=&quot;text&quot;&gt;&lt;/textarea&gt;</div><div class="line">&lt;textarea name=&quot;formula[]&quot; class=&quot;text&quot;&gt;&lt;/textarea&gt;</div><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">    var formula = new Array();</div><div class="line">$(&quot;.text,textarea&quot;).each(function(e)&#123;</div><div class="line">    formula.push($(this).val());</div><div class="line">&#125;)</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>]]></content>
     
@@ -40,7 +68,7 @@
       <category term="jQuery" scheme="https://zhipenwang.github.io/categories/jQuery/"/>
     
     
-      <category term="Article" scheme="https://zhipenwang.github.io/tags/Article/"/>
+      <category term="Web前端" scheme="https://zhipenwang.github.io/tags/Web%E5%89%8D%E7%AB%AF/"/>
     
   </entry>
   
@@ -162,32 +190,6 @@
   </entry>
   
   <entry>
-    <title>composer构建PHP框架——初始化</title>
-    <link href="https://zhipenwang.github.io/2017/04/21/composer-2/"/>
-    <id>https://zhipenwang.github.io/2017/04/21/composer-2/</id>
-    <published>2017-04-21T11:21:01.000Z</published>
-    <updated>2018-03-28T10:28:36.135Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>“一个时代结束了，另一个时代开始了。”<br>Framework Interoperability Group（框架可互用性小组），简称 FIG，成立于 2009 年。FIG 最初由几位知名 PHP 框架开发者发起，在吸纳了许多优秀的大脑和强健的体魄后，提出了 PSR-0 到 PSR-4 五套 PHP 非官方规范：</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">* PSR-0 (Autoloading Standard) 自动加载标准</div><div class="line"></div><div class="line">* PSR-1 (Basic Coding Standard) 基础编码标准</div><div class="line"></div><div class="line">* PSR-2 (Coding Style Guide) 编码风格向导</div><div class="line"></div><div class="line">* PSR-3 (Logger Interface) 日志接口</div><div class="line"></div><div class="line">* PSR-4 (Improved Autoloading) 自动加载优化标准</div></pre></td></tr></table></figure><h3 id="创建composer-json"><a href="#创建composer-json" class="headerlink" title="创建composer.json"></a>创建composer.json</h3><p>在网站根目录下创建新文件夹 <code>my-framework</code> （My First Framework based on Composer），然后在此文件夹内创建 <code>composer.json</code> 文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">&quot;require&quot;:&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p><h3 id="初始化composer"><a href="#初始化composer" class="headerlink" title="初始化composer"></a>初始化composer</h3><p>打开命令行cmd，进入刚刚新建的目录 <code>my_framework</code>，执行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer update</div></pre></td></tr></table></figure></p><p>执行成功后生成了扩展包<code>vendor</code></p><center><br><img src="/img/composer-2-1.png" alt=""><br></center><br>此时目录为：<br><center><br><img src="/img/composer-2-2.png" alt=""><br></center><p>到此，composer初始化完成！</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt;“一个时代结束了，另一个时代开始了。”&lt;br&gt;Framework Interoperability Group（框架可互用性小组），简称 FIG，成立于 2009 年。FIG 最初由几位知名 PHP 框架开发者发起，在吸纳了许多优秀的大脑和强健的体
-      
-    
-    </summary>
-    
-      <category term="composer使用" scheme="https://zhipenwang.github.io/categories/composer%E4%BD%BF%E7%94%A8/"/>
-    
-    
-      <category term="Composer" scheme="https://zhipenwang.github.io/tags/Composer/"/>
-    
-  </entry>
-  
-  <entry>
     <title>composer安装与使用</title>
     <link href="https://zhipenwang.github.io/2017/04/21/composer-1/"/>
     <id>https://zhipenwang.github.io/2017/04/21/composer-1/</id>
@@ -226,6 +228,32 @@
       
       
         &lt;h2 id=&quot;路由选择安装&quot;&gt;&lt;a href=&quot;#路由选择安装&quot; class=&quot;headerlink&quot; title=&quot;路由选择安装&quot;&gt;&lt;/a&gt;路由选择安装&lt;/h2&gt;&lt;p&gt;本节开始构建路由，先去 GitHub 搜一下：&lt;a href=&quot;https://github.com/sea
+      
+    
+    </summary>
+    
+      <category term="composer使用" scheme="https://zhipenwang.github.io/categories/composer%E4%BD%BF%E7%94%A8/"/>
+    
+    
+      <category term="Composer" scheme="https://zhipenwang.github.io/tags/Composer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>composer构建PHP框架——初始化</title>
+    <link href="https://zhipenwang.github.io/2017/04/21/composer-2/"/>
+    <id>https://zhipenwang.github.io/2017/04/21/composer-2/</id>
+    <published>2017-04-21T11:21:01.000Z</published>
+    <updated>2018-03-28T10:28:36.135Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>“一个时代结束了，另一个时代开始了。”<br>Framework Interoperability Group（框架可互用性小组），简称 FIG，成立于 2009 年。FIG 最初由几位知名 PHP 框架开发者发起，在吸纳了许多优秀的大脑和强健的体魄后，提出了 PSR-0 到 PSR-4 五套 PHP 非官方规范：</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">* PSR-0 (Autoloading Standard) 自动加载标准</div><div class="line"></div><div class="line">* PSR-1 (Basic Coding Standard) 基础编码标准</div><div class="line"></div><div class="line">* PSR-2 (Coding Style Guide) 编码风格向导</div><div class="line"></div><div class="line">* PSR-3 (Logger Interface) 日志接口</div><div class="line"></div><div class="line">* PSR-4 (Improved Autoloading) 自动加载优化标准</div></pre></td></tr></table></figure><h3 id="创建composer-json"><a href="#创建composer-json" class="headerlink" title="创建composer.json"></a>创建composer.json</h3><p>在网站根目录下创建新文件夹 <code>my-framework</code> （My First Framework based on Composer），然后在此文件夹内创建 <code>composer.json</code> 文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">&quot;require&quot;:&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p><h3 id="初始化composer"><a href="#初始化composer" class="headerlink" title="初始化composer"></a>初始化composer</h3><p>打开命令行cmd，进入刚刚新建的目录 <code>my_framework</code>，执行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer update</div></pre></td></tr></table></figure></p><p>执行成功后生成了扩展包<code>vendor</code></p><center><br><img src="/img/composer-2-1.png" alt=""><br></center><br>此时目录为：<br><center><br><img src="/img/composer-2-2.png" alt=""><br></center><p>到此，composer初始化完成！</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;“一个时代结束了，另一个时代开始了。”&lt;br&gt;Framework Interoperability Group（框架可互用性小组），简称 FIG，成立于 2009 年。FIG 最初由几位知名 PHP 框架开发者发起，在吸纳了许多优秀的大脑和强健的体
       
     
     </summary>

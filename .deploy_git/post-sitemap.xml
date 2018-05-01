@@ -7,8 +7,16 @@
     </url>
 
     <url>
+        <loc>https://zhipenwang.github.io/2018/05/01/js_2/</loc>
+        <lastmod>2018-05-01T03:01:56.396Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://zhipenwang.github.io/2018/04/21/js_1/</loc>
-        <lastmod>2018-04-21T12:33:19.344Z</lastmod>
+        <lastmod>2018-05-01T03:01:27.933Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -79,7 +87,7 @@
     </url>
 
     <url>
-        <loc>https://zhipenwang.github.io/2017/04/21/composer-1/</loc>
+        <loc>https://zhipenwang.github.io/2017/04/21/composer-2/</loc>
         <lastmod>2018-03-28T10:28:36.135Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -87,7 +95,7 @@
     </url>
 
     <url>
-        <loc>https://zhipenwang.github.io/2017/04/21/composer-2/</loc>
+        <loc>https://zhipenwang.github.io/2017/04/21/composer-1/</loc>
         <lastmod>2018-03-28T10:28:36.135Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>

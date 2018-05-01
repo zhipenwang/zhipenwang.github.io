@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[jQuery对于父子、同级元素的处理方式]]></title>
+    <url>%2F2018%2F05%2F01%2Fjs_2%2F</url>
+    <content type="text"><![CDATA[上一节介绍了一些关于表单处理的元素内容本节介绍jquery对于父、同级、子元素的处理方式。 父窗口与子窗口处理123456789101112131415父窗口：&lt;input name=&apos;img&apos; type=&apos;text&apos; /&gt;&lt;img id=&apos;img&apos; src=&apos;&apos; /&gt;layer.open(&#123; type: 2, title: &apos;title&apos;, area: [&apos;500px&apos;, &apos;350px&apos;], content &apos;son.html&apos;&#125;)子窗口：var img_url;parent.$(&quot;input[name=&apos;img&apos;]&quot;).val(img_url);parent.$(&apos;#img&apos;).attr(&apos;src&apos;, img_url);parent.layer.closeAll(); jQuery获取父元素节点、子元素节点及兄弟元素节点的方法123456789&lt;ul class=&quot;par&quot;&gt; &lt;li id=&quot;firstli&quot;&gt; &lt;h3 class=&quot;title&quot;&gt;one&lt;/h3&gt; &lt;ul class=&quot;par&quot;&gt; &lt;li id=&quot;one&quot;&gt;one_first&lt;/li&gt; &lt;li&gt;two_first&lt;/li&gt; &lt;/ul&gt; &lt;/li&gt;&lt;/ul&gt; jquery父节点的获取使用parent()获取父节点123$(&quot;#one&quot;).parent().parent(); // 获取 id为firstli的li标签节点$(&quot;#one&quot;).parent().parent(&apos;.par&apos;); // 获取最上面 class为par的ul节点$(&quot;#one&quot;).parent(&apos;.par&apos;); // 获取 id为one的上一级class为par的ul节点 使用parents()和closest()获取父节点 closest从当前元素开始匹配寻找，逐级向上寻找直到找到匹配的元素后就停止了，返回0或者1个元素 parents从父元素开始匹配寻找，一直向上查找直到找到根元素，将所有元素放到另外一个集合中，返回0、1或者更多元素12$(&quot;#one&quot;).parnets(&apos;.par&apos;); // 找出所有class为par的父节点/父父节点$(&quot;one&quot;).closest(&apos;.par&apos;); // 获取最近一层的父级class为par的ul节点 jquery兄弟节点的获取parent父节点再find子节点1$(&apos;.title&apos;).parent().find(&apos;ul&apos;); // 找到class为title的兄弟节点ul，即class为par的ul sibingls()获取兄弟节点1$(&apos;.title&apos;).sibings(&apos;ul&apos;); // 找到class为title的兄弟节点ul，即class为par的ul jquery子节点的获取:first方式1$(&apos;.par:first-child&apos;); // 获取id为firstli的li节点 选择器获取1$(&apos;#firstli h3.title&apos;); // 获取class为title的h3节点 find()函数1$(&apos;#firstli&apos;).find(&apos;h3&apos;); // 获取class为title的h3节点 children()函数1$(&apos;#firstli&apos;).children(&apos;h3.title&apos;); // 获取class为title的h3节点]]></content>
+      <categories>
+        <category>jQuery</category>
+      </categories>
+      <tags>
+        <tag>Web前端</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[jQuery获取表单值及属性内容]]></title>
     <url>%2F2018%2F04%2F21%2Fjs_1%2F</url>
     <content type="text"><![CDATA[平时前端在处理表单数据的时候，总是需要通过表单属性或者值来进行一些用户看不到的处理。比如：联动选项的处理、数据的验证过滤等。本节针对不同的表单内容进行了不同的获取方式。 获取当前表单元素的值1234567&lt;input type=&quot;text&quot; name=&quot;name&quot; onblur=&quot;getValue(this)&quot;&gt;&lt;script type=&quot;text/javascript&quot;&gt; function getValue(obj)&#123; // 获取值 $(obj).val(); &#125;&lt;/script&gt; 获取表单元素值及属性内容123456789101112131415161718192021&lt;input type=&quot;text&quot; name=&quot;name&quot;&gt;&lt;select name=&quot;sex&quot; data-type=&quot;sex&quot; field=&quot;sex&quot;&gt; &lt;option value=&quot;man&quot;&gt;男&lt;/option&gt; &lt;option value=&quot;woman&quot;&gt;女&lt;/option&gt;&lt;/select&gt;&lt;script type=&quot;text/javascript&quot;&gt; function do_submit(obj)&#123; // 获取值 var name = $(&quot;input[name=&apos;name&apos;]&quot;).val(); var sex_value = $(&quot;select[name=&apos;sex&apos;]&quot;).val(); // 获取特定文本值的数据 $(&apos;select[name=&quot;data[select]&quot;] [value=&quot;man&quot;]&apos;).val(); // 获取文本值 var sex_text = $(&quot;select[name=&apos;sex&apos;]&quot;).find(&apos;option:selected&apos;).text(); // 获取data-type属性值 var sex_type = $(&quot;select[name=&apos;sex&apos;]&quot;).data(&apos;type&apos;); var sex_type = $(&quot;select[name=&apos;sex&apos;]&quot;).attr(&apos;data-type&apos;); // 获取field属性值 var sex_field = $(&quot;select[name=&apos;sex&apos;]&quot;).attr(&apos;field&apos;); &#125;&lt;/script&gt; 获取多个多行文本框内容值123456789&lt;textarea name=&quot;formula[]&quot; class=&quot;text&quot;&gt;&lt;/textarea&gt;&lt;textarea name=&quot;formula[]&quot; class=&quot;text&quot;&gt;&lt;/textarea&gt;&lt;textarea name=&quot;formula[]&quot; class=&quot;text&quot;&gt;&lt;/textarea&gt;&lt;script type=&quot;text/javascript&quot;&gt; var formula = new Array(); $(&quot;.text,textarea&quot;).each(function(e)&#123; formula.push($(this).val()); &#125;)&lt;/script&gt;]]></content>
@@ -8,7 +19,7 @@
         <category>jQuery</category>
       </categories>
       <tags>
-        <tag>Article</tag>
+        <tag>Web前端</tag>
       </tags>
   </entry>
   <entry>
@@ -57,17 +68,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[composer构建PHP框架——初始化]]></title>
-    <url>%2F2017%2F04%2F21%2Fcomposer-2%2F</url>
-    <content type="text"><![CDATA[“一个时代结束了，另一个时代开始了。”Framework Interoperability Group（框架可互用性小组），简称 FIG，成立于 2009 年。FIG 最初由几位知名 PHP 框架开发者发起，在吸纳了许多优秀的大脑和强健的体魄后，提出了 PSR-0 到 PSR-4 五套 PHP 非官方规范： 123456789* PSR-0 (Autoloading Standard) 自动加载标准* PSR-1 (Basic Coding Standard) 基础编码标准* PSR-2 (Coding Style Guide) 编码风格向导* PSR-3 (Logger Interface) 日志接口* PSR-4 (Improved Autoloading) 自动加载优化标准 创建composer.json在网站根目录下创建新文件夹 my-framework （My First Framework based on Composer），然后在此文件夹内创建 composer.json 文件12345&#123; &quot;require&quot;:&#123; &#125;&#125; 初始化composer打开命令行cmd，进入刚刚新建的目录 my_framework，执行命令1composer update 执行成功后生成了扩展包vendor 此时目录为： 到此，composer初始化完成！]]></content>
-      <categories>
-        <category>composer使用</category>
-      </categories>
-      <tags>
-        <tag>Composer</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[composer安装与使用]]></title>
     <url>%2F2017%2F04%2F21%2Fcomposer-1%2F</url>
     <content type="text"><![CDATA[安装1、点击下载：composer 2、下载好之后双击直接安装，Next即可：3、然后选择php.exe文件： 接下来就一直next到安装完成即可。 使用 [info]使用composer安装ThinkPHP5 通过composer中国镜像进行初步了解 ##开始命令行操作 1、中国镜像下载参考tp5看云文档 由于国外网站访问很慢，国内提供了很好的镜像，所以使用国内镜像：1Composer config -g repo.packagist composer https://packagist.phpcomposer.com 2、下载tp5框架进入站点根目录www操作命令行：1composer create-project topthink/think tp5 --prefer-dist 其中tp5可写填写任何你愿意的名称 框架安装完成耐心等待几分钟的安装过程，安装完成之后本地已经生成了tp5的新框架内容 composer主要的功能：安装扩展包composer的最主要的功能：dependency manager for PHP进入项目目录tp5，执行命令：1composer require riverslei/payment 下载riverslei/payment 集成支付宝、微信支付等流行的支付接口到项目中：Composer.json中新增了这一句： 项目目录中也已经安装好了扩展包：]]></content>
@@ -82,6 +82,17 @@
     <title><![CDATA[composer构建PHP框架——构建路由]]></title>
     <url>%2F2017%2F04%2F21%2Fcomposer-3%2F</url>
     <content type="text"><![CDATA[路由选择安装本节开始构建路由，先去 GitHub 搜一下：点此查看搜索结果 推荐 https://github.com/NoahBuscher/Macaw，对应的 Composer 包为 noahbuscher/macaw 。 下面开始安装它，更改 composer.json：12345&#123; &quot;require&quot;:&#123; &quot;noahbuscher/macaw&quot;: &quot;dev-master&quot; &#125;&#125; 运行 composer update，成功之后将得到以下目录： 至此，Macaw安装成功！ 站点入口文件与环境在项目目录下新建public 文件夹，这个文件夹将是用户唯一可见的部分。在文件夹下新建 index.php 文件：1234567&lt;?php// Autoload 自动载入require &apos;../vendor/autoload.php&apos;;// 路由配置require &apos;../config/routes.php&apos;; 上面一行表示引入 Composer 的自动载入功能，下面一行表示载入路由配置文件。然后继续在项目目录下新建config文件夹，在config文件夹内新建 routs.php 文件，内容如下：12345678910111213&lt;?phpuse NoahBuscher\Macaw\Macaw;Macaw::get(&apos;fuck&apos;, function() &#123; echo &quot;成功！&quot;;&#125;);Macaw::get(&apos;(:all)&apos;, function($fu) &#123; echo &apos;未匹配到路由&lt;br&gt;&apos;.$fu;&#125;);Macaw::dispatch(); 然后访问你的地址即可：http://127.0.0.66/index.php/fuck 注意：如果要配置域名地址进行映射要指向 public/index.php 文件]]></content>
+      <categories>
+        <category>composer使用</category>
+      </categories>
+      <tags>
+        <tag>Composer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[composer构建PHP框架——初始化]]></title>
+    <url>%2F2017%2F04%2F21%2Fcomposer-2%2F</url>
+    <content type="text"><![CDATA[“一个时代结束了，另一个时代开始了。”Framework Interoperability Group（框架可互用性小组），简称 FIG，成立于 2009 年。FIG 最初由几位知名 PHP 框架开发者发起，在吸纳了许多优秀的大脑和强健的体魄后，提出了 PSR-0 到 PSR-4 五套 PHP 非官方规范： 123456789* PSR-0 (Autoloading Standard) 自动加载标准* PSR-1 (Basic Coding Standard) 基础编码标准* PSR-2 (Coding Style Guide) 编码风格向导* PSR-3 (Logger Interface) 日志接口* PSR-4 (Improved Autoloading) 自动加载优化标准 创建composer.json在网站根目录下创建新文件夹 my-framework （My First Framework based on Composer），然后在此文件夹内创建 composer.json 文件12345&#123; &quot;require&quot;:&#123; &#125;&#125; 初始化composer打开命令行cmd，进入刚刚新建的目录 my_framework，执行命令1composer update 执行成功后生成了扩展包vendor 此时目录为： 到此，composer初始化完成！]]></content>
       <categories>
         <category>composer使用</category>
       </categories>

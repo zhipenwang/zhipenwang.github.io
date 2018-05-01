@@ -1,7 +1,7 @@
 ---
 title: jQuery获取表单值及属性内容
 date: 2018-04-21 20:21:01
-tags: Article
+tags: Web前端
 categories: jQuery
 ---
 >平时前端在处理表单数据的时候，总是需要通过表单属性或者值来进行一些用户看不到的处理。
