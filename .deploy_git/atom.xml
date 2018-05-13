@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhipenwang.github.io/"/>
-  <updated>2018-05-05T11:06:10.024Z</updated>
+  <updated>2018-05-13T03:42:20.677Z</updated>
   <id>https://zhipenwang.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>js 比较几种遍历数组及对象的方式</title>
+    <link href="https://zhipenwang.github.io/2018/05/13/js_4/"/>
+    <id>https://zhipenwang.github.io/2018/05/13/js_4/</id>
+    <published>2018-05-13T03:26:43.661Z</published>
+    <updated>2018-05-13T03:42:20.677Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>通常我们会用循环的方式来遍历数组。但是循环是 导致js 性能问题的原因之一。<br>一般我们会采用下几种方式来进行数组的遍历：</p></blockquote><h3 id="方式1：for-in-循环"><a href="#方式1：for-in-循环" class="headerlink" title="方式1：for in 循环"></a>方式1：for in 循环</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var arr = [1,2,3,4,5];</div><div class="line">var obj = &#123; a : 1, b : 2, c : 3 &#125;;</div><div class="line">for( var item in arr|obj )&#123;</div><div class="line">        fn(item)&#123;</div><div class="line">                // do sth with arr[item];</div><div class="line">                //do sth wtih obj[item];</div><div class="line">        &#125;;</div><div class="line">&#125;</div><div class="line">这里的 item：</div><div class="line">        array 的索引值，对应于 arr 的下标值；</div><div class="line">        object 的 key 值，对应于 obj 的 a,b,c；</div></pre></td></tr></table></figure><h3 id="方式2：for-循环"><a href="#方式2：for-循环" class="headerlink" title="方式2：for 循环"></a>方式2：for 循环</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">for (var i=0; i&lt;arr.length; i++)&#123;</div><div class="line">        //do sth with arr[i];</div><div class="line">&#125;</div></pre></td></tr></table></figure><blockquote><p>这两种方法应该非常常见且使用很频繁。但实际上，这两种方法都存在性能问题。<br>在方式1中，for-in 需要分析出array 的每个属性，这个操作性能开销很大。用在 key 已知的数组上是非常不划算的。所以尽量不要用 for-in，除非你不清楚要处理哪些属性，例如 JSON 对象这样的情况。<br>在方式2中，循环每进行一次，就要检查一下数组长度。读取属性（数组长度）要比读局部变量慢，尤其是当 array 里存放的都是 DOM 元素，因为每次读取都会扫描一遍页面上的选择器相关元素，速度会大大降低。<br>所以这时候我们就有必要对方式2进行优化。</p></blockquote><h4 id="加速的"><a href="#加速的" class="headerlink" title="加速的"></a>加速的</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var arr = [1,2,3,4,5];</div><div class="line">var length =arr.length;</div><div class="line">for(var i=0; i&lt;length; i++)&#123;</div><div class="line">　　fn(arr[i]);</div><div class="line">&#125;</div></pre></td></tr></table></figure><blockquote><p>现在只需要读取一次 array 的 length 属性，速度已经加快了。但是还能不能更快呢？<br>事实是，如果循环终止条件不进行比较运算，那么循环的速度还可以更快。</p></blockquote><h4 id="加速且优雅的"><a href="#加速且优雅的" class="headerlink" title="加速且优雅的"></a>加速且优雅的</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var arr = [1,2,3,4,5];</div><div class="line">var i = arr.length;</div><div class="line">while(i--)&#123;</div><div class="line">        fn(arr[i]);</div><div class="line">&#125;</div></pre></td></tr></table></figure><h3 id="方式-3：forEach"><a href="#方式-3：forEach" class="headerlink" title="方式 3：forEach"></a>方式 3：forEach</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var arr = [1,2,3,4,5];</div><div class="line">arr.forEach(</div><div class="line">        fn(value,index)&#123;</div><div class="line">                //Do sth with value ;</div><div class="line">        &#125;</div><div class="line">)</div></pre></td></tr></table></figure><blockquote><p>注意：<br>这里的 forEach回调中两个参数分别为 value，index，其位置刚好和 jQuery 的$.each 相反；<br>forEach 无法遍历对象；<br>IE不支持该方法；Firefox 和 chrome 支持；<br>forEach 无法使用 break，continue 跳出循环，且使用 return 是跳过本次循环；<br>可以添加第二个参数，为一个数组，回调中的 this 会指向这个数组，若没有添加，则是指向 window；</p></blockquote><p>关于跳出循环的几种方式：</p><ol><li>return ==》结束循环并中断函数执行；</li><li>break ==》结束循环函数继续执行；</li><li>continue ==》跳过本次循环；</li></ol><blockquote><p>for 循环中的变量 i，由于 ES5并没有块级作用域的存在，它在循环结束以后仍然存在于内存中，所以建议使用函数自执行的方式来避免。</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;通常我们会用循环的方式来遍历数组。但是循环是 导致js 性能问题的原因之一。&lt;br&gt;一般我们会采用下几种方式来进行数组的遍历：&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;方式1：for-in-循环&quot;&gt;&lt;a href=&quot;#方式1：for-i
+      
+    
+    </summary>
+    
+      <category term="jQuery" scheme="https://zhipenwang.github.io/categories/jQuery/"/>
+    
+    
+      <category term="Web前端" scheme="https://zhipenwang.github.io/tags/Web%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
   
   <entry>
     <title>js与jquery关于验证页面元素存在的方法及不同之处</title>
@@ -218,20 +246,19 @@
   </entry>
   
   <entry>
-    <title>composer构建PHP框架——初始化</title>
-    <link href="https://zhipenwang.github.io/2017/04/21/composer-2/"/>
-    <id>https://zhipenwang.github.io/2017/04/21/composer-2/</id>
+    <title>composer构建PHP框架——构建路由</title>
+    <link href="https://zhipenwang.github.io/2017/04/21/composer-3/"/>
+    <id>https://zhipenwang.github.io/2017/04/21/composer-3/</id>
     <published>2017-04-21T11:21:01.000Z</published>
-    <updated>2018-03-28T10:28:36.135Z</updated>
+    <updated>2018-03-28T10:28:36.136Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>“一个时代结束了，另一个时代开始了。”<br>Framework Interoperability Group（框架可互用性小组），简称 FIG，成立于 2009 年。FIG 最初由几位知名 PHP 框架开发者发起，在吸纳了许多优秀的大脑和强健的体魄后，提出了 PSR-0 到 PSR-4 五套 PHP 非官方规范：</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">* PSR-0 (Autoloading Standard) 自动加载标准</div><div class="line"></div><div class="line">* PSR-1 (Basic Coding Standard) 基础编码标准</div><div class="line"></div><div class="line">* PSR-2 (Coding Style Guide) 编码风格向导</div><div class="line"></div><div class="line">* PSR-3 (Logger Interface) 日志接口</div><div class="line"></div><div class="line">* PSR-4 (Improved Autoloading) 自动加载优化标准</div></pre></td></tr></table></figure><h3 id="创建composer-json"><a href="#创建composer-json" class="headerlink" title="创建composer.json"></a>创建composer.json</h3><p>在网站根目录下创建新文件夹 <code>my-framework</code> （My First Framework based on Composer），然后在此文件夹内创建 <code>composer.json</code> 文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">&quot;require&quot;:&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p><h3 id="初始化composer"><a href="#初始化composer" class="headerlink" title="初始化composer"></a>初始化composer</h3><p>打开命令行cmd，进入刚刚新建的目录 <code>my_framework</code>，执行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer update</div></pre></td></tr></table></figure></p><p>执行成功后生成了扩展包<code>vendor</code></p><center><br><img src="/img/composer-2-1.png" alt=""><br></center><br>此时目录为：<br><center><br><img src="/img/composer-2-2.png" alt=""><br></center><p>到此，composer初始化完成！</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="路由选择安装"><a href="#路由选择安装" class="headerlink" title="路由选择安装"></a>路由选择安装</h2><p>本节开始构建路由，先去 GitHub 搜一下：<a href="https://github.com/search?l=PHP&amp;o=desc&amp;q=router&amp;ref=searchresults&amp;s=stars&amp;type=Repositories&amp;utf8=%E2%9C%93" target="_blank" rel="external">点此查看搜索结果</a></p><p>推荐 <a href="https://github.com/NoahBuscher/Macaw" target="_blank" rel="external">https://github.com/NoahBuscher/Macaw</a>，对应的 Composer 包为 noahbuscher/macaw 。</p><p>下面开始安装它，更改 composer.json：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">&quot;require&quot;:&#123;</div><div class="line">&quot;noahbuscher/macaw&quot;: &quot;dev-master&quot;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p><p>运行 composer update，成功之后将得到以下目录：</p><p><center><br><img src="/img/composer-3-1.png" alt=""><br></center><br>至此，Macaw安装成功！</p><h2 id="站点入口文件与环境"><a href="#站点入口文件与环境" class="headerlink" title="站点入口文件与环境"></a>站点入口文件与环境</h2><p>在项目目录下新建public 文件夹，这个文件夹将是用户唯一可见的部分。在文件夹下新建 index.php 文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line"></div><div class="line">// Autoload 自动载入</div><div class="line">require &apos;../vendor/autoload.php&apos;;</div><div class="line"></div><div class="line">// 路由配置</div><div class="line">require &apos;../config/routes.php&apos;;</div></pre></td></tr></table></figure></p><p>上面一行表示引入 Composer 的自动载入功能，下面一行表示载入路由配置文件。<br>然后继续在项目目录下新建config文件夹，在config文件夹内新建 routs.php 文件，内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line"></div><div class="line">use NoahBuscher\Macaw\Macaw;</div><div class="line"></div><div class="line">Macaw::get(&apos;fuck&apos;, function() &#123;</div><div class="line">  echo &quot;成功！&quot;;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">Macaw::get(&apos;(:all)&apos;, function($fu) &#123;</div><div class="line">  echo &apos;未匹配到路由&lt;br&gt;&apos;.$fu;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">Macaw::dispatch();</div></pre></td></tr></table></figure></p><p>然后访问你的地址即可：<a href="http://127.0.0.66/index.php/fuck" target="_blank" rel="external">http://127.0.0.66/index.php/fuck</a></p><p>注意：如果要配置域名地址进行映射要指向 <code>public/index.php</code> 文件<br><img src="/img/composer-3-2.png" alt=""></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;blockquote&gt;
-&lt;p&gt;“一个时代结束了，另一个时代开始了。”&lt;br&gt;Framework Interoperability Group（框架可互用性小组），简称 FIG，成立于 2009 年。FIG 最初由几位知名 PHP 框架开发者发起，在吸纳了许多优秀的大脑和强健的体
+        &lt;h2 id=&quot;路由选择安装&quot;&gt;&lt;a href=&quot;#路由选择安装&quot; class=&quot;headerlink&quot; title=&quot;路由选择安装&quot;&gt;&lt;/a&gt;路由选择安装&lt;/h2&gt;&lt;p&gt;本节开始构建路由，先去 GitHub 搜一下：&lt;a href=&quot;https://github.com/sea
       
     
     </summary>
@@ -269,19 +296,20 @@
   </entry>
   
   <entry>
-    <title>composer构建PHP框架——构建路由</title>
-    <link href="https://zhipenwang.github.io/2017/04/21/composer-3/"/>
-    <id>https://zhipenwang.github.io/2017/04/21/composer-3/</id>
+    <title>composer构建PHP框架——初始化</title>
+    <link href="https://zhipenwang.github.io/2017/04/21/composer-2/"/>
+    <id>https://zhipenwang.github.io/2017/04/21/composer-2/</id>
     <published>2017-04-21T11:21:01.000Z</published>
-    <updated>2018-03-28T10:28:36.136Z</updated>
+    <updated>2018-03-28T10:28:36.135Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="路由选择安装"><a href="#路由选择安装" class="headerlink" title="路由选择安装"></a>路由选择安装</h2><p>本节开始构建路由，先去 GitHub 搜一下：<a href="https://github.com/search?l=PHP&amp;o=desc&amp;q=router&amp;ref=searchresults&amp;s=stars&amp;type=Repositories&amp;utf8=%E2%9C%93" target="_blank" rel="external">点此查看搜索结果</a></p><p>推荐 <a href="https://github.com/NoahBuscher/Macaw" target="_blank" rel="external">https://github.com/NoahBuscher/Macaw</a>，对应的 Composer 包为 noahbuscher/macaw 。</p><p>下面开始安装它，更改 composer.json：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">&quot;require&quot;:&#123;</div><div class="line">&quot;noahbuscher/macaw&quot;: &quot;dev-master&quot;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p><p>运行 composer update，成功之后将得到以下目录：</p><p><center><br><img src="/img/composer-3-1.png" alt=""><br></center><br>至此，Macaw安装成功！</p><h2 id="站点入口文件与环境"><a href="#站点入口文件与环境" class="headerlink" title="站点入口文件与环境"></a>站点入口文件与环境</h2><p>在项目目录下新建public 文件夹，这个文件夹将是用户唯一可见的部分。在文件夹下新建 index.php 文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line"></div><div class="line">// Autoload 自动载入</div><div class="line">require &apos;../vendor/autoload.php&apos;;</div><div class="line"></div><div class="line">// 路由配置</div><div class="line">require &apos;../config/routes.php&apos;;</div></pre></td></tr></table></figure></p><p>上面一行表示引入 Composer 的自动载入功能，下面一行表示载入路由配置文件。<br>然后继续在项目目录下新建config文件夹，在config文件夹内新建 routs.php 文件，内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line"></div><div class="line">use NoahBuscher\Macaw\Macaw;</div><div class="line"></div><div class="line">Macaw::get(&apos;fuck&apos;, function() &#123;</div><div class="line">  echo &quot;成功！&quot;;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">Macaw::get(&apos;(:all)&apos;, function($fu) &#123;</div><div class="line">  echo &apos;未匹配到路由&lt;br&gt;&apos;.$fu;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">Macaw::dispatch();</div></pre></td></tr></table></figure></p><p>然后访问你的地址即可：<a href="http://127.0.0.66/index.php/fuck" target="_blank" rel="external">http://127.0.0.66/index.php/fuck</a></p><p>注意：如果要配置域名地址进行映射要指向 <code>public/index.php</code> 文件<br><img src="/img/composer-3-2.png" alt=""></p>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>“一个时代结束了，另一个时代开始了。”<br>Framework Interoperability Group（框架可互用性小组），简称 FIG，成立于 2009 年。FIG 最初由几位知名 PHP 框架开发者发起，在吸纳了许多优秀的大脑和强健的体魄后，提出了 PSR-0 到 PSR-4 五套 PHP 非官方规范：</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">* PSR-0 (Autoloading Standard) 自动加载标准</div><div class="line"></div><div class="line">* PSR-1 (Basic Coding Standard) 基础编码标准</div><div class="line"></div><div class="line">* PSR-2 (Coding Style Guide) 编码风格向导</div><div class="line"></div><div class="line">* PSR-3 (Logger Interface) 日志接口</div><div class="line"></div><div class="line">* PSR-4 (Improved Autoloading) 自动加载优化标准</div></pre></td></tr></table></figure><h3 id="创建composer-json"><a href="#创建composer-json" class="headerlink" title="创建composer.json"></a>创建composer.json</h3><p>在网站根目录下创建新文件夹 <code>my-framework</code> （My First Framework based on Composer），然后在此文件夹内创建 <code>composer.json</code> 文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">&quot;require&quot;:&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p><h3 id="初始化composer"><a href="#初始化composer" class="headerlink" title="初始化composer"></a>初始化composer</h3><p>打开命令行cmd，进入刚刚新建的目录 <code>my_framework</code>，执行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer update</div></pre></td></tr></table></figure></p><p>执行成功后生成了扩展包<code>vendor</code></p><center><br><img src="/img/composer-2-1.png" alt=""><br></center><br>此时目录为：<br><center><br><img src="/img/composer-2-2.png" alt=""><br></center><p>到此，composer初始化完成！</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h2 id=&quot;路由选择安装&quot;&gt;&lt;a href=&quot;#路由选择安装&quot; class=&quot;headerlink&quot; title=&quot;路由选择安装&quot;&gt;&lt;/a&gt;路由选择安装&lt;/h2&gt;&lt;p&gt;本节开始构建路由，先去 GitHub 搜一下：&lt;a href=&quot;https://github.com/sea
+        &lt;blockquote&gt;
+&lt;p&gt;“一个时代结束了，另一个时代开始了。”&lt;br&gt;Framework Interoperability Group（框架可互用性小组），简称 FIG，成立于 2009 年。FIG 最初由几位知名 PHP 框架开发者发起，在吸纳了许多优秀的大脑和强健的体
       
     
     </summary>
