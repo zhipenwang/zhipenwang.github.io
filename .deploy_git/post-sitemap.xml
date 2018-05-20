@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>https://zhipenwang.github.io/2018/05/20/js_5/</loc>
+        <lastmod>2018-05-20T12:50:44.710Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://zhipenwang.github.io/2018/05/13/js_4/</loc>
         <lastmod>2018-05-13T03:42:20.677Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -127,7 +135,7 @@
     </url>
 
     <url>
-        <loc>https://zhipenwang.github.io/2017/03/17/blog/</loc>
+        <loc>https://zhipenwang.github.io/2017/04/19/blog_view/</loc>
         <lastmod>2018-03-28T10:28:36.133Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -135,7 +143,7 @@
     </url>
 
     <url>
-        <loc>https://zhipenwang.github.io/2017/04/19/blog_view/</loc>
+        <loc>https://zhipenwang.github.io/2017/03/17/blog/</loc>
         <lastmod>2018-03-28T10:28:36.133Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
