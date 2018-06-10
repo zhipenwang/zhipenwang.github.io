@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhipenwang.github.io/"/>
-  <updated>2018-05-20T12:50:44.710Z</updated>
+  <updated>2018-06-10T09:33:36.754Z</updated>
   <id>https://zhipenwang.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>linux下关于服务端口的配置</title>
+    <link href="https://zhipenwang.github.io/2018/06/10/server_port/"/>
+    <id>https://zhipenwang.github.io/2018/06/10/server_port/</id>
+    <published>2018-06-10T09:29:26.470Z</published>
+    <updated>2018-06-10T09:33:36.754Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="端口服务"><a href="#端口服务" class="headerlink" title="端口服务"></a>端口服务</h3><blockquote><p>查看端口使用情况</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">netstat命令各个参数说明如下:</div><div class="line">    -t : 指明显示TCP端口</div><div class="line">    -u : 指明显示UDP端口</div><div class="line">    -l : 仅显示监听套接字(所谓套接字就是使应用程序能够读写与收发通讯协议(protocol)与资料的程序)</div><div class="line">    -p : 显示进程标识符和程序名称，每一个套接字/端口都属于一个程序。</div><div class="line">    -n : 不进行DNS轮询，显示IP(可以加速操作)</div><div class="line">netstat -ntlp   //查看当前所有tcp端口·</div><div class="line">netstat -ntulp |grep 80   //查看所有80端口使用情况·</div><div class="line">netstat -an | grep 3306   //查看所有3306端口使用情况·</div></pre></td></tr></table></figure><h3 id="端口映射配置"><a href="#端口映射配置" class="headerlink" title="端口映射配置"></a>端口映射配置</h3><blockquote><p>需求：<br>PC_A是 eth0: 172.18.10.212  内网；eth1: 219.239.xx.xx  外网</p><p>PC_B是 172.18.10.205  内网</p><p>A的8080端口映射到B的80端口</p></blockquote><h4 id="1-首先应该做的是"><a href="#1-首先应该做的是" class="headerlink" title="1. 首先应该做的是"></a>1. 首先应该做的是</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/etc/sysctl.conf配置文件:</div><div class="line">    net.ipv4.ip_forward = 1 默认是0.</div><div class="line">这样允许iptalbes FORWARD。</div></pre></td></tr></table></figure><h4 id="2-在-etc-rc-d-init-d目录下有iptables-文件，使用格式如下"><a href="#2-在-etc-rc-d-init-d目录下有iptables-文件，使用格式如下" class="headerlink" title="2. 在/etc/rc.d/init.d目录下有iptables 文件，使用格式如下"></a>2. 在/etc/rc.d/init.d目录下有iptables 文件，使用格式如下</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Usage: ./iptables &#123;start|stop|restart|condrestart|status|panic|save&#125;</div><div class="line">    相当与service iptables &#123;....&#125;</div><div class="line">    把iptables 服务停止，清除以前的规则，存盘</div><div class="line">    </div><div class="line">到/etc/rc.d/init.d目录下，运行</div><div class="line">    ./iptables stop</div><div class="line">    iptalbes -F</div><div class="line">    iptalbes -X</div><div class="line">    iptalbes -Z</div><div class="line">    ./iptables save</div></pre></td></tr></table></figure><h4 id="3-重新配置规则"><a href="#3-重新配置规则" class="headerlink" title="3. 重新配置规则"></a>3. 重新配置规则</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">iptables -t nat -A PREROUTING -d 219.239.xx.xx -p tcp --dport 8080 -j DNAT --to-destination 172.18.10.205:80</div><div class="line"></div><div class="line">iptables -t nat -A POSTROUTING -d 172.18.10.205 -p tcp --dport 80 -j SNAT --to 172.18.10.212</div><div class="line"></div><div class="line">iptables -A FORWARD -o eth0 -d 172.18.10.205 -p tcp --dport 80 -j ACCEPT</div><div class="line"></div><div class="line">iptables -A FORWARD -i eth0 -s 172.18.10.205 -p tcp --sport 80 -j ACCEPT</div><div class="line"></div><div class="line">DNAT SNAT 的请参考帮助，这里不再陈述。</div></pre></td></tr></table></figure><h4 id="4-新的规则存盘"><a href="#4-新的规则存盘" class="headerlink" title="4. 新的规则存盘"></a>4. 新的规则存盘</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"> ./iptables save</div><div class="line"></div><div class="line">规则存盘后在/etc/sysconfig/iptables这个文件里面，若你对这个文件很熟悉</div><div class="line">直接修改这里的内容也等于命令行方式输入规则。</div></pre></td></tr></table></figure><h4 id="5-启动iptables-服务"><a href="#5-启动iptables-服务" class="headerlink" title="5. 启动iptables 服务"></a>5. 启动iptables 服务</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">./iptables start</div><div class="line">在/proc/net/ip_conntrack文件里有包的流向，如下面</div><div class="line"></div><div class="line">   tcp 6 53 TIME_WAIT src=221.122.59.2 dst=219.239.xx.xx sport=7958 dport=8080 packets=9 bytes=1753</div><div class="line">   </div><div class="line">   src=172.18.10.205 dst=172.18.10.212 sport=80 dport=7958 packets=9 bytes=5777 [ASSURED] use=1</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;端口服务&quot;&gt;&lt;a href=&quot;#端口服务&quot; class=&quot;headerlink&quot; title=&quot;端口服务&quot;&gt;&lt;/a&gt;端口服务&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;查看端口使用情况&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&quot;highlig
+      
+    
+    </summary>
+    
+      <category term="服务器" scheme="https://zhipenwang.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+    
+      <category term="运维" scheme="https://zhipenwang.github.io/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+  </entry>
   
   <entry>
     <title>jQuery的三种bind/One/Live/On事件绑定使用方法</title>
