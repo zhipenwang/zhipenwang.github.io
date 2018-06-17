@@ -1,0 +1,1120 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="设计模式," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="王志鹏" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="适配器模式
+涉及到一个单一的类，该类负责加入独立的或不兼容的接口功能。适配器继承或依赖已有的对象，实现想要的目标接口。优点：  
+
+可以让任何两个没有关联的类一起运行。  
+提高了类的复用。  
+增加了类的透明度。  
+灵活性好。  
+
+缺点：
+
+过多使用适配器会让系统凌乱，不易整体把握，没有必要，不建议使用适配器模式  
+
+注意事项：适配器不是在详细设计时使用的，而是在解决正在服役的项目使用的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP设计模式之结构型模式（structural patterns）">
+<meta property="og:url" content="https://zhipenwang.github.io/2018/06/17/structrual_patterns/index.html">
+<meta property="og:site_name" content="王志鹏">
+<meta property="og:description" content="适配器模式
+涉及到一个单一的类，该类负责加入独立的或不兼容的接口功能。适配器继承或依赖已有的对象，实现想要的目标接口。优点：  
+
+可以让任何两个没有关联的类一起运行。  
+提高了类的复用。  
+增加了类的透明度。  
+灵活性好。  
+
+缺点：
+
+过多使用适配器会让系统凌乱，不易整体把握，没有必要，不建议使用适配器模式  
+
+注意事项：适配器不是在详细设计时使用的，而是在解决正在服役的项目使用的">
+<meta property="og:updated_time" content="2018-06-17T04:54:46.527Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP设计模式之结构型模式（structural patterns）">
+<meta name="twitter:description" content="适配器模式
+涉及到一个单一的类，该类负责加入独立的或不兼容的接口功能。适配器继承或依赖已有的对象，实现想要的目标接口。优点：  
+
+可以让任何两个没有关联的类一起运行。  
+提高了类的复用。  
+增加了类的透明度。  
+灵活性好。  
+
+缺点：
+
+过多使用适配器会让系统凌乱，不易整体把握，没有必要，不建议使用适配器模式  
+
+注意事项：适配器不是在详细设计时使用的，而是在解决正在服役的项目使用的">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zhipenwang.github.io/2018/06/17/structrual_patterns/"/>
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "774f42a3"
+    });
+  daovoice('update');
+  </script>
+
+  <title> PHP设计模式之结构型模式（structural patterns） | 王志鹏 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?dbb2767e9459e0ac36e2e8612cf56c8e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">王志鹏</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://zhipenwang.github.io/2018/06/17/structrual_patterns/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王志鹏">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/headimg.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王志鹏">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                PHP设计模式之结构型模式（structural patterns）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-17T12:49:51+08:00">
+                2018-06-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1,967 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  9 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h3><blockquote>
+<p>涉及到一个单一的类，该类负责加入独立的或不兼容的接口功能。<br>适配器继承或依赖已有的对象，实现想要的目标接口。<br><strong>优点：</strong>  </p>
+<ol>
+<li>可以让任何两个没有关联的类一起运行。  </li>
+<li>提高了类的复用。  </li>
+<li>增加了类的透明度。  </li>
+<li>灵活性好。  </li>
+</ol>
+<p><strong>缺点：</strong></p>
+<ol>
+<li>过多使用适配器会让系统凌乱，不易整体把握，没有必要，不建议使用适配器模式  </li>
+</ol>
+<p><strong>注意事项：</strong><br>适配器不是在详细设计时使用的，而是在解决正在服役的项目使用的</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">/**</div><div class="line"> * adapter pattern  适配器模式</div><div class="line"> */</div><div class="line">// 对象适配器</div><div class="line">// 定义接口</div><div class="line">interface target</div><div class="line">&#123;</div><div class="line">	public function echoSample1();</div><div class="line">	public function echoSample2();</div><div class="line">&#125;</div><div class="line">class adapterOne implements target</div><div class="line">&#123;</div><div class="line">	public function echoSample1()</div><div class="line">	&#123;</div><div class="line">		echo &quot;+++++&quot;;</div><div class="line">	&#125;</div><div class="line">	public function echoSample2()</div><div class="line">	&#123;</div><div class="line">		</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">class adapterTwo implements target</div><div class="line">&#123;</div><div class="line">	private $adapterOne;</div><div class="line">	public function __construct(adapterOne $obj)</div><div class="line">	&#123;</div><div class="line">		$this-&gt;adapterOne = $obj;</div><div class="line">	&#125;</div><div class="line">	public function echoSample1()</div><div class="line">	&#123;</div><div class="line">		$this-&gt;adapterOne-&gt;echoSample1();</div><div class="line">	&#125;</div><div class="line">	public function echoSample2()</div><div class="line">	&#123;</div><div class="line">		echo &apos;----&apos;;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">$adapterTwo = new adapterTwo(new adapterOne);</div><div class="line">$adapterTwo-&gt;echoSample1();</div><div class="line">$adapterTwo-&gt;echoSample2();</div><div class="line"></div><div class="line">// 类适配器</div><div class="line">interface target2</div><div class="line">&#123;</div><div class="line">	public function echoSample1();</div><div class="line">	public function echoSample2();</div><div class="line">&#125;</div><div class="line">class adapterClassOne</div><div class="line">&#123;</div><div class="line">	public function echoSample1()</div><div class="line">	&#123;</div><div class="line">		echo &quot;****&quot;;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">class adapterClassTwo extends adapterClassOne implements target2</div><div class="line">&#123;</div><div class="line">	public function echoSample2()</div><div class="line">	&#123;</div><div class="line">		echo &quot;&amp;&amp;&amp;&amp;&quot;;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">$adapterClassTwo = new adapterClassTwo();</div><div class="line">$adapterClassTwo-&gt;echoSample1();</div><div class="line">$adapterClassTwo-&gt;echoSample2();</div></pre></td></tr></table></figure>
+<h3 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h3><blockquote>
+<p>把抽象化与实现化解耦，使得二者可以独立变化<br>抽象类依赖实现类。<br><strong>优点：</strong>  </p>
+<ol>
+<li>抽象和实现的分离。 </li>
+<li>优秀的扩展能力。 </li>
+<li>实现细节对客户透明。</li>
+</ol>
+<p><strong>缺点：</strong><br>桥接模式的引入会增加系统的理解与设计难度，由于聚合关联关系建立在抽象层，要求开发者针对抽象进行设计与编程。<br><strong>注意事项：</strong><br>对于两个独立变化的维度，使用桥接模式再适合不过了。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">/**</div><div class="line"> * 桥接模式 -- bridge pattern</div><div class="line"> */</div><div class="line">// 定义接口--对象</div><div class="line">interface DrawApi</div><div class="line">&#123;</div><div class="line">	public function draw();</div><div class="line">&#125;</div><div class="line">class RedColor implements DrawApi</div><div class="line">&#123;</div><div class="line">	public function draw()</div><div class="line">	&#123;</div><div class="line">		echo &quot;red color&quot;;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">class GreenColor implements DrawApi</div><div class="line">&#123;</div><div class="line">	public function draw()</div><div class="line">	&#123;</div><div class="line">		echo &quot;green color&quot;;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">// 定义抽象类</div><div class="line">abstract class Shape</div><div class="line">&#123;</div><div class="line">	abstract public function draw();</div><div class="line">&#125;</div><div class="line">class Circle extends Shape</div><div class="line">&#123;</div><div class="line">	private $drawApi;</div><div class="line">	public function __construct(DrawApi $obj)</div><div class="line">	&#123;</div><div class="line">		$this-&gt;drawApi = $obj;</div><div class="line">	&#125;</div><div class="line">	public function draw()</div><div class="line">	&#123;</div><div class="line">		$this-&gt;drawApi-&gt;draw();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$obj = new Circle(new RedColor());</div><div class="line">$obj-&gt;draw();</div><div class="line">$obj2 = new Circle(new GreenColor());</div><div class="line">$obj2-&gt;draw();</div></pre></td></tr></table></figure>
+<h3 id="过滤器模式"><a href="#过滤器模式" class="headerlink" title="过滤器模式"></a>过滤器模式</h3><blockquote>
+<p>使用不同的标准来过滤一组对象，通过逻辑运算以解耦的方式把它们连接起来</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">/**</div><div class="line"> * 过滤器模式 -- filter pattern</div><div class="line"> */</div><div class="line">// 定义接口</div><div class="line">interface Shape</div><div class="line">&#123;</div><div class="line">	public function arrayPrint(array $arr);</div><div class="line">&#125;</div><div class="line">class One implements Shape</div><div class="line">&#123;</div><div class="line">	public function arrayPrint(array $arr)</div><div class="line">	&#123;</div><div class="line">		$array = array();</div><div class="line">		foreach($arr as $v)&#123;</div><div class="line">			if($v-&gt;getName() == &apos;one&apos;)&#123;</div><div class="line">				$array[] = $v;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		return $array;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">class Two implements Shape</div><div class="line">&#123;</div><div class="line">	public function arrayPrint(array $arr)</div><div class="line">	&#123;</div><div class="line">		$array = array();</div><div class="line">		foreach($arr as $v)&#123;</div><div class="line">			if($v-&gt;getName() == &apos;two&apos;)&#123;</div><div class="line">				$array[] = $v;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		return $array;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">class Three implements Shape</div><div class="line">&#123;</div><div class="line">	public function arrayPrint(array $arr)</div><div class="line">	&#123;</div><div class="line">		$array = array();</div><div class="line">		foreach($arr as $v)&#123;</div><div class="line">			if($v-&gt;getID() == &apos;2&apos;)&#123;</div><div class="line">				$array[] = $v;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		return $array;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 定义标准类</div><div class="line">class Data</div><div class="line">&#123;</div><div class="line">	private $id;</div><div class="line">	private $name;</div><div class="line">	public function __construct($id, $name)</div><div class="line">	&#123;</div><div class="line">		$this-&gt;id = $id;</div><div class="line">		$this-&gt;name = $name;</div><div class="line">	&#125;</div><div class="line">	public function getID()</div><div class="line">	&#123;</div><div class="line">		return $this-&gt;id;</div><div class="line">	&#125;</div><div class="line">	public function getName()</div><div class="line">	&#123;</div><div class="line">		return $this-&gt;name;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$array = array();</div><div class="line">$array[] = new Data(&apos;1&apos;, &apos;one&apos;);</div><div class="line">$array[] = new Data(&apos;2&apos;, &apos;one&apos;);</div><div class="line">$array[] = new Data(&apos;3&apos;, &apos;two&apos;);</div><div class="line">$array[] = new Data(&apos;4&apos;, &apos;three&apos;);</div><div class="line"></div><div class="line">$one = new One();</div><div class="line">arrayPrint($one-&gt;arrayPrint($array));</div><div class="line">$two = new Two();</div><div class="line">arrayPrint($two-&gt;arrayPrint($array));</div><div class="line"></div><div class="line">$three = new Three();</div><div class="line">arrayPrint($three-&gt;arrayPrint($one-&gt;arrayPrint($array)));</div><div class="line"></div><div class="line">function arrayPrint($arr)</div><div class="line">&#123;</div><div class="line">	foreach($arr as $v)&#123;</div><div class="line">		echo $v-&gt;getID();</div><div class="line">		echo $v-&gt;getName();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h3><blockquote>
+<p>一组相似的对象当作一个单一的对象<br>组合模式依据树形结构来组合对象，用来表示部分以及整体层次<br><strong>意图：</strong><br>将对象组合成树形结构以表示”部分-整体”的层次结构。组合模式使得用户对单个对象和组合对象的使用具有一致性。<br><strong>优点：</strong></p>
+<ol>
+<li>高层模块调用简单。</li>
+<li>节点自由增加。</li>
+</ol>
+<p><strong>缺点：</strong><br>在使用组合模式时，其叶子和树枝的声明都是实现类，而不是接口，违反了依赖倒置原则。<br><strong>注意事项：</strong><br>定义时为具体类。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">/**</div><div class="line"> * 组合模式  -- composite pattern</div><div class="line"> */</div><div class="line">interface Shape</div><div class="line">&#123;</div><div class="line">	public function add($obj);</div><div class="line">	public function remove($obj);</div><div class="line">	public function operator();</div><div class="line">&#125;</div><div class="line">class Composite implements Shape</div><div class="line">&#123;</div><div class="line">	private $_composite;</div><div class="line">	public function __construct()</div><div class="line">	&#123;</div><div class="line">		$this-&gt;_composite = array();</div><div class="line">	&#125;</div><div class="line">	public function operator()</div><div class="line">	&#123;</div><div class="line">		foreach($this-&gt;_composite as $v)&#123;</div><div class="line">			$v-&gt;operator();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	public function add($obj)</div><div class="line">	&#123;</div><div class="line">		$this-&gt;_composite[] = $obj;</div><div class="line">	&#125;</div><div class="line">	public function remove($obj)</div><div class="line">	&#123;</div><div class="line">		foreach($this-&gt;_composite as $k=&gt;$v)&#123;</div><div class="line">			if($obj == $v)&#123;</div><div class="line">				unset($this-&gt;_composite[$k]);</div><div class="line">				return true;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		return false;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Leaf implements Shape</div><div class="line">&#123;</div><div class="line">	private $_name;</div><div class="line">	public function __construct($name)</div><div class="line">	&#123;</div><div class="line">		$this-&gt;_name = $name;</div><div class="line">	&#125;</div><div class="line">	public function add($obj)&#123;&#125;</div><div class="line">	public function remove($obj)&#123;&#125;</div><div class="line">	public function operator()</div><div class="line">	&#123;</div><div class="line">		echo $this-&gt;_name;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">$leaf1 = new Leaf(&apos;one&apos;);</div><div class="line">$leaf2 = new Leaf(&apos;two&apos;);</div><div class="line">$composite = new Composite();</div><div class="line">$composite-&gt;add($leaf1);</div><div class="line">$composite-&gt;add($leaf2);</div><div class="line">$composite-&gt;operator();</div><div class="line">$composite-&gt;remove($leaf1);</div><div class="line">$composite-&gt;operator();</div></pre></td></tr></table></figure>
+<h3 id="装饰器模式"><a href="#装饰器模式" class="headerlink" title="装饰器模式"></a>装饰器模式</h3><blockquote>
+<p>允许向一个现有的对象添加新的功能，同时又不改变其结构<br><strong>优点：</strong><br>装饰类和被装饰类可以独立发展，不会相互耦合，装饰模式是继承的一个替代模式，装饰模式可以动态扩展一个实现类的功能。<br><strong>缺点：</strong><br>多层装饰比较复杂。<br><strong>注意事项：</strong><br>可代替继承。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">/**</div><div class="line"> * 装饰器模式  -- decorator pattern</div><div class="line"> */</div><div class="line">// 定义接口</div><div class="line">interface Shape</div><div class="line">&#123;</div><div class="line">	public function draw();</div><div class="line">&#125;</div><div class="line">class Decorator implements Shape</div><div class="line">&#123;</div><div class="line">	private $_decorator;</div><div class="line">	public function __construct(Shape $decorator)</div><div class="line">	&#123;</div><div class="line">		$this-&gt;_decorator = $decorator;</div><div class="line">	&#125;</div><div class="line">	public function draw()</div><div class="line">	&#123;</div><div class="line">		$this-&gt;_decorator-&gt;draw();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">class RedColor extends Decorator</div><div class="line">&#123;</div><div class="line">	public function __construct(Shape $decorator)</div><div class="line">	&#123;</div><div class="line">		parent::__construct($decorator);</div><div class="line">	&#125;</div><div class="line">	public function draw()</div><div class="line">	&#123;</div><div class="line">		parent::draw();</div><div class="line">		$this-&gt;echoDraw();</div><div class="line">	&#125;</div><div class="line">	public function echoDraw()</div><div class="line">	&#123;</div><div class="line">		echo &quot;red color&quot;;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">class GreenColor extends Decorator</div><div class="line">&#123;</div><div class="line">	public function __construct(Shape $decorator)</div><div class="line">	&#123;</div><div class="line">		parent::__construct($decorator);</div><div class="line">	&#125;</div><div class="line">	public function draw()</div><div class="line">	&#123;</div><div class="line">		parent::draw();</div><div class="line">		$this-&gt;echoDraw();</div><div class="line">	&#125;</div><div class="line">	public function echoDraw()</div><div class="line">	&#123;</div><div class="line">		echo &quot;green color&quot;;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">class Color implements Shape</div><div class="line">&#123;</div><div class="line">	public function draw()&#123;</div><div class="line">		echo &quot;color&quot;;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">$obj = new Color();</div><div class="line">$obj_red = new RedColor($obj);</div><div class="line">$obj_green = new GreenColor($obj_red);</div><div class="line">$obj_red-&gt;draw();</div><div class="line">$obj_green-&gt;draw();</div></pre></td></tr></table></figure>
+<h3 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h3><blockquote>
+<p>隐藏系统的复杂性，并向客户端提供了一个客户端可以访问系统的接口<br>在客户端和复杂系统之间再加一层，这一层将调用顺序、依赖关系等处理好。<br><strong>优点：</strong></p>
+<ol>
+<li>减少系统相互依赖。 </li>
+<li>提高灵活性。 </li>
+<li>提高了安全性。</li>
+</ol>
+<p><strong>缺点：</strong><br>不符合开闭原则，如果要改东西很麻烦，继承重写都不合适。<br><strong>注意事项：</strong><br>在层次化结构中，可以使用外观模式定义系统中每一层的入口。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">/**</div><div class="line"> * 门面模式/外观模式  -- facade pattern</div><div class="line"> */</div><div class="line">//定义接口</div><div class="line">interface Shape</div><div class="line">&#123;</div><div class="line">	public function draw();</div><div class="line">&#125;</div><div class="line">class Red implements Shape</div><div class="line">&#123;</div><div class="line">	public function draw()</div><div class="line">	&#123;</div><div class="line">		echo &quot;red&quot;;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">class Green implements Shape</div><div class="line">&#123;</div><div class="line">	public function draw()</div><div class="line">	&#123;</div><div class="line">		echo &quot;green&quot;;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">class Demo</div><div class="line">&#123;</div><div class="line">	private $_red;</div><div class="line">	private $_green;</div><div class="line">	public function __construct()</div><div class="line">	&#123;</div><div class="line">		$this-&gt;_red = new Red();</div><div class="line">		$this-&gt;_green = new Green();</div><div class="line">	&#125;</div><div class="line">	public function draw()</div><div class="line">	&#123;</div><div class="line">		$this-&gt;_red-&gt;draw();</div><div class="line">		$this-&gt;_green-&gt;draw();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">$obj = new Demo();</div><div class="line">$obj-&gt;draw();</div></pre></td></tr></table></figure>
+<h3 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h3><blockquote>
+<p>减少创建对象的数量，以减少内存占用和提高性能<br>用 HashMap 存储这些对象。<br><strong>优点：</strong><br>大大减少对象的创建，降低系统的内存，使效率提高。<br><strong>缺点：</strong><br>提高了系统的复杂度，需要分离出外部状态和内部状态，而且外部状态具有固有化的性质，不应该随着内部状态的变化而变化，否则会造成系统的混乱。<br><strong>注意事项：</strong>  </p>
+<ol>
+<li>注意划分外部状态和内部状态，否则可能会引起线程安全问题。 </li>
+<li>这些类必须有一个工厂对象加以控制</li>
+</ol>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">/**</div><div class="line"> * 享元模式  -- flyweight pattern</div><div class="line"> */</div><div class="line">abstract class Resource</div><div class="line">&#123;</div><div class="line">	private $_resource = null;</div><div class="line">	abstract public function operator();</div><div class="line">&#125;</div><div class="line">class UnShare extends Resource</div><div class="line">&#123;</div><div class="line">	public function __construct($str)</div><div class="line">	&#123;</div><div class="line">		$this-&gt;_resource = $str;</div><div class="line">	&#125;</div><div class="line">	public function operator()</div><div class="line">	&#123;</div><div class="line">		echo $this-&gt;_resource;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">class Share extends Resource</div><div class="line">&#123;</div><div class="line">	private $_resources = array();</div><div class="line">	public function setResource($str)</div><div class="line">	&#123;</div><div class="line">		if(isset($this-&gt;_resources[$str]))&#123;</div><div class="line">			return $this-&gt;_resources[$str];</div><div class="line">		&#125;else&#123;</div><div class="line">			return $this-&gt;_resources[$str] = $str;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	public function operator()</div><div class="line">	&#123;</div><div class="line">		foreach($this-&gt;_resources as $key=&gt;$val)&#123;</div><div class="line">			echo $key . &apos;=&gt;&apos; . $val;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">$obj = new Share();</div><div class="line">$obj-&gt;setResource(&apos;a&apos;);</div><div class="line">$obj-&gt;operator();</div><div class="line">$obj-&gt;setResource(&apos;b&apos;);</div><div class="line">$obj-&gt;operator();</div><div class="line">$objUnShare = new UnShare(&apos;A&apos;);</div><div class="line">$objUnShare-&gt;operator();</div><div class="line">$objUnShare = new UnShare(&apos;B&apos;);</div><div class="line">$objUnShare-&gt;operator();</div></pre></td></tr></table></figure>
+<h3 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h3><blockquote>
+<p>为其他对象提供一种代理以控制对这个对象的访问。<br>实现与被代理类组合。<br><strong>优点：</strong></p>
+<ol>
+<li>职责清晰。 </li>
+<li>高扩展性。 </li>
+<li>智能化。  </li>
+</ol>
+<p><strong>缺点：</strong> </p>
+<ol>
+<li>由于在客户端和真实主题之间增加了代理对象，因此有些类型的代理模式可能会造成请求的处理速度变慢。</li>
+<li>实现代理模式需要额外的工作，有些代理模式的实现非常复杂。</li>
+</ol>
+<p><strong>注意事项：</strong> </p>
+<ol>
+<li>和适配器模式的区别：适配器模式主要改变所考虑对象的接口，而代理模式不能改变所代理类的接口。 </li>
+<li>和装饰器模式的区别：装饰器模式为了增强功能，而代理模式是为了加以控制。</li>
+</ol>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">/**</div><div class="line"> * 代理模式  -- proxy pattern</div><div class="line"> */</div><div class="line">abstract class Subject</div><div class="line">&#123;</div><div class="line">	abstract public function draw();</div><div class="line">&#125;</div><div class="line">class RealSubject extends Subject</div><div class="line">&#123;</div><div class="line">	public function draw()</div><div class="line">	&#123;</div><div class="line">		echo &quot;real subject&quot;;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">class ProxySubject extends Subject</div><div class="line">&#123;</div><div class="line">	private $_subject = null;</div><div class="line">	public function draw()</div><div class="line">	&#123;</div><div class="line">		$this-&gt;before();</div><div class="line">		if(is_null($this-&gt;_subject))&#123;</div><div class="line">			$this-&gt;_subject = new RealSubject();</div><div class="line">		&#125;</div><div class="line">		$this-&gt;_subject-&gt;draw();</div><div class="line">		$this-&gt;after();</div><div class="line">	&#125;</div><div class="line">	public function before()</div><div class="line">	&#123;</div><div class="line">		echo &quot;before&quot;;</div><div class="line">	&#125;</div><div class="line">	public function after()</div><div class="line">	&#123;</div><div class="line">		echo &quot;after&quot;;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">$obj = new ProxySubject();</div><div class="line">$obj-&gt;draw();</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:22px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/16/creational_patterns/" rel="next" title="PHP设计模式之创建型模式（creational patterns）">
+                <i class="fa fa-chevron-left"></i> PHP设计模式之创建型模式（creational patterns）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNTI3NS8xMTgxMQ=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/img/headimg.jpg"
+               alt="王志鹏" />
+          <p class="site-author-name" itemprop="name">王志鹏</p>
+           
+              <p class="site-description motion-element" itemprop="description">紫禁城占得地方好大呀——杀死那个子进程</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhipenwang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#适配器模式"><span class="nav-number">1.</span> <span class="nav-text">适配器模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#桥接模式"><span class="nav-number">2.</span> <span class="nav-text">桥接模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过滤器模式"><span class="nav-number">3.</span> <span class="nav-text">过滤器模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组合模式"><span class="nav-number">4.</span> <span class="nav-text">组合模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#装饰器模式"><span class="nav-number">5.</span> <span class="nav-text">装饰器模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外观模式"><span class="nav-number">6.</span> <span class="nav-text">外观模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#享元模式"><span class="nav-number">7.</span> <span class="nav-text">享元模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代理模式"><span class="nav-number">8.</span> <span class="nav-text">代理模式</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王志鹏</span>
+</div>
+<!-- 
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+ -->
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i> 访问人数<span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i> 总访问量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
