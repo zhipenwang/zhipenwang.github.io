@@ -7,16 +7,24 @@
     </url>
 
     <url>
-        <loc>https://zhipenwang.github.io/2018/06/17/structrual_patterns/</loc>
-        <lastmod>2018-06-17T04:54:46.527Z</lastmod>
+        <loc>https://zhipenwang.github.io/2018/06/16/design_patterns/</loc>
+        <lastmod>2018-07-01T02:41:09.997Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
     </url>
 
     <url>
-        <loc>https://zhipenwang.github.io/2018/06/16/design_patterns/</loc>
-        <lastmod>2018-06-16T11:03:06.691Z</lastmod>
+        <loc>https://zhipenwang.github.io/2018/07/01/behavioral_patterns/</loc>
+        <lastmod>2018-07-01T02:34:09.590Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://zhipenwang.github.io/2018/06/17/structrual_patterns/</loc>
+        <lastmod>2018-06-17T04:54:46.527Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
