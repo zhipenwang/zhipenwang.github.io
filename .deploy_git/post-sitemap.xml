@@ -7,6 +7,54 @@
     </url>
 
     <url>
+        <loc>https://zhipenwang.github.io/2018/07/15/mysql_key/</loc>
+        <lastmod>2018-07-15T10:24:59.755Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://zhipenwang.github.io/2018/07/15/mysql_index/</loc>
+        <lastmod>2018-07-15T10:24:01.790Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://zhipenwang.github.io/2018/07/07/mysql_condition/</loc>
+        <lastmod>2018-07-07T10:36:44.525Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://zhipenwang.github.io/2018/07/07/mysql_calculate/</loc>
+        <lastmod>2018-07-07T10:35:52.650Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://zhipenwang.github.io/2018/07/07/mysql_dba/</loc>
+        <lastmod>2018-07-07T10:33:54.212Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://zhipenwang.github.io/2018/07/07/mysql_operation/</loc>
+        <lastmod>2018-07-07T10:33:18.693Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://zhipenwang.github.io/2018/06/16/design_patterns/</loc>
         <lastmod>2018-07-01T02:41:09.997Z</lastmod>
         <changefreq>weekly</changefreq>

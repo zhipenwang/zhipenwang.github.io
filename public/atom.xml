@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhipenwang.github.io/"/>
-  <updated>2018-07-01T02:34:09.590Z</updated>
+  <updated>2018-07-15T10:24:59.755Z</updated>
   <id>https://zhipenwang.github.io/</id>
   
   <author>
@@ -15,6 +15,168 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MYSQL之数据表级联操作-数据完整性约束</title>
+    <link href="https://zhipenwang.github.io/2018/07/15/mysql_key/"/>
+    <id>https://zhipenwang.github.io/2018/07/15/mysql_key/</id>
+    <published>2018-07-15T10:24:59.642Z</published>
+    <updated>2018-07-15T10:24:59.755Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="外键约束"><a href="#外键约束" class="headerlink" title="外键约束"></a>外键约束</h3><blockquote><p>目前mysql只有InnoDB存储引擎支持外键约束</p><ol><li>column_name 当前表外键字段名</li><li>table_name 外键表</li><li>index_column_name 外键所在外键表中字段名</li><li>ON DELETE 删除  ON UPDATE 更新</li><li>reference_option语法格式为：（没设置时候，默认两个都指定 RESTRICT）<br> 当删除或更新外键所在外键表的数据时候<br> RESTRICT      限制策略，系统不删除或更新外键当前表的数据<br> CASCADE          级联策略，自动删除或更新外键当前表的数据<br> SET FULL       置空策略，设置外键当前表的数据外键列数据为NULL，需要提前设置外键列未被限制 NOT NULL<br> NO ACTION       不采取实施策略，系统不删除或更新外键当前表的数据，与 RESTRICT 一致</li></ol></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">FOREIGN KEY ( column_name [(length)] [ASC | DESC] ) </div><div class="line">REFERENCES table_name(index_column_name)</div><div class="line">[MATCH FULL | MATCH PARTIAL | MATCH SIMPLE]</div><div class="line">[ON DELETE reference_option]</div><div class="line">[ON UPDATE reference_option]</div></pre></td></tr></table></figure><h4 id="创建表，关联外键"><a href="#创建表，关联外键" class="headerlink" title="创建表，关联外键"></a>创建表，关联外键</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">// 创建 班级表</div><div class="line">create table if not exists class(</div><div class="line">id int(11) not null auto_increment,</div><div class="line">name varchar(30) not null,</div><div class="line">primary key (id)</div><div class="line">) ENGINE=InnoDB default charset=utf8;</div><div class="line"></div><div class="line">// 创建学生表，外键 班级id class_id，级联删除及更新</div><div class="line">create table if not exists student(</div><div class="line">id int(11) not null auto_increment,</div><div class="line">name varchar(30) not null,</div><div class="line">class_id int(11) not null,</div><div class="line">primary key(id),</div><div class="line">index(class_id),</div><div class="line">foreign key (class_id) references class(id) on delete cascade on update cascade</div><div class="line">) ENGINE=InnoDB default charset=utf8;</div></pre></td></tr></table></figure><h4 id="插入数据操作"><a href="#插入数据操作" class="headerlink" title="插入数据操作"></a>插入数据操作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//插入数据</div><div class="line">insert into class(name) values(&apos;one&apos;), (&apos;two&apos;), (&apos;three&apos;);</div><div class="line">// 生成 id 1,2,3</div><div class="line"></div><div class="line">insert into student(class_id,name) values(1, &apos;lili&apos;);</div><div class="line">insert into student(class_id,name) values(2, &apos;lili&apos;);</div><div class="line">insert into student(class_id,name) values(2, &apos;lili&apos;);</div><div class="line">insert into student(class_id,name) values(3, &apos;lili&apos;);</div><div class="line"></div><div class="line">// 插入失败，因为班级表中没有id =10的数据</div><div class="line">insert into student(class_id,name) values(10, &apos;lili&apos;);</div></pre></td></tr></table></figure><h4 id="更新数据操作"><a href="#更新数据操作" class="headerlink" title="更新数据操作"></a>更新数据操作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">//更新数据</div><div class="line">update class set id=5 where id=2;</div><div class="line">//此时 学生表中 sid=2的数据同步更新为了5</div></pre></td></tr></table></figure><h4 id="删除数据操作"><a href="#删除数据操作" class="headerlink" title="删除数据操作"></a>删除数据操作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">//删除数据</div><div class="line">delete from class where id=1;</div><div class="line">//此时 学生表中 sid=1的数据同步删除了</div></pre></td></tr></table></figure><h3 id="主键"><a href="#主键" class="headerlink" title="主键"></a>主键</h3><blockquote><p>一个表中有且只有一个主键</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// 单字段主键</div><div class="line">create table if not exists table_test(</div><div class="line">id int(11) not null auto_increment primary key,</div><div class="line">name varchar(30) not null</div><div class="line">) engine=InnoDB default charset=utf8;</div><div class="line"></div><div class="line">// 复合字段主键</div><div class="line">create table if not exists table_test(</div><div class="line">id int(11) not null auto_increment,</div><div class="line">name varchar(30) not null,</div><div class="line">primary key(id, name)</div><div class="line">) engine=InnoDB default charset=utf8;</div></pre></td></tr></table></figure><h3 id="候选键"><a href="#候选键" class="headerlink" title="候选键"></a>候选键</h3><blockquote><p>一个表中可以存在多个候选键<br>UNIQUE 来表示</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">create table if not exists table_test(</div><div class="line">id int(11) not null auto_increment UNIQUE,</div><div class="line">name varchar(30) not null UNIQUE,</div><div class="line">) engine=InnoDB default charset=utf8;</div></pre></td></tr></table></figure><h3 id="字段条件约束"><a href="#字段条件约束" class="headerlink" title="字段条件约束"></a>字段条件约束</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// null</div><div class="line">id int(11) not null,</div><div class="line">sid int(11) null</div><div class="line"></div><div class="line">// check对列约束</div><div class="line">age int(2) not null check(age&gt;6 and age&lt;18)</div><div class="line"></div><div class="line">// check对表约束</div><div class="line">primary key(id),</div><div class="line">check(class_id in (select id from tb_class))</div></pre></td></tr></table></figure><h3 id="完整性约束"><a href="#完整性约束" class="headerlink" title="完整性约束"></a>完整性约束</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// 创建表的时候使用</div><div class="line">constraint &lt;symbol&gt;</div><div class="line">[primary ... | foreign ... | check ...]</div><div class="line"></div><div class="line">// 更新表的完整性约束</div><div class="line">alter table table_name add constraint primary</div><div class="line">primary key(id)</div><div class="line"></div><div class="line">// 删除表的完整性约束</div><div class="line">alter table table_name drop [foreign key|index] &lt;symbol&gt; [primary key]</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;外键约束&quot;&gt;&lt;a href=&quot;#外键约束&quot; class=&quot;headerlink&quot; title=&quot;外键约束&quot;&gt;&lt;/a&gt;外键约束&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;目前mysql只有InnoDB存储引擎支持外键约束&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;column_nam
+      
+    
+    </summary>
+    
+      <category term="MySQL" scheme="https://zhipenwang.github.io/categories/MySQL/"/>
+    
+    
+      <category term="数据库" scheme="https://zhipenwang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MYSQL之索引</title>
+    <link href="https://zhipenwang.github.io/2018/07/15/mysql_index/"/>
+    <id>https://zhipenwang.github.io/2018/07/15/mysql_index/</id>
+    <published>2018-07-15T10:22:17.615Z</published>
+    <updated>2018-07-15T10:24:01.790Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>索引的两种存储类型：B树(BTree)索引、哈希(Hash)索引<br>BTree为系统默认索引</p></blockquote><h3 id="创建表时建立索引"><a href="#创建表时建立索引" class="headerlink" title="创建表时建立索引"></a>创建表时建立索引</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">create table (</div><div class="line">属性名 长度 是否为空,</div><div class="line">[UNIQUE | FULLTEXT | SPATIAL ]  INDEX|KEY [别名]( 属性名1 [(长度)] [ASC | DESC])</div><div class="line">)</div></pre></td></tr></table></figure><h3 id="已建立的表中创建索引"><a href="#已建立的表中创建索引" class="headerlink" title="已建立的表中创建索引"></a>已建立的表中创建索引</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create [UNIQUE | FULLTEXT | SPATIAL ]  INDEX [别名] on table_name( 属性名1 [(长度)] [ASC | DESC])</div></pre></td></tr></table></figure><h3 id="修改表结构添加索引"><a href="#修改表结构添加索引" class="headerlink" title="修改表结构添加索引"></a>修改表结构添加索引</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table table_name add [UNIQUE | FULLTEXT | SPATIAL ]  INDEX [别名] on table_name( 属性名1 [(长度)] [ASC | DESC])</div></pre></td></tr></table></figure><h3 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">drop INDEX 属性名 on table_name</div></pre></td></tr></table></figure><blockquote><ol><li>[]是可选项  </li><li>[UNIQUE | FULLTEXT | SPATIAL ] 可选项，分别代表唯一性索引、全文索引、空间索引</li><li>INDEX和KEY参数其中一个即可，用于指定字段索引</li><li>别名为可选项，创建的索引取新名称<br> 别名的参数如下：<br> 属性名1 必选项，指索引对应的字段名称，该字段必须预选被定义到表中<br> 长度    可选项，索引的长度，必须是字符串类型才可以使用<br> ASC/DESC可选项，ASC表示升序排列，DESC表示降序排列  </li><li>table_name 表名称</li></ol></blockquote><h3 id="普通索引"><a href="#普通索引" class="headerlink" title="普通索引"></a>普通索引</h3><blockquote><p>在任何数据类型的字段中创建索引</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">// 创建表的时候创建索引</div><div class="line">// 创建了索引列 id</div><div class="line">create table if not exists table_test(</div><div class="line">id int(11) not null auto_increment primary key,</div><div class="line">name varchar(30) not null,</div><div class="line">index(id)</div><div class="line">);</div><div class="line">// 已存在表中创建索引</div><div class="line">create index info on table_test (id)</div><div class="line">// 修改表结构添加索引</div><div class="line">alter table table_test add index info (id)</div><div class="line">// 查看表结构</div><div class="line">show create table table_test;</div></pre></td></tr></table></figure><h3 id="唯一性索引"><a href="#唯一性索引" class="headerlink" title="唯一性索引"></a>唯一性索引</h3><blockquote><p>使用UNIQUE参数设置唯一索引，该索引的值必须唯一<br>主键是一种特殊的唯一索引</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">// 创建表的时候创建索引</div><div class="line">// 创建唯一索引 别名为 name 索引字段为 id，索引存储排序为 asc</div><div class="line">create table if not exists table_test(</div><div class="line">id int(11) not null auto_increment primary key,</div><div class="line">name varchar(30) not null,</div><div class="line">UNIQUE INDEX name (id asc)</div><div class="line">);</div><div class="line">// 已存在表中创建索引</div><div class="line">create UNIQUE INDEX name on table_test (id asc)</div><div class="line">// 修改表结构添加索引</div><div class="line">alter table table_test add UNIQUE INDEX name (id asc)</div><div class="line">// 查看表结构</div><div class="line">show create table table_test;</div></pre></td></tr></table></figure><h3 id="全文索引"><a href="#全文索引" class="headerlink" title="全文索引"></a>全文索引</h3><blockquote><p>使用FULLTEXT参数设置全文索引<br>只有myisam存储引擎的数据表支持fulltext全文索引<br>只能创建在数据类型为 char、varchar、text的字段上<br>默认情况下，应用全文索引大小写不敏感，索引的列使用二进制排序后，可以执行大小写敏感的全文索引</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">// 创建表的时候创建索引</div><div class="line">// 创建全文索引 别名为 name_info 索引字段为 name</div><div class="line">create table if not exists table_test(</div><div class="line">id int(11) not null auto_increment primary key,</div><div class="line">name varchar(30) not null,</div><div class="line">FULLTEXT KEY name_info (name)</div><div class="line">) engine=MyISAM;</div><div class="line">// 已存在表中创建索引</div><div class="line">create FULLTEXT INDEX name_info on table_test (name)</div><div class="line">// 修改表结构添加索引</div><div class="line">alter table table_test add FULLTEXT INDEX name_info (name)</div><div class="line">// 查看表结构</div><div class="line">show create table table_test;</div></pre></td></tr></table></figure><h3 id="单列索引"><a href="#单列索引" class="headerlink" title="单列索引"></a>单列索引</h3><blockquote><p>只对应一个字段的索引</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">// 创建表的时候创建索引</div><div class="line">// 创建单列索引 别名为 name_info 索引字段为 name，索引字段长度为20</div><div class="line">// 数据表中的字段长度为30，而创建的索引的字段长度为20，这样做的目的是为了提高查询效率，优化查询速度</div><div class="line">create table if not exists table_test(</div><div class="line">id int(11) not null auto_increment primary key,</div><div class="line">name varchar(30) not null,</div><div class="line">INDEX name_info (name(20))</div><div class="line">);</div><div class="line">// 已存在表中创建索引</div><div class="line">create INDEX name_info on table_test (name(20))</div><div class="line">// 修改表结构添加索引</div><div class="line">alter table table_test add INDEX name_info (name(20))</div><div class="line">// 查看表结构</div><div class="line">show create table table_test;</div></pre></td></tr></table></figure><h3 id="多列索引"><a href="#多列索引" class="headerlink" title="多列索引"></a>多列索引</h3><blockquote><p>表的多个字段上创建索引<br>应用此索引，必须使用这些字段的第一个字段</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">// 创建表的时候创建索引</div><div class="line">// 创建多列索引 别名为 info 索引字段为 name、sex</div><div class="line">create table if not exists table_test(</div><div class="line">id int(11) not null auto_increment primary key,</div><div class="line">name varchar(30) not null,</div><div class="line">sex bit(1) not null,</div><div class="line">INDEX info (name,sex)</div><div class="line">);</div><div class="line">// 已存在表中创建索引</div><div class="line">create INDEX info on table_test (name,sex)</div><div class="line">// 修改表结构添加索引</div><div class="line">alter table table_test add INDEX info (name,sex)</div><div class="line">// 查看表结构</div><div class="line">show create table table_test;</div></pre></td></tr></table></figure><h3 id="空间索引"><a href="#空间索引" class="headerlink" title="空间索引"></a>空间索引</h3><blockquote><p>使用SPATIAL参数可以设置空间索引<br>只能建立在数据类型为空间类型的字段上<br>mysql只有MyISAM存储引擎支持空间检索，且索引的字段不能为空值<br>空间类型：geometry、point、linestring、polygon</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">// 创建表的时候创建索引</div><div class="line">// 创建空间索引 别名为 good_info 索引字段为 good</div><div class="line">create table if not exists table_test(</div><div class="line">id int(11) not null auto_increment primary key,</div><div class="line">good geometry not null,</div><div class="line">SPATIAL INDEX good_info (good)</div><div class="line">);</div><div class="line">// 已存在表中创建索引</div><div class="line">create SPATIAL INDEX good_info on table_test (good)</div><div class="line">// 修改表结构添加索引</div><div class="line">alter table table_test add SPATIAL INDEX good_info (good)</div><div class="line">// 查看表结构</div><div class="line">show create table table_test;</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;索引的两种存储类型：B树(BTree)索引、哈希(Hash)索引&lt;br&gt;BTree为系统默认索引&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;创建表时建立索引&quot;&gt;&lt;a href=&quot;#创建表时建立索引&quot; class=&quot;headerlink&quot; 
+      
+    
+    </summary>
+    
+      <category term="MySQL" scheme="https://zhipenwang.github.io/categories/MySQL/"/>
+    
+    
+      <category term="数据库" scheme="https://zhipenwang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MYSQL之流程控制语句</title>
+    <link href="https://zhipenwang.github.io/2018/07/07/mysql_condition/"/>
+    <id>https://zhipenwang.github.io/2018/07/07/mysql_condition/</id>
+    <published>2018-07-07T10:24:10.239Z</published>
+    <updated>2018-07-07T10:36:44.525Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>if、case、loop、while、iterate、leave</p></blockquote><h3 id="if"><a href="#if" class="headerlink" title="if"></a>if</h3><blockquote><p>注意 分号不能省略</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">IF CONDITION THEN</div><div class="line">...;</div><div class="line">ELSEIF CONDITION THEN</div><div class="line">...;</div><div class="line">ELSE</div><div class="line">...;</div><div class="line">END IF;</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">调用：call do_if(10)</div><div class="line"></div><div class="line">CREATE PROCEDURE do_if(in x int)</div><div class="line">BEGIN</div><div class="line">IF x IS NULL THEN</div><div class="line">select 100;</div><div class="line">ELSEIF x=0 THEN</div><div class="line">select 101;</div><div class="line">ELSE</div><div class="line">select 102;</div><div class="line">END IF;</div><div class="line">END</div></pre></td></tr></table></figure><h3 id="case"><a href="#case" class="headerlink" title="case"></a>case</h3><blockquote><p>注意 分号不能省略</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">CASE value</div><div class="line">WHEN value THEN ...;</div><div class="line">WHEN value THEN ...;</div><div class="line">ELSE ...;</div><div class="line">END CASE;</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">调用：call do_case(10)</div><div class="line"></div><div class="line">CREATE PROCEDURE do_case(in x int)</div><div class="line">BEGIN</div><div class="line">CASE x</div><div class="line">WHEN x IS NULL THEN SELECT 100;</div><div class="line">WHEN x = 0 THEN SELECT 101;</div><div class="line">ELSE SELECT 102;</div><div class="line">END CASE;</div><div class="line">END</div></pre></td></tr></table></figure><h3 id="while"><a href="#while" class="headerlink" title="while"></a>while</h3><blockquote><p>注意 分号不能省略</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">WHILE CONDITION DO</div><div class="line">...;</div><div class="line">END WHILE;</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">调用：</div><div class="line">call do_while(@sum)</div><div class="line">select @sum</div><div class="line"></div><div class="line">CREATE PROCEDURE do_while(out x int)</div><div class="line">BEGIN</div><div class="line">DECLARE i int DEFAULT 1;</div><div class="line">DECLARE j int DEFAULT 0;</div><div class="line">WHILE i&lt;100 DO</div><div class="line">set j=j+i;</div><div class="line">set i=i+1;</div><div class="line">END WHILE;</div><div class="line">SET x=j;</div><div class="line">END</div></pre></td></tr></table></figure><h3 id="loop"><a href="#loop" class="headerlink" title="loop"></a>loop</h3><blockquote><p>注意 分号不能省略<br>LEAVE loop_label 退出 定义名称为loop_label的loop退出循环</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">LOOP</div><div class="line">...</div><div class="line">END LOOP;</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">调用：</div><div class="line">call do_loop(@sum)</div><div class="line">select @sum</div><div class="line"></div><div class="line">CREATE PROCEDURE do_loop(out x int)</div><div class="line">BEGIN</div><div class="line">DECLARE i int DEFAULT 1;</div><div class="line">DECLARE j int DEFAULT 0;</div><div class="line">loop_label:LOOP</div><div class="line">set j=j+i;</div><div class="line">set i=i+1;</div><div class="line">IF i&gt;10 THEN</div><div class="line">LEAVE loop_label;</div><div class="line">END IF;</div><div class="line">END LOOP;</div><div class="line">set x=j;</div><div class="line">END</div></pre></td></tr></table></figure><h3 id="repeat"><a href="#repeat" class="headerlink" title="repeat"></a>repeat</h3><blockquote><p>注意 分号不能省略  </p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">REPEAT</div><div class="line">...</div><div class="line">UNTIL CONDITION</div><div class="line">END REPEAT;</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">调用：</div><div class="line">call do_repeat(@sum)</div><div class="line">select @sum</div><div class="line"></div><div class="line">CREATE PROCEDURE do_repeat(out x int)</div><div class="line">BEGIN</div><div class="line">DECLARE i int DEFAULT 1;</div><div class="line">DECLARE j int DEFAULT 0;</div><div class="line">REPEAT</div><div class="line">set j=j+i;</div><div class="line">set i=i+1;</div><div class="line">UNTIL i&gt;10</div><div class="line">END REPEAT;</div><div class="line">set x=j;</div><div class="line">END</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;if、case、loop、while、iterate、leave&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;if&quot;&gt;&lt;a href=&quot;#if&quot; class=&quot;headerlink&quot; title=&quot;if&quot;&gt;&lt;/a&gt;if&lt;/h3&gt;&lt;block
+      
+    
+    </summary>
+    
+      <category term="MySQL" scheme="https://zhipenwang.github.io/categories/MySQL/"/>
+    
+    
+      <category term="数据库" scheme="https://zhipenwang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MYSQL之运算符操作</title>
+    <link href="https://zhipenwang.github.io/2018/07/07/mysql_calculate/"/>
+    <id>https://zhipenwang.github.io/2018/07/07/mysql_calculate/</id>
+    <published>2018-07-07T10:23:44.979Z</published>
+    <updated>2018-07-07T10:35:52.650Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">create table if not exists test(</div><div class="line">id int(11) not null auto_increment primary key,</div><div class="line">num int(11) null</div><div class="line">)</div></pre></td></tr></table></figure><h3 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h3><blockquote><p>加(+)、减(-)、乘(*)、除(/)、余(%)、除(div)、余(mod)</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">select id, num, id+num, id-num, id*num, id/num, id%num, id div num, id mod num from test;</div><div class="line">结果：</div><div class="line">id num id+num id-num id*num id/num id%num id div num id mod num</div><div class="line">5  2   8  3      10     2.5    1      21</div><div class="line">6   nullnullnullnullnullnullnullnull</div><div class="line">null 5nullnullnullnullnullnullnull</div></pre></td></tr></table></figure><h3 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h3><blockquote><p>大于(&gt;)、小于(&lt;)、等于(=)、不等于(!=或&lt;&gt;)、大于等于(&gt;=)、小于等于(&lt;=)</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">1. 符合条件的结果为1</div><div class="line">2. 不符合条件的结果为0</div><div class="line">3. 值为NULL的结果为null</div><div class="line">```  </div><div class="line"></div><div class="line">&gt;是null(IS NULL)、不是null(IS NOT NULL)</div></pre></td></tr></table></figure><p>判断是否为空值可以采用 &lt;=&gt; 进行判断，a&lt;=&gt;0，值为0的结果为1，其他都为0；a&lt;=&gt;null，值为null的结果为1，其他都为0<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&gt;包含(between a and b)  </div><div class="line">&gt;包含(id IN (1,2,3))、不包含(id not in(1,2,3))  </div><div class="line">&gt;模式匹配(name like &apos;%keyword%&apos;)、模式不匹配(name not like &apos;%keyword%&apos;)</div></pre></td></tr></table></figure></p><ol><li>like ‘abc’  表示字符串=abc的匹配</li><li>like ‘%abc’ 表示以abc结尾的字符串匹配</li><li>like ‘abc%’ 表示以abc开头的字符串匹配</li><li>like ‘%abc%’表示包含abc的字符串匹配</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&gt;正则匹配(a regexp &apos;^a&apos;)</div></pre></td></tr></table></figure><ol><li>a regexp ‘^abc’ 表示以abc开头的字符串匹配</li><li>a regexp ‘abc’  表示包含abc的字符串匹配</li><li><p>a regexp ‘abc$’ 表示以abc结尾的字符串匹配</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### 逻辑运算符</div><div class="line">&gt;与(&amp;&amp;或AND)、或(||或OR)、非(!或NOT)、异或(XOR)</div></pre></td></tr></table></figure></li><li><p>&amp;&amp;  只要有一个值为0，结果为0；有值为null，其他都不为0，结果为null；值都不为null与0的结果为1；</p></li><li>||  值都为0结果为0；值为0或者null结果为null；值存在不为0或者null的结果为1；</li><li>!   值为null结果为null；值为0的结果为1；值为非0或null的结果为1；</li><li><p>XOR 值存在null的结果为null；值都是非0或者都是0的结果为0；值存在0跟非0的结果为1；</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### 位运算符</div><div class="line">&gt;按位与(&amp;)、按位或(|)、按位取反(~)、按位异或(^)、按位左移(&lt;&lt;)、按位右移(&gt;&gt;)</div></pre></td></tr></table></figure></li><li><p>&amp;    将十进制数转换为二进制数，每个二进制数对应的位上进行与运算，最后转换为十进制数<br> 例：10&amp;5 =&gt; 1010&amp;0101 =&gt; 0000 =&gt; 0<br> 例：10&amp;6 =&gt; 1010&amp;0110 =&gt; 0010 =&gt; 2</p></li><li>|    将十进制数转换为二进制数，每个二进制数对应的位上进行或运算，最后转换为十进制数<br> 例：10&amp;5 =&gt; 1010|0101 =&gt; 1111 =&gt; 15<br> 例：10&amp;6 =&gt; 1010|0110 =&gt; 1110 =&gt; 14</li><li>~    将十进制数转换为二进制数，每位都进行取反运算<br> 例：10 =&gt; 1010 =&gt; 0101 =&gt; 18446744073709551605(字节计算结果)</li><li>^    将十进制数转换为二进制数，每个二进制数对应的位上进行异或运算，最后转换为十进制数<br> 例：10&amp;5 =&gt; 1010^0101 =&gt; 1111 =&gt; 15<br> 例：10&amp;6 =&gt; 1010^0110 =&gt; 1100 =&gt; 12</li><li>&lt;&lt;    m &lt;&lt; n 将十进制数m转换为二进制数，按位左移n位，右边补上n个0，最后转换为十进制数<br> 例：10 &lt;&lt; 1 =&gt; 1010 =&gt; 10100 =&gt; 20</li><li><blockquote><blockquote><p>   m &gt;&gt; n 将十进制数m转换为二进制数，按位右移n位，左边补上n个0，最后转换为十进制数<br> 例：10 &gt;&gt; 1 =&gt; 1010 =&gt; 0101 =&gt; 5<br>```</p></blockquote></blockquote></li></ol><h3 id="运算符优先级"><a href="#运算符优先级" class="headerlink" title="运算符优先级"></a>运算符优先级</h3><p><img src="https://wenku.baidu.com/content/216d3e2926284b73f242336c1eb91a37f11132c9?m=26e2fd787393eaa2973d6c1f478627b5&amp;type=pic&amp;src=04452f9619b2848d6d760be569e87603.jpg" alt="image"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/di
+      
+    
+    </summary>
+    
+      <category term="MySQL" scheme="https://zhipenwang.github.io/categories/MySQL/"/>
+    
+    
+      <category term="数据库" scheme="https://zhipenwang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MYSQL之操作数据（增删改查）</title>
+    <link href="https://zhipenwang.github.io/2018/07/07/mysql_dba/"/>
+    <id>https://zhipenwang.github.io/2018/07/07/mysql_dba/</id>
+    <published>2018-07-07T10:22:53.816Z</published>
+    <updated>2018-07-07T10:33:54.212Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="数据表结构"><a href="#数据表结构" class="headerlink" title="数据表结构"></a>数据表结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$sql = `</div><div class="line">create table if not exists table_test(</div><div class="line">id int(11) not null auto_increment primary key,</div><div class="line">name varchar(30) not null,</div><div class="line">sex tinyint(1) null</div><div class="line">)</div><div class="line">`;</div></pre></td></tr></table></figure><h3 id="插入操作"><a href="#插入操作" class="headerlink" title="插入操作"></a>插入操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// insert value 插入</div><div class="line">$sql = &quot;insert into table_test values(1, &apos;name1&apos;, 1)&quot;;</div><div class="line">// 插入部分字段</div><div class="line">$sql = &quot;insert into table_test (name,sex) values(&apos;name2&apos;, 2)&quot;;</div><div class="line">// 插入多条语句</div><div class="line">$sql = &quot;insert into table_test (name,sex) values(&apos;name1&apos;, 1), (&apos;name2&apos;, 2)&quot;;</div><div class="line">// insert set 插入</div><div class="line">$sql = &quot;insert into table_test set name=&apos;name1&apos;,sex=1&quot;;</div><div class="line">// insert select插入</div><div class="line">$sql = &quot;insert into table_test (name,sex) select name,sex from table_test where id=1&quot;;</div></pre></td></tr></table></figure><h3 id="修改操作"><a href="#修改操作" class="headerlink" title="修改操作"></a>修改操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// update set修改</div><div class="line">$sql = &quot;update table_test set name=&apos;name2&apos; where id=1&quot;;</div></pre></td></tr></table></figure><h3 id="删除操作"><a href="#删除操作" class="headerlink" title="删除操作"></a>删除操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// delete where删除</div><div class="line">$sql = &quot;delete from table_test where id=1&quot;;</div><div class="line">// truncate table删除表所有行数据,且auto_increment 重新计数</div><div class="line">$sql = &quot;truncate table table_test&quot;;</div></pre></td></tr></table></figure><h3 id="查询操作"><a href="#查询操作" class="headerlink" title="查询操作"></a>查询操作</h3><blockquote><p>条件顺序如下： group by … having … order by … limit …</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// 普通查询</div><div class="line">$sql = &quot;select * from table_test&quot;;</div><div class="line">// in 查询</div><div class="line">$sql = &quot;select * from table_test where name in (&apos;name1&apos;, &apos;name2&apos;)&quot;;</div><div class="line">// distinct 查询某个字段去重(多字段表示多字段合并的去重 distinct name,sex)</div><div class="line">$sql = &quot;select distinct name from table_test&quot;;</div><div class="line">// group_concat(field1) group by field2(按field2分组后，field1的值用，隔开)</div><div class="line">$sql = &quot;select group_concat(money),order_id from table_test group by order_id&quot;;</div></pre></td></tr></table></figure><h3 id="聚合查询"><a href="#聚合查询" class="headerlink" title="聚合查询"></a>聚合查询</h3><blockquote><p>count(*) 查询结果总数集<br>sum(field) 计算字段求和总值<br>avg(field) 计算字段平均值<br>max(field) 计算字段最大值<br>min(field) 计算字段最小值</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;数据表结构&quot;&gt;&lt;a href=&quot;#数据表结构&quot; class=&quot;headerlink&quot; title=&quot;数据表结构&quot;&gt;&lt;/a&gt;数据表结构&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;
+      
+    
+    </summary>
+    
+      <category term="MySQL" scheme="https://zhipenwang.github.io/categories/MySQL/"/>
+    
+    
+      <category term="数据库" scheme="https://zhipenwang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MYSQL之操作数据表</title>
+    <link href="https://zhipenwang.github.io/2018/07/07/mysql_operation/"/>
+    <id>https://zhipenwang.github.io/2018/07/07/mysql_operation/</id>
+    <published>2018-07-07T10:20:41.762Z</published>
+    <updated>2018-07-07T10:33:18.693Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>文中均使用 <code>table_test</code> 作为表名</p></blockquote><h3 id="创建数据表"><a href="#创建数据表" class="headerlink" title="创建数据表"></a>创建数据表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">create table if not exists table_test(</div><div class="line">    id int(11) auto_increment primary key,</div><div class="line">    name varchar(30) not null comment &apos;名称&apos;,</div><div class="line">    password varchar(30) not null comment &apos;密码&apos;</div><div class="line">) comment=&quot;表名&quot;;</div></pre></td></tr></table></figure><h3 id="查看表结构"><a href="#查看表结构" class="headerlink" title="查看表结构"></a>查看表结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">show columns from table_test;</div><div class="line">或者</div><div class="line">describe table_test;</div><div class="line">或者</div><div class="line">desc table_test;</div></pre></td></tr></table></figure><h3 id="修改表结构"><a href="#修改表结构" class="headerlink" title="修改表结构"></a>修改表结构</h3><h4 id="1-添加新字段及修改存在字段"><a href="#1-添加新字段及修改存在字段" class="headerlink" title="1. 添加新字段及修改存在字段"></a>1. 添加新字段及修改存在字段</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">alter table table_test</div><div class="line">    add sex enum(&apos;male&apos;, &apos;female&apos;) not null default &apos;male&apos; comment &apos;性别&apos;,</div><div class="line">    modify name varchar(40);</div></pre></td></tr></table></figure><h4 id="2-修改表字段名"><a href="#2-修改表字段名" class="headerlink" title="2. 修改表字段名"></a>2. 修改表字段名</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">alter table table_test</div><div class="line">    change column date create_time date null default &apos;0000-00-00&apos;;</div></pre></td></tr></table></figure><h4 id="3-删除字段"><a href="#3-删除字段" class="headerlink" title="3. 删除字段"></a>3. 删除字段</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">alter table table_test </div><div class="line">    drop create_time;</div></pre></td></tr></table></figure><h4 id="4-修改表名"><a href="#4-修改表名" class="headerlink" title="4. 修改表名"></a>4. 修改表名</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">alter table table_test </div><div class="line">    rename as table_test_new;</div></pre></td></tr></table></figure><h3 id="重命名表"><a href="#重命名表" class="headerlink" title="重命名表"></a>重命名表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rename table table_test_new to table_test;</div></pre></td></tr></table></figure><h3 id="复制表"><a href="#复制表" class="headerlink" title="复制表"></a>复制表</h3><h4 id="1-复制表结构"><a href="#1-复制表结构" class="headerlink" title="1. 复制表结构"></a>1. 复制表结构</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create table table_test_copy1 like table_test;</div></pre></td></tr></table></figure><h4 id="2-复制表结构及数据"><a href="#2-复制表结构及数据" class="headerlink" title="2. 复制表结构及数据"></a>2. 复制表结构及数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create table table_test_copy2 as select * from table_test;</div></pre></td></tr></table></figure><h4 id="3-复制部分表结构及数据"><a href="#3-复制部分表结构及数据" class="headerlink" title="3. 复制部分表结构及数据"></a>3. 复制部分表结构及数据</h4><blockquote><p>只复制了<code>id</code>,<code>name</code>两个字段的表结构<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create table table_test_copy3 as select id,name from table_test&apos;</div></pre></td></tr></table></figure></p></blockquote><h3 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">drop table if not exists table_test;</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;文中均使用 &lt;code&gt;table_test&lt;/code&gt; 作为表名&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;创建数据表&quot;&gt;&lt;a href=&quot;#创建数据表&quot; class=&quot;headerlink&quot; title=&quot;创建数据表&quot;&gt;&lt;/a&gt;创建
+      
+    
+    </summary>
+    
+      <category term="MySQL" scheme="https://zhipenwang.github.io/categories/MySQL/"/>
+    
+    
+      <category term="数据库" scheme="https://zhipenwang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
   
   <entry>
     <title>PHP设计模式之行为型模式（behavioral patterns）</title>
@@ -399,165 +561,6 @@
       <category term="算法" scheme="https://zhipenwang.github.io/tags/%E7%AE%97%E6%B3%95/"/>
     
       <category term="结构" scheme="https://zhipenwang.github.io/tags/%E7%BB%93%E6%9E%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>composer安装与使用</title>
-    <link href="https://zhipenwang.github.io/2017/04/21/composer-1/"/>
-    <id>https://zhipenwang.github.io/2017/04/21/composer-1/</id>
-    <published>2017-04-21T11:21:01.000Z</published>
-    <updated>2018-03-28T10:28:36.135Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>1、点击下载：<a href="https://getcomposer.org/download/" target="_blank" rel="external">composer</a></p><center><br><img src="/img/composer-1-1.png" alt=""><br></center><br>2、下载好之后双击直接安装，Next即可：<br><br><center><br><img src="/img/composer-1-2.png" alt=""><br></center><br>3、然后选择php.exe文件：<br><br><center><br><img src="/img/composer-1-3.png" alt=""><br></center><p>接下来就一直next到安装完成即可。</p><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><blockquote><p>[info]使用composer安装ThinkPHP5</p></blockquote><p>通过<a href="https://pkg.phpcomposer.com/" target="_blank" rel="external">composer中国镜像</a>进行初步了解<br><img src="/img/composer-1-4.png" alt=""></p><p>##开始命令行操作</p><h3 id="1、中国镜像下载"><a href="#1、中国镜像下载" class="headerlink" title="1、中国镜像下载"></a>1、中国镜像下载</h3><p>参考<a href="http://www.kancloud.cn/thinkphp/thinkphp5_quickstart/145249" target="_blank" rel="external">tp5看云文档</a></p><p>由于国外网站访问很慢，国内提供了很好的镜像，所以使用国内镜像：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Composer config -g repo.packagist composer https://packagist.phpcomposer.com</div></pre></td></tr></table></figure></p><p><img src="/img/composer-1-5.png" alt=""></p><h3 id="2、下载tp5框架"><a href="#2、下载tp5框架" class="headerlink" title="2、下载tp5框架"></a>2、下载tp5框架</h3><p>进入站点根目录www操作命令行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer create-project topthink/think tp5  --prefer-dist</div></pre></td></tr></table></figure></p><p>其中tp5可写填写任何你愿意的名称<br><img src="/img/composer-1-6.png" alt=""></p><h2 id="框架安装完成"><a href="#框架安装完成" class="headerlink" title="框架安装完成"></a>框架安装完成</h2><p>耐心等待几分钟的安装过程，安装完成之后本地已经生成了tp5的新框架内容<br><img src="/img/composer-1-7.png" alt=""></p><h2 id="composer主要的功能：安装扩展包"><a href="#composer主要的功能：安装扩展包" class="headerlink" title="composer主要的功能：安装扩展包"></a>composer主要的功能：安装扩展包</h2><p>composer的最主要的功能：dependency manager for PHP<br>进入项目目录tp5，执行命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer require riverslei/payment</div></pre></td></tr></table></figure></p><p>下载riverslei/payment 集成支付宝、微信支付等流行的支付接口到项目中：<br>Composer.json中新增了这一句：<br><img src="/img/composer-1-8.png" alt=""></p><p>项目目录中也已经安装好了扩展包：<br><img src="/img/composer-1-9.png" alt=""></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;p&gt;1、点击下载：&lt;a href=&quot;https://getcomposer.org/download/&quot; target=&quot;_blank&quot; rel
-      
-    
-    </summary>
-    
-      <category term="composer使用" scheme="https://zhipenwang.github.io/categories/composer%E4%BD%BF%E7%94%A8/"/>
-    
-    
-      <category term="Composer" scheme="https://zhipenwang.github.io/tags/Composer/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>composer构建PHP框架——初始化</title>
-    <link href="https://zhipenwang.github.io/2017/04/21/composer-2/"/>
-    <id>https://zhipenwang.github.io/2017/04/21/composer-2/</id>
-    <published>2017-04-21T11:21:01.000Z</published>
-    <updated>2018-03-28T10:28:36.135Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>“一个时代结束了，另一个时代开始了。”<br>Framework Interoperability Group（框架可互用性小组），简称 FIG，成立于 2009 年。FIG 最初由几位知名 PHP 框架开发者发起，在吸纳了许多优秀的大脑和强健的体魄后，提出了 PSR-0 到 PSR-4 五套 PHP 非官方规范：</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">* PSR-0 (Autoloading Standard) 自动加载标准</div><div class="line"></div><div class="line">* PSR-1 (Basic Coding Standard) 基础编码标准</div><div class="line"></div><div class="line">* PSR-2 (Coding Style Guide) 编码风格向导</div><div class="line"></div><div class="line">* PSR-3 (Logger Interface) 日志接口</div><div class="line"></div><div class="line">* PSR-4 (Improved Autoloading) 自动加载优化标准</div></pre></td></tr></table></figure><h3 id="创建composer-json"><a href="#创建composer-json" class="headerlink" title="创建composer.json"></a>创建composer.json</h3><p>在网站根目录下创建新文件夹 <code>my-framework</code> （My First Framework based on Composer），然后在此文件夹内创建 <code>composer.json</code> 文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">&quot;require&quot;:&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p><h3 id="初始化composer"><a href="#初始化composer" class="headerlink" title="初始化composer"></a>初始化composer</h3><p>打开命令行cmd，进入刚刚新建的目录 <code>my_framework</code>，执行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer update</div></pre></td></tr></table></figure></p><p>执行成功后生成了扩展包<code>vendor</code></p><center><br><img src="/img/composer-2-1.png" alt=""><br></center><br>此时目录为：<br><center><br><img src="/img/composer-2-2.png" alt=""><br></center><p>到此，composer初始化完成！</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt;“一个时代结束了，另一个时代开始了。”&lt;br&gt;Framework Interoperability Group（框架可互用性小组），简称 FIG，成立于 2009 年。FIG 最初由几位知名 PHP 框架开发者发起，在吸纳了许多优秀的大脑和强健的体
-      
-    
-    </summary>
-    
-      <category term="composer使用" scheme="https://zhipenwang.github.io/categories/composer%E4%BD%BF%E7%94%A8/"/>
-    
-    
-      <category term="Composer" scheme="https://zhipenwang.github.io/tags/Composer/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>composer构建PHP框架——构建路由</title>
-    <link href="https://zhipenwang.github.io/2017/04/21/composer-3/"/>
-    <id>https://zhipenwang.github.io/2017/04/21/composer-3/</id>
-    <published>2017-04-21T11:21:01.000Z</published>
-    <updated>2018-03-28T10:28:36.136Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="路由选择安装"><a href="#路由选择安装" class="headerlink" title="路由选择安装"></a>路由选择安装</h2><p>本节开始构建路由，先去 GitHub 搜一下：<a href="https://github.com/search?l=PHP&amp;o=desc&amp;q=router&amp;ref=searchresults&amp;s=stars&amp;type=Repositories&amp;utf8=%E2%9C%93" target="_blank" rel="external">点此查看搜索结果</a></p><p>推荐 <a href="https://github.com/NoahBuscher/Macaw" target="_blank" rel="external">https://github.com/NoahBuscher/Macaw</a>，对应的 Composer 包为 noahbuscher/macaw 。</p><p>下面开始安装它，更改 composer.json：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">&quot;require&quot;:&#123;</div><div class="line">&quot;noahbuscher/macaw&quot;: &quot;dev-master&quot;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p><p>运行 composer update，成功之后将得到以下目录：</p><p><center><br><img src="/img/composer-3-1.png" alt=""><br></center><br>至此，Macaw安装成功！</p><h2 id="站点入口文件与环境"><a href="#站点入口文件与环境" class="headerlink" title="站点入口文件与环境"></a>站点入口文件与环境</h2><p>在项目目录下新建public 文件夹，这个文件夹将是用户唯一可见的部分。在文件夹下新建 index.php 文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line"></div><div class="line">// Autoload 自动载入</div><div class="line">require &apos;../vendor/autoload.php&apos;;</div><div class="line"></div><div class="line">// 路由配置</div><div class="line">require &apos;../config/routes.php&apos;;</div></pre></td></tr></table></figure></p><p>上面一行表示引入 Composer 的自动载入功能，下面一行表示载入路由配置文件。<br>然后继续在项目目录下新建config文件夹，在config文件夹内新建 routs.php 文件，内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line"></div><div class="line">use NoahBuscher\Macaw\Macaw;</div><div class="line"></div><div class="line">Macaw::get(&apos;fuck&apos;, function() &#123;</div><div class="line">  echo &quot;成功！&quot;;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">Macaw::get(&apos;(:all)&apos;, function($fu) &#123;</div><div class="line">  echo &apos;未匹配到路由&lt;br&gt;&apos;.$fu;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">Macaw::dispatch();</div></pre></td></tr></table></figure></p><p>然后访问你的地址即可：<a href="http://127.0.0.66/index.php/fuck" target="_blank" rel="external">http://127.0.0.66/index.php/fuck</a></p><p>注意：如果要配置域名地址进行映射要指向 <code>public/index.php</code> 文件<br><img src="/img/composer-3-2.png" alt=""></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;路由选择安装&quot;&gt;&lt;a href=&quot;#路由选择安装&quot; class=&quot;headerlink&quot; title=&quot;路由选择安装&quot;&gt;&lt;/a&gt;路由选择安装&lt;/h2&gt;&lt;p&gt;本节开始构建路由，先去 GitHub 搜一下：&lt;a href=&quot;https://github.com/sea
-      
-    
-    </summary>
-    
-      <category term="composer使用" scheme="https://zhipenwang.github.io/categories/composer%E4%BD%BF%E7%94%A8/"/>
-    
-    
-      <category term="Composer" scheme="https://zhipenwang.github.io/tags/Composer/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo NexT主题内接入网页在线联系功能</title>
-    <link href="https://zhipenwang.github.io/2017/04/20/connect/"/>
-    <id>https://zhipenwang.github.io/2017/04/20/connect/</id>
-    <published>2017-04-20T11:12:49.000Z</published>
-    <updated>2018-03-28T10:28:36.137Z</updated>
-    
-    <content type="html"><![CDATA[<p>Hexo博客如何添加在线联系功能呢,发现了一个不错的网站可以提供在线联系的服务，当有用户在网页上给你留言后会通过邮件或者微信通知你，可以及时的解答用户的疑问。</p><h3 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h3><p>首先在(DaoVoice)[<a href="http://www.daovoice.io/]注册个账号。" target="_blank" rel="external">http://www.daovoice.io/]注册个账号。</a><br>登录上去之后进行配置，配置方法如下:<br>首先到DaoVoice上注册一个账号,注册完成后会得到一个app_id，获取appid的步骤如下图所示:<br><img src="/img/daovoice.png" alt=""></p><p>以next主题为例,打开/themes/next/layout/_partials/head.swig文件添加如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;% if theme.daovoice %&#125;</div><div class="line">  &lt;script&gt;</div><div class="line">  (function(i,s,o,g,r,a,m)&#123;i[&quot;DaoVoiceObject&quot;]=r;i[r]=i[r]||function()&#123;(i[r].q=i[r].q||[]).push(arguments)&#125;,i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset=&quot;utf-8&quot;;m.parentNode.insertBefore(a,m)&#125;)(window,document,&quot;script&quot;,(&apos;https:&apos; == document.location.protocol ? &apos;https:&apos; : &apos;http:&apos;) + &quot;//widget.daovoice.io/widget/0f81ff2f.js&quot;,&quot;daovoice&quot;)</div><div class="line">  daovoice(&apos;init&apos;, &#123;</div><div class="line">      app_id: &quot;&#123;&#123;theme.daovoice_app_id&#125;&#125;&quot;</div><div class="line">    &#125;);</div><div class="line">  daovoice(&apos;update&apos;);</div><div class="line">  &lt;/script&gt;</div><div class="line">&#123;% endif %&#125;</div></pre></td></tr></table></figure></p><p>接着打开主题配置文件_config.yml，添加如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># Online contact </div><div class="line">daovoice: true</div><div class="line">daovoice_app_id: 这里输入前面获取的app_id</div></pre></td></tr></table></figure></p><p>需要注意的是,next主题下聊天的按钮会和其他按钮重叠到一起，可以到聊天设置，修改下按钮的位置:<br><img src="/img/chat.png" alt=""><br>最后到右上角选择管理员，微信绑定,可以绑定你的微信号，关注公众号后打开小程序，就可以实时收发消息，有新的消息也会通过微信通知，设置页面如下:<br><img src="/img/wechat.png" alt=""></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;Hexo博客如何添加在线联系功能呢,发现了一个不错的网站可以提供在线联系的服务，当有用户在网页上给你留言后会通过邮件或者微信通知你，可以及时的解答用户的疑问。&lt;/p&gt;
-&lt;h3 id=&quot;注册&quot;&gt;&lt;a href=&quot;#注册&quot; class=&quot;headerlink&quot; title=&quot;注
-      
-    
-    </summary>
-    
-      <category term="搭建博客" scheme="https://zhipenwang.github.io/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
-    
-    
-      <category term="hexo" scheme="https://zhipenwang.github.io/tags/hexo/"/>
-    
-      <category term="next" scheme="https://zhipenwang.github.io/tags/next/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo添加字数统计、阅读时长、浏览次数</title>
-    <link href="https://zhipenwang.github.io/2017/04/19/blog_view/"/>
-    <id>https://zhipenwang.github.io/2017/04/19/blog_view/</id>
-    <published>2017-04-19T11:21:01.000Z</published>
-    <updated>2018-03-28T10:28:36.133Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="统计插件"><a href="#统计插件" class="headerlink" title="统计插件"></a>统计插件</h2><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>NexT 主题默认已经集成了文章【浏览次数】、【字数统计】、【阅读时长】统计功能，如果我们需要使用，只需要修改主题配置文件 _config.yml 即可。如下所示：<br>配置浏览次数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">busuanzi_count:</div><div class="line">  # count values only if the other configs are false</div><div class="line">  enable: true</div><div class="line">  # custom uv span for the whole site</div><div class="line">  site_uv: true</div><div class="line">  site_uv_header: &lt;i class=&quot;fa fa-user&quot;&gt;&lt;/i&gt; 访问人数</div><div class="line">  site_uv_footer:</div><div class="line">  # custom pv span for the whole site</div><div class="line">  site_pv: true</div><div class="line">  site_pv_header: &lt;i class=&quot;fa fa-eye&quot;&gt;&lt;/i&gt; 总访问量</div><div class="line">  site_pv_footer:</div><div class="line">  # custom pv span for one page only</div><div class="line">  page_pv: true</div><div class="line">  page_pv_header: &lt;i class=&quot;fa fa-file-o&quot;&gt;&lt;/i&gt; 浏览</div><div class="line">  page_pv_footer: 次</div></pre></td></tr></table></figure></p><p>配置字数统计、阅读时长，wordcount与min2read统计功能<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># Post wordcount display settings</div><div class="line"># Dependencies: https://github.com/willin/hexo-wordcount</div><div class="line">post_wordcount:</div><div class="line">  item_text: true</div><div class="line">  wordcount: true         # 单篇 字数统计</div><div class="line">  min2read: true          # 单篇 阅读时长</div><div class="line">  totalcount: false       # 网站 字数统计</div><div class="line">  separated_meta: true</div></pre></td></tr></table></figure></p><p>预览的时候如果出现字数统计和阅读时长失效的情况，一般是因为没有安装 hexo-wordcount 插件，查看 Hexo 插件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">hexo --debug</div><div class="line">``</div><div class="line">### 安装</div><div class="line"></div><div class="line">如果没有安装 hexo-wordcount 插件，先安装该插件：</div></pre></td></tr></table></figure></p><p>npm i –save hexo-wordcount<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">*** Node 版本 7.6.0 之前,请安装 2.x 版本 (Node.js v7.6.0 and previous) ，安装命令如下：***</div></pre></td></tr></table></figure></p><p>npm install hexo-wordcount@2 –save<br>```<br>安装完成后，重新执行启动服务预览就可以了。</p><h3 id="显示文字"><a href="#显示文字" class="headerlink" title="显示文字"></a>显示文字</h3><p>打开<code>post.swig</code>文件，路径如下：<code>xxx_blog/themes/next/layout/_macro/post.swig</code></p><p><img src="/img/view_count.png" alt=""></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;统计插件&quot;&gt;&lt;a href=&quot;#统计插件&quot; class=&quot;headerlink&quot; title=&quot;统计插件&quot;&gt;&lt;/a&gt;统计插件&lt;/h2&gt;&lt;h3 id=&quot;配置&quot;&gt;&lt;a href=&quot;#配置&quot; class=&quot;headerlink&quot; title=&quot;配置&quot;&gt;&lt;/a&gt;配置&lt;/h
-      
-    
-    </summary>
-    
-      <category term="搭建博客" scheme="https://zhipenwang.github.io/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
-    
-    
-      <category term="hexo" scheme="https://zhipenwang.github.io/tags/hexo/"/>
-    
-      <category term="next" scheme="https://zhipenwang.github.io/tags/next/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo NexT主题内给每篇文章后添加结束标语</title>
-    <link href="https://zhipenwang.github.io/2017/04/18/hexo_next_end/"/>
-    <id>https://zhipenwang.github.io/2017/04/18/hexo_next_end/</id>
-    <published>2017-04-18T11:21:01.000Z</published>
-    <updated>2018-03-28T10:28:36.138Z</updated>
-    
-    <content type="html"><![CDATA[<p>给文章后面添加结束标语</p><h3 id="新建文件"><a href="#新建文件" class="headerlink" title="新建文件"></a>新建文件</h3><p>在<code>\themes\next\layout\_macro</code>中新建<code>passage-end-tag.swig</code>文件，添加代码至该文件中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;div&gt;</div><div class="line">    &#123;% if not is_index %&#125;</div><div class="line">        &lt;div style=&quot;text-align:center;color: #ccc;font-size:22px;&quot;&gt;-------------本文结束&lt;i class=&quot;fa fa-paw&quot;&gt;&lt;/i&gt;感谢您的阅读-------------&lt;/div&gt;</div><div class="line">    &#123;% endif %&#125;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p><h3 id="修改post-swig"><a href="#修改post-swig" class="headerlink" title="修改post.swig"></a>修改post.swig</h3><p>打开\themes\next\layout_macro\post.swig文件，在post-body后，post-footer前，添加下面内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;div&gt;</div><div class="line">  &#123;% if not is_index %&#125;</div><div class="line">    &#123;% include &apos;passage-end-tag.swig&apos; %&#125;</div><div class="line">  &#123;% endif %&#125;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p><h3 id="修改-config"><a href="#修改-config" class="headerlink" title="修改_config"></a>修改_config</h3><p>打开主题配置文件（_config.yml),在末尾添加：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># 文章末尾添加“本文结束”标记</div><div class="line">passage_end_tag:</div><div class="line">  enabled: true</div></pre></td></tr></table></figure></p><p>至此，就完成了关于添加文章结束标语的功能，具体的效果，此刻，想必你也看到了，就在下边。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;给文章后面添加结束标语&lt;/p&gt;
-&lt;h3 id=&quot;新建文件&quot;&gt;&lt;a href=&quot;#新建文件&quot; class=&quot;headerlink&quot; title=&quot;新建文件&quot;&gt;&lt;/a&gt;新建文件&lt;/h3&gt;&lt;p&gt;在&lt;code&gt;\themes\next\layout\_macro&lt;/code&gt;中新建
-      
-    
-    </summary>
-    
-      <category term="搭建博客" scheme="https://zhipenwang.github.io/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
-    
-    
-      <category term="hexo" scheme="https://zhipenwang.github.io/tags/hexo/"/>
-    
-      <category term="next" scheme="https://zhipenwang.github.io/tags/next/"/>
     
   </entry>
   
