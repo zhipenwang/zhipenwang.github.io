@@ -89,37 +89,18 @@
 
 
 
-<meta name="description" content="外键约束
-目前mysql只有InnoDB存储引擎支持外键约束
-
-column_name 当前表外键字段名
-table_name 外键表
-index_column_name 外键所在外键表中字段名
-ON DELETE 删除  ON UPDATE 更新
-reference_option语法格式为：（没设置时候，默认两个都指定 RESTRICT） 当删除或更新外键所在外键表的数据时候 RESTRICT">
+<meta name="description" content="外键约束 目前mysql只有InnoDB存储引擎支持外键约束  column_name 当前表外键字段名 table_name 外键表 index_column_name 外键所在外键表中字段名 ON DELETE 删除  ON UPDATE 更新 reference_option语法格式为：（没设置时候，默认两个都指定 RESTRICT） 当删除或更新外键所在外键表的数据时候 RESTRICT">
+<meta name="keywords" content="数据库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MYSQL之数据表级联操作-数据完整性约束">
 <meta property="og:url" content="https://zhipenwang.github.io/2018/07/15/mysql_key/index.html">
 <meta property="og:site_name" content="王志鹏">
-<meta property="og:description" content="外键约束
-目前mysql只有InnoDB存储引擎支持外键约束
-
-column_name 当前表外键字段名
-table_name 外键表
-index_column_name 外键所在外键表中字段名
-ON DELETE 删除  ON UPDATE 更新
-reference_option语法格式为：（没设置时候，默认两个都指定 RESTRICT） 当删除或更新外键所在外键表的数据时候 RESTRICT">
-<meta property="og:updated_time" content="2018-07-15T10:24:59.755Z">
+<meta property="og:description" content="外键约束 目前mysql只有InnoDB存储引擎支持外键约束  column_name 当前表外键字段名 table_name 外键表 index_column_name 外键所在外键表中字段名 ON DELETE 删除  ON UPDATE 更新 reference_option语法格式为：（没设置时候，默认两个都指定 RESTRICT） 当删除或更新外键所在外键表的数据时候 RESTRICT">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-09T14:26:39.626Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MYSQL之数据表级联操作-数据完整性约束">
-<meta name="twitter:description" content="外键约束
-目前mysql只有InnoDB存储引擎支持外键约束
-
-column_name 当前表外键字段名
-table_name 外键表
-index_column_name 外键所在外键表中字段名
-ON DELETE 删除  ON UPDATE 更新
-reference_option语法格式为：（没设置时候，默认两个都指定 RESTRICT） 当删除或更新外键所在外键表的数据时候 RESTRICT">
+<meta name="twitter:description" content="外键约束 目前mysql只有InnoDB存储引擎支持外键约束  column_name 当前表外键字段名 table_name 外键表 index_column_name 外键所在外键表中字段名 ON DELETE 删除  ON UPDATE 更新 reference_option语法格式为：（没设置时候，默认两个都指定 RESTRICT） 当删除或更新外键所在外键表的数据时候 RESTRICT">
 
 
 
@@ -391,7 +372,7 @@ reference_option语法格式为：（没设置时候，默认两个都指定 RES
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-15T18:24:59+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-15T20:21:01+08:00">
                 2018-07-15
               </time>
             
@@ -449,7 +430,7 @@ reference_option语法格式为：（没设置时候，默认两个都指定 RES
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  694 字
+                  765 字
                 </span>
               
 
@@ -465,7 +446,7 @@ reference_option语法格式为：（没设置时候，默认两个都指定 RES
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  3 分钟
+                  4 分钟
                 </span>
               
             </div>
@@ -494,21 +475,21 @@ reference_option语法格式为：（没设置时候，默认两个都指定 RES
 <li>reference_option语法格式为：（没设置时候，默认两个都指定 RESTRICT）<br> 当删除或更新外键所在外键表的数据时候<br> RESTRICT      限制策略，系统不删除或更新外键当前表的数据<br> CASCADE          级联策略，自动删除或更新外键当前表的数据<br> SET FULL       置空策略，设置外键当前表的数据外键列数据为NULL，需要提前设置外键列未被限制 NOT NULL<br> NO ACTION       不采取实施策略，系统不删除或更新外键当前表的数据，与 RESTRICT 一致</li>
 </ol>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">FOREIGN KEY ( column_name [(length)] [ASC | DESC] ) </div><div class="line">REFERENCES table_name(index_column_name)</div><div class="line">[MATCH FULL | MATCH PARTIAL | MATCH SIMPLE]</div><div class="line">[ON DELETE reference_option]</div><div class="line">[ON UPDATE reference_option]</div></pre></td></tr></table></figure>
-<h4 id="创建表，关联外键"><a href="#创建表，关联外键" class="headerlink" title="创建表，关联外键"></a>创建表，关联外键</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">// 创建 班级表</div><div class="line">create table if not exists class(</div><div class="line">	id int(11) not null auto_increment,</div><div class="line">	name varchar(30) not null,</div><div class="line">	primary key (id)</div><div class="line">) ENGINE=InnoDB default charset=utf8;</div><div class="line"></div><div class="line">// 创建学生表，外键 班级id class_id，级联删除及更新</div><div class="line">create table if not exists student(</div><div class="line">	id int(11) not null auto_increment,</div><div class="line">	name varchar(30) not null,</div><div class="line">	class_id int(11) not null,</div><div class="line">	primary key(id),</div><div class="line">	index(class_id),</div><div class="line">	foreign key (class_id) references class(id) on delete cascade on update cascade</div><div class="line">) ENGINE=InnoDB default charset=utf8;</div></pre></td></tr></table></figure>
-<h4 id="插入数据操作"><a href="#插入数据操作" class="headerlink" title="插入数据操作"></a>插入数据操作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//插入数据</div><div class="line">insert into class(name) values(&apos;one&apos;), (&apos;two&apos;), (&apos;three&apos;);</div><div class="line">// 生成 id 1,2,3</div><div class="line"></div><div class="line">insert into student(class_id,name) values(1, &apos;lili&apos;);</div><div class="line">insert into student(class_id,name) values(2, &apos;lili&apos;);</div><div class="line">insert into student(class_id,name) values(2, &apos;lili&apos;);</div><div class="line">insert into student(class_id,name) values(3, &apos;lili&apos;);</div><div class="line"></div><div class="line">// 插入失败，因为班级表中没有id =10的数据</div><div class="line">insert into student(class_id,name) values(10, &apos;lili&apos;);</div></pre></td></tr></table></figure>
-<h4 id="更新数据操作"><a href="#更新数据操作" class="headerlink" title="更新数据操作"></a>更新数据操作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">//更新数据</div><div class="line">update class set id=5 where id=2;</div><div class="line">//此时 学生表中 sid=2的数据同步更新为了5</div></pre></td></tr></table></figure>
-<h4 id="删除数据操作"><a href="#删除数据操作" class="headerlink" title="删除数据操作"></a>删除数据操作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">//删除数据</div><div class="line">delete from class where id=1;</div><div class="line">//此时 学生表中 sid=1的数据同步删除了</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">FOREIGN KEY ( column_name [(length)] [ASC | DESC] ) </span><br><span class="line">REFERENCES table_name(index_column_name)</span><br><span class="line">[MATCH FULL | MATCH PARTIAL | MATCH SIMPLE]</span><br><span class="line">[ON DELETE reference_option]</span><br><span class="line">[ON UPDATE reference_option]</span><br></pre></td></tr></table></figure>
+<h4 id="创建表，关联外键"><a href="#创建表，关联外键" class="headerlink" title="创建表，关联外键"></a>创建表，关联外键</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 创建 班级表</span><br><span class="line">create table if not exists class(</span><br><span class="line">	id int(11) not null auto_increment,</span><br><span class="line">	name varchar(30) not null,</span><br><span class="line">	primary key (id)</span><br><span class="line">) ENGINE=InnoDB default charset=utf8;</span><br><span class="line"></span><br><span class="line">// 创建学生表，外键 班级id class_id，级联删除及更新</span><br><span class="line">create table if not exists student(</span><br><span class="line">	id int(11) not null auto_increment,</span><br><span class="line">	name varchar(30) not null,</span><br><span class="line">	class_id int(11) not null,</span><br><span class="line">	primary key(id),</span><br><span class="line">	index(class_id),</span><br><span class="line">	foreign key (class_id) references class(id) on delete cascade on update cascade</span><br><span class="line">) ENGINE=InnoDB default charset=utf8;</span><br></pre></td></tr></table></figure>
+<h4 id="插入数据操作"><a href="#插入数据操作" class="headerlink" title="插入数据操作"></a>插入数据操作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//插入数据</span><br><span class="line">insert into class(name) values(&apos;one&apos;), (&apos;two&apos;), (&apos;three&apos;);</span><br><span class="line">// 生成 id 1,2,3</span><br><span class="line"></span><br><span class="line">insert into student(class_id,name) values(1, &apos;lili&apos;);</span><br><span class="line">insert into student(class_id,name) values(2, &apos;lili&apos;);</span><br><span class="line">insert into student(class_id,name) values(2, &apos;lili&apos;);</span><br><span class="line">insert into student(class_id,name) values(3, &apos;lili&apos;);</span><br><span class="line"></span><br><span class="line">// 插入失败，因为班级表中没有id =10的数据</span><br><span class="line">insert into student(class_id,name) values(10, &apos;lili&apos;);</span><br></pre></td></tr></table></figure>
+<h4 id="更新数据操作"><a href="#更新数据操作" class="headerlink" title="更新数据操作"></a>更新数据操作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//更新数据</span><br><span class="line">update class set id=5 where id=2;</span><br><span class="line">//此时 学生表中 sid=2的数据同步更新为了5</span><br></pre></td></tr></table></figure>
+<h4 id="删除数据操作"><a href="#删除数据操作" class="headerlink" title="删除数据操作"></a>删除数据操作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//删除数据</span><br><span class="line">delete from class where id=1;</span><br><span class="line">//此时 学生表中 sid=1的数据同步删除了</span><br></pre></td></tr></table></figure>
 <h3 id="主键"><a href="#主键" class="headerlink" title="主键"></a>主键</h3><blockquote>
 <p>一个表中有且只有一个主键</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// 单字段主键</div><div class="line">create table if not exists table_test(</div><div class="line">	id int(11) not null auto_increment primary key,</div><div class="line">	name varchar(30) not null</div><div class="line">) engine=InnoDB default charset=utf8;</div><div class="line"></div><div class="line">// 复合字段主键</div><div class="line">create table if not exists table_test(</div><div class="line">	id int(11) not null auto_increment,</div><div class="line">	name varchar(30) not null,</div><div class="line">	primary key(id, name)</div><div class="line">) engine=InnoDB default charset=utf8;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 单字段主键</span><br><span class="line">create table if not exists table_test(</span><br><span class="line">	id int(11) not null auto_increment primary key,</span><br><span class="line">	name varchar(30) not null</span><br><span class="line">) engine=InnoDB default charset=utf8;</span><br><span class="line"></span><br><span class="line">// 复合字段主键</span><br><span class="line">create table if not exists table_test(</span><br><span class="line">	id int(11) not null auto_increment,</span><br><span class="line">	name varchar(30) not null,</span><br><span class="line">	primary key(id, name)</span><br><span class="line">) engine=InnoDB default charset=utf8;</span><br></pre></td></tr></table></figure>
 <h3 id="候选键"><a href="#候选键" class="headerlink" title="候选键"></a>候选键</h3><blockquote>
 <p>一个表中可以存在多个候选键<br>UNIQUE 来表示</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">create table if not exists table_test(</div><div class="line">	id int(11) not null auto_increment UNIQUE,</div><div class="line">	name varchar(30) not null UNIQUE,</div><div class="line">) engine=InnoDB default charset=utf8;</div></pre></td></tr></table></figure>
-<h3 id="字段条件约束"><a href="#字段条件约束" class="headerlink" title="字段条件约束"></a>字段条件约束</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// null</div><div class="line">id int(11) not null,</div><div class="line">sid int(11) null</div><div class="line"></div><div class="line">// check对列约束</div><div class="line">age int(2) not null check(age&gt;6 and age&lt;18)</div><div class="line"></div><div class="line">// check对表约束</div><div class="line">primary key(id),</div><div class="line">check(class_id in (select id from tb_class))</div></pre></td></tr></table></figure>
-<h3 id="完整性约束"><a href="#完整性约束" class="headerlink" title="完整性约束"></a>完整性约束</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// 创建表的时候使用</div><div class="line">constraint &lt;symbol&gt;</div><div class="line">[primary ... | foreign ... | check ...]</div><div class="line"></div><div class="line">// 更新表的完整性约束</div><div class="line">alter table table_name add constraint primary</div><div class="line">primary key(id)</div><div class="line"></div><div class="line">// 删除表的完整性约束</div><div class="line">alter table table_name drop [foreign key|index] &lt;symbol&gt; [primary key]</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">create table if not exists table_test(</span><br><span class="line">	id int(11) not null auto_increment UNIQUE,</span><br><span class="line">	name varchar(30) not null UNIQUE,</span><br><span class="line">) engine=InnoDB default charset=utf8;</span><br></pre></td></tr></table></figure>
+<h3 id="字段条件约束"><a href="#字段条件约束" class="headerlink" title="字段条件约束"></a>字段条件约束</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// null</span><br><span class="line">id int(11) not null,</span><br><span class="line">sid int(11) null</span><br><span class="line"></span><br><span class="line">// check对列约束</span><br><span class="line">age int(2) not null check(age&gt;6 and age&lt;18)</span><br><span class="line"></span><br><span class="line">// check对表约束</span><br><span class="line">primary key(id),</span><br><span class="line">check(class_id in (select id from tb_class))</span><br></pre></td></tr></table></figure>
+<h3 id="完整性约束"><a href="#完整性约束" class="headerlink" title="完整性约束"></a>完整性约束</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 创建表的时候使用</span><br><span class="line">constraint &lt;symbol&gt;</span><br><span class="line">[primary ... | foreign ... | check ...]</span><br><span class="line"></span><br><span class="line">// 更新表的完整性约束</span><br><span class="line">alter table table_name add constraint primary</span><br><span class="line">primary key(id)</span><br><span class="line"></span><br><span class="line">// 删除表的完整性约束</span><br><span class="line">alter table table_name drop [foreign key|index] &lt;symbol&gt; [primary key]</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -642,7 +623,7 @@ reference_option语法格式为：（没设置时候，默认两个都指定 RES
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -740,7 +721,7 @@ reference_option语法格式为：（没设置时候，默认两个都指定 RES
         <div class="copyright" >
   
   &copy;  2017 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -1,5 +1,6 @@
 ---
 title: PHP设计模式（design patterns of PHP）
+date: 2018-06-16 17:21:01
 tags: 设计模式
 categories: 设计模式
 ---

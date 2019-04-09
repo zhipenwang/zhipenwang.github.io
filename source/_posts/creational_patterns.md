@@ -1,5 +1,6 @@
 ---
 title: PHP设计模式之创建型模式（creational patterns）
+date: 2018-06-16 20:21:01
 tags: 设计模式
 categories: 设计模式
 ---

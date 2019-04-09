@@ -89,28 +89,18 @@
 
 
 
-<meta name="description" content="在使用git的时候，有时候会因为人为因素导致分支（commit）被删除，可以使用如下步骤进行恢复。
-
-首先使用以下步骤创建一个新分支，修改一些文件后删除，以便进行恢复1、创建分支hexo1git branch hexo
-2、查看分支列表123git branch -a  * master	hexo
-3、切换到hexo分支，随便修改一下东西后commit123456git checkout hex">
+<meta name="description" content="在使用git的时候，有时候会因为人为因素导致分支（commit）被删除，可以使用如下步骤进行恢复。  首先使用以下步骤创建一个新分支，修改一些文件后删除，以便进行恢复1、创建分支hexo1git branch hexo 2、查看分支列表123git branch -a  * master	hexo 3、切换到hexo分支，随便修改一下东西后commit123456git checkout hex">
+<meta name="keywords" content="GIT">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git 误删分支恢复方法">
 <meta property="og:url" content="https://zhipenwang.github.io/2018/03/28/git_recover_branch/index.html">
 <meta property="og:site_name" content="王志鹏">
-<meta property="og:description" content="在使用git的时候，有时候会因为人为因素导致分支（commit）被删除，可以使用如下步骤进行恢复。
-
-首先使用以下步骤创建一个新分支，修改一些文件后删除，以便进行恢复1、创建分支hexo1git branch hexo
-2、查看分支列表123git branch -a  * master	hexo
-3、切换到hexo分支，随便修改一下东西后commit123456git checkout hex">
-<meta property="og:updated_time" content="2018-03-28T11:37:50.382Z">
+<meta property="og:description" content="在使用git的时候，有时候会因为人为因素导致分支（commit）被删除，可以使用如下步骤进行恢复。  首先使用以下步骤创建一个新分支，修改一些文件后删除，以便进行恢复1、创建分支hexo1git branch hexo 2、查看分支列表123git branch -a  * master	hexo 3、切换到hexo分支，随便修改一下东西后commit123456git checkout hex">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-09T14:02:03.293Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git 误删分支恢复方法">
-<meta name="twitter:description" content="在使用git的时候，有时候会因为人为因素导致分支（commit）被删除，可以使用如下步骤进行恢复。
-
-首先使用以下步骤创建一个新分支，修改一些文件后删除，以便进行恢复1、创建分支hexo1git branch hexo
-2、查看分支列表123git branch -a  * master	hexo
-3、切换到hexo分支，随便修改一下东西后commit123456git checkout hex">
+<meta name="twitter:description" content="在使用git的时候，有时候会因为人为因素导致分支（commit）被删除，可以使用如下步骤进行恢复。  首先使用以下步骤创建一个新分支，修改一些文件后删除，以便进行恢复1、创建分支hexo1git branch hexo 2、查看分支列表123git branch -a  * master	hexo 3、切换到hexo分支，随便修改一下东西后commit123456git checkout hex">
 
 
 
@@ -440,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  283 字
+                  308 字
                 </span>
               
 
@@ -478,14 +468,14 @@
         <ul>
 <li>在使用git的时候，有时候会因为人为因素导致分支（commit）被删除，可以使用如下步骤进行恢复。</li>
 </ul>
-<h3 id="首先使用以下步骤创建一个新分支，修改一些文件后删除，以便进行恢复"><a href="#首先使用以下步骤创建一个新分支，修改一些文件后删除，以便进行恢复" class="headerlink" title="首先使用以下步骤创建一个新分支，修改一些文件后删除，以便进行恢复"></a>首先使用以下步骤创建一个新分支，修改一些文件后删除，以便进行恢复</h3><p>1、创建分支hexo<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch hexo</div></pre></td></tr></table></figure></p>
-<p>2、查看分支列表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git branch -a</div><div class="line">  * master</div><div class="line">	hexo</div></pre></td></tr></table></figure></p>
-<p>3、切换到hexo分支，随便修改一下东西后commit<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">git checkout hexo</div><div class="line"></div><div class="line">echo &apos;hexo&apos; &gt; test.txt</div><div class="line"></div><div class="line">git add .</div><div class="line">git commit -m &apos;add test.txt&apos;</div></pre></td></tr></table></figure></p>
-<p>4、删除分支<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch -D hexo</div></pre></td></tr></table></figure></p>
-<p>5、查看分支列表，hexo分支已经不存在<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git branch -a</div><div class="line">  * master</div></pre></td></tr></table></figure></p>
-<h2 id="恢复步骤如下"><a href="#恢复步骤如下" class="headerlink" title="恢复步骤如下"></a>恢复步骤如下</h2><p>1、使用git log -g 找回之前提交的commit<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">commit 3eac14d05bc1264cda54a7c21f04c3892f32406a</div><div class="line">Reflog: HEAD@&#123;1&#125; (fdipzone &lt;fdipzone@sina.com&gt;)</div><div class="line">Reflog message: commit: add test.txt</div><div class="line">Author: fdipzone &lt;fdipzone@sina.com&gt;</div><div class="line">Date:   Sun Jan 31 22:26:33 2016 +0800</div><div class="line"></div><div class="line">    add test.txt</div></pre></td></tr></table></figure></p>
-<p>2、使用 git branch recover_branch[新分支] commit_id 命令，用这个commit创建一个分支<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git branch recover_branch_hexo 3eac14d05bc1264cda54a7c21f04c3892f32406a</div><div class="line"></div><div class="line">git branch -a</div><div class="line">* master</div><div class="line">  recover_branch_hexo</div></pre></td></tr></table></figure></p>
-<p>这个时候，可以看到 recover_branch_hexo分支已经创建了。<br>3、切换到recover_branch_hexo分支，检查文件是否存在<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git checkout recover_branch_hexo</div><div class="line">ls -lt</div></pre></td></tr></table></figure></p>
+<h3 id="首先使用以下步骤创建一个新分支，修改一些文件后删除，以便进行恢复"><a href="#首先使用以下步骤创建一个新分支，修改一些文件后删除，以便进行恢复" class="headerlink" title="首先使用以下步骤创建一个新分支，修改一些文件后删除，以便进行恢复"></a>首先使用以下步骤创建一个新分支，修改一些文件后删除，以便进行恢复</h3><p>1、创建分支hexo<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch hexo</span><br></pre></td></tr></table></figure></p>
+<p>2、查看分支列表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git branch -a</span><br><span class="line">  * master</span><br><span class="line">	hexo</span><br></pre></td></tr></table></figure></p>
+<p>3、切换到hexo分支，随便修改一下东西后commit<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git checkout hexo</span><br><span class="line"></span><br><span class="line">echo &apos;hexo&apos; &gt; test.txt</span><br><span class="line"></span><br><span class="line">git add .</span><br><span class="line">git commit -m &apos;add test.txt&apos;</span><br></pre></td></tr></table></figure></p>
+<p>4、删除分支<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -D hexo</span><br></pre></td></tr></table></figure></p>
+<p>5、查看分支列表，hexo分支已经不存在<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch -a</span><br><span class="line">  * master</span><br></pre></td></tr></table></figure></p>
+<h2 id="恢复步骤如下"><a href="#恢复步骤如下" class="headerlink" title="恢复步骤如下"></a>恢复步骤如下</h2><p>1、使用git log -g 找回之前提交的commit<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">commit 3eac14d05bc1264cda54a7c21f04c3892f32406a</span><br><span class="line">Reflog: HEAD@&#123;1&#125; (fdipzone &lt;fdipzone@sina.com&gt;)</span><br><span class="line">Reflog message: commit: add test.txt</span><br><span class="line">Author: fdipzone &lt;fdipzone@sina.com&gt;</span><br><span class="line">Date:   Sun Jan 31 22:26:33 2016 +0800</span><br><span class="line"></span><br><span class="line">    add test.txt</span><br></pre></td></tr></table></figure></p>
+<p>2、使用 git branch recover_branch[新分支] commit_id 命令，用这个commit创建一个分支<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git branch recover_branch_hexo 3eac14d05bc1264cda54a7c21f04c3892f32406a</span><br><span class="line"></span><br><span class="line">git branch -a</span><br><span class="line">* master</span><br><span class="line">  recover_branch_hexo</span><br></pre></td></tr></table></figure></p>
+<p>这个时候，可以看到 recover_branch_hexo分支已经创建了。<br>3、切换到recover_branch_hexo分支，检查文件是否存在<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout recover_branch_hexo</span><br><span class="line">ls -lt</span><br></pre></td></tr></table></figure></p>
 <p>这样就可以恢复误删除的分支了。</p>
 
       
@@ -625,7 +615,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -723,7 +713,7 @@
         <div class="copyright" >
   
   &copy;  2017 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

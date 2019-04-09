@@ -1,5 +1,6 @@
 ---
 title: PHP设计模式之行为型模式（behavioral patterns）
+date: 2018-07-01 20:21:01
 tags: 设计模式
 categories: 设计模式
 ---

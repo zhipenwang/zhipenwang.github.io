@@ -89,25 +89,18 @@
 
 
 
-<meta name="description" content="索引的两种存储类型：B树(BTree)索引、哈希(Hash)索引BTree为系统默认索引
-
-创建表时建立索引1234create table (	属性名 长度 是否为空,	[UNIQUE | FULLTEXT | SPATIAL ]  INDEX|KEY [别名]( 属性名1 [(长度)] [ASC | DESC]))
-已建立的表中创建索引1create [UNIQUE | FULLTEXT |">
+<meta name="description" content="索引的两种存储类型：B树(BTree)索引、哈希(Hash)索引BTree为系统默认索引  创建表时建立索引1234create table (	属性名 长度 是否为空,	[UNIQUE | FULLTEXT | SPATIAL ]  INDEX|KEY [别名]( 属性名1 [(长度)] [ASC | DESC])) 已建立的表中创建索引1create [UNIQUE | FULLTEXT |">
+<meta name="keywords" content="数据库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MYSQL之索引">
 <meta property="og:url" content="https://zhipenwang.github.io/2018/07/15/mysql_index/index.html">
 <meta property="og:site_name" content="王志鹏">
-<meta property="og:description" content="索引的两种存储类型：B树(BTree)索引、哈希(Hash)索引BTree为系统默认索引
-
-创建表时建立索引1234create table (	属性名 长度 是否为空,	[UNIQUE | FULLTEXT | SPATIAL ]  INDEX|KEY [别名]( 属性名1 [(长度)] [ASC | DESC]))
-已建立的表中创建索引1create [UNIQUE | FULLTEXT |">
-<meta property="og:updated_time" content="2018-07-15T10:24:01.790Z">
+<meta property="og:description" content="索引的两种存储类型：B树(BTree)索引、哈希(Hash)索引BTree为系统默认索引  创建表时建立索引1234create table (	属性名 长度 是否为空,	[UNIQUE | FULLTEXT | SPATIAL ]  INDEX|KEY [别名]( 属性名1 [(长度)] [ASC | DESC])) 已建立的表中创建索引1create [UNIQUE | FULLTEXT |">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-09T14:27:55.236Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MYSQL之索引">
-<meta name="twitter:description" content="索引的两种存储类型：B树(BTree)索引、哈希(Hash)索引BTree为系统默认索引
-
-创建表时建立索引1234create table (	属性名 长度 是否为空,	[UNIQUE | FULLTEXT | SPATIAL ]  INDEX|KEY [别名]( 属性名1 [(长度)] [ASC | DESC]))
-已建立的表中创建索引1create [UNIQUE | FULLTEXT |">
+<meta name="twitter:description" content="索引的两种存储类型：B树(BTree)索引、哈希(Hash)索引BTree为系统默认索引  创建表时建立索引1234create table (	属性名 长度 是否为空,	[UNIQUE | FULLTEXT | SPATIAL ]  INDEX|KEY [别名]( 属性名1 [(长度)] [ASC | DESC])) 已建立的表中创建索引1create [UNIQUE | FULLTEXT |">
 
 
 
@@ -379,7 +372,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-15T18:22:17+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-15T19:21:01+08:00">
                 2018-07-15
               </time>
             
@@ -437,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1,148 字
+                  1,230 字
                 </span>
               
 
@@ -475,10 +468,10 @@
         <blockquote>
 <p>索引的两种存储类型：B树(BTree)索引、哈希(Hash)索引<br>BTree为系统默认索引</p>
 </blockquote>
-<h3 id="创建表时建立索引"><a href="#创建表时建立索引" class="headerlink" title="创建表时建立索引"></a>创建表时建立索引</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">create table (</div><div class="line">	属性名 长度 是否为空,</div><div class="line">	[UNIQUE | FULLTEXT | SPATIAL ]  INDEX|KEY [别名]( 属性名1 [(长度)] [ASC | DESC])</div><div class="line">)</div></pre></td></tr></table></figure>
-<h3 id="已建立的表中创建索引"><a href="#已建立的表中创建索引" class="headerlink" title="已建立的表中创建索引"></a>已建立的表中创建索引</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create [UNIQUE | FULLTEXT | SPATIAL ]  INDEX [别名] on table_name( 属性名1 [(长度)] [ASC | DESC])</div></pre></td></tr></table></figure>
-<h3 id="修改表结构添加索引"><a href="#修改表结构添加索引" class="headerlink" title="修改表结构添加索引"></a>修改表结构添加索引</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table table_name add [UNIQUE | FULLTEXT | SPATIAL ]  INDEX [别名] on table_name( 属性名1 [(长度)] [ASC | DESC])</div></pre></td></tr></table></figure>
-<h3 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">drop INDEX 属性名 on table_name</div></pre></td></tr></table></figure>
+<h3 id="创建表时建立索引"><a href="#创建表时建立索引" class="headerlink" title="创建表时建立索引"></a>创建表时建立索引</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">create table (</span><br><span class="line">	属性名 长度 是否为空,</span><br><span class="line">	[UNIQUE | FULLTEXT | SPATIAL ]  INDEX|KEY [别名]( 属性名1 [(长度)] [ASC | DESC])</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="已建立的表中创建索引"><a href="#已建立的表中创建索引" class="headerlink" title="已建立的表中创建索引"></a>已建立的表中创建索引</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create [UNIQUE | FULLTEXT | SPATIAL ]  INDEX [别名] on table_name( 属性名1 [(长度)] [ASC | DESC])</span><br></pre></td></tr></table></figure>
+<h3 id="修改表结构添加索引"><a href="#修改表结构添加索引" class="headerlink" title="修改表结构添加索引"></a>修改表结构添加索引</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table table_name add [UNIQUE | FULLTEXT | SPATIAL ]  INDEX [别名] on table_name( 属性名1 [(长度)] [ASC | DESC])</span><br></pre></td></tr></table></figure>
+<h3 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop INDEX 属性名 on table_name</span><br></pre></td></tr></table></figure>
 <blockquote>
 <ol>
 <li>[]是可选项  </li>
@@ -491,27 +484,27 @@
 <h3 id="普通索引"><a href="#普通索引" class="headerlink" title="普通索引"></a>普通索引</h3><blockquote>
 <p>在任何数据类型的字段中创建索引</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">// 创建表的时候创建索引</div><div class="line">// 创建了索引列 id</div><div class="line">create table if not exists table_test(</div><div class="line">	id int(11) not null auto_increment primary key,</div><div class="line">	name varchar(30) not null,</div><div class="line">	index(id)</div><div class="line">);</div><div class="line">// 已存在表中创建索引</div><div class="line">create index info on table_test (id)</div><div class="line">// 修改表结构添加索引</div><div class="line">alter table table_test add index info (id)</div><div class="line">// 查看表结构</div><div class="line">show create table table_test;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 创建表的时候创建索引</span><br><span class="line">// 创建了索引列 id</span><br><span class="line">create table if not exists table_test(</span><br><span class="line">	id int(11) not null auto_increment primary key,</span><br><span class="line">	name varchar(30) not null,</span><br><span class="line">	index(id)</span><br><span class="line">);</span><br><span class="line">// 已存在表中创建索引</span><br><span class="line">create index info on table_test (id)</span><br><span class="line">// 修改表结构添加索引</span><br><span class="line">alter table table_test add index info (id)</span><br><span class="line">// 查看表结构</span><br><span class="line">show create table table_test;</span><br></pre></td></tr></table></figure>
 <h3 id="唯一性索引"><a href="#唯一性索引" class="headerlink" title="唯一性索引"></a>唯一性索引</h3><blockquote>
 <p>使用UNIQUE参数设置唯一索引，该索引的值必须唯一<br>主键是一种特殊的唯一索引</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">// 创建表的时候创建索引</div><div class="line">// 创建唯一索引 别名为 name 索引字段为 id，索引存储排序为 asc</div><div class="line">create table if not exists table_test(</div><div class="line">	id int(11) not null auto_increment primary key,</div><div class="line">	name varchar(30) not null,</div><div class="line">	UNIQUE INDEX name (id asc)</div><div class="line">);</div><div class="line">// 已存在表中创建索引</div><div class="line">create UNIQUE INDEX name on table_test (id asc)</div><div class="line">// 修改表结构添加索引</div><div class="line">alter table table_test add UNIQUE INDEX name (id asc)</div><div class="line">// 查看表结构</div><div class="line">show create table table_test;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 创建表的时候创建索引</span><br><span class="line">// 创建唯一索引 别名为 name 索引字段为 id，索引存储排序为 asc</span><br><span class="line">create table if not exists table_test(</span><br><span class="line">	id int(11) not null auto_increment primary key,</span><br><span class="line">	name varchar(30) not null,</span><br><span class="line">	UNIQUE INDEX name (id asc)</span><br><span class="line">);</span><br><span class="line">// 已存在表中创建索引</span><br><span class="line">create UNIQUE INDEX name on table_test (id asc)</span><br><span class="line">// 修改表结构添加索引</span><br><span class="line">alter table table_test add UNIQUE INDEX name (id asc)</span><br><span class="line">// 查看表结构</span><br><span class="line">show create table table_test;</span><br></pre></td></tr></table></figure>
 <h3 id="全文索引"><a href="#全文索引" class="headerlink" title="全文索引"></a>全文索引</h3><blockquote>
 <p>使用FULLTEXT参数设置全文索引<br>只有myisam存储引擎的数据表支持fulltext全文索引<br>只能创建在数据类型为 char、varchar、text的字段上<br>默认情况下，应用全文索引大小写不敏感，索引的列使用二进制排序后，可以执行大小写敏感的全文索引</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">// 创建表的时候创建索引</div><div class="line">// 创建全文索引 别名为 name_info 索引字段为 name</div><div class="line">create table if not exists table_test(</div><div class="line">	id int(11) not null auto_increment primary key,</div><div class="line">	name varchar(30) not null,</div><div class="line">	FULLTEXT KEY name_info (name)</div><div class="line">) engine=MyISAM;</div><div class="line">// 已存在表中创建索引</div><div class="line">create FULLTEXT INDEX name_info on table_test (name)</div><div class="line">// 修改表结构添加索引</div><div class="line">alter table table_test add FULLTEXT INDEX name_info (name)</div><div class="line">// 查看表结构</div><div class="line">show create table table_test;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 创建表的时候创建索引</span><br><span class="line">// 创建全文索引 别名为 name_info 索引字段为 name</span><br><span class="line">create table if not exists table_test(</span><br><span class="line">	id int(11) not null auto_increment primary key,</span><br><span class="line">	name varchar(30) not null,</span><br><span class="line">	FULLTEXT KEY name_info (name)</span><br><span class="line">) engine=MyISAM;</span><br><span class="line">// 已存在表中创建索引</span><br><span class="line">create FULLTEXT INDEX name_info on table_test (name)</span><br><span class="line">// 修改表结构添加索引</span><br><span class="line">alter table table_test add FULLTEXT INDEX name_info (name)</span><br><span class="line">// 查看表结构</span><br><span class="line">show create table table_test;</span><br></pre></td></tr></table></figure>
 <h3 id="单列索引"><a href="#单列索引" class="headerlink" title="单列索引"></a>单列索引</h3><blockquote>
 <p>只对应一个字段的索引</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">// 创建表的时候创建索引</div><div class="line">// 创建单列索引 别名为 name_info 索引字段为 name，索引字段长度为20</div><div class="line">// 数据表中的字段长度为30，而创建的索引的字段长度为20，这样做的目的是为了提高查询效率，优化查询速度</div><div class="line">create table if not exists table_test(</div><div class="line">	id int(11) not null auto_increment primary key,</div><div class="line">	name varchar(30) not null,</div><div class="line">	INDEX name_info (name(20))</div><div class="line">);</div><div class="line">// 已存在表中创建索引</div><div class="line">create INDEX name_info on table_test (name(20))</div><div class="line">// 修改表结构添加索引</div><div class="line">alter table table_test add INDEX name_info (name(20))</div><div class="line">// 查看表结构</div><div class="line">show create table table_test;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// 创建表的时候创建索引</span><br><span class="line">// 创建单列索引 别名为 name_info 索引字段为 name，索引字段长度为20</span><br><span class="line">// 数据表中的字段长度为30，而创建的索引的字段长度为20，这样做的目的是为了提高查询效率，优化查询速度</span><br><span class="line">create table if not exists table_test(</span><br><span class="line">	id int(11) not null auto_increment primary key,</span><br><span class="line">	name varchar(30) not null,</span><br><span class="line">	INDEX name_info (name(20))</span><br><span class="line">);</span><br><span class="line">// 已存在表中创建索引</span><br><span class="line">create INDEX name_info on table_test (name(20))</span><br><span class="line">// 修改表结构添加索引</span><br><span class="line">alter table table_test add INDEX name_info (name(20))</span><br><span class="line">// 查看表结构</span><br><span class="line">show create table table_test;</span><br></pre></td></tr></table></figure>
 <h3 id="多列索引"><a href="#多列索引" class="headerlink" title="多列索引"></a>多列索引</h3><blockquote>
 <p>表的多个字段上创建索引<br>应用此索引，必须使用这些字段的第一个字段</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">// 创建表的时候创建索引</div><div class="line">// 创建多列索引 别名为 info 索引字段为 name、sex</div><div class="line">create table if not exists table_test(</div><div class="line">	id int(11) not null auto_increment primary key,</div><div class="line">	name varchar(30) not null,</div><div class="line">	sex bit(1) not null,</div><div class="line">	INDEX info (name,sex)</div><div class="line">);</div><div class="line">// 已存在表中创建索引</div><div class="line">create INDEX info on table_test (name,sex)</div><div class="line">// 修改表结构添加索引</div><div class="line">alter table table_test add INDEX info (name,sex)</div><div class="line">// 查看表结构</div><div class="line">show create table table_test;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// 创建表的时候创建索引</span><br><span class="line">// 创建多列索引 别名为 info 索引字段为 name、sex</span><br><span class="line">create table if not exists table_test(</span><br><span class="line">	id int(11) not null auto_increment primary key,</span><br><span class="line">	name varchar(30) not null,</span><br><span class="line">	sex bit(1) not null,</span><br><span class="line">	INDEX info (name,sex)</span><br><span class="line">);</span><br><span class="line">// 已存在表中创建索引</span><br><span class="line">create INDEX info on table_test (name,sex)</span><br><span class="line">// 修改表结构添加索引</span><br><span class="line">alter table table_test add INDEX info (name,sex)</span><br><span class="line">// 查看表结构</span><br><span class="line">show create table table_test;</span><br></pre></td></tr></table></figure>
 <h3 id="空间索引"><a href="#空间索引" class="headerlink" title="空间索引"></a>空间索引</h3><blockquote>
 <p>使用SPATIAL参数可以设置空间索引<br>只能建立在数据类型为空间类型的字段上<br>mysql只有MyISAM存储引擎支持空间检索，且索引的字段不能为空值<br>空间类型：geometry、point、linestring、polygon</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">// 创建表的时候创建索引</div><div class="line">// 创建空间索引 别名为 good_info 索引字段为 good</div><div class="line">create table if not exists table_test(</div><div class="line">	id int(11) not null auto_increment primary key,</div><div class="line">	good geometry not null,</div><div class="line">	SPATIAL INDEX good_info (good)</div><div class="line">);</div><div class="line">// 已存在表中创建索引</div><div class="line">create SPATIAL INDEX good_info on table_test (good)</div><div class="line">// 修改表结构添加索引</div><div class="line">alter table table_test add SPATIAL INDEX good_info (good)</div><div class="line">// 查看表结构</div><div class="line">show create table table_test;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 创建表的时候创建索引</span><br><span class="line">// 创建空间索引 别名为 good_info 索引字段为 good</span><br><span class="line">create table if not exists table_test(</span><br><span class="line">	id int(11) not null auto_increment primary key,</span><br><span class="line">	good geometry not null,</span><br><span class="line">	SPATIAL INDEX good_info (good)</span><br><span class="line">);</span><br><span class="line">// 已存在表中创建索引</span><br><span class="line">create SPATIAL INDEX good_info on table_test (good)</span><br><span class="line">// 修改表结构添加索引</span><br><span class="line">alter table table_test add SPATIAL INDEX good_info (good)</span><br><span class="line">// 查看表结构</span><br><span class="line">show create table table_test;</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -649,7 +642,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -747,7 +740,7 @@
         <div class="copyright" >
   
   &copy;  2017 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

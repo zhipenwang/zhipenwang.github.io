@@ -1,5 +1,6 @@
 ---
 title: MYSQL之操作数据表
+date: 2018-07-07 17:21:01
 tags: 数据库
 categories: MySQL
 ---

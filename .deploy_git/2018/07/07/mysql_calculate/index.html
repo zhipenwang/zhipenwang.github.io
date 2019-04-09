@@ -89,29 +89,19 @@
 
 
 
-<meta name="description" content="1234create table if not exists test(	id int(11) not null auto_increment primary key,	num int(11) null)
-算术运算符
-加(+)、减(-)、乘(*)、除(/)、余(%)、除(div)、余(mod)
-
-123456select id, num, id+num, id-num, id*num, id/nu">
+<meta name="description" content="1234create table if not exists test(	id int(11) not null auto_increment primary key,	num int(11) null) 算术运算符 加(+)、减(-)、乘(*)、除(/)、余(%)、除(div)、余(mod)  123456select id, num, id+num, id-num, id*num, id/nu">
+<meta name="keywords" content="数据库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MYSQL之运算符操作">
 <meta property="og:url" content="https://zhipenwang.github.io/2018/07/07/mysql_calculate/index.html">
 <meta property="og:site_name" content="王志鹏">
-<meta property="og:description" content="1234create table if not exists test(	id int(11) not null auto_increment primary key,	num int(11) null)
-算术运算符
-加(+)、减(-)、乘(*)、除(/)、余(%)、除(div)、余(mod)
-
-123456select id, num, id+num, id-num, id*num, id/nu">
+<meta property="og:description" content="1234create table if not exists test(	id int(11) not null auto_increment primary key,	num int(11) null) 算术运算符 加(+)、减(-)、乘(*)、除(/)、余(%)、除(div)、余(mod)  123456select id, num, id+num, id-num, id*num, id/nu">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://wenku.baidu.com/content/216d3e2926284b73f242336c1eb91a37f11132c9?m=26e2fd787393eaa2973d6c1f478627b5&type=pic&src=04452f9619b2848d6d760be569e87603.jpg">
-<meta property="og:updated_time" content="2018-07-07T10:35:52.650Z">
+<meta property="og:updated_time" content="2019-04-09T14:29:00.189Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MYSQL之运算符操作">
-<meta name="twitter:description" content="1234create table if not exists test(	id int(11) not null auto_increment primary key,	num int(11) null)
-算术运算符
-加(+)、减(-)、乘(*)、除(/)、余(%)、除(div)、余(mod)
-
-123456select id, num, id+num, id-num, id*num, id/nu">
+<meta name="twitter:description" content="1234create table if not exists test(	id int(11) not null auto_increment primary key,	num int(11) null) 算术运算符 加(+)、减(-)、乘(*)、除(/)、余(%)、除(div)、余(mod)  123456select id, num, id+num, id-num, id*num, id/nu">
 <meta name="twitter:image" content="https://wenku.baidu.com/content/216d3e2926284b73f242336c1eb91a37f11132c9?m=26e2fd787393eaa2973d6c1f478627b5&type=pic&src=04452f9619b2848d6d760be569e87603.jpg">
 
 
@@ -384,7 +374,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-07T18:23:44+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-07T19:21:01+08:00">
                 2018-07-07
               </time>
             
@@ -442,7 +432,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  802 字
+                  828 字
                 </span>
               
 
@@ -458,7 +448,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  3 分钟
+                  4 分钟
                 </span>
               
             </div>
@@ -477,35 +467,35 @@
       
 
       
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">create table if not exists test(</div><div class="line">	id int(11) not null auto_increment primary key,</div><div class="line">	num int(11) null</div><div class="line">)</div></pre></td></tr></table></figure>
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">create table if not exists test(</span><br><span class="line">	id int(11) not null auto_increment primary key,</span><br><span class="line">	num int(11) null</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 <h3 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h3><blockquote>
 <p>加(+)、减(-)、乘(*)、除(/)、余(%)、除(div)、余(mod)</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">select id, num, id+num, id-num, id*num, id/num, id%num, id div num, id mod num from test;</div><div class="line">结果：</div><div class="line">id 	num 	id+num 	id-num 	id*num 	id/num 	id%num 	id div num 	id mod num</div><div class="line">5  	2   	8	  	3      	10     	2.5    	1      	2			1</div><div class="line">6   null	null	null	null	null	null	null		null</div><div class="line">null 5		null	null	null	null	null	null		null</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">select id, num, id+num, id-num, id*num, id/num, id%num, id div num, id mod num from test;</span><br><span class="line">结果：</span><br><span class="line">id 	num 	id+num 	id-num 	id*num 	id/num 	id%num 	id div num 	id mod num</span><br><span class="line">5  	2   	8	  	3      	10     	2.5    	1      	2			1</span><br><span class="line">6   null	null	null	null	null	null	null		null</span><br><span class="line">null 5		null	null	null	null	null	null		null</span><br></pre></td></tr></table></figure>
 <h3 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h3><blockquote>
 <p>大于(&gt;)、小于(&lt;)、等于(=)、不等于(!=或&lt;&gt;)、大于等于(&gt;=)、小于等于(&lt;=)</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">1. 符合条件的结果为1</div><div class="line">2. 不符合条件的结果为0</div><div class="line">3. 值为NULL的结果为null</div><div class="line">```  </div><div class="line"></div><div class="line">&gt;是null(IS NULL)、不是null(IS NOT NULL)</div></pre></td></tr></table></figure>
-<p>判断是否为空值可以采用 &lt;=&gt; 进行判断，a&lt;=&gt;0，值为0的结果为1，其他都为0；a&lt;=&gt;null，值为null的结果为1，其他都为0<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&gt;包含(between a and b)  </div><div class="line">&gt;包含(id IN (1,2,3))、不包含(id not in(1,2,3))  </div><div class="line">&gt;模式匹配(name like &apos;%keyword%&apos;)、模式不匹配(name not like &apos;%keyword%&apos;)</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. 符合条件的结果为1</span><br><span class="line">2. 不符合条件的结果为0</span><br><span class="line">3. 值为NULL的结果为null</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">&gt;是null(IS NULL)、不是null(IS NOT NULL)</span><br></pre></td></tr></table></figure>
+<p>判断是否为空值可以采用 &lt;=&gt; 进行判断，a&lt;=&gt;0，值为0的结果为1，其他都为0；a&lt;=&gt;null，值为null的结果为1，其他都为0<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt;包含(between a and b)  </span><br><span class="line">&gt;包含(id IN (1,2,3))、不包含(id not in(1,2,3))  </span><br><span class="line">&gt;模式匹配(name like &apos;%keyword%&apos;)、模式不匹配(name not like &apos;%keyword%&apos;)</span><br></pre></td></tr></table></figure></p>
 <ol>
 <li>like ‘abc’  表示字符串=abc的匹配</li>
 <li>like ‘%abc’ 表示以abc结尾的字符串匹配</li>
 <li>like ‘abc%’ 表示以abc开头的字符串匹配</li>
 <li>like ‘%abc%’表示包含abc的字符串匹配</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&gt;正则匹配(a regexp &apos;^a&apos;)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt;正则匹配(a regexp &apos;^a&apos;)</span><br></pre></td></tr></table></figure>
 <ol>
 <li>a regexp ‘^abc’ 表示以abc开头的字符串匹配</li>
 <li>a regexp ‘abc’  表示包含abc的字符串匹配</li>
 <li><p>a regexp ‘abc$’ 表示以abc结尾的字符串匹配</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### 逻辑运算符</div><div class="line">&gt;与(&amp;&amp;或AND)、或(||或OR)、非(!或NOT)、异或(XOR)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 逻辑运算符</span><br><span class="line">&gt;与(&amp;&amp;或AND)、或(||或OR)、非(!或NOT)、异或(XOR)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>&amp;&amp;  只要有一个值为0，结果为0；有值为null，其他都不为0，结果为null；值都不为null与0的结果为1；</p>
 </li>
 <li>||  值都为0结果为0；值为0或者null结果为null；值存在不为0或者null的结果为1；</li>
 <li>!   值为null结果为null；值为0的结果为1；值为非0或null的结果为1；</li>
 <li><p>XOR 值存在null的结果为null；值都是非0或者都是0的结果为0；值存在0跟非0的结果为1；</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### 位运算符</div><div class="line">&gt;按位与(&amp;)、按位或(|)、按位取反(~)、按位异或(^)、按位左移(&lt;&lt;)、按位右移(&gt;&gt;)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 位运算符</span><br><span class="line">&gt;按位与(&amp;)、按位或(|)、按位取反(~)、按位异或(^)、按位左移(&lt;&lt;)、按位右移(&gt;&gt;)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>&amp;    将十进制数转换为二进制数，每个二进制数对应的位上进行与运算，最后转换为十进制数<br> 例：10&amp;5 =&gt; 1010&amp;0101 =&gt; 0000 =&gt; 0<br> 例：10&amp;6 =&gt; 1010&amp;0110 =&gt; 0010 =&gt; 2</p>
 </li>
@@ -515,7 +505,7 @@
 <li>&lt;&lt;    m &lt;&lt; n 将十进制数m转换为二进制数，按位左移n位，右边补上n个0，最后转换为十进制数<br> 例：10 &lt;&lt; 1 =&gt; 1010 =&gt; 10100 =&gt; 20</li>
 <li><blockquote>
 <blockquote>
-<p>   m &gt;&gt; n 将十进制数m转换为二进制数，按位右移n位，左边补上n个0，最后转换为十进制数<br> 例：10 &gt;&gt; 1 =&gt; 1010 =&gt; 0101 =&gt; 5<br>```</p>
+<p>   m &gt;&gt; n 将十进制数m转换为二进制数，按位右移n位，左边补上n个0，最后转换为十进制数<br> 例：10 &gt;&gt; 1 =&gt; 1010 =&gt; 0101 =&gt; 5<br><code>`</code></p>
 </blockquote>
 </blockquote>
 </li>
@@ -659,7 +649,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -757,7 +747,7 @@
         <div class="copyright" >
   
   &copy;  2017 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

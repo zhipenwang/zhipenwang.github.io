@@ -89,28 +89,18 @@
 
 
 
-<meta name="description" content="在javascript中我们可以通过以下代码判断页面中是否存在某个元素
-
-1234obj = document.getElementById(&amp;quot;someID&amp;quot;);if (obj) &amp;#123;     obj.innerText(&amp;quot;Extsts&amp;quot;);&amp;#125;
-
-那么在jQuery，我们如何判断页面元素存在与否呢？如果参照上面的传统Javascript的">
+<meta name="description" content="在javascript中我们可以通过以下代码判断页面中是否存在某个元素  1234obj = document.getElementById(&amp;quot;someID&amp;quot;);if (obj) &amp;#123;     obj.innerText(&amp;quot;Extsts&amp;quot;);&amp;#125;  那么在jQuery，我们如何判断页面元素存在与否呢？如果参照上面的传统Javascript的">
+<meta name="keywords" content="Web前端">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js与jquery关于验证页面元素存在的方法及不同之处">
 <meta property="og:url" content="https://zhipenwang.github.io/2018/05/05/js_3/index.html">
 <meta property="og:site_name" content="王志鹏">
-<meta property="og:description" content="在javascript中我们可以通过以下代码判断页面中是否存在某个元素
-
-1234obj = document.getElementById(&amp;quot;someID&amp;quot;);if (obj) &amp;#123;     obj.innerText(&amp;quot;Extsts&amp;quot;);&amp;#125;
-
-那么在jQuery，我们如何判断页面元素存在与否呢？如果参照上面的传统Javascript的">
-<meta property="og:updated_time" content="2018-05-05T11:06:10.024Z">
+<meta property="og:description" content="在javascript中我们可以通过以下代码判断页面中是否存在某个元素  1234obj = document.getElementById(&amp;quot;someID&amp;quot;);if (obj) &amp;#123;     obj.innerText(&amp;quot;Extsts&amp;quot;);&amp;#125;  那么在jQuery，我们如何判断页面元素存在与否呢？如果参照上面的传统Javascript的">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-09T14:32:56.349Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js与jquery关于验证页面元素存在的方法及不同之处">
-<meta name="twitter:description" content="在javascript中我们可以通过以下代码判断页面中是否存在某个元素
-
-1234obj = document.getElementById(&amp;quot;someID&amp;quot;);if (obj) &amp;#123;     obj.innerText(&amp;quot;Extsts&amp;quot;);&amp;#125;
-
-那么在jQuery，我们如何判断页面元素存在与否呢？如果参照上面的传统Javascript的">
+<meta name="twitter:description" content="在javascript中我们可以通过以下代码判断页面中是否存在某个元素  1234obj = document.getElementById(&amp;quot;someID&amp;quot;);if (obj) &amp;#123;     obj.innerText(&amp;quot;Extsts&amp;quot;);&amp;#125;  那么在jQuery，我们如何判断页面元素存在与否呢？如果参照上面的传统Javascript的">
 
 
 
@@ -382,7 +372,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-05T18:35:29+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-05T20:21:01+08:00">
                 2018-05-05
               </time>
             
@@ -440,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  360 字
+                  378 字
                 </span>
               
 
@@ -456,7 +446,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  1 分钟
+                  2 分钟
                 </span>
               
             </div>
@@ -478,20 +468,20 @@
         <blockquote>
 <p>在javascript中我们可以通过以下代码判断页面中是否存在某个元素</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">obj = document.getElementById(&quot;someID&quot;);</div><div class="line">if (obj) &#123;</div><div class="line">     obj.innerText(&quot;Extsts&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">obj = document.getElementById(&quot;someID&quot;);</span><br><span class="line">if (obj) &#123;</span><br><span class="line">     obj.innerText(&quot;Extsts&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>那么在jQuery，我们如何判断页面元素存在与否呢？如果参照上面的传统Javascript的写法，我们第一个想到的办法会是：</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if ($(&quot;#someID&quot;))&#123;</div><div class="line">      $(&quot;#someID&quot;).text(&quot;hi&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>可是这么写是不对的！因为<strong>jQuery对象永远都有返回值</strong>，所以$(“someID”) 总是TRUE ，IF语句没有起到任何判断作用。<br>我们知道，jQuery选择器获取页面的element时，无论element是否存在，都会返回一个对象。例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var my_element = $(&quot;#element_Id&quot; );</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if ($(&quot;#someID&quot;))&#123;</span><br><span class="line">      $(&quot;#someID&quot;).text(&quot;hi&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可是这么写是不对的！因为<strong>jQuery对象永远都有返回值</strong>，所以$(“someID”) 总是TRUE ，IF语句没有起到任何判断作用。<br>我们知道，jQuery选择器获取页面的element时，无论element是否存在，都会返回一个对象。例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var my_element = $(&quot;#element_Id&quot; );</span><br></pre></td></tr></table></figure></p>
 <p>此时的变量my_element就是一个对象，既然是一个对象，这个对象就具有length的属性，因此，用以下代码可以判断元素（对象）是否存在</p>
-<p>正确的写法应该是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if ( $(&quot;#someID&quot;).length &gt; 0 ) &#123;</div><div class="line">     $(&quot;#someID&quot;).text(&quot;Extsts&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>正确的写法应该是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if ( $(&quot;#someID&quot;).length &gt; 0 ) &#123;</span><br><span class="line">     $(&quot;#someID&quot;).text(&quot;Extsts&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>注意 ：判断某个页面元素存在与否在jQuery实际上是没有必要的，jQuery本身会忽略 对一个不存在的元素进行操作，并且不会报错, 所以这么写代码会存在bug。<br>假如不存在someID这个元素，我们照样可以执行一下代码，并不会报错。</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var value=$(&apos;#someID&apos;).length;</div><div class="line">if(value&gt;0)&#123;</div><div class="line">     alert(&apos;Extsts&apos;);</div><div class="line">&#125;else&#123;</div><div class="line">      alert(&apos;not Extsts&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var value=$(&apos;#someID&apos;).length;</span><br><span class="line">if(value&gt;0)&#123;</span><br><span class="line">     alert(&apos;Extsts&apos;);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">      alert(&apos;not Extsts&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>JS判断变量是否为空或是否null<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">/** </div><div class="line">* 判断是否null </div><div class="line">* @param data </div><div class="line">*/ </div><div class="line">function isNull(data)&#123; </div><div class="line">	return (data == &quot;&quot; || data == undefined || data == null) ? &quot;暂无&quot; : data; </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>JS判断变量是否为空或是否null<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/** </span><br><span class="line">* 判断是否null </span><br><span class="line">* @param data </span><br><span class="line">*/ </span><br><span class="line">function isNull(data)&#123; </span><br><span class="line">	return (data == &quot;&quot; || data == undefined || data == null) ? &quot;暂无&quot; : data; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 
       
@@ -622,7 +612,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -704,7 +694,7 @@
         <div class="copyright" >
   
   &copy;  2017 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

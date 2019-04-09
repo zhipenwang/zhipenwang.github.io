@@ -90,13 +90,15 @@
 
 
 <meta name="description" content="统计插件配置NexT 主题默认已经集成了文章【浏览次数】、【字数统计】、【阅读时长】统计功能，如果我们需要使用，只需要修改主题配置文件 _config.yml 即可。如下所示：配置浏览次数123456789101112131415busuanzi_count:  # count values only if the other configs are false  enable: true  #">
+<meta name="keywords" content="hexo,next">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo添加字数统计、阅读时长、浏览次数">
 <meta property="og:url" content="https://zhipenwang.github.io/2017/04/19/blog_view/index.html">
 <meta property="og:site_name" content="王志鹏">
 <meta property="og:description" content="统计插件配置NexT 主题默认已经集成了文章【浏览次数】、【字数统计】、【阅读时长】统计功能，如果我们需要使用，只需要修改主题配置文件 _config.yml 即可。如下所示：配置浏览次数123456789101112131415busuanzi_count:  # count values only if the other configs are false  enable: true  #">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://zhipenwang.github.io/img/view_count.png">
-<meta property="og:updated_time" content="2018-03-28T10:28:36.133Z">
+<meta property="og:updated_time" content="2019-04-09T14:02:03.291Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo添加字数统计、阅读时长、浏览次数">
 <meta name="twitter:description" content="统计插件配置NexT 主题默认已经集成了文章【浏览次数】、【字数统计】、【阅读时长】统计功能，如果我们需要使用，只需要修改主题配置文件 _config.yml 即可。如下所示：配置浏览次数123456789101112131415busuanzi_count:  # count values only if the other configs are false  enable: true  #">
@@ -430,7 +432,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  341 字
+                  367 字
                 </span>
               
 
@@ -465,11 +467,11 @@
       
 
       
-        <h2 id="统计插件"><a href="#统计插件" class="headerlink" title="统计插件"></a>统计插件</h2><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>NexT 主题默认已经集成了文章【浏览次数】、【字数统计】、【阅读时长】统计功能，如果我们需要使用，只需要修改主题配置文件 _config.yml 即可。如下所示：<br>配置浏览次数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">busuanzi_count:</div><div class="line">  # count values only if the other configs are false</div><div class="line">  enable: true</div><div class="line">  # custom uv span for the whole site</div><div class="line">  site_uv: true</div><div class="line">  site_uv_header: &lt;i class=&quot;fa fa-user&quot;&gt;&lt;/i&gt; 访问人数</div><div class="line">  site_uv_footer:</div><div class="line">  # custom pv span for the whole site</div><div class="line">  site_pv: true</div><div class="line">  site_pv_header: &lt;i class=&quot;fa fa-eye&quot;&gt;&lt;/i&gt; 总访问量</div><div class="line">  site_pv_footer:</div><div class="line">  # custom pv span for one page only</div><div class="line">  page_pv: true</div><div class="line">  page_pv_header: &lt;i class=&quot;fa fa-file-o&quot;&gt;&lt;/i&gt; 浏览</div><div class="line">  page_pv_footer: 次</div></pre></td></tr></table></figure></p>
-<p>配置字数统计、阅读时长，wordcount与min2read统计功能<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># Post wordcount display settings</div><div class="line"># Dependencies: https://github.com/willin/hexo-wordcount</div><div class="line">post_wordcount:</div><div class="line">  item_text: true</div><div class="line">  wordcount: true         # 单篇 字数统计</div><div class="line">  min2read: true          # 单篇 阅读时长</div><div class="line">  totalcount: false       # 网站 字数统计</div><div class="line">  separated_meta: true</div></pre></td></tr></table></figure></p>
-<p>预览的时候如果出现字数统计和阅读时长失效的情况，一般是因为没有安装 hexo-wordcount 插件，查看 Hexo 插件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">hexo --debug</div><div class="line">``</div><div class="line">### 安装</div><div class="line"></div><div class="line">如果没有安装 hexo-wordcount 插件，先安装该插件：</div></pre></td></tr></table></figure></p>
-<p>npm i –save hexo-wordcount<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">*** Node 版本 7.6.0 之前,请安装 2.x 版本 (Node.js v7.6.0 and previous) ，安装命令如下：***</div></pre></td></tr></table></figure></p>
-<p>npm install hexo-wordcount@2 –save<br>```<br>安装完成后，重新执行启动服务预览就可以了。</p>
+        <h2 id="统计插件"><a href="#统计插件" class="headerlink" title="统计插件"></a>统计插件</h2><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>NexT 主题默认已经集成了文章【浏览次数】、【字数统计】、【阅读时长】统计功能，如果我们需要使用，只需要修改主题配置文件 _config.yml 即可。如下所示：<br>配置浏览次数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">busuanzi_count:</span><br><span class="line">  # count values only if the other configs are false</span><br><span class="line">  enable: true</span><br><span class="line">  # custom uv span for the whole site</span><br><span class="line">  site_uv: true</span><br><span class="line">  site_uv_header: &lt;i class=&quot;fa fa-user&quot;&gt;&lt;/i&gt; 访问人数</span><br><span class="line">  site_uv_footer:</span><br><span class="line">  # custom pv span for the whole site</span><br><span class="line">  site_pv: true</span><br><span class="line">  site_pv_header: &lt;i class=&quot;fa fa-eye&quot;&gt;&lt;/i&gt; 总访问量</span><br><span class="line">  site_pv_footer:</span><br><span class="line">  # custom pv span for one page only</span><br><span class="line">  page_pv: true</span><br><span class="line">  page_pv_header: &lt;i class=&quot;fa fa-file-o&quot;&gt;&lt;/i&gt; 浏览</span><br><span class="line">  page_pv_footer: 次</span><br></pre></td></tr></table></figure></p>
+<p>配置字数统计、阅读时长，wordcount与min2read统计功能<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># Post wordcount display settings</span><br><span class="line"># Dependencies: https://github.com/willin/hexo-wordcount</span><br><span class="line">post_wordcount:</span><br><span class="line">  item_text: true</span><br><span class="line">  wordcount: true         # 单篇 字数统计</span><br><span class="line">  min2read: true          # 单篇 阅读时长</span><br><span class="line">  totalcount: false       # 网站 字数统计</span><br><span class="line">  separated_meta: true</span><br></pre></td></tr></table></figure></p>
+<p>预览的时候如果出现字数统计和阅读时长失效的情况，一般是因为没有安装 hexo-wordcount 插件，查看 Hexo 插件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo --debug</span><br><span class="line">``</span><br><span class="line">### 安装</span><br><span class="line"></span><br><span class="line">如果没有安装 hexo-wordcount 插件，先安装该插件：</span><br></pre></td></tr></table></figure></p>
+<p>npm i –save hexo-wordcount<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*** Node 版本 7.6.0 之前,请安装 2.x 版本 (Node.js v7.6.0 and previous) ，安装命令如下：***</span><br></pre></td></tr></table></figure></p>
+<p>npm install hexo-wordcount@2 –save<br><code>`</code><br>安装完成后，重新执行启动服务预览就可以了。</p>
 <h3 id="显示文字"><a href="#显示文字" class="headerlink" title="显示文字"></a>显示文字</h3><p>打开<code>post.swig</code>文件，路径如下：<code>xxx_blog/themes/next/layout/_macro/post.swig</code></p>
 <p><img src="/img/view_count.png" alt=""></p>
 
@@ -612,7 +614,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -710,7 +712,7 @@
         <div class="copyright" >
   
   &copy;  2017 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

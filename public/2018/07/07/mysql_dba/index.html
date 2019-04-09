@@ -89,19 +89,18 @@
 
 
 
-<meta name="description" content="数据表结构1234567$sql = `	create table if not exists table_test(		id int(11) not null auto_increment primary key,		name varchar(30) not null,		sex tinyint(1) null	)`;
-插入操作12345678910// insert value 插入$sql">
+<meta name="description" content="数据表结构1234567$sql = `	create table if not exists table_test(		id int(11) not null auto_increment primary key,		name varchar(30) not null,		sex tinyint(1) null	)`; 插入操作12345678910// insert value 插入$sql">
+<meta name="keywords" content="数据库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MYSQL之操作数据（增删改查）">
 <meta property="og:url" content="https://zhipenwang.github.io/2018/07/07/mysql_dba/index.html">
 <meta property="og:site_name" content="王志鹏">
-<meta property="og:description" content="数据表结构1234567$sql = `	create table if not exists table_test(		id int(11) not null auto_increment primary key,		name varchar(30) not null,		sex tinyint(1) null	)`;
-插入操作12345678910// insert value 插入$sql">
-<meta property="og:updated_time" content="2018-07-07T10:33:54.212Z">
+<meta property="og:description" content="数据表结构1234567$sql = `	create table if not exists table_test(		id int(11) not null auto_increment primary key,		name varchar(30) not null,		sex tinyint(1) null	)`; 插入操作12345678910// insert value 插入$sql">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-09T14:29:22.108Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MYSQL之操作数据（增删改查）">
-<meta name="twitter:description" content="数据表结构1234567$sql = `	create table if not exists table_test(		id int(11) not null auto_increment primary key,		name varchar(30) not null,		sex tinyint(1) null	)`;
-插入操作12345678910// insert value 插入$sql">
+<meta name="twitter:description" content="数据表结构1234567$sql = `	create table if not exists table_test(		id int(11) not null auto_increment primary key,		name varchar(30) not null,		sex tinyint(1) null	)`; 插入操作12345678910// insert value 插入$sql">
 
 
 
@@ -373,7 +372,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-07T18:22:53+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-07T18:21:01+08:00">
                 2018-07-07
               </time>
             
@@ -431,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  307 字
+                  333 字
                 </span>
               
 
@@ -466,14 +465,14 @@
       
 
       
-        <h3 id="数据表结构"><a href="#数据表结构" class="headerlink" title="数据表结构"></a>数据表结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$sql = `</div><div class="line">	create table if not exists table_test(</div><div class="line">		id int(11) not null auto_increment primary key,</div><div class="line">		name varchar(30) not null,</div><div class="line">		sex tinyint(1) null</div><div class="line">	)</div><div class="line">`;</div></pre></td></tr></table></figure>
-<h3 id="插入操作"><a href="#插入操作" class="headerlink" title="插入操作"></a>插入操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// insert value 插入</div><div class="line">$sql = &quot;insert into table_test values(1, &apos;name1&apos;, 1)&quot;;</div><div class="line">// 插入部分字段</div><div class="line">$sql = &quot;insert into table_test (name,sex) values(&apos;name2&apos;, 2)&quot;;</div><div class="line">// 插入多条语句</div><div class="line">$sql = &quot;insert into table_test (name,sex) values(&apos;name1&apos;, 1), (&apos;name2&apos;, 2)&quot;;</div><div class="line">// insert set 插入</div><div class="line">$sql = &quot;insert into table_test set name=&apos;name1&apos;,sex=1&quot;;</div><div class="line">// insert select插入</div><div class="line">$sql = &quot;insert into table_test (name,sex) select name,sex from table_test where id=1&quot;;</div></pre></td></tr></table></figure>
-<h3 id="修改操作"><a href="#修改操作" class="headerlink" title="修改操作"></a>修改操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// update set修改</div><div class="line">$sql = &quot;update table_test set name=&apos;name2&apos; where id=1&quot;;</div></pre></td></tr></table></figure>
-<h3 id="删除操作"><a href="#删除操作" class="headerlink" title="删除操作"></a>删除操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// delete where删除</div><div class="line">$sql = &quot;delete from table_test where id=1&quot;;</div><div class="line">// truncate table删除表所有行数据,且auto_increment 重新计数</div><div class="line">$sql = &quot;truncate table table_test&quot;;</div></pre></td></tr></table></figure>
+        <h3 id="数据表结构"><a href="#数据表结构" class="headerlink" title="数据表结构"></a>数据表结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$sql = `</span><br><span class="line">	create table if not exists table_test(</span><br><span class="line">		id int(11) not null auto_increment primary key,</span><br><span class="line">		name varchar(30) not null,</span><br><span class="line">		sex tinyint(1) null</span><br><span class="line">	)</span><br><span class="line">`;</span><br></pre></td></tr></table></figure>
+<h3 id="插入操作"><a href="#插入操作" class="headerlink" title="插入操作"></a>插入操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// insert value 插入</span><br><span class="line">$sql = &quot;insert into table_test values(1, &apos;name1&apos;, 1)&quot;;</span><br><span class="line">// 插入部分字段</span><br><span class="line">$sql = &quot;insert into table_test (name,sex) values(&apos;name2&apos;, 2)&quot;;</span><br><span class="line">// 插入多条语句</span><br><span class="line">$sql = &quot;insert into table_test (name,sex) values(&apos;name1&apos;, 1), (&apos;name2&apos;, 2)&quot;;</span><br><span class="line">// insert set 插入</span><br><span class="line">$sql = &quot;insert into table_test set name=&apos;name1&apos;,sex=1&quot;;</span><br><span class="line">// insert select插入</span><br><span class="line">$sql = &quot;insert into table_test (name,sex) select name,sex from table_test where id=1&quot;;</span><br></pre></td></tr></table></figure>
+<h3 id="修改操作"><a href="#修改操作" class="headerlink" title="修改操作"></a>修改操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// update set修改</span><br><span class="line">$sql = &quot;update table_test set name=&apos;name2&apos; where id=1&quot;;</span><br></pre></td></tr></table></figure>
+<h3 id="删除操作"><a href="#删除操作" class="headerlink" title="删除操作"></a>删除操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// delete where删除</span><br><span class="line">$sql = &quot;delete from table_test where id=1&quot;;</span><br><span class="line">// truncate table删除表所有行数据,且auto_increment 重新计数</span><br><span class="line">$sql = &quot;truncate table table_test&quot;;</span><br></pre></td></tr></table></figure>
 <h3 id="查询操作"><a href="#查询操作" class="headerlink" title="查询操作"></a>查询操作</h3><blockquote>
 <p>条件顺序如下： group by … having … order by … limit …</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// 普通查询</div><div class="line">$sql = &quot;select * from table_test&quot;;</div><div class="line">// in 查询</div><div class="line">$sql = &quot;select * from table_test where name in (&apos;name1&apos;, &apos;name2&apos;)&quot;;</div><div class="line">// distinct 查询某个字段去重(多字段表示多字段合并的去重 distinct name,sex)</div><div class="line">$sql = &quot;select distinct name from table_test&quot;;</div><div class="line">// group_concat(field1) group by field2(按field2分组后，field1的值用，隔开)</div><div class="line">$sql = &quot;select group_concat(money),order_id from table_test group by order_id&quot;;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 普通查询</span><br><span class="line">$sql = &quot;select * from table_test&quot;;</span><br><span class="line">// in 查询</span><br><span class="line">$sql = &quot;select * from table_test where name in (&apos;name1&apos;, &apos;name2&apos;)&quot;;</span><br><span class="line">// distinct 查询某个字段去重(多字段表示多字段合并的去重 distinct name,sex)</span><br><span class="line">$sql = &quot;select distinct name from table_test&quot;;</span><br><span class="line">// group_concat(field1) group by field2(按field2分组后，field1的值用，隔开)</span><br><span class="line">$sql = &quot;select group_concat(money),order_id from table_test group by order_id&quot;;</span><br></pre></td></tr></table></figure>
 <h3 id="聚合查询"><a href="#聚合查询" class="headerlink" title="聚合查询"></a>聚合查询</h3><blockquote>
 <p>count(*) 查询结果总数集<br>sum(field) 计算字段求和总值<br>avg(field) 计算字段平均值<br>max(field) 计算字段最大值<br>min(field) 计算字段最小值</p>
 </blockquote>
@@ -615,7 +614,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -713,7 +712,7 @@
         <div class="copyright" >
   
   &copy;  2017 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

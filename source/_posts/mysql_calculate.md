@@ -1,5 +1,6 @@
 ---
 title: MYSQL之运算符操作
+date: 2018-07-07 19:21:01
 tags: 数据库
 categories: MySQL
 ---

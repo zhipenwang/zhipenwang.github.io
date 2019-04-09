@@ -1,5 +1,6 @@
 ---
 title: js与jquery关于验证页面元素存在的方法及不同之处
+date: 2018-05-05 20:21:01
 tags: Web前端
 categories: jQuery
 ---

@@ -1,5 +1,6 @@
 ---
 title: jQuery的三种bind/One/Live/On事件绑定使用方法
+date: 2018-05-20 20:21:01
 tags: Web前端
 categories: jQuery
 ---

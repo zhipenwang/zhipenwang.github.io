@@ -36,7 +36,7 @@
   <entry>
     <title><![CDATA[MYSQL之运算符操作]]></title>
     <url>%2F2018%2F07%2F07%2Fmysql_calculate%2F</url>
-    <content type="text"><![CDATA[1234create table if not exists test( id int(11) not null auto_increment primary key, num int(11) null) 算术运算符 加(+)、减(-)、乘(*)、除(/)、余(%)、除(div)、余(mod) 123456select id, num, id+num, id-num, id*num, id/num, id%num, id div num, id mod num from test;结果：id num id+num id-num id*num id/num id%num id div num id mod num5 2 8 3 10 2.5 1 2 16 null null null null null null null nullnull 5 null null null null null null null 比较运算符 大于(&gt;)、小于(&lt;)、等于(=)、不等于(!=或&lt;&gt;)、大于等于(&gt;=)、小于等于(&lt;=) 1234561. 符合条件的结果为12. 不符合条件的结果为03. 值为NULL的结果为null``` &gt;是null(IS NULL)、不是null(IS NOT NULL) 判断是否为空值可以采用 &lt;=&gt; 进行判断，a&lt;=&gt;0，值为0的结果为1，其他都为0；a&lt;=&gt;null，值为null的结果为1，其他都为01234&gt;包含(between a and b) &gt;包含(id IN (1,2,3))、不包含(id not in(1,2,3)) &gt;模式匹配(name like &apos;%keyword%&apos;)、模式不匹配(name not like &apos;%keyword%&apos;) like ‘abc’ 表示字符串=abc的匹配 like ‘%abc’ 表示以abc结尾的字符串匹配 like ‘abc%’ 表示以abc开头的字符串匹配 like ‘%abc%’表示包含abc的字符串匹配 12&gt;正则匹配(a regexp &apos;^a&apos;) a regexp ‘^abc’ 表示以abc开头的字符串匹配 a regexp ‘abc’ 表示包含abc的字符串匹配 a regexp ‘abc$’ 表示以abc结尾的字符串匹配 123### 逻辑运算符&gt;与(&amp;&amp;或AND)、或(||或OR)、非(!或NOT)、异或(XOR) &amp;&amp; 只要有一个值为0，结果为0；有值为null，其他都不为0，结果为null；值都不为null与0的结果为1； || 值都为0结果为0；值为0或者null结果为null；值存在不为0或者null的结果为1； ! 值为null结果为null；值为0的结果为1；值为非0或null的结果为1； XOR 值存在null的结果为null；值都是非0或者都是0的结果为0；值存在0跟非0的结果为1； 123### 位运算符&gt;按位与(&amp;)、按位或(|)、按位取反(~)、按位异或(^)、按位左移(&lt;&lt;)、按位右移(&gt;&gt;) &amp; 将十进制数转换为二进制数，每个二进制数对应的位上进行与运算，最后转换为十进制数 例：10&amp;5 =&gt; 1010&amp;0101 =&gt; 0000 =&gt; 0 例：10&amp;6 =&gt; 1010&amp;0110 =&gt; 0010 =&gt; 2 | 将十进制数转换为二进制数，每个二进制数对应的位上进行或运算，最后转换为十进制数 例：10&amp;5 =&gt; 1010|0101 =&gt; 1111 =&gt; 15 例：10&amp;6 =&gt; 1010|0110 =&gt; 1110 =&gt; 14 ~ 将十进制数转换为二进制数，每位都进行取反运算 例：10 =&gt; 1010 =&gt; 0101 =&gt; 18446744073709551605(字节计算结果) ^ 将十进制数转换为二进制数，每个二进制数对应的位上进行异或运算，最后转换为十进制数 例：10&amp;5 =&gt; 1010^0101 =&gt; 1111 =&gt; 15 例：10&amp;6 =&gt; 1010^0110 =&gt; 1100 =&gt; 12 &lt;&lt; m &lt;&lt; n 将十进制数m转换为二进制数，按位左移n位，右边补上n个0，最后转换为十进制数 例：10 &lt;&lt; 1 =&gt; 1010 =&gt; 10100 =&gt; 20 m &gt;&gt; n 将十进制数m转换为二进制数，按位右移n位，左边补上n个0，最后转换为十进制数 例：10 &gt;&gt; 1 =&gt; 1010 =&gt; 0101 =&gt; 5``` 运算符优先级]]></content>
+    <content type="text"><![CDATA[1234create table if not exists test( id int(11) not null auto_increment primary key, num int(11) null) 算术运算符 加(+)、减(-)、乘(*)、除(/)、余(%)、除(div)、余(mod) 123456select id, num, id+num, id-num, id*num, id/num, id%num, id div num, id mod num from test;结果：id num id+num id-num id*num id/num id%num id div num id mod num5 2 8 3 10 2.5 1 2 16 null null null null null null null nullnull 5 null null null null null null null 比较运算符 大于(&gt;)、小于(&lt;)、等于(=)、不等于(!=或&lt;&gt;)、大于等于(&gt;=)、小于等于(&lt;=) 1234561. 符合条件的结果为12. 不符合条件的结果为03. 值为NULL的结果为null``` &gt;是null(IS NULL)、不是null(IS NOT NULL) 判断是否为空值可以采用 &lt;=&gt; 进行判断，a&lt;=&gt;0，值为0的结果为1，其他都为0；a&lt;=&gt;null，值为null的结果为1，其他都为01234&gt;包含(between a and b) &gt;包含(id IN (1,2,3))、不包含(id not in(1,2,3)) &gt;模式匹配(name like &apos;%keyword%&apos;)、模式不匹配(name not like &apos;%keyword%&apos;) like ‘abc’ 表示字符串=abc的匹配 like ‘%abc’ 表示以abc结尾的字符串匹配 like ‘abc%’ 表示以abc开头的字符串匹配 like ‘%abc%’表示包含abc的字符串匹配 12&gt;正则匹配(a regexp &apos;^a&apos;) a regexp ‘^abc’ 表示以abc开头的字符串匹配 a regexp ‘abc’ 表示包含abc的字符串匹配 a regexp ‘abc$’ 表示以abc结尾的字符串匹配 123### 逻辑运算符&gt;与(&amp;&amp;或AND)、或(||或OR)、非(!或NOT)、异或(XOR) &amp;&amp; 只要有一个值为0，结果为0；有值为null，其他都不为0，结果为null；值都不为null与0的结果为1； || 值都为0结果为0；值为0或者null结果为null；值存在不为0或者null的结果为1； ! 值为null结果为null；值为0的结果为1；值为非0或null的结果为1； XOR 值存在null的结果为null；值都是非0或者都是0的结果为0；值存在0跟非0的结果为1； 123### 位运算符&gt;按位与(&amp;)、按位或(|)、按位取反(~)、按位异或(^)、按位左移(&lt;&lt;)、按位右移(&gt;&gt;) &amp; 将十进制数转换为二进制数，每个二进制数对应的位上进行与运算，最后转换为十进制数 例：10&amp;5 =&gt; 1010&amp;0101 =&gt; 0000 =&gt; 0 例：10&amp;6 =&gt; 1010&amp;0110 =&gt; 0010 =&gt; 2 | 将十进制数转换为二进制数，每个二进制数对应的位上进行或运算，最后转换为十进制数 例：10&amp;5 =&gt; 1010|0101 =&gt; 1111 =&gt; 15 例：10&amp;6 =&gt; 1010|0110 =&gt; 1110 =&gt; 14 ~ 将十进制数转换为二进制数，每位都进行取反运算 例：10 =&gt; 1010 =&gt; 0101 =&gt; 18446744073709551605(字节计算结果) ^ 将十进制数转换为二进制数，每个二进制数对应的位上进行异或运算，最后转换为十进制数 例：10&amp;5 =&gt; 1010^0101 =&gt; 1111 =&gt; 15 例：10&amp;6 =&gt; 1010^0110 =&gt; 1100 =&gt; 12 &lt;&lt; m &lt;&lt; n 将十进制数m转换为二进制数，按位左移n位，右边补上n个0，最后转换为十进制数 例：10 &lt;&lt; 1 =&gt; 1010 =&gt; 10100 =&gt; 20 m &gt;&gt; n 将十进制数m转换为二进制数，按位右移n位，左边补上n个0，最后转换为十进制数 例：10 &gt;&gt; 1 =&gt; 1010 =&gt; 0101 =&gt; 5` 运算符优先级]]></content>
       <categories>
         <category>MySQL</category>
       </categories>
@@ -222,6 +222,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[composer安装与使用]]></title>
+    <url>%2F2017%2F04%2F21%2Fcomposer-1%2F</url>
+    <content type="text"><![CDATA[安装1、点击下载：composer 2、下载好之后双击直接安装，Next即可：3、然后选择php.exe文件： 接下来就一直next到安装完成即可。 使用 [info]使用composer安装ThinkPHP5 通过composer中国镜像进行初步了解 ##开始命令行操作 1、中国镜像下载参考tp5看云文档 由于国外网站访问很慢，国内提供了很好的镜像，所以使用国内镜像：1Composer config -g repo.packagist composer https://packagist.phpcomposer.com 2、下载tp5框架进入站点根目录www操作命令行：1composer create-project topthink/think tp5 --prefer-dist 其中tp5可写填写任何你愿意的名称 框架安装完成耐心等待几分钟的安装过程，安装完成之后本地已经生成了tp5的新框架内容 composer主要的功能：安装扩展包composer的最主要的功能：dependency manager for PHP进入项目目录tp5，执行命令：1composer require riverslei/payment 下载riverslei/payment 集成支付宝、微信支付等流行的支付接口到项目中：Composer.json中新增了这一句： 项目目录中也已经安装好了扩展包：]]></content>
+      <categories>
+        <category>composer使用</category>
+      </categories>
+      <tags>
+        <tag>Composer</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[composer构建PHP框架——初始化]]></title>
     <url>%2F2017%2F04%2F21%2Fcomposer-2%2F</url>
     <content type="text"><![CDATA[“一个时代结束了，另一个时代开始了。”Framework Interoperability Group（框架可互用性小组），简称 FIG，成立于 2009 年。FIG 最初由几位知名 PHP 框架开发者发起，在吸纳了许多优秀的大脑和强健的体魄后，提出了 PSR-0 到 PSR-4 五套 PHP 非官方规范： 123456789* PSR-0 (Autoloading Standard) 自动加载标准* PSR-1 (Basic Coding Standard) 基础编码标准* PSR-2 (Coding Style Guide) 编码风格向导* PSR-3 (Logger Interface) 日志接口* PSR-4 (Improved Autoloading) 自动加载优化标准 创建composer.json在网站根目录下创建新文件夹 my-framework （My First Framework based on Composer），然后在此文件夹内创建 composer.json 文件12345&#123; &quot;require&quot;:&#123; &#125;&#125; 初始化composer打开命令行cmd，进入刚刚新建的目录 my_framework，执行命令1composer update 执行成功后生成了扩展包vendor 此时目录为： 到此，composer初始化完成！]]></content>
@@ -244,17 +255,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[composer安装与使用]]></title>
-    <url>%2F2017%2F04%2F21%2Fcomposer-1%2F</url>
-    <content type="text"><![CDATA[安装1、点击下载：composer 2、下载好之后双击直接安装，Next即可：3、然后选择php.exe文件： 接下来就一直next到安装完成即可。 使用 [info]使用composer安装ThinkPHP5 通过composer中国镜像进行初步了解 ##开始命令行操作 1、中国镜像下载参考tp5看云文档 由于国外网站访问很慢，国内提供了很好的镜像，所以使用国内镜像：1Composer config -g repo.packagist composer https://packagist.phpcomposer.com 2、下载tp5框架进入站点根目录www操作命令行：1composer create-project topthink/think tp5 --prefer-dist 其中tp5可写填写任何你愿意的名称 框架安装完成耐心等待几分钟的安装过程，安装完成之后本地已经生成了tp5的新框架内容 composer主要的功能：安装扩展包composer的最主要的功能：dependency manager for PHP进入项目目录tp5，执行命令：1composer require riverslei/payment 下载riverslei/payment 集成支付宝、微信支付等流行的支付接口到项目中：Composer.json中新增了这一句： 项目目录中也已经安装好了扩展包：]]></content>
-      <categories>
-        <category>composer使用</category>
-      </categories>
-      <tags>
-        <tag>Composer</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Hexo NexT主题内接入网页在线联系功能]]></title>
     <url>%2F2017%2F04%2F20%2Fconnect%2F</url>
     <content type="text"><![CDATA[Hexo博客如何添加在线联系功能呢,发现了一个不错的网站可以提供在线联系的服务，当有用户在网页上给你留言后会通过邮件或者微信通知你，可以及时的解答用户的疑问。 注册首先在(DaoVoice)[http://www.daovoice.io/]注册个账号。登录上去之后进行配置，配置方法如下:首先到DaoVoice上注册一个账号,注册完成后会得到一个app_id，获取appid的步骤如下图所示: 以next主题为例,打开/themes/next/layout/_partials/head.swig文件添加如下代码：123456789&#123;% if theme.daovoice %&#125; &lt;script&gt; (function(i,s,o,g,r,a,m)&#123;i[&quot;DaoVoiceObject&quot;]=r;i[r]=i[r]||function()&#123;(i[r].q=i[r].q||[]).push(arguments)&#125;,i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset=&quot;utf-8&quot;;m.parentNode.insertBefore(a,m)&#125;)(window,document,&quot;script&quot;,(&apos;https:&apos; == document.location.protocol ? &apos;https:&apos; : &apos;http:&apos;) + &quot;//widget.daovoice.io/widget/0f81ff2f.js&quot;,&quot;daovoice&quot;) daovoice(&apos;init&apos;, &#123; app_id: &quot;&#123;&#123;theme.daovoice_app_id&#125;&#125;&quot; &#125;); daovoice(&apos;update&apos;); &lt;/script&gt;&#123;% endif %&#125; 接着打开主题配置文件_config.yml，添加如下代码：123# Online contact daovoice: truedaovoice_app_id: 这里输入前面获取的app_id 需要注意的是,next主题下聊天的按钮会和其他按钮重叠到一起，可以到聊天设置，修改下按钮的位置:最后到右上角选择管理员，微信绑定,可以绑定你的微信号，关注公众号后打开小程序，就可以实时收发消息，有新的消息也会通过微信通知，设置页面如下:]]></content>
@@ -269,7 +269,7 @@
   <entry>
     <title><![CDATA[Hexo添加字数统计、阅读时长、浏览次数]]></title>
     <url>%2F2017%2F04%2F19%2Fblog_view%2F</url>
-    <content type="text"><![CDATA[统计插件配置NexT 主题默认已经集成了文章【浏览次数】、【字数统计】、【阅读时长】统计功能，如果我们需要使用，只需要修改主题配置文件 _config.yml 即可。如下所示：配置浏览次数123456789101112131415busuanzi_count: # count values only if the other configs are false enable: true # custom uv span for the whole site site_uv: true site_uv_header: &lt;i class=&quot;fa fa-user&quot;&gt;&lt;/i&gt; 访问人数 site_uv_footer: # custom pv span for the whole site site_pv: true site_pv_header: &lt;i class=&quot;fa fa-eye&quot;&gt;&lt;/i&gt; 总访问量 site_pv_footer: # custom pv span for one page only page_pv: true page_pv_header: &lt;i class=&quot;fa fa-file-o&quot;&gt;&lt;/i&gt; 浏览 page_pv_footer: 次 配置字数统计、阅读时长，wordcount与min2read统计功能12345678# Post wordcount display settings# Dependencies: https://github.com/willin/hexo-wordcountpost_wordcount: item_text: true wordcount: true # 单篇 字数统计 min2read: true # 单篇 阅读时长 totalcount: false # 网站 字数统计 separated_meta: true 预览的时候如果出现字数统计和阅读时长失效的情况，一般是因为没有安装 hexo-wordcount 插件，查看 Hexo 插件：12345hexo --debug``### 安装如果没有安装 hexo-wordcount 插件，先安装该插件： npm i –save hexo-wordcount1*** Node 版本 7.6.0 之前,请安装 2.x 版本 (Node.js v7.6.0 and previous) ，安装命令如下：*** npm install hexo-wordcount@2 –save```安装完成后，重新执行启动服务预览就可以了。 显示文字打开post.swig文件，路径如下：xxx_blog/themes/next/layout/_macro/post.swig]]></content>
+    <content type="text"><![CDATA[统计插件配置NexT 主题默认已经集成了文章【浏览次数】、【字数统计】、【阅读时长】统计功能，如果我们需要使用，只需要修改主题配置文件 _config.yml 即可。如下所示：配置浏览次数123456789101112131415busuanzi_count: # count values only if the other configs are false enable: true # custom uv span for the whole site site_uv: true site_uv_header: &lt;i class=&quot;fa fa-user&quot;&gt;&lt;/i&gt; 访问人数 site_uv_footer: # custom pv span for the whole site site_pv: true site_pv_header: &lt;i class=&quot;fa fa-eye&quot;&gt;&lt;/i&gt; 总访问量 site_pv_footer: # custom pv span for one page only page_pv: true page_pv_header: &lt;i class=&quot;fa fa-file-o&quot;&gt;&lt;/i&gt; 浏览 page_pv_footer: 次 配置字数统计、阅读时长，wordcount与min2read统计功能12345678# Post wordcount display settings# Dependencies: https://github.com/willin/hexo-wordcountpost_wordcount: item_text: true wordcount: true # 单篇 字数统计 min2read: true # 单篇 阅读时长 totalcount: false # 网站 字数统计 separated_meta: true 预览的时候如果出现字数统计和阅读时长失效的情况，一般是因为没有安装 hexo-wordcount 插件，查看 Hexo 插件：12345hexo --debug``### 安装如果没有安装 hexo-wordcount 插件，先安装该插件： npm i –save hexo-wordcount1*** Node 版本 7.6.0 之前,请安装 2.x 版本 (Node.js v7.6.0 and previous) ，安装命令如下：*** npm install hexo-wordcount@2 –save`安装完成后，重新执行启动服务预览就可以了。 显示文字打开post.swig文件，路径如下：xxx_blog/themes/next/layout/_macro/post.swig]]></content>
       <categories>
         <category>搭建博客</category>
       </categories>
@@ -300,6 +300,17 @@
       <tags>
         <tag>hexo</tag>
         <tag>next</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hexo在其他设备或系统上续写]]></title>
+    <url>%2F2017%2F03%2F20%2Fhexo_change_system%2F</url>
+    <content type="text"><![CDATA[注意：需要将原系统中的原项目所有内容都发布到github上新系统需要安装node、git 新系统中git clone blog@github.com到本地 新系统中切换分支 git checkou branch 安装hexo：npm install hexo 初始化：npm install; npm install hexo-deployer-git 然后就可以执行hexo：hexo clean; hexo g; hexo s]]></content>
+      <categories>
+        <category>搭建博客</category>
+      </categories>
+      <tags>
+        <tag>Article</tag>
       </tags>
   </entry>
   <entry>

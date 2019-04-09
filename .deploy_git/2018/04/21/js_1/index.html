@@ -89,22 +89,18 @@
 
 
 
-<meta name="description" content="平时前端在处理表单数据的时候，总是需要通过表单属性或者值来进行一些用户看不到的处理。比如：联动选项的处理、数据的验证过滤等。本节针对不同的表单内容进行了不同的获取方式。
-
-获取当前表单元素的值1234567&amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;name&amp;quot; onblur=&amp;quot;getValue(this)&amp;quot;&amp;gt;&amp;lt;s">
+<meta name="description" content="平时前端在处理表单数据的时候，总是需要通过表单属性或者值来进行一些用户看不到的处理。比如：联动选项的处理、数据的验证过滤等。本节针对不同的表单内容进行了不同的获取方式。  获取当前表单元素的值1234567&amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;name&amp;quot; onblur=&amp;quot;getValue(this)&amp;quot;&amp;gt;&amp;lt;s">
+<meta name="keywords" content="Web前端">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jQuery获取表单值及属性内容">
 <meta property="og:url" content="https://zhipenwang.github.io/2018/04/21/js_1/index.html">
 <meta property="og:site_name" content="王志鹏">
-<meta property="og:description" content="平时前端在处理表单数据的时候，总是需要通过表单属性或者值来进行一些用户看不到的处理。比如：联动选项的处理、数据的验证过滤等。本节针对不同的表单内容进行了不同的获取方式。
-
-获取当前表单元素的值1234567&amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;name&amp;quot; onblur=&amp;quot;getValue(this)&amp;quot;&amp;gt;&amp;lt;s">
-<meta property="og:updated_time" content="2018-05-01T03:01:27.933Z">
+<meta property="og:description" content="平时前端在处理表单数据的时候，总是需要通过表单属性或者值来进行一些用户看不到的处理。比如：联动选项的处理、数据的验证过滤等。本节针对不同的表单内容进行了不同的获取方式。  获取当前表单元素的值1234567&amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;name&amp;quot; onblur=&amp;quot;getValue(this)&amp;quot;&amp;gt;&amp;lt;s">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-09T14:02:03.294Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jQuery获取表单值及属性内容">
-<meta name="twitter:description" content="平时前端在处理表单数据的时候，总是需要通过表单属性或者值来进行一些用户看不到的处理。比如：联动选项的处理、数据的验证过滤等。本节针对不同的表单内容进行了不同的获取方式。
-
-获取当前表单元素的值1234567&amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;name&amp;quot; onblur=&amp;quot;getValue(this)&amp;quot;&amp;gt;&amp;lt;s">
+<meta name="twitter:description" content="平时前端在处理表单数据的时候，总是需要通过表单属性或者值来进行一些用户看不到的处理。比如：联动选项的处理、数据的验证过滤等。本节针对不同的表单内容进行了不同的获取方式。  获取当前表单元素的值1234567&amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;name&amp;quot; onblur=&amp;quot;getValue(this)&amp;quot;&amp;gt;&amp;lt;s">
 
 
 
@@ -434,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  285 字
+                  319 字
                 </span>
               
 
@@ -450,7 +446,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  1 分钟
+                  2 分钟
                 </span>
               
             </div>
@@ -472,9 +468,9 @@
         <blockquote>
 <p>平时前端在处理表单数据的时候，总是需要通过表单属性或者值来进行一些用户看不到的处理。<br>比如：联动选项的处理、数据的验证过滤等。<br>本节针对不同的表单内容进行了不同的获取方式。</p>
 </blockquote>
-<h3 id="获取当前表单元素的值"><a href="#获取当前表单元素的值" class="headerlink" title="获取当前表单元素的值"></a>获取当前表单元素的值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;input type=&quot;text&quot; name=&quot;name&quot; onblur=&quot;getValue(this)&quot;&gt;</div><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">	function getValue(obj)&#123;</div><div class="line">	    // 获取值</div><div class="line">		$(obj).val();</div><div class="line">	&#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
-<h3 id="获取表单元素值及属性内容"><a href="#获取表单元素值及属性内容" class="headerlink" title="获取表单元素值及属性内容"></a>获取表单元素值及属性内容</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&lt;input type=&quot;text&quot; name=&quot;name&quot;&gt;</div><div class="line">&lt;select name=&quot;sex&quot; data-type=&quot;sex&quot; field=&quot;sex&quot;&gt;</div><div class="line">	&lt;option value=&quot;man&quot;&gt;男&lt;/option&gt;</div><div class="line">	&lt;option value=&quot;woman&quot;&gt;女&lt;/option&gt;</div><div class="line">&lt;/select&gt;</div><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">	function do_submit(obj)&#123;</div><div class="line">	    // 获取值</div><div class="line">		var name = $(&quot;input[name=&apos;name&apos;]&quot;).val();</div><div class="line">		var sex_value = $(&quot;select[name=&apos;sex&apos;]&quot;).val();</div><div class="line">		// 获取特定文本值的数据</div><div class="line">	    $(&apos;select[name=&quot;data[select]&quot;] [value=&quot;man&quot;]&apos;).val();</div><div class="line">		// 获取文本值</div><div class="line">		var sex_text = $(&quot;select[name=&apos;sex&apos;]&quot;).find(&apos;option:selected&apos;).text();</div><div class="line">		// 获取data-type属性值</div><div class="line">		var sex_type = $(&quot;select[name=&apos;sex&apos;]&quot;).data(&apos;type&apos;);</div><div class="line">		var sex_type = $(&quot;select[name=&apos;sex&apos;]&quot;).attr(&apos;data-type&apos;);</div><div class="line">		// 获取field属性值</div><div class="line">		var sex_field = $(&quot;select[name=&apos;sex&apos;]&quot;).attr(&apos;field&apos;);</div><div class="line">	&#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
-<h3 id="获取多个多行文本框内容值"><a href="#获取多个多行文本框内容值" class="headerlink" title="获取多个多行文本框内容值"></a>获取多个多行文本框内容值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;textarea name=&quot;formula[]&quot; class=&quot;text&quot;&gt;&lt;/textarea&gt;</div><div class="line">&lt;textarea name=&quot;formula[]&quot; class=&quot;text&quot;&gt;&lt;/textarea&gt;</div><div class="line">&lt;textarea name=&quot;formula[]&quot; class=&quot;text&quot;&gt;&lt;/textarea&gt;</div><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">    var formula = new Array();</div><div class="line">	$(&quot;.text,textarea&quot;).each(function(e)&#123;</div><div class="line">	    formula.push($(this).val());</div><div class="line">	&#125;)</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<h3 id="获取当前表单元素的值"><a href="#获取当前表单元素的值" class="headerlink" title="获取当前表单元素的值"></a>获取当前表单元素的值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;text&quot; name=&quot;name&quot; onblur=&quot;getValue(this)&quot;&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">	function getValue(obj)&#123;</span><br><span class="line">	    // 获取值</span><br><span class="line">		$(obj).val();</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="获取表单元素值及属性内容"><a href="#获取表单元素值及属性内容" class="headerlink" title="获取表单元素值及属性内容"></a>获取表单元素值及属性内容</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;text&quot; name=&quot;name&quot;&gt;</span><br><span class="line">&lt;select name=&quot;sex&quot; data-type=&quot;sex&quot; field=&quot;sex&quot;&gt;</span><br><span class="line">	&lt;option value=&quot;man&quot;&gt;男&lt;/option&gt;</span><br><span class="line">	&lt;option value=&quot;woman&quot;&gt;女&lt;/option&gt;</span><br><span class="line">&lt;/select&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">	function do_submit(obj)&#123;</span><br><span class="line">	    // 获取值</span><br><span class="line">		var name = $(&quot;input[name=&apos;name&apos;]&quot;).val();</span><br><span class="line">		var sex_value = $(&quot;select[name=&apos;sex&apos;]&quot;).val();</span><br><span class="line">		// 获取特定文本值的数据</span><br><span class="line">	    $(&apos;select[name=&quot;data[select]&quot;] [value=&quot;man&quot;]&apos;).val();</span><br><span class="line">		// 获取文本值</span><br><span class="line">		var sex_text = $(&quot;select[name=&apos;sex&apos;]&quot;).find(&apos;option:selected&apos;).text();</span><br><span class="line">		// 获取data-type属性值</span><br><span class="line">		var sex_type = $(&quot;select[name=&apos;sex&apos;]&quot;).data(&apos;type&apos;);</span><br><span class="line">		var sex_type = $(&quot;select[name=&apos;sex&apos;]&quot;).attr(&apos;data-type&apos;);</span><br><span class="line">		// 获取field属性值</span><br><span class="line">		var sex_field = $(&quot;select[name=&apos;sex&apos;]&quot;).attr(&apos;field&apos;);</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="获取多个多行文本框内容值"><a href="#获取多个多行文本框内容值" class="headerlink" title="获取多个多行文本框内容值"></a>获取多个多行文本框内容值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;textarea name=&quot;formula[]&quot; class=&quot;text&quot;&gt;&lt;/textarea&gt;</span><br><span class="line">&lt;textarea name=&quot;formula[]&quot; class=&quot;text&quot;&gt;&lt;/textarea&gt;</span><br><span class="line">&lt;textarea name=&quot;formula[]&quot; class=&quot;text&quot;&gt;&lt;/textarea&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    var formula = new Array();</span><br><span class="line">	$(&quot;.text,textarea&quot;).each(function(e)&#123;</span><br><span class="line">	    formula.push($(this).val());</span><br><span class="line">	&#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -612,7 +608,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -710,7 +706,7 @@
         <div class="copyright" >
   
   &copy;  2017 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
