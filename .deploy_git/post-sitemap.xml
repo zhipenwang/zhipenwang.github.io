@@ -207,6 +207,14 @@
     </url>
 
     <url>
+        <loc>https://zhipenwang.github.io/2017/04/21/composer-2/</loc>
+        <lastmod>2019-04-09T14:02:03.292Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://zhipenwang.github.io/2017/04/21/composer-1/</loc>
         <lastmod>2019-04-09T14:02:03.292Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -216,14 +224,6 @@
 
     <url>
         <loc>https://zhipenwang.github.io/2017/04/21/composer-3/</loc>
-        <lastmod>2019-04-09T14:02:03.292Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://zhipenwang.github.io/2017/04/21/composer-2/</loc>
         <lastmod>2019-04-09T14:02:03.292Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
