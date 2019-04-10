@@ -37,13 +37,6 @@
     </url>
 
     <url>
-        <loc>https://zhipenwang.github.io/tags/Article/</loc>
-        <lastmod>2019-04-09T14:57:32.970Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://zhipenwang.github.io/tags/Web%E5%89%8D%E7%AB%AF/</loc>
         <lastmod>2019-04-09T14:57:32.973Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -74,6 +67,13 @@
     <url>
         <loc>https://zhipenwang.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
         <lastmod>2019-04-09T14:57:32.979Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://zhipenwang.github.io/tags/Article/</loc>
+        <lastmod>2019-04-10T05:35:27.962Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

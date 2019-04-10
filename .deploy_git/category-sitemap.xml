@@ -28,13 +28,6 @@
     </url>
 
     <url>
-        <loc>https://zhipenwang.github.io/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</loc>
-        <lastmod>2019-04-09T14:57:32.970Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://zhipenwang.github.io/categories/jQuery/</loc>
         <lastmod>2019-04-09T14:57:32.973Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -65,6 +58,13 @@
     <url>
         <loc>https://zhipenwang.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
         <lastmod>2019-04-09T14:57:32.979Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://zhipenwang.github.io/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</loc>
+        <lastmod>2019-04-10T05:35:27.962Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[hexo换了设备之后本地没问题，访问域名空白]]></title>
+    <url>%2F2019%2F04%2F10%2Fhexo_bug%2F</url>
+    <content type="text"><![CDATA[hexo三件套123hexo cleanhexo ghexo d 本地clone了仓库后，执行hexo s本地没问题问题点：本地新写了博客，然后执行hexo三件套,线上打开空白了 解决：本地项目目录下Data/和archives/文件内清空，执行hexo三件套如果还是不行，继续： 解决：将本地项目目录下的 .deploy_git/文件夹删除，重新执行hexo三件套这个时候一般就解决问题了]]></content>
+      <categories>
+        <category>搭建博客</category>
+      </categories>
+      <tags>
+        <tag>Article</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[MYSQL之数据表级联操作-数据完整性约束]]></title>
     <url>%2F2018%2F07%2F15%2Fmysql_key%2F</url>
     <content type="text"><![CDATA[外键约束 目前mysql只有InnoDB存储引擎支持外键约束 column_name 当前表外键字段名 table_name 外键表 index_column_name 外键所在外键表中字段名 ON DELETE 删除 ON UPDATE 更新 reference_option语法格式为：（没设置时候，默认两个都指定 RESTRICT） 当删除或更新外键所在外键表的数据时候 RESTRICT 限制策略，系统不删除或更新外键当前表的数据 CASCADE 级联策略，自动删除或更新外键当前表的数据 SET FULL 置空策略，设置外键当前表的数据外键列数据为NULL，需要提前设置外键列未被限制 NOT NULL NO ACTION 不采取实施策略，系统不删除或更新外键当前表的数据，与 RESTRICT 一致 12345FOREIGN KEY ( column_name [(length)] [ASC | DESC] ) REFERENCES table_name(index_column_name)[MATCH FULL | MATCH PARTIAL | MATCH SIMPLE][ON DELETE reference_option][ON UPDATE reference_option] 创建表，关联外键12345678910111213141516// 创建 班级表create table if not exists class( id int(11) not null auto_increment, name varchar(30) not null, primary key (id)) ENGINE=InnoDB default charset=utf8;// 创建学生表，外键 班级id class_id，级联删除及更新create table if not exists student( id int(11) not null auto_increment, name varchar(30) not null, class_id int(11) not null, primary key(id), index(class_id), foreign key (class_id) references class(id) on delete cascade on update cascade) ENGINE=InnoDB default charset=utf8; 插入数据操作1234567891011//插入数据insert into class(name) values(&apos;one&apos;), (&apos;two&apos;), (&apos;three&apos;);// 生成 id 1,2,3insert into student(class_id,name) values(1, &apos;lili&apos;);insert into student(class_id,name) values(2, &apos;lili&apos;);insert into student(class_id,name) values(2, &apos;lili&apos;);insert into student(class_id,name) values(3, &apos;lili&apos;);// 插入失败，因为班级表中没有id =10的数据insert into student(class_id,name) values(10, &apos;lili&apos;); 更新数据操作123//更新数据update class set id=5 where id=2;//此时 学生表中 sid=2的数据同步更新为了5 删除数据操作123//删除数据delete from class where id=1;//此时 学生表中 sid=1的数据同步删除了 主键 一个表中有且只有一个主键 123456789101112// 单字段主键create table if not exists table_test( id int(11) not null auto_increment primary key, name varchar(30) not null) engine=InnoDB default charset=utf8;// 复合字段主键create table if not exists table_test( id int(11) not null auto_increment, name varchar(30) not null, primary key(id, name)) engine=InnoDB default charset=utf8; 候选键 一个表中可以存在多个候选键UNIQUE 来表示 1234create table if not exists table_test( id int(11) not null auto_increment UNIQUE, name varchar(30) not null UNIQUE,) engine=InnoDB default charset=utf8; 字段条件约束12345678910// nullid int(11) not null,sid int(11) null// check对列约束age int(2) not null check(age&gt;6 and age&lt;18)// check对表约束primary key(id),check(class_id in (select id from tb_class)) 完整性约束12345678910// 创建表的时候使用constraint &lt;symbol&gt;[primary ... | foreign ... | check ...]// 更新表的完整性约束alter table table_name add constraint primaryprimary key(id)// 删除表的完整性约束alter table table_name drop [foreign key|index] &lt;symbol&gt; [primary key]]]></content>
@@ -222,9 +233,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[composer构建PHP框架——初始化]]></title>
-    <url>%2F2017%2F04%2F21%2Fcomposer-2%2F</url>
-    <content type="text"><![CDATA[“一个时代结束了，另一个时代开始了。”Framework Interoperability Group（框架可互用性小组），简称 FIG，成立于 2009 年。FIG 最初由几位知名 PHP 框架开发者发起，在吸纳了许多优秀的大脑和强健的体魄后，提出了 PSR-0 到 PSR-4 五套 PHP 非官方规范： 123456789* PSR-0 (Autoloading Standard) 自动加载标准* PSR-1 (Basic Coding Standard) 基础编码标准* PSR-2 (Coding Style Guide) 编码风格向导* PSR-3 (Logger Interface) 日志接口* PSR-4 (Improved Autoloading) 自动加载优化标准 创建composer.json在网站根目录下创建新文件夹 my-framework （My First Framework based on Composer），然后在此文件夹内创建 composer.json 文件12345&#123; &quot;require&quot;:&#123; &#125;&#125; 初始化composer打开命令行cmd，进入刚刚新建的目录 my_framework，执行命令1composer update 执行成功后生成了扩展包vendor 此时目录为： 到此，composer初始化完成！]]></content>
+    <title><![CDATA[composer安装与使用]]></title>
+    <url>%2F2017%2F04%2F21%2Fcomposer-1%2F</url>
+    <content type="text"><![CDATA[安装1、点击下载：composer 2、下载好之后双击直接安装，Next即可：3、然后选择php.exe文件： 接下来就一直next到安装完成即可。 使用 [info]使用composer安装ThinkPHP5 通过composer中国镜像进行初步了解 ##开始命令行操作 1、中国镜像下载参考tp5看云文档 由于国外网站访问很慢，国内提供了很好的镜像，所以使用国内镜像：1Composer config -g repo.packagist composer https://packagist.phpcomposer.com 2、下载tp5框架进入站点根目录www操作命令行：1composer create-project topthink/think tp5 --prefer-dist 其中tp5可写填写任何你愿意的名称 框架安装完成耐心等待几分钟的安装过程，安装完成之后本地已经生成了tp5的新框架内容 composer主要的功能：安装扩展包composer的最主要的功能：dependency manager for PHP进入项目目录tp5，执行命令：1composer require riverslei/payment 下载riverslei/payment 集成支付宝、微信支付等流行的支付接口到项目中：Composer.json中新增了这一句： 项目目录中也已经安装好了扩展包：]]></content>
       <categories>
         <category>composer使用</category>
       </categories>
@@ -233,9 +244,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[composer安装与使用]]></title>
-    <url>%2F2017%2F04%2F21%2Fcomposer-1%2F</url>
-    <content type="text"><![CDATA[安装1、点击下载：composer 2、下载好之后双击直接安装，Next即可：3、然后选择php.exe文件： 接下来就一直next到安装完成即可。 使用 [info]使用composer安装ThinkPHP5 通过composer中国镜像进行初步了解 ##开始命令行操作 1、中国镜像下载参考tp5看云文档 由于国外网站访问很慢，国内提供了很好的镜像，所以使用国内镜像：1Composer config -g repo.packagist composer https://packagist.phpcomposer.com 2、下载tp5框架进入站点根目录www操作命令行：1composer create-project topthink/think tp5 --prefer-dist 其中tp5可写填写任何你愿意的名称 框架安装完成耐心等待几分钟的安装过程，安装完成之后本地已经生成了tp5的新框架内容 composer主要的功能：安装扩展包composer的最主要的功能：dependency manager for PHP进入项目目录tp5，执行命令：1composer require riverslei/payment 下载riverslei/payment 集成支付宝、微信支付等流行的支付接口到项目中：Composer.json中新增了这一句： 项目目录中也已经安装好了扩展包：]]></content>
+    <title><![CDATA[composer构建PHP框架——初始化]]></title>
+    <url>%2F2017%2F04%2F21%2Fcomposer-2%2F</url>
+    <content type="text"><![CDATA[“一个时代结束了，另一个时代开始了。”Framework Interoperability Group（框架可互用性小组），简称 FIG，成立于 2009 年。FIG 最初由几位知名 PHP 框架开发者发起，在吸纳了许多优秀的大脑和强健的体魄后，提出了 PSR-0 到 PSR-4 五套 PHP 非官方规范： 123456789* PSR-0 (Autoloading Standard) 自动加载标准* PSR-1 (Basic Coding Standard) 基础编码标准* PSR-2 (Coding Style Guide) 编码风格向导* PSR-3 (Logger Interface) 日志接口* PSR-4 (Improved Autoloading) 自动加载优化标准 创建composer.json在网站根目录下创建新文件夹 my-framework （My First Framework based on Composer），然后在此文件夹内创建 composer.json 文件12345&#123; &quot;require&quot;:&#123; &#125;&#125; 初始化composer打开命令行cmd，进入刚刚新建的目录 my_framework，执行命令1composer update 执行成功后生成了扩展包vendor 此时目录为： 到此，composer初始化完成！]]></content>
       <categories>
         <category>composer使用</category>
       </categories>
