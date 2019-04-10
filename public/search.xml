@@ -222,9 +222,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[composer安装与使用]]></title>
-    <url>%2F2017%2F04%2F21%2Fcomposer-1%2F</url>
-    <content type="text"><![CDATA[安装1、点击下载：composer 2、下载好之后双击直接安装，Next即可：3、然后选择php.exe文件： 接下来就一直next到安装完成即可。 使用 [info]使用composer安装ThinkPHP5 通过composer中国镜像进行初步了解 ##开始命令行操作 1、中国镜像下载参考tp5看云文档 由于国外网站访问很慢，国内提供了很好的镜像，所以使用国内镜像：1Composer config -g repo.packagist composer https://packagist.phpcomposer.com 2、下载tp5框架进入站点根目录www操作命令行：1composer create-project topthink/think tp5 --prefer-dist 其中tp5可写填写任何你愿意的名称 框架安装完成耐心等待几分钟的安装过程，安装完成之后本地已经生成了tp5的新框架内容 composer主要的功能：安装扩展包composer的最主要的功能：dependency manager for PHP进入项目目录tp5，执行命令：1composer require riverslei/payment 下载riverslei/payment 集成支付宝、微信支付等流行的支付接口到项目中：Composer.json中新增了这一句： 项目目录中也已经安装好了扩展包：]]></content>
+    <title><![CDATA[composer构建PHP框架——初始化]]></title>
+    <url>%2F2017%2F04%2F21%2Fcomposer-2%2F</url>
+    <content type="text"><![CDATA[“一个时代结束了，另一个时代开始了。”Framework Interoperability Group（框架可互用性小组），简称 FIG，成立于 2009 年。FIG 最初由几位知名 PHP 框架开发者发起，在吸纳了许多优秀的大脑和强健的体魄后，提出了 PSR-0 到 PSR-4 五套 PHP 非官方规范： 123456789* PSR-0 (Autoloading Standard) 自动加载标准* PSR-1 (Basic Coding Standard) 基础编码标准* PSR-2 (Coding Style Guide) 编码风格向导* PSR-3 (Logger Interface) 日志接口* PSR-4 (Improved Autoloading) 自动加载优化标准 创建composer.json在网站根目录下创建新文件夹 my-framework （My First Framework based on Composer），然后在此文件夹内创建 composer.json 文件12345&#123; &quot;require&quot;:&#123; &#125;&#125; 初始化composer打开命令行cmd，进入刚刚新建的目录 my_framework，执行命令1composer update 执行成功后生成了扩展包vendor 此时目录为： 到此，composer初始化完成！]]></content>
       <categories>
         <category>composer使用</category>
       </categories>
@@ -233,9 +233,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[composer构建PHP框架——初始化]]></title>
-    <url>%2F2017%2F04%2F21%2Fcomposer-2%2F</url>
-    <content type="text"><![CDATA[“一个时代结束了，另一个时代开始了。”Framework Interoperability Group（框架可互用性小组），简称 FIG，成立于 2009 年。FIG 最初由几位知名 PHP 框架开发者发起，在吸纳了许多优秀的大脑和强健的体魄后，提出了 PSR-0 到 PSR-4 五套 PHP 非官方规范： 123456789* PSR-0 (Autoloading Standard) 自动加载标准* PSR-1 (Basic Coding Standard) 基础编码标准* PSR-2 (Coding Style Guide) 编码风格向导* PSR-3 (Logger Interface) 日志接口* PSR-4 (Improved Autoloading) 自动加载优化标准 创建composer.json在网站根目录下创建新文件夹 my-framework （My First Framework based on Composer），然后在此文件夹内创建 composer.json 文件12345&#123; &quot;require&quot;:&#123; &#125;&#125; 初始化composer打开命令行cmd，进入刚刚新建的目录 my_framework，执行命令1composer update 执行成功后生成了扩展包vendor 此时目录为： 到此，composer初始化完成！]]></content>
+    <title><![CDATA[composer安装与使用]]></title>
+    <url>%2F2017%2F04%2F21%2Fcomposer-1%2F</url>
+    <content type="text"><![CDATA[安装1、点击下载：composer 2、下载好之后双击直接安装，Next即可：3、然后选择php.exe文件： 接下来就一直next到安装完成即可。 使用 [info]使用composer安装ThinkPHP5 通过composer中国镜像进行初步了解 ##开始命令行操作 1、中国镜像下载参考tp5看云文档 由于国外网站访问很慢，国内提供了很好的镜像，所以使用国内镜像：1Composer config -g repo.packagist composer https://packagist.phpcomposer.com 2、下载tp5框架进入站点根目录www操作命令行：1composer create-project topthink/think tp5 --prefer-dist 其中tp5可写填写任何你愿意的名称 框架安装完成耐心等待几分钟的安装过程，安装完成之后本地已经生成了tp5的新框架内容 composer主要的功能：安装扩展包composer的最主要的功能：dependency manager for PHP进入项目目录tp5，执行命令：1composer require riverslei/payment 下载riverslei/payment 集成支付宝、微信支付等流行的支付接口到项目中：Composer.json中新增了这一句： 项目目录中也已经安装好了扩展包：]]></content>
       <categories>
         <category>composer使用</category>
       </categories>

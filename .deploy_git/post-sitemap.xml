@@ -95,14 +95,6 @@
     </url>
 
     <url>
-        <loc>https://zhipenwang.github.io/2018/05/01/js_2/</loc>
-        <lastmod>2019-04-09T14:57:32.971Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://zhipenwang.github.io/2018/05/05/js_3/</loc>
         <lastmod>2019-04-09T14:57:32.971Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -111,7 +103,15 @@
     </url>
 
     <url>
-        <loc>https://zhipenwang.github.io/2017/03/19/hexo_new_blog/</loc>
+        <loc>https://zhipenwang.github.io/2018/05/01/js_2/</loc>
+        <lastmod>2019-04-09T14:57:32.971Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://zhipenwang.github.io/2018/04/21/js_1/</loc>
         <lastmod>2019-04-09T14:57:32.970Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -127,7 +127,7 @@
     </url>
 
     <url>
-        <loc>https://zhipenwang.github.io/2018/04/21/js_1/</loc>
+        <loc>https://zhipenwang.github.io/2017/03/19/hexo_new_blog/</loc>
         <lastmod>2019-04-09T14:57:32.970Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -143,7 +143,7 @@
     </url>
 
     <url>
-        <loc>https://zhipenwang.github.io/2018/03/28/git_recover_branch/</loc>
+        <loc>https://zhipenwang.github.io/2018/06/16/design_patterns/</loc>
         <lastmod>2019-04-09T14:57:32.968Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -151,7 +151,7 @@
     </url>
 
     <url>
-        <loc>https://zhipenwang.github.io/2018/06/16/design_patterns/</loc>
+        <loc>https://zhipenwang.github.io/2018/03/28/git_recover_branch/</loc>
         <lastmod>2019-04-09T14:57:32.968Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -167,6 +167,14 @@
     </url>
 
     <url>
+        <loc>https://zhipenwang.github.io/2017/04/21/composer-2/</loc>
+        <lastmod>2019-04-09T14:57:32.966Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://zhipenwang.github.io/2017/04/21/composer-1/</loc>
         <lastmod>2019-04-09T14:57:32.966Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -175,7 +183,7 @@
     </url>
 
     <url>
-        <loc>https://zhipenwang.github.io/2017/04/21/composer-2/</loc>
+        <loc>https://zhipenwang.github.io/2017/04/20/connect/</loc>
         <lastmod>2019-04-09T14:57:32.966Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -199,15 +207,7 @@
     </url>
 
     <url>
-        <loc>https://zhipenwang.github.io/2017/04/20/connect/</loc>
-        <lastmod>2019-04-09T14:57:32.966Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://zhipenwang.github.io/2017/04/17/clickheart/</loc>
+        <loc>https://zhipenwang.github.io/2017/04/19/blog_view/</loc>
         <lastmod>2019-04-09T14:57:32.965Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -215,7 +215,7 @@
     </url>
 
     <url>
-        <loc>https://zhipenwang.github.io/2017/04/19/blog_view/</loc>
+        <loc>https://zhipenwang.github.io/2017/04/17/clickheart/</loc>
         <lastmod>2019-04-09T14:57:32.965Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
