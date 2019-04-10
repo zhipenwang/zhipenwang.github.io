@@ -23,6 +23,13 @@
     </url>
 
     <url>
+        <loc>https://zhipenwang.github.io/tags/Article/</loc>
+        <lastmod>2019-04-09T14:57:32.970Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://zhipenwang.github.io/tags/hexo/</loc>
         <lastmod>2019-04-09T14:57:32.970Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -31,13 +38,6 @@
 
     <url>
         <loc>https://zhipenwang.github.io/tags/next/</loc>
-        <lastmod>2019-04-09T14:57:32.970Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://zhipenwang.github.io/tags/Article/</loc>
         <lastmod>2019-04-09T14:57:32.970Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
