@@ -191,14 +191,6 @@
     </url>
 
     <url>
-        <loc>https://zhipenwang.github.io/2017/04/20/connect/</loc>
-        <lastmod>2019-04-09T14:57:32.966Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://zhipenwang.github.io/2017/03/18/create-blog/</loc>
         <lastmod>2019-04-09T14:57:32.966Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -207,8 +199,8 @@
     </url>
 
     <url>
-        <loc>https://zhipenwang.github.io/2018/04/04/change_do_hexo/</loc>
-        <lastmod>2019-04-09T14:57:32.965Z</lastmod>
+        <loc>https://zhipenwang.github.io/2017/04/20/connect/</loc>
+        <lastmod>2019-04-09T14:57:32.966Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -224,6 +216,14 @@
 
     <url>
         <loc>https://zhipenwang.github.io/2017/04/19/blog_view/</loc>
+        <lastmod>2019-04-09T14:57:32.965Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://zhipenwang.github.io/2018/04/04/change_do_hexo/</loc>
         <lastmod>2019-04-09T14:57:32.965Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
