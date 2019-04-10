@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhipenwang.github.io/"/>
-  <updated>2019-04-09T14:57:32.976Z</updated>
+  <updated>2019-04-10T05:35:27.962Z</updated>
   <id>https://zhipenwang.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hexo换了设备之后本地没问题，访问域名空白</title>
+    <link href="https://zhipenwang.github.io/2019/04/10/hexo_bug/"/>
+    <id>https://zhipenwang.github.io/2019/04/10/hexo_bug/</id>
+    <published>2019-04-10T05:28:01.000Z</published>
+    <updated>2019-04-10T05:35:27.962Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>hexo三件套<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure></li></ul><blockquote><p>本地clone了仓库后，执行hexo s本地没问题<br>问题点：<br>本地新写了博客，然后执行hexo三件套,线上打开空白了<br>   解决：本地项目目录下Data/和archives/文件内清空，执行hexo三件套<br>如果还是不行，继续：<br>     解决：将本地项目目录下的 .deploy_git/文件夹删除，重新执行hexo三件套<br>这个时候一般就解决问题了</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ul&gt;
+&lt;li&gt;hexo三件套&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span
+      
+    
+    </summary>
+    
+      <category term="搭建博客" scheme="https://zhipenwang.github.io/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+      <category term="Article" scheme="https://zhipenwang.github.io/tags/Article/"/>
+    
+  </entry>
   
   <entry>
     <title>MYSQL之数据表级联操作-数据完整性约束</title>
@@ -525,42 +551,6 @@
     
     
       <category term="GIT" scheme="https://zhipenwang.github.io/tags/GIT/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>初始算法</title>
-    <link href="https://zhipenwang.github.io/2018/02/13/algorithm/"/>
-    <id>https://zhipenwang.github.io/2018/02/13/algorithm/</id>
-    <published>2018-02-13T09:21:01.000Z</published>
-    <updated>2019-04-09T14:57:32.963Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>算法：程序的灵魂</p></blockquote><blockquote><p>算法：algorithm</p></blockquote><p>算法五大特征：</p><ul><li>1、有穷性：保证执行有限步骤后结束</li><li>2、确切性：每一步骤都有确切的意义</li><li>3、输入：每个算法都有零个或多个输入，以刻画运算对象的初始情况，所谓零个输入是指算法本身定除了初始条件</li><li>4、输出：每个算法都有一个或多个输出，显示对输入数据加工后的结果。没有输出的算法是毫无意义的</li><li>5、可行性：在原则上算法能够精确地运行，进行优先次运算后即可完成的一种运算。</li></ul><blockquote><p>算法的逻辑、流程。<br>计算机中的算法，分为两大类：数值运算算法（求解数值）、非数值运算算法（事务管理领域）。<br>算法是计算机处理信息的本质，因为计算机程序本质上是一个算法，告诉计算机确切的步骤来执行一个指定的任务。</p></blockquote><blockquote><p>著名计算机科学家沃思公式：数据结构+算法=程序。</p></blockquote><p>一个程序应当采用结构化程序设计方法进行程序设计，并且用某一种计算机语言来表示，因此，下面的公式更加贴切：</p><blockquote><p>程序=算法+数据结构+程序设计方法+语言和环境</p></blockquote><h3 id="流程图来表示算法："><a href="#流程图来表示算法：" class="headerlink" title="流程图来表示算法："></a>流程图来表示算法：</h3><p><img src="/img/screenshot_1513006093776.png" alt=""></p><blockquote><p>流程图的结构：顺序结构、选择结构、循环结构</p></blockquote><h3 id="N-S图"><a href="#N-S图" class="headerlink" title="N-S图"></a>N-S图</h3><blockquote><p>N-S流程图：代表计算机的算法。由一些特定意义的图像、流程线及简要的文字说明构成，能够清晰明确的表示程序的运行过程。（整个程序写在一个大框图内，由若干个小的基础框图构成，简称N-S图）</p></blockquote><p><img src="/img/screenshot_1513006588835.png" alt=""></p><h3 id="计算机语言的算法表示"><a href="#计算机语言的算法表示" class="headerlink" title="计算机语言的算法表示"></a>计算机语言的算法表示</h3><p>计算机语言表示算法的时候，必须严格遵循使用语言的语法规则。</p><h3 id="学好算法的秘诀"><a href="#学好算法的秘诀" class="headerlink" title="学好算法的秘诀"></a>学好算法的秘诀</h3><p>1、学的深入，基础扎实<br>2、恒心、演练、举一反三<br>3、语言之争的时代更要学会坚持</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt;算法：程序的灵魂&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;算法：algorithm&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;算法五大特征：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;1、有穷性：保证执行有限步骤后结束&lt;/li&gt;
-&lt;li
-      
-    
-    </summary>
-    
-      <category term="算法与结构" scheme="https://zhipenwang.github.io/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E7%BB%93%E6%9E%84/"/>
-    
-    
-      <category term="算法" scheme="https://zhipenwang.github.io/tags/%E7%AE%97%E6%B3%95/"/>
-    
-      <category term="结构" scheme="https://zhipenwang.github.io/tags/%E7%BB%93%E6%9E%84/"/>
     
   </entry>
   
