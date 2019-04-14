@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[ab测试]]></title>
+    <url>%2F2019%2F04%2F14%2F2019_04_14%2F</url>
+    <content type="text"><![CDATA[对于服务端开发而言，接口的测试是必不可少的，尤其是对于接口的压力测试，对于高并发的承受能力等。接口测试一般使用postman测试即可，本文暂不详解，后续再更新说明吧。 网传postman也可以进行压力测试，本人就亲自去试了一把，果然出人意料啊，一传十、十传百，根本就不是大家说的那样啊。 postman只是进行简单的接口测试postman有个runnner功能，可以进行压力测试，但是不支持并发测试，其中的多次测试都是串行执行的 那么接口的压力测试呢，目前行业内有很多工具支持，如Jmeter、Loadrunner、ab等.网上说了很多的测试工具，其中ab工具是最直接最简单的，所以本文针对ab测试展开讨论。 ab工具的简单介绍123ab全称为：apache bench在apache官网的介绍如下：ab是Apache超文本传输协议(HTTP)的性能测试工具。其设计意图是描绘当前所安装的Apache的执行性能，主要是显示你安装的Apache每秒可以处理多少个请求。 ab工具的安装1234567891011mac的安装： mac下本身系统就自带了apache，所以可以直接使用ab工具，使用mac的有钱大佬可以跳过安装直接往下看了。ubuntu系统： 使用apt命令直接安装即可 sudo apt install apache2-utilscentos系统： 使用yum命令直接安装即可 yum -y install httpd-toolswindows系统： 在官网下载，傻瓜式安装即可 https://www.apachehaus.com/cgi-bin/download.plx ab工具的使用1ab -n 100 -c 10 https://www.baidu.com ab工具的参数1234567ab: http请求abs: https请求-n: 请求总次数-c: 并发用户数-T: 内容类型，一般和-p -起使用（Content-Type）-p: 包含POST参数的文件或数据-C: cookie参数 如果请求数过大失败显示连接数被限制了，解决1ulimit -n 65535 ab测试后的参数说明123456789101112131415161718request pre second: 吞吐率 计算公式：总请求数/处理完所有请求花费的时间 request pre second = complete requests / time taken for testscomplete requests: 总请求数time taken for tests 处理完请求花费的时间concurrency level: 并发用户数 要区分并发用户数与并发连接数，一个用户可能存在多个连接数time pre request: 用户平均请求等待时间 计算公式：处理完所有请求花费的时间 / （总请求数/并发用户数） time pre request = time taken for tests / (complete request / concurrency level)time pre request: across all concurrent requests 服务器平均请求等待时间 计算公式：处理完所有请求花费的时间 / 总请求数 time taken for tests / complete requests]]></content>
+      <categories>
+        <category>接口测试</category>
+      </categories>
+      <tags>
+        <tag>测试</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[hexo换了设备之后本地没问题，访问域名空白]]></title>
     <url>%2F2019%2F04%2F10%2Fhexo_bug%2F</url>
     <content type="text"><![CDATA[hexo三件套123hexo cleanhexo ghexo d 本地clone了仓库后，执行hexo s本地没问题问题点：本地新写了博客，然后执行hexo三件套,线上打开空白了 解决：本地项目目录下Data/和archives/文件内清空，执行hexo三件套如果还是不行，继续： 解决：将本地项目目录下的 .deploy_git/文件夹删除，重新执行hexo三件套这个时候一般就解决问题了]]></content>

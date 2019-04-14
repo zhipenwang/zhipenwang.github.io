@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhipenwang.github.io/"/>
-  <updated>2019-04-10T05:35:27.962Z</updated>
+  <updated>2019-04-14T12:53:15.638Z</updated>
   <id>https://zhipenwang.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ab测试</title>
+    <link href="https://zhipenwang.github.io/2019/04/14/2019_04_14/"/>
+    <id>https://zhipenwang.github.io/2019/04/14/2019_04_14/</id>
+    <published>2019-04-13T16:00:00.000Z</published>
+    <updated>2019-04-14T12:53:15.638Z</updated>
+    
+    <content type="html"><![CDATA[<p>对于服务端开发而言，接口的测试是必不可少的，尤其是对于接口的压力测试，对于高并发的承受能力等。<br>接口测试一般使用postman测试即可，本文暂不详解，后续再更新说明吧。</p><p>网传postman也可以进行压力测试，本人就亲自去试了一把，果然出人意料啊，一传十、十传百，根本就不是大家说的那样啊。</p><blockquote><p>postman只是进行简单的接口测试<br>postman有个runnner功能，可以进行压力测试，但是不支持并发测试，其中的多次测试都是串行执行的</p></blockquote><p><em>那么接口的压力测试呢，目前行业内有很多工具支持，如Jmeter、Loadrunner、ab等.</em><br><em>网上说了很多的测试工具，其中ab工具是最直接最简单的，所以本文针对ab测试展开讨论。</em></p><h4 id="ab工具的简单介绍"><a href="#ab工具的简单介绍" class="headerlink" title="ab工具的简单介绍"></a>ab工具的简单介绍</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ab全称为：apache bench</span><br><span class="line">在apache官网的介绍如下：</span><br><span class="line">ab是Apache超文本传输协议(HTTP)的性能测试工具。其设计意图是描绘当前所安装的Apache的执行性能，主要是显示你安装的Apache每秒可以处理多少个请求。</span><br></pre></td></tr></table></figure><h4 id="ab工具的安装"><a href="#ab工具的安装" class="headerlink" title="ab工具的安装"></a>ab工具的安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mac的安装：</span><br><span class="line">mac下本身系统就自带了apache，所以可以直接使用ab工具，使用mac的有钱大佬可以跳过安装直接往下看了。</span><br><span class="line">ubuntu系统：</span><br><span class="line">使用apt命令直接安装即可</span><br><span class="line">sudo apt install apache2-utils</span><br><span class="line">centos系统：</span><br><span class="line">使用yum命令直接安装即可</span><br><span class="line">yum -y install httpd-tools</span><br><span class="line">windows系统：</span><br><span class="line">在官网下载，傻瓜式安装即可</span><br><span class="line">https://www.apachehaus.com/cgi-bin/download.plx</span><br></pre></td></tr></table></figure><h4 id="ab工具的使用"><a href="#ab工具的使用" class="headerlink" title="ab工具的使用"></a>ab工具的使用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ab -n 100 -c 10 https://www.baidu.com</span><br></pre></td></tr></table></figure><h4 id="ab工具的参数"><a href="#ab工具的参数" class="headerlink" title="ab工具的参数"></a>ab工具的参数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ab:  http请求</span><br><span class="line">abs: https请求</span><br><span class="line">-n:  请求总次数</span><br><span class="line">-c:  并发用户数</span><br><span class="line">-T:  内容类型，一般和-p -起使用（Content-Type）</span><br><span class="line">-p:  包含POST参数的文件或数据</span><br><span class="line">-C:  cookie参数</span><br></pre></td></tr></table></figure><p>如果请求数过大失败显示连接数被限制了，解决<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ulimit -n 65535</span><br></pre></td></tr></table></figure></p><h4 id="ab测试后的参数说明"><a href="#ab测试后的参数说明" class="headerlink" title="ab测试后的参数说明"></a>ab测试后的参数说明</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">request pre second: 吞吐率</span><br><span class="line">    计算公式：总请求数/处理完所有请求花费的时间</span><br><span class="line">    request pre second = complete requests / time taken for tests</span><br><span class="line"></span><br><span class="line">complete requests: 总请求数</span><br><span class="line"></span><br><span class="line">time taken for tests 处理完请求花费的时间</span><br><span class="line"></span><br><span class="line">concurrency level: 并发用户数</span><br><span class="line">    要区分并发用户数与并发连接数，一个用户可能存在多个连接数</span><br><span class="line"></span><br><span class="line">time pre request: 用户平均请求等待时间</span><br><span class="line">    计算公式：处理完所有请求花费的时间 / （总请求数/并发用户数）</span><br><span class="line">    time pre request = time taken for tests / (complete request / concurrency level)</span><br><span class="line"></span><br><span class="line">time pre request: across all concurrent requests 服务器平均请求等待时间</span><br><span class="line">    计算公式：处理完所有请求花费的时间 / 总请求数</span><br><span class="line">    time taken for tests / complete requests</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;对于服务端开发而言，接口的测试是必不可少的，尤其是对于接口的压力测试，对于高并发的承受能力等。&lt;br&gt;接口测试一般使用postman测试即可，本文暂不详解，后续再更新说明吧。&lt;/p&gt;
+&lt;p&gt;网传postman也可以进行压力测试，本人就亲自去试了一把，果然出人意料啊，一传十、
+      
+    
+    </summary>
+    
+      <category term="接口测试" scheme="https://zhipenwang.github.io/categories/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95/"/>
+    
+    
+      <category term="测试" scheme="https://zhipenwang.github.io/tags/%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
   
   <entry>
     <title>hexo换了设备之后本地没问题，访问域名空白</title>
@@ -517,32 +543,6 @@
 &lt;li&gt;在使用git的时候，有时候会因为人为因素导致分支（commit）被删除，可以使用如下步骤进行恢复。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&quot;首先使用以下步骤创建一个新分支，修改一些文件后删除，以便进行恢复&quot;&gt;&lt;a href=&quot;#首先使用以下步骤创建一个新分支，修改
-      
-    
-    </summary>
-    
-      <category term="GIT" scheme="https://zhipenwang.github.io/categories/GIT/"/>
-    
-    
-      <category term="GIT" scheme="https://zhipenwang.github.io/tags/GIT/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>git 配置ssh密钥</title>
-    <link href="https://zhipenwang.github.io/2018/03/27/ssh_key/"/>
-    <id>https://zhipenwang.github.io/2018/03/27/ssh_key/</id>
-    <published>2018-03-27T11:21:01.000Z</published>
-    <updated>2019-04-09T14:57:32.978Z</updated>
-    
-    <content type="html"><![CDATA[<p>在github帐号注册好之后，将项目clone到本地，加入git bash命令。<br>1、输入cd ~/.ssh 回车，查看是否有ssh key密钥，有了就备份</p><p><center><br><img src="/img/ssh_dir.png" alt=""><br></center><br>2、创建ssh key，输入下面命令回车，之后会让你输入github的账号密码，如图<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;youremail@youremail.com&quot;</span><br><span class="line"></span><br><span class="line">Creates a new ssh key using the provided email # Generating public/private rsa key pair.</span><br><span class="line"></span><br><span class="line">Enter file in which to save the key (/home/you/.ssh/id_rsa):</span><br></pre></td></tr></table></figure></p><p>直接按Enter就行。然后，会提示你输入密码，如下(建议输一个，安全一点，当然不输也行，应该不会有人闲的无聊冒充你去修改你的代码)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enter same passphrase again: [Type passphrase again]</span><br></pre></td></tr></table></figure></p><p>完了之后，大概是这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Your public key has been saved in /home/you/.ssh/id_rsa.pub.</span><br><span class="line">The key fingerprint is: # 01:0f:f4:3b:ca:85:d6:17:a1:7d:f0:68:9d:f0:a2:db your_email@youremail.com</span><br></pre></td></tr></table></figure></p><p><center><br><img src="/img/ssh_gen.png" alt=""><br></center><br>3、找到本地id_rsa.pub文件，复制里面的内容，这就是ssh密钥，可以通过pwd命令来查看当前文件位置</p><p><center><br><img src="/img/ssh_pwd.png" alt=""><br></center></p><p><center><br><img src="/img/ssh_key_dir.png" alt=""><br></center><br>4、登录github，在个人中心的setting中，找到 SSH and GPG keys</p><p><center><br><img src="/img/github_ssh.png" alt=""><br></center><br>点击 new ssh key，将复制的ssh密钥粘贴进 “key”文本框，title随便输入即可。<br>点击add key。<br>添加ssh密钥到远程仓库完成。<br>5、验证ssh是否可用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure></p><p>返回如下表示正常可用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi xxx! You&apos;ve successfully authenticated, but GitHub does not # provide shell access.</span><br></pre></td></tr></table></figure></p><p>6、此时查看你的远程分支地址是否是ssh协议的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git remote -v</span><br><span class="line">origin https://github.com/zhipenwang/zhipenwang.git (fetch)</span><br><span class="line">origin https://github.com/zhipenwang/zhipenwang.git (push)</span><br></pre></td></tr></table></figure></p><p>如果是https协议，修改为ssh协议：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote set-url origin git@github.com:zhipenwang/zhipenwang.git</span><br></pre></td></tr></table></figure></p><p>这个时候就可以进行push了。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;在github帐号注册好之后，将项目clone到本地，加入git bash命令。&lt;br&gt;1、输入cd ~/.ssh 回车，查看是否有ssh key密钥，有了就备份&lt;/p&gt;
-&lt;p&gt;&lt;center&gt;&lt;br&gt;&lt;img src=&quot;/img/ssh_dir.png&quot; alt=&quot;&quot;&gt;&lt;
       
     
     </summary>
