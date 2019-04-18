@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Web前端," />
+  <meta name="keywords" content="PHP,Nginx," />
 
 
 
@@ -89,18 +89,18 @@
 
 
 
-<meta name="description" content="on(events,[selector],[data],fn) events:一个或多个用空格分隔的事件类型和可选的命名空间，如”click”或”keydown.myPlugin” 。selector:一个选择器字符串用于过滤器的触发事件的选择器元素的后代。如果选择器为null或省略，当它到达选定的元素，事件总是触发。data:当一个事件被触发时要传递event.data给事件处理函数。fn:该事">
-<meta name="keywords" content="Web前端">
+<meta name="description" content="本文主要是讨论Nginx与FPM的工作机制及其配置背后的原理，以此来真正理解Nginx与PHP的协同工作机制。  先来谈谈CGI、FastCGI两个协议及PHP-FPM。  CGICGI是Web Server与后台语言交互的协议。通过此协议，开发者可以使用任何语言处理web server发来的请求，动态的生成内容。   CGI的工作原理：每当客户请求CGI的时候，WEB服务器就请求操作系统生成一个">
+<meta name="keywords" content="PHP,Nginx">
 <meta property="og:type" content="article">
-<meta property="og:title" content="jQuery的三种bind&#x2F;One&#x2F;Live&#x2F;On事件绑定使用方法">
-<meta property="og:url" content="https://zhipenwang.github.io/2018/05/20/js_5/index.html">
+<meta property="og:title" content="深入理解cgi与fastcgi：nginx与fpm的工作机制">
+<meta property="og:url" content="https://zhipenwang.github.io/2019/04/18/2019_04_18/index.html">
 <meta property="og:site_name" content="王志鹏">
-<meta property="og:description" content="on(events,[selector],[data],fn) events:一个或多个用空格分隔的事件类型和可选的命名空间，如”click”或”keydown.myPlugin” 。selector:一个选择器字符串用于过滤器的触发事件的选择器元素的后代。如果选择器为null或省略，当它到达选定的元素，事件总是触发。data:当一个事件被触发时要传递event.data给事件处理函数。fn:该事">
+<meta property="og:description" content="本文主要是讨论Nginx与FPM的工作机制及其配置背后的原理，以此来真正理解Nginx与PHP的协同工作机制。  先来谈谈CGI、FastCGI两个协议及PHP-FPM。  CGICGI是Web Server与后台语言交互的协议。通过此协议，开发者可以使用任何语言处理web server发来的请求，动态的生成内容。   CGI的工作原理：每当客户请求CGI的时候，WEB服务器就请求操作系统生成一个">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-09T14:57:32.973Z">
+<meta property="og:updated_time" content="2019-04-18T09:18:05.977Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="jQuery的三种bind&#x2F;One&#x2F;Live&#x2F;On事件绑定使用方法">
-<meta name="twitter:description" content="on(events,[selector],[data],fn) events:一个或多个用空格分隔的事件类型和可选的命名空间，如”click”或”keydown.myPlugin” 。selector:一个选择器字符串用于过滤器的触发事件的选择器元素的后代。如果选择器为null或省略，当它到达选定的元素，事件总是触发。data:当一个事件被触发时要传递event.data给事件处理函数。fn:该事">
+<meta name="twitter:title" content="深入理解cgi与fastcgi：nginx与fpm的工作机制">
+<meta name="twitter:description" content="本文主要是讨论Nginx与FPM的工作机制及其配置背后的原理，以此来真正理解Nginx与PHP的协同工作机制。  先来谈谈CGI、FastCGI两个协议及PHP-FPM。  CGICGI是Web Server与后台语言交互的协议。通过此协议，开发者可以使用任何语言处理web server发来的请求，动态的生成内容。   CGI的工作原理：每当客户请求CGI的时候，WEB服务器就请求操作系统生成一个">
 
 
 
@@ -128,7 +128,7 @@
 
 
 
-  <link rel="canonical" href="https://zhipenwang.github.io/2018/05/20/js_5/"/>
+  <link rel="canonical" href="https://zhipenwang.github.io/2019/04/18/2019_04_18/"/>
 
 
 
@@ -143,7 +143,7 @@
   daovoice('update');
   </script>
 
-  <title> jQuery的三种bind/One/Live/On事件绑定使用方法 | 王志鹏 </title>
+  <title> 深入理解cgi与fastcgi：nginx与fpm的工作机制 | 王志鹏 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -336,7 +336,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://zhipenwang.github.io/2018/05/20/js_5/">
+    <link itemprop="mainEntityOfPage" href="https://zhipenwang.github.io/2019/04/18/2019_04_18/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="王志鹏">
@@ -357,7 +357,7 @@
             
             
               
-                jQuery的三种bind/One/Live/On事件绑定使用方法
+                深入理解cgi与fastcgi：nginx与fpm的工作机制
               
             
           </h1>
@@ -372,8 +372,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-20T20:21:01+08:00">
-                2018-05-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-18T00:00:00+08:00">
+                2019-04-18
               </time>
             
 
@@ -395,8 +395,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/jQuery/" itemprop="url" rel="index">
-                    <span itemprop="name">jQuery</span>
+                  <a href="/categories/PHP/" itemprop="url" rel="index">
+                    <span itemprop="name">PHP</span>
                   </a>
                 </span>
 
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1,663 字
+                  1,776 字
                 </span>
               
 
@@ -465,54 +465,79 @@
       
 
       
-        <h3 id="on-events-selector-data-fn"><a href="#on-events-selector-data-fn" class="headerlink" title="on(events,[selector],[data],fn)"></a>on(events,[selector],[data],fn)</h3><blockquote>
-<p>events:一个或多个用空格分隔的事件类型和可选的命名空间，如”click”或”keydown.myPlugin” 。<br>selector:一个选择器字符串用于过滤器的触发事件的选择器元素的后代。如果选择器为null或省略，当它到达选定的元素，事件总是触发。<br>data:当一个事件被触发时要传递event.data给事件处理函数。<br>fn:该事件被触发时执行的函数。 false 值也可以做一个函数的简写，返回false</p>
-</blockquote>
-<h4 id="替换bind"><a href="#替换bind" class="headerlink" title="替换bind()"></a>替换bind()</h4><blockquote>
-<p>当第二个参数’selector’为null时，on()和bind()其实在用法上基本上没有任何区别了，所以我们可以认为on()只是比bind()多了一个可选的’selector’参数，所以on()可以非常方便的换掉bind()</p>
-</blockquote>
-<h4 id="替换live"><a href="#替换live" class="headerlink" title="替换live()"></a>替换live()</h4><blockquote>
-<p>在1.4之前相信大家非常喜欢使用live(),因为它可以把事件绑定到当前以及以后添加的元素上面，当然在1.4之后delegate()也可以做类似的事情了。live()的原理很简单，它是通过document进行事件委派的，因此我们也可以使用on()通过将事件绑定到document来达到live()一样的效果。</p>
-</blockquote>
-<h4 id="live-写法"><a href="#live-写法" class="headerlink" title="live()写法"></a>live()写法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;#list li&apos;).live(&apos;click&apos;, &apos;#list li&apos;, </span><br><span class="line">	function() &#123;</span><br><span class="line">	//function code here.</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h4 id="on-写法"><a href="#on-写法" class="headerlink" title="on()写法"></a>on()写法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(document).on(&apos;click&apos;, &apos;#list li&apos;, </span><br><span class="line">function() &#123;</span><br><span class="line"> //function code </span><br><span class="line">here.</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+        <p><em>本文主要是讨论Nginx与FPM的工作机制及其配置背后的原理，以此来真正理解Nginx与PHP的协同工作机制。</em></p>
 <blockquote>
-<p>这里的关键就是第二个参数’selector’在起作用了。它是一个过滤器的作用，只有被选中元素的后代元素才会触发事件。</p>
+<p>先来谈谈CGI、FastCGI两个协议及PHP-FPM。</p>
 </blockquote>
-<h4 id="替换delegate"><a href="#替换delegate" class="headerlink" title="替换delegate()"></a>替换delegate()</h4><blockquote>
-<p>delegate()是1.4引入的，目的是通过祖先元素来代理委派后代元素的事件绑定问题，某种程度上和live()优点相似。只不过live()是通过document元素委派，而delegate则可以是任意的祖先节点。使用on()实现代理的写法和delegate()基本一致。</p>
-</blockquote>
-<h4 id="delegate-的写法"><a href="#delegate-的写法" class="headerlink" title="delegate()的写法"></a>delegate()的写法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;#list&apos;).delegate(&apos;li&apos;, &apos;click&apos;, </span><br><span class="line">function() &#123;</span><br><span class="line"> //function code here.</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h4 id="on-写法-1"><a href="#on-写法-1" class="headerlink" title="on()写法"></a>on()写法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;#list&apos;).on(&apos;click&apos;, &apos;li&apos;, function() </span><br><span class="line">&#123;</span><br><span class="line"> //function code here.</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="CGI"><a href="#CGI" class="headerlink" title="CGI"></a>CGI</h3><p>CGI是Web Server与后台语言交互的协议。通过此协议，开发者可以使用任何语言处理web server发来的请求，动态的生成内容。  </p>
+<p>CGI的工作原理：<br>每当客户请求CGI的时候，WEB服务器就请求操作系统生成一个新的CGI解释器进程（如php-cgi.exe），CGI的一个进程处理完一个请求后就退出，下一个请求来时再创建新的进程。</p>
+<p>CGI的缺点：<br>每处理一个请求都需要fork出一个全新的进程，随着Web的兴起，高并发越来越成为常态，这样低效的方式无法满足需求。于是FastCGI诞生了。</p>
+<h3 id="FastCGI"><a href="#FastCGI" class="headerlink" title="FastCGI"></a>FastCGI</h3><p>FastCGI，顾名思义为更快的CGI，允许在一个进程内处理多个请求，而不是一个请求处理完毕就直接结束进程，性能上有了很大的提高。<br>FastCGI，就像一个常驻（long-live）型的CGI，可以一直执行着，只要激活后，不会每次都要花费时间去fork一次进程（这是CGI最为人诟病的fork-and-execute模式）。  </p>
+<p>一般情况下，FastCGI的整个工作流程如下：  </p>
+<ol>
+<li>Web Server启动时载入FastCGI进程管理器（IIS ISAPI或Apache Module）</li>
+<li>FastCGI进程管理器自身初始化。启动多个CGI解释器进程（可见多个php-cgi）并等待来自Web Server的连接</li>
+<li>当客户端请求到达Web Server时，FastCGI进程管理器选择并连接到一个CGI解释器。Web Server将CGI环境变量和标准输入发送到FastCGI子进程php-cgi</li>
+</ol>
+<h3 id="PHP-FPM"><a href="#PHP-FPM" class="headerlink" title="PHP_FPM"></a>PHP_FPM</h3><p>php-fpm是PHP内置的一个FastCGI进程管理器。是一种master（主）/worker（子）多进程架构，与nginx设计风格有点类似。<br>master进程只有一个，主要负责CGI及PHP环境初始化、端口监听、事件监听、子进程状态等等，接收来自Web Server的请求；而worker进程则一般有多个（具体数量根据实际需要配置），每个进程内部都嵌入了一个PHP解释器，是PHP代码真正执行的地方，负责处理php请求。</p>
+<h4 id="运行模式"><a href="#运行模式" class="headerlink" title="运行模式"></a>运行模式</h4><p>在介绍允许原理之前，先了解它的几种运行模式。<br>php-fpm支持三种运行模式，分别为static、ondemand、dynamic，默认为dynamic。  </p>
+<ol>
+<li>static：静态模式，启动时分配固定的worker进程，通过设置pm.max_children固定的worker进程数</li>
+<li>ondemand：按需分配，当收到用户请求时fork worker进程</li>
+<li>dynamic：动态模式，启动时分配固定的进程，伴随着请求数增加，在设定的浮动范围调整worker进程</li>
+</ol>
+<h4 id="运行原理"><a href="#运行原理" class="headerlink" title="运行原理"></a>运行原理</h4><p>php-fpm采用master/worker架构设计，下面详细讲解这两个模块的运行原理。</p>
+<h5 id="master进程"><a href="#master进程" class="headerlink" title="master进程"></a>master进程</h5><p>master进程工作流程分为4个阶段  </p>
+<ol>
+<li>cgi初始化阶段：分别调用fcgi_init()和 sapi_startup()函数，注册进程信号以及初始化sapi_globals全局变量。 </li>
+<li>php环境初始化阶段：由cgi_sapi_module.startup 触发。实际调用php_cgi_startup函数，而php_cgi_startup内部又调用php_module_startup执行。<br> php_module_startup主要功能：  <ol>
+<li>加载和解析php配置；  </li>
+<li>加载php模块并记入函数符号表(function_table)；  </li>
+<li>加载zend扩展 ;   </li>
+<li>设置禁用函数和类库配置；  </li>
+<li>注册回收内存方法； </li>
+</ol>
+</li>
+<li>php-fpm初始化阶段：执行fpm_init()函数。负责解析php-fpm.conf文件配置，获取进程相关参数（允许进程打开的最大文件数等）,初始化进程池及事件模型等操作。 </li>
+<li>php-fpm运行阶段：执行fpm_run() 函数，运行后主进程发生阻塞。<br> 该阶段分为两部分：fork子进程 和 循环事件。<br> fork子进程部分交由fpm_children_create_initial函数处理（ 注：ondemand模式在fpm_pctl_on_socket_accept函数创建）。<br> 循环事件部分通过fpm_event_loop函数处理，其内部是一个死循环，负责事件的收集工作。</li>
+</ol>
+<h5 id="worker进程"><a href="#worker进程" class="headerlink" title="worker进程"></a>worker进程</h5><p>worker进程分为 接收客户端请求、处理请求、请求结束三个阶段。  </p>
+<ol>
+<li><p>接收客户端请求：执行fcgi_accept_request函数，其内部通过调用accept 函数获取客户端请求。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//请求锁</span><br><span class="line">FCGI_LOCK(req-&gt;listen_socket);</span><br><span class="line">req-&gt;fd = accept(listen_socket, (struct sockaddr *)&amp;sa, &amp;len);</span><br><span class="line">//释放锁</span><br><span class="line">FCGI_UNLOCK(req-&gt;listen_socket);</span><br></pre></td></tr></table></figure>
+<p> 从上面的代码，可以注意到accept之前有一个请求锁的操作，这么设计是为了避免请求出现“惊群”的现象。当然，这是一个可选的选项，可以取消该功能。</p>
+</li>
+<li>处理请求阶段：  <ol>
+<li>首先，分别调用fpm_request_info、php_request_startup获取请求内容及注册全局变量(GET、_POST、SERVER、_ENV、$_FILES)；  </li>
+<li>然后根据请求信息调用php_fopen_primary_script访问脚本文件；  </li>
+<li>最后交给php_execute_script执行。php_execute_script内部调用zend_execute_scripts方法将脚本交给zend引擎处理。 </li>
+</ol>
+</li>
+<li>请求结束阶段：执行php_request_shutdown函数。此时回调register_shutdown_function注册的函数及__destruct()方法，发送响应内容、释放内存等操作。</li>
+</ol>
+<h4 id="整体流程"><a href="#整体流程" class="headerlink" title="整体流程"></a>整体流程</h4><p>从FPM接收到请求到处理完毕，其具体流程如下：</p>
+<ol>
+<li>FPM的master进程接收到请求</li>
+<li>master进程根据配置指派特定的worker进程进行请求处理，如果没有可用进程，返回错误，这也是在配合Nginx遇到502错误比较多的原因</li>
+<li>worker进程处理请求，如果超时，返回504错误</li>
+<li>请求处理结束，返回结果</li>
+</ol>
 <blockquote>
-<p>貌似第一个和第二个参数的顺序颠倒了一下，别的基本一样。</p>
+<p>下面从Nginx层面来说明与fpm的请求处理。</p>
 </blockquote>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><blockquote>
-<p>jQuery推出on()的目的有2个，一是为了统一接口，二是为了提高性能，所以从现在开始用on()替换bind(),<br>live(),<br>delegate吧。尤其是不要再用live()了，因为它已经处于不推荐使用列表了，随时会被干掉。如果只绑定一次事件，那接着用one()吧，这个没有变化。<br>jQuery是 一款优秀的JavaScript框架,在旧版里主要用bind()方法，在新版里又多了两种One(),Live()<br>下面介绍这几种方法的使用：</p>
-</blockquote>
-<h4 id="1-bind-Unbind"><a href="#1-bind-Unbind" class="headerlink" title="1. bind/Unbind"></a>1. bind/Unbind</h4><blockquote>
-<p>在jquery的事件模型中，有两个基本的事件绑 定函数，bind与unbind，这两个函数的含义就是匹配页面元素进行相关事件的处理。比如我们在JS中经常使用到的 onfocus，onblur，onmouseover，onmousedown等事件都可以作为bind的参数进行传递。<br>$(“#id”).bind(‘click’,function(){alert(‘tt!’)});<br>其中bind的第一个参数代表的含义是：事件类型(注意不需要加on)，function中的代码就是你要执行的逻辑 代码<br>多个事件绑定：bind还允许你绑定多个事件，事件名字之间用空格隔开，例如：<br>$(‘a’).bind(‘click mouseover’,function(){<br>在最新的jquery1.4版本中，对bind方法进行了改进，你可以在bind方法传入一个类JSON对象来一次绑定多 个事件处理函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;a&apos;).bind(&#123;</span><br><span class="line">	click:function()&#123;</span><br><span class="line">		alert(&apos;a&apos;);</span><br><span class="line">	&#125;,</span><br><span class="line">	mouseover:function()&#123;</span><br><span class="line">		alert(&apos;a again!&apos;)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-</blockquote>
+<h3 id="Nginx与fpm"><a href="#Nginx与fpm" class="headerlink" title="Nginx与fpm"></a>Nginx与fpm</h3><p>Nginx不仅仅是一个Web服务器，也是一个功能强大的Proxy服务器，除了进行http请求的代理，也可以进行许多其他协议请求的代理，包括本文与fpm相关的fastcgi协议。  </p>
 <blockquote>
-<p>在function函数中，你还可以通过传递一个javaScript对 象给function方法，这个事件对象通常是可以省略的。<br>bind中还有一个参数data， 该参数一般情况下很少使用，通常为了解决在同一个方法中处理同一个变量时有很好的处理。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var productname=&quot;Sports Shoes&quot;;</span><br><span class="line">	$(&apos;#Area&apos;).bind(&apos;click&apos;,function()&#123;</span><br><span class="line">	alert(productname);</span><br><span class="line">&#125;);</span><br><span class="line">productname=&quot;necklace&quot;,</span><br><span class="line">$(&apos;#Area&apos;).bind(&apos;click&apos;,function()&#123;</span><br><span class="line">	alert(productname);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>为了能够使 Nginx 理解 fastcgi 协议，Nginx 提供了 fastcgi 模块来将 http 请求映射为对应的 fastcgi 请求。</p>
 </blockquote>
+<h4 id="Nginx的fastcgi-模块"><a href="#Nginx的fastcgi-模块" class="headerlink" title="Nginx的fastcgi 模块"></a>Nginx的fastcgi 模块</h4><ol>
+<li>提供了 fastcgi_param 指令来主要处理这些映射关系，其主要完成的工作是将 Nginx 中的变量翻译成 PHP 中能够理解的变量。  </li>
+<li>提供了 fastcgi_pass 指令，这个指令用于指定 fpm 进程监听的地址，Nginx 会把所有的 php 请求翻译成 fastcgi 请求之后再发送到这个地址</li>
+</ol>
+<p>下面是一个简单的可用工作的Nginx配置文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    server_name  localhost;</span><br><span class="line">    root         /data/code/www;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        root   /data/code/www;</span><br><span class="line">        index  index.php index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location ~ \.php$ &#123;</span><br><span class="line">        root            /data/code/www;</span><br><span class="line">        fastcgi_index   index.php;</span><br><span class="line">        fastcgi_pass    phpfpm_backend;</span><br><span class="line">        include         fastcgi_params;</span><br><span class="line">        fastcgi_param   SCRIPT_FILENAME  $document_root$fastcgi_script_name;</span><br><span class="line">        #fastcgi_param  SCRIPT_NAME      $fastcgi_script_name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <blockquote>
-<p>由于变量productname被重新赋值，所以输出的消息都是”necklace”,这里不了解可以去查阅下关于JavaScript的变量作用域,要 解决这个问题就必须使用到data参数，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var productname=&quot;Sports Shoes&quot;;</span><br><span class="line">$(&apos;#Area&apos;).bind(&apos;click&apos;,&#123;pn:productname&#125;,function()&#123;</span><br><span class="line">	alert(event.data.pn);</span><br><span class="line">&#125;);</span><br><span class="line">productname=&quot;necklace&quot;,</span><br><span class="line">$(&apos;#Area&apos;).bind(&apos;click&apos;,&#123;pn:productname&#125;,function()&#123;</span><br><span class="line">	alert(event.data.pn);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>在这个配置文件中，新建了虚拟主机:<br>监听80端口,<br>Web根目录为：/data/code/www，<br>通过location指令，将所有的以.php结尾的文件都交给了fastcgi模块去处理，从而将所有的php求都交给了fpm处理，<br>完成了Nginx到fpm的闭环。</p>
 </blockquote>
-<h4 id="2-One"><a href="#2-One" class="headerlink" title="2. One"></a>2. One</h4><p>为每一个匹配元素的特定事件（像click）绑定一个一次性的事件处理函数。该方法与bind方法的参数一样，与bind方法的区别就是只对匹配元素的事 件处理执行一次，执行完之后，以后再也不会执行,当然重新发起web请求时它又会执行一次。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;a&apos;).one(&apos;click&apos;,function()&#123;</span><br><span class="line">	alert(&apos;a&apos;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>单击页面上的a元素后，弹出消息，除非用户发起第二次请求，否则再次点击a元素不会弹出消息对话框。</p>
-</blockquote>
-<h4 id="3-live"><a href="#3-live" class="headerlink" title="3. live"></a>3. live</h4><p>该方法主要是能处理动态添加的元素，给那些后添加的元素也一样绑定事件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;a&apos;).live(&apos;click,function()&#123;</span><br><span class="line">	alert(&apos;show message!&apos;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>然后如果我添加一个元素，<br>$(‘body’).appnend(‘Another Element’);<br>那么该元素也会被触发事件处理函数alert。<br>另外，jQuery还提供了一些绑定这些标准事件类型的简单方式，比如.click()用于简化.bind(‘click’)。<br>一共有以下这些事件名称：blur, focus, focusin, focusout, load, resize, scroll, unload, click, dblclick, mousedown, mouseup, mousemove, mouseover, mouseout, mouseenter, mouseleave, change, select, submit, keydown, keypress, keyup, error 等。<br>下面看下jQuery中绑定事件bind() on() live() one()的异同<br>jQuery中绑定事件的四种方法，他们可以同时绑定一个或多个事件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bind()----------版本号小于3.0（在Jquery3.0中已经移除，相应unbind()也移除）</span><br><span class="line">live()----------版本号小于1.7（在Jquery1.7中已经移除，相应die()也移除）</span><br><span class="line">delegate()------版本号小于1.7（在Jquery1.7中已经移除）</span><br><span class="line">on()------------版本号大于1.7（在Jquery1.7中添加，相应off()也添加）</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<blockquote>
-<p>A：bind()事件的用法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;title&gt;绑定事件&lt;/title&gt;</span><br><span class="line"> &lt;script src=&quot;js/jQuery1.11.1.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;</span><br><span class="line"> &lt;script&gt;</span><br><span class="line">  $(function () &#123;</span><br><span class="line">   $(&quot;p&quot;).bind(&#123;</span><br><span class="line">    &quot;mouseover&quot;: function () &#123;</span><br><span class="line">     $(&quot;p&quot;).css(&quot;background-color&quot;, &quot;red&quot;);</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;mouseout&quot;: function () &#123;</span><br><span class="line">     $(&quot;p&quot;).css(&quot;background-color&quot;, &quot;&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">   &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line"> &lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"> &lt;p&gt;what are you doing?&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<blockquote>
-<p>第一个最大的区别就是：bind()的事件绑定是只对当前页面选中的元素有效。如果你想对动态创建的元素bind()事件，是没有办法达到效果的。<br>在后面的动态生成DOM元素绑定事件就要使用on();</p>
-</blockquote>
+<p>希望通过本文，能够让大家对Nginx与FPM通信的整个流程比较清晰。</p>
 
       
     </div>
@@ -552,7 +577,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Web前端/" rel="tag"># Web前端</a>
+            <a href="/tags/PHP/" rel="tag"># PHP</a>
+          
+            <a href="/tags/Nginx/" rel="tag"># Nginx</a>
           
         </div>
       
@@ -565,8 +592,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/13/js_4/" rel="next" title="js 比较几种遍历数组及对象的方式">
-                <i class="fa fa-chevron-left"></i> js 比较几种遍历数组及对象的方式
+              <a href="/2019/04/14/2019_04_14/" rel="next" title="ab测试">
+                <i class="fa fa-chevron-left"></i> ab测试
               </a>
             
           </div>
@@ -574,10 +601,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/10/server_port/" rel="prev" title="linux下关于服务端口的配置">
-                linux下关于服务端口的配置 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -726,7 +749,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#on-events-selector-data-fn"><span class="nav-number">1.</span> <span class="nav-text">on(events,[selector],[data],fn)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#替换bind"><span class="nav-number">1.1.</span> <span class="nav-text">替换bind()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#替换live"><span class="nav-number">1.2.</span> <span class="nav-text">替换live()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#live-写法"><span class="nav-number">1.3.</span> <span class="nav-text">live()写法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#on-写法"><span class="nav-number">1.4.</span> <span class="nav-text">on()写法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#替换delegate"><span class="nav-number">1.5.</span> <span class="nav-text">替换delegate()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#delegate-的写法"><span class="nav-number">1.6.</span> <span class="nav-text">delegate()的写法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#on-写法-1"><span class="nav-number">1.7.</span> <span class="nav-text">on()写法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-bind-Unbind"><span class="nav-number">2.1.</span> <span class="nav-text">1. bind/Unbind</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-One"><span class="nav-number">2.2.</span> <span class="nav-text">2. One</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-live"><span class="nav-number">2.3.</span> <span class="nav-text">3. live</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#CGI"><span class="nav-number">1.</span> <span class="nav-text">CGI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FastCGI"><span class="nav-number">2.</span> <span class="nav-text">FastCGI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP-FPM"><span class="nav-number">3.</span> <span class="nav-text">PHP_FPM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#运行模式"><span class="nav-number">3.1.</span> <span class="nav-text">运行模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行原理"><span class="nav-number">3.2.</span> <span class="nav-text">运行原理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#master进程"><span class="nav-number">3.2.1.</span> <span class="nav-text">master进程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#worker进程"><span class="nav-number">3.2.2.</span> <span class="nav-text">worker进程</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#整体流程"><span class="nav-number">3.3.</span> <span class="nav-text">整体流程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx与fpm"><span class="nav-number">4.</span> <span class="nav-text">Nginx与fpm</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Nginx的fastcgi-模块"><span class="nav-number">4.1.</span> <span class="nav-text">Nginx的fastcgi 模块</span></a></li></ol></li></ol></div>
             
 
           </div>
