@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhipenwang.github.io/"/>
-  <updated>2019-04-14T12:53:15.638Z</updated>
+  <updated>2019-04-18T09:18:05.977Z</updated>
   <id>https://zhipenwang.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>深入理解cgi与fastcgi：nginx与fpm的工作机制</title>
+    <link href="https://zhipenwang.github.io/2019/04/18/2019_04_18/"/>
+    <id>https://zhipenwang.github.io/2019/04/18/2019_04_18/</id>
+    <published>2019-04-17T16:00:00.000Z</published>
+    <updated>2019-04-18T09:18:05.977Z</updated>
+    
+    <content type="html"><![CDATA[<p><em>本文主要是讨论Nginx与FPM的工作机制及其配置背后的原理，以此来真正理解Nginx与PHP的协同工作机制。</em></p><blockquote><p>先来谈谈CGI、FastCGI两个协议及PHP-FPM。</p></blockquote><h3 id="CGI"><a href="#CGI" class="headerlink" title="CGI"></a>CGI</h3><p>CGI是Web Server与后台语言交互的协议。通过此协议，开发者可以使用任何语言处理web server发来的请求，动态的生成内容。  </p><p>CGI的工作原理：<br>每当客户请求CGI的时候，WEB服务器就请求操作系统生成一个新的CGI解释器进程（如php-cgi.exe），CGI的一个进程处理完一个请求后就退出，下一个请求来时再创建新的进程。</p><p>CGI的缺点：<br>每处理一个请求都需要fork出一个全新的进程，随着Web的兴起，高并发越来越成为常态，这样低效的方式无法满足需求。于是FastCGI诞生了。</p><h3 id="FastCGI"><a href="#FastCGI" class="headerlink" title="FastCGI"></a>FastCGI</h3><p>FastCGI，顾名思义为更快的CGI，允许在一个进程内处理多个请求，而不是一个请求处理完毕就直接结束进程，性能上有了很大的提高。<br>FastCGI，就像一个常驻（long-live）型的CGI，可以一直执行着，只要激活后，不会每次都要花费时间去fork一次进程（这是CGI最为人诟病的fork-and-execute模式）。  </p><p>一般情况下，FastCGI的整个工作流程如下：  </p><ol><li>Web Server启动时载入FastCGI进程管理器（IIS ISAPI或Apache Module）</li><li>FastCGI进程管理器自身初始化。启动多个CGI解释器进程（可见多个php-cgi）并等待来自Web Server的连接</li><li>当客户端请求到达Web Server时，FastCGI进程管理器选择并连接到一个CGI解释器。Web Server将CGI环境变量和标准输入发送到FastCGI子进程php-cgi</li></ol><h3 id="PHP-FPM"><a href="#PHP-FPM" class="headerlink" title="PHP_FPM"></a>PHP_FPM</h3><p>php-fpm是PHP内置的一个FastCGI进程管理器。是一种master（主）/worker（子）多进程架构，与nginx设计风格有点类似。<br>master进程只有一个，主要负责CGI及PHP环境初始化、端口监听、事件监听、子进程状态等等，接收来自Web Server的请求；而worker进程则一般有多个（具体数量根据实际需要配置），每个进程内部都嵌入了一个PHP解释器，是PHP代码真正执行的地方，负责处理php请求。</p><h4 id="运行模式"><a href="#运行模式" class="headerlink" title="运行模式"></a>运行模式</h4><p>在介绍允许原理之前，先了解它的几种运行模式。<br>php-fpm支持三种运行模式，分别为static、ondemand、dynamic，默认为dynamic。  </p><ol><li>static：静态模式，启动时分配固定的worker进程，通过设置pm.max_children固定的worker进程数</li><li>ondemand：按需分配，当收到用户请求时fork worker进程</li><li>dynamic：动态模式，启动时分配固定的进程，伴随着请求数增加，在设定的浮动范围调整worker进程</li></ol><h4 id="运行原理"><a href="#运行原理" class="headerlink" title="运行原理"></a>运行原理</h4><p>php-fpm采用master/worker架构设计，下面详细讲解这两个模块的运行原理。</p><h5 id="master进程"><a href="#master进程" class="headerlink" title="master进程"></a>master进程</h5><p>master进程工作流程分为4个阶段  </p><ol><li>cgi初始化阶段：分别调用fcgi_init()和 sapi_startup()函数，注册进程信号以及初始化sapi_globals全局变量。 </li><li>php环境初始化阶段：由cgi_sapi_module.startup 触发。实际调用php_cgi_startup函数，而php_cgi_startup内部又调用php_module_startup执行。<br> php_module_startup主要功能：  <ol><li>加载和解析php配置；  </li><li>加载php模块并记入函数符号表(function_table)；  </li><li>加载zend扩展 ;   </li><li>设置禁用函数和类库配置；  </li><li>注册回收内存方法； </li></ol></li><li>php-fpm初始化阶段：执行fpm_init()函数。负责解析php-fpm.conf文件配置，获取进程相关参数（允许进程打开的最大文件数等）,初始化进程池及事件模型等操作。 </li><li>php-fpm运行阶段：执行fpm_run() 函数，运行后主进程发生阻塞。<br> 该阶段分为两部分：fork子进程 和 循环事件。<br> fork子进程部分交由fpm_children_create_initial函数处理（ 注：ondemand模式在fpm_pctl_on_socket_accept函数创建）。<br> 循环事件部分通过fpm_event_loop函数处理，其内部是一个死循环，负责事件的收集工作。</li></ol><h5 id="worker进程"><a href="#worker进程" class="headerlink" title="worker进程"></a>worker进程</h5><p>worker进程分为 接收客户端请求、处理请求、请求结束三个阶段。  </p><ol><li><p>接收客户端请求：执行fcgi_accept_request函数，其内部通过调用accept 函数获取客户端请求。</p> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//请求锁</span><br><span class="line">FCGI_LOCK(req-&gt;listen_socket);</span><br><span class="line">req-&gt;fd = accept(listen_socket, (struct sockaddr *)&amp;sa, &amp;len);</span><br><span class="line">//释放锁</span><br><span class="line">FCGI_UNLOCK(req-&gt;listen_socket);</span><br></pre></td></tr></table></figure><p> 从上面的代码，可以注意到accept之前有一个请求锁的操作，这么设计是为了避免请求出现“惊群”的现象。当然，这是一个可选的选项，可以取消该功能。</p></li><li>处理请求阶段：  <ol><li>首先，分别调用fpm_request_info、php_request_startup获取请求内容及注册全局变量(GET、_POST、SERVER、_ENV、$_FILES)；  </li><li>然后根据请求信息调用php_fopen_primary_script访问脚本文件；  </li><li>最后交给php_execute_script执行。php_execute_script内部调用zend_execute_scripts方法将脚本交给zend引擎处理。 </li></ol></li><li>请求结束阶段：执行php_request_shutdown函数。此时回调register_shutdown_function注册的函数及__destruct()方法，发送响应内容、释放内存等操作。</li></ol><h4 id="整体流程"><a href="#整体流程" class="headerlink" title="整体流程"></a>整体流程</h4><p>从FPM接收到请求到处理完毕，其具体流程如下：</p><ol><li>FPM的master进程接收到请求</li><li>master进程根据配置指派特定的worker进程进行请求处理，如果没有可用进程，返回错误，这也是在配合Nginx遇到502错误比较多的原因</li><li>worker进程处理请求，如果超时，返回504错误</li><li>请求处理结束，返回结果</li></ol><blockquote><p>下面从Nginx层面来说明与fpm的请求处理。</p></blockquote><h3 id="Nginx与fpm"><a href="#Nginx与fpm" class="headerlink" title="Nginx与fpm"></a>Nginx与fpm</h3><p>Nginx不仅仅是一个Web服务器，也是一个功能强大的Proxy服务器，除了进行http请求的代理，也可以进行许多其他协议请求的代理，包括本文与fpm相关的fastcgi协议。  </p><blockquote><p>为了能够使 Nginx 理解 fastcgi 协议，Nginx 提供了 fastcgi 模块来将 http 请求映射为对应的 fastcgi 请求。</p></blockquote><h4 id="Nginx的fastcgi-模块"><a href="#Nginx的fastcgi-模块" class="headerlink" title="Nginx的fastcgi 模块"></a>Nginx的fastcgi 模块</h4><ol><li>提供了 fastcgi_param 指令来主要处理这些映射关系，其主要完成的工作是将 Nginx 中的变量翻译成 PHP 中能够理解的变量。  </li><li>提供了 fastcgi_pass 指令，这个指令用于指定 fpm 进程监听的地址，Nginx 会把所有的 php 请求翻译成 fastcgi 请求之后再发送到这个地址</li></ol><p>下面是一个简单的可用工作的Nginx配置文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    server_name  localhost;</span><br><span class="line">    root         /data/code/www;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        root   /data/code/www;</span><br><span class="line">        index  index.php index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location ~ \.php$ &#123;</span><br><span class="line">        root            /data/code/www;</span><br><span class="line">        fastcgi_index   index.php;</span><br><span class="line">        fastcgi_pass    phpfpm_backend;</span><br><span class="line">        include         fastcgi_params;</span><br><span class="line">        fastcgi_param   SCRIPT_FILENAME  $document_root$fastcgi_script_name;</span><br><span class="line">        #fastcgi_param  SCRIPT_NAME      $fastcgi_script_name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><blockquote><p>在这个配置文件中，新建了虚拟主机:<br>监听80端口,<br>Web根目录为：/data/code/www，<br>通过location指令，将所有的以.php结尾的文件都交给了fastcgi模块去处理，从而将所有的php求都交给了fpm处理，<br>完成了Nginx到fpm的闭环。</p></blockquote><p>希望通过本文，能够让大家对Nginx与FPM通信的整个流程比较清晰。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;em&gt;本文主要是讨论Nginx与FPM的工作机制及其配置背后的原理，以此来真正理解Nginx与PHP的协同工作机制。&lt;/em&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;先来谈谈CGI、FastCGI两个协议及PHP-FPM。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 i
+      
+    
+    </summary>
+    
+      <category term="PHP" scheme="https://zhipenwang.github.io/categories/PHP/"/>
+    
+    
+      <category term="PHP" scheme="https://zhipenwang.github.io/tags/PHP/"/>
+    
+      <category term="Nginx" scheme="https://zhipenwang.github.io/tags/Nginx/"/>
+    
+  </entry>
   
   <entry>
     <title>ab测试</title>
@@ -523,34 +554,6 @@
     
     
       <category term="hexo" scheme="https://zhipenwang.github.io/tags/hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>git 误删分支恢复方法</title>
-    <link href="https://zhipenwang.github.io/2018/03/28/git_recover_branch/"/>
-    <id>https://zhipenwang.github.io/2018/03/28/git_recover_branch/</id>
-    <published>2018-03-28T10:21:01.000Z</published>
-    <updated>2019-04-09T14:57:32.968Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li>在使用git的时候，有时候会因为人为因素导致分支（commit）被删除，可以使用如下步骤进行恢复。</li></ul><h3 id="首先使用以下步骤创建一个新分支，修改一些文件后删除，以便进行恢复"><a href="#首先使用以下步骤创建一个新分支，修改一些文件后删除，以便进行恢复" class="headerlink" title="首先使用以下步骤创建一个新分支，修改一些文件后删除，以便进行恢复"></a>首先使用以下步骤创建一个新分支，修改一些文件后删除，以便进行恢复</h3><p>1、创建分支hexo<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch hexo</span><br></pre></td></tr></table></figure></p><p>2、查看分支列表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git branch -a</span><br><span class="line">  * master</span><br><span class="line">hexo</span><br></pre></td></tr></table></figure></p><p>3、切换到hexo分支，随便修改一下东西后commit<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git checkout hexo</span><br><span class="line"></span><br><span class="line">echo &apos;hexo&apos; &gt; test.txt</span><br><span class="line"></span><br><span class="line">git add .</span><br><span class="line">git commit -m &apos;add test.txt&apos;</span><br></pre></td></tr></table></figure></p><p>4、删除分支<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -D hexo</span><br></pre></td></tr></table></figure></p><p>5、查看分支列表，hexo分支已经不存在<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch -a</span><br><span class="line">  * master</span><br></pre></td></tr></table></figure></p><h2 id="恢复步骤如下"><a href="#恢复步骤如下" class="headerlink" title="恢复步骤如下"></a>恢复步骤如下</h2><p>1、使用git log -g 找回之前提交的commit<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">commit 3eac14d05bc1264cda54a7c21f04c3892f32406a</span><br><span class="line">Reflog: HEAD@&#123;1&#125; (fdipzone &lt;fdipzone@sina.com&gt;)</span><br><span class="line">Reflog message: commit: add test.txt</span><br><span class="line">Author: fdipzone &lt;fdipzone@sina.com&gt;</span><br><span class="line">Date:   Sun Jan 31 22:26:33 2016 +0800</span><br><span class="line"></span><br><span class="line">    add test.txt</span><br></pre></td></tr></table></figure></p><p>2、使用 git branch recover_branch[新分支] commit_id 命令，用这个commit创建一个分支<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git branch recover_branch_hexo 3eac14d05bc1264cda54a7c21f04c3892f32406a</span><br><span class="line"></span><br><span class="line">git branch -a</span><br><span class="line">* master</span><br><span class="line">  recover_branch_hexo</span><br></pre></td></tr></table></figure></p><p>这个时候，可以看到 recover_branch_hexo分支已经创建了。<br>3、切换到recover_branch_hexo分支，检查文件是否存在<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout recover_branch_hexo</span><br><span class="line">ls -lt</span><br></pre></td></tr></table></figure></p><p>这样就可以恢复误删除的分支了。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;ul&gt;
-&lt;li&gt;在使用git的时候，有时候会因为人为因素导致分支（commit）被删除，可以使用如下步骤进行恢复。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;首先使用以下步骤创建一个新分支，修改一些文件后删除，以便进行恢复&quot;&gt;&lt;a href=&quot;#首先使用以下步骤创建一个新分支，修改
-      
-    
-    </summary>
-    
-      <category term="GIT" scheme="https://zhipenwang.github.io/categories/GIT/"/>
-    
-    
-      <category term="GIT" scheme="https://zhipenwang.github.io/tags/GIT/"/>
     
   </entry>
   
