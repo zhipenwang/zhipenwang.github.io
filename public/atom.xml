@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhipenwang.github.io/"/>
-  <updated>2019-04-18T09:18:05.977Z</updated>
+  <updated>2019-04-23T08:21:51.944Z</updated>
   <id>https://zhipenwang.github.io/</id>
   
   <author>
@@ -15,6 +15,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>redis：内存满了你能怎么办</title>
+    <link href="https://zhipenwang.github.io/2019/04/23/2019_04_23/"/>
+    <id>https://zhipenwang.github.io/2019/04/23/2019_04_23/</id>
+    <published>2019-04-22T16:00:00.000Z</published>
+    <updated>2019-04-23T08:21:51.944Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>redis是纯内存，key-value的数据库。</p></blockquote><p>解决方法：</p><ol><li>增加内存</li><li>使用内存淘汰策略（LRU）</li><li>Redis集群</li></ol><p><em>第一点是最笨的方法，耗钱耗资源，适合有钱的大佬😂，本文主要讲解第二点跟第三点。</em></p><h3 id="使用内存淘汰策略（LRU）"><a href="#使用内存淘汰策略（LRU）" class="headerlink" title="使用内存淘汰策略（LRU）"></a>使用内存淘汰策略（LRU）</h3><blockquote><p>redis设置配置文件的maxmemory参数，可以控制其最大可以用的内存大小（字节）。<br>当所需内存超过了maxmemory后，需要去修改配置文件的maxmemory-policy参数了。</p></blockquote><p>maxmemory-policy，默认值为【noeviction】，下列为删除redis键具有的淘汰规则。</p><blockquote><p>LRU算法，least RecentlyUsed，最近最少使用算法。也就是说默认删除最近最少使用的键。</p></blockquote><table><thead><tr><th>规则名称</th><th>规则说明</th></tr></thead><tbody><tr><td>volatile-lru</td><td>使用LRU算法删除一个键（只对设置了生存时间的键），最少使用的</td></tr><tr><td>allkeys-lru</td><td>使用LRU算法删除一个键，最少使用的</td></tr><tr><td>volatile-random</td><td>随机删除一个键（只对设置了生存长时间的键）</td></tr><tr><td>allkeys-random</td><td>随机删除一个键</td></tr><tr><td>volatile-ttl</td><td>删除生存时间最近的一个键</td></tr><tr><td>noeviction</td><td>不删除键，只返回错误</td></tr></tbody></table><blockquote><p>作为内存数据库，出于对性能和内存消耗的考虑，Redis 的淘汰算法实际实现上并非针对所有 key，而是抽样一小部分并且从中选出被淘汰的 key。</p><p>使用 Redis 缓存数据时，为了提高缓存命中率，需要保证缓存数据都是热点数据。可以将内存最大使用量设置为热点数据占用的内存量，然后启用 allkeys-lru 淘汰策略，将最近最少使用的数据淘汰。</p><p>Redis 4.0 引入了 volatile-lfu 和 allkeys-lfu 淘汰策略，LFU 策略通过统计访问频率，将访问频率最少的键值对淘汰。</p></blockquote><p>但是一定要注意一点！redis中并不会准确的删除所有键中最近最少使用的键，而是随机抽取3个键，删除这三个键中最近最少使用的键。<br>那么3这个数字也是可以设置的，对应位置是配置文件中的maxmeory-samples.</p><h3 id="Redis集群"><a href="#Redis集群" class="headerlink" title="Redis集群"></a>Redis集群</h3><p><em>Redis仅支持单实例，内存一般最多10~20GB。对于内存动辄100~200GB的系统，就需要通过集群来支持了。</em></p><p>Redis集群有三种方式：客户端分片、代理分片、RedisCluster。</p><h4 id="客户端分片"><a href="#客户端分片" class="headerlink" title="客户端分片"></a>客户端分片</h4><p>通过业务代码自己实现路由</p><blockquote><p>优势：可以自己控制分片算法、性能比代理的好<br>劣势：维护成本高、扩容/缩容等运维操作都需要自己研发</p></blockquote><h4 id="代理分片（redis中间件）"><a href="#代理分片（redis中间件）" class="headerlink" title="代理分片（redis中间件）"></a>代理分片（redis中间件）</h4><p>代理程序接收到来自业务程序的数据请求，根据路由规则，将这些请求分发给正确的Redis实例并返回给业务程序。使用类似Twemproxy、Codis等中间件实现。</p><blockquote><p>优势：运维方便、程序不用关心如何链接Redis实例<br>劣势：会带来性能消耗（大概20%）、无法平滑扩容/缩容，需要执行脚本迁移数据，不方便(Codis在Twemproxy基础上优化并实现了预分片来达到Auto Rebalance)。</p></blockquote><h4 id="Redis-Cluster"><a href="#Redis-Cluster" class="headerlink" title="Redis Cluster"></a>Redis Cluster</h4><blockquote><p>优势：官方集群解决方案、无中心节点，和客户端直连，性能较好<br>劣势：方案太重、无法平滑扩容/缩容，需要执行相应的脚本，不方便、太新，没有相应成熟的解决案例</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;redis是纯内存，key-value的数据库。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;解决方法：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;增加内存&lt;/li&gt;
+&lt;li&gt;使用内存淘汰策略（LRU）&lt;/li&gt;
+&lt;li&gt;Redis集群&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;
+      
+    
+    </summary>
+    
+      <category term="redis" scheme="https://zhipenwang.github.io/categories/redis/"/>
+    
+    
+      <category term="redis" scheme="https://zhipenwang.github.io/tags/redis/"/>
+    
+  </entry>
   
   <entry>
     <title>深入理解cgi与fastcgi：nginx与fpm的工作机制</title>
@@ -527,33 +561,6 @@
     
     
       <category term="Web前端" scheme="https://zhipenwang.github.io/tags/Web%E5%89%8D%E7%AB%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>更换电脑后的博客续写</title>
-    <link href="https://zhipenwang.github.io/2018/04/04/change_do_hexo/"/>
-    <id>https://zhipenwang.github.io/2018/04/04/change_do_hexo/</id>
-    <published>2018-04-04T05:21:01.000Z</published>
-    <updated>2019-04-09T14:57:32.965Z</updated>
-    
-    <content type="html"><![CDATA[<p>当重装电脑之后，或者想在其他电脑上修改博客，可以使用下列步骤：</p><ol><li>使用git clone <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:zhipenwang/zhipenwang.github.io.git拷贝仓库（默认分支为master）；</li><li><p>在本地新拷贝的<a href="http://zhipenwang.github.io文件夹下通过Git" target="_blank" rel="noopener">http://zhipenwang.github.io文件夹下通过Git</a> bash依次执行下列指令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo</span><br><span class="line">npm install</span><br><span class="line">npm install hexo-deployer-git</span><br></pre></td></tr></table></figure><p> （记得，不需要hexo init这条指令）。</p></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;当重装电脑之后，或者想在其他电脑上修改博客，可以使用下列步骤：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;使用git clone &lt;a href=&quot;mailto:git@github.com&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;git@github.com&lt;/a
-      
-    
-    </summary>
-    
-      <category term="搭建博客" scheme="https://zhipenwang.github.io/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
-    
-    
-      <category term="hexo" scheme="https://zhipenwang.github.io/tags/hexo/"/>
     
   </entry>
   
