@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhipenwang.github.io/"/>
-  <updated>2019-04-23T08:21:51.944Z</updated>
+  <updated>2019-05-05T09:18:10.105Z</updated>
   <id>https://zhipenwang.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>URL在Nginx与Apache下的重写规则</title>
+    <link href="https://zhipenwang.github.io/2019/05/04/2019_05_04/"/>
+    <id>https://zhipenwang.github.io/2019/05/04/2019_05_04/</id>
+    <published>2019-05-03T16:00:00.000Z</published>
+    <updated>2019-05-05T09:18:10.105Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="nginx下的url重写"><a href="#nginx下的url重写" class="headerlink" title="nginx下的url重写"></a>nginx下的url重写</h3><p>修改nginx的配置文件，nginx.conf<br>修改某个站点目录下的url重写规则<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    location /zhipeng/ &#123;</span><br><span class="line">        if (!-e $request_filename)&#123;</span><br><span class="line">            rewrite  ^/zhipeng/(.*)$  /zhipeng/index.php?s=$1  last;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>修改整站的url重写规则<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    rewrite  ^/zhipeng/(.*)$  /zhipeng/index.php?s=$1  last;</span><br><span class="line">    //rewrite 规则 定向路径 重写类型</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><blockquote><p>规则：可以是字符串或者正则来表示想匹配的目标url<br>定向路径：表示匹配到规则后要定向的路径，如果规则里有正则，则可以使用$index来表示正则里的捕获分组<br>重写类型：  </p><blockquote><p>last ：相当于Apache里德(L)标记，表示完成rewrite，浏览器地址栏URL地址不变<br>    break；本条规则匹配完成后，终止匹配，不再匹配后面的规则，浏览器地址栏URL地址不变<br>    redirect：返回302临时重定向，浏览器地址会显示跳转后的URL地址<br>    permanent：返回301永久重定向，浏览器地址栏会显示跳转后的URL地址  </p></blockquote></blockquote><h3 id="apache下的url重写"><a href="#apache下的url重写" class="headerlink" title="apache下的url重写"></a>apache下的url重写</h3><p>修改apache的配置文件http.conf<br>开启 rewrite模块：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LoadModule rewrite_module modules/mod_rewrite.so</span><br></pre></td></tr></table></figure></p><p>自定义站点目录的重写规则<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在要支持url rewrite的目录启用：</span><br><span class="line"> Options FollowSymLinks 和 AllowOverride All</span><br></pre></td></tr></table></figure></p><p>站点目录下添加 .htaccess文件,添加内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;IfModule mod_rewrite.c&gt;</span><br><span class="line">  Options +FollowSymlinks</span><br><span class="line">  RewriteEngine On</span><br><span class="line"></span><br><span class="line">  RewriteCond %&#123;REQUEST_FILENAME&#125; !-d</span><br><span class="line">  RewriteCond %&#123;REQUEST_FILENAME&#125; !-f</span><br><span class="line">  RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]</span><br><span class="line">&lt;/IfModule&gt;</span><br></pre></td></tr></table></figure></p><blockquote><p>%{REQUEST_FILENAME}获得一个服务器变量的值<br>!-f是正则，其中感叹号表否定，-f用来检测当前值所代表的路径是否是一个常规文件<br>$1代表引用RewriteRule中的第一个正则(.*)代表的字符  </p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;nginx下的url重写&quot;&gt;&lt;a href=&quot;#nginx下的url重写&quot; class=&quot;headerlink&quot; title=&quot;nginx下的url重写&quot;&gt;&lt;/a&gt;nginx下的url重写&lt;/h3&gt;&lt;p&gt;修改nginx的配置文件，nginx.conf&lt;br&gt;修改某
+      
+    
+    </summary>
+    
+      <category term="服务器" scheme="https://zhipenwang.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+    
+      <category term="PHP" scheme="https://zhipenwang.github.io/tags/PHP/"/>
+    
+      <category term="Nginx" scheme="https://zhipenwang.github.io/tags/Nginx/"/>
+    
+  </entry>
   
   <entry>
     <title>redis：内存满了你能怎么办</title>
@@ -525,34 +552,6 @@
 &lt;p&gt;上一节介绍了一些关于表单处理的元素内容&lt;br&gt;本节介绍jquery对于父、同级、子元素的处理方式。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&quot;父窗口与子窗口处理&quot;&gt;&lt;a href=&quot;#父窗口与子窗口处理&quot; class=&quot;headerlin
-      
-    
-    </summary>
-    
-      <category term="jQuery" scheme="https://zhipenwang.github.io/categories/jQuery/"/>
-    
-    
-      <category term="Web前端" scheme="https://zhipenwang.github.io/tags/Web%E5%89%8D%E7%AB%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>jQuery获取表单值及属性内容</title>
-    <link href="https://zhipenwang.github.io/2018/04/21/js_1/"/>
-    <id>https://zhipenwang.github.io/2018/04/21/js_1/</id>
-    <published>2018-04-21T12:21:01.000Z</published>
-    <updated>2019-04-09T14:57:32.970Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>平时前端在处理表单数据的时候，总是需要通过表单属性或者值来进行一些用户看不到的处理。<br>比如：联动选项的处理、数据的验证过滤等。<br>本节针对不同的表单内容进行了不同的获取方式。</p></blockquote><h3 id="获取当前表单元素的值"><a href="#获取当前表单元素的值" class="headerlink" title="获取当前表单元素的值"></a>获取当前表单元素的值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;text&quot; name=&quot;name&quot; onblur=&quot;getValue(this)&quot;&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">function getValue(obj)&#123;</span><br><span class="line">    // 获取值</span><br><span class="line">$(obj).val();</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure><h3 id="获取表单元素值及属性内容"><a href="#获取表单元素值及属性内容" class="headerlink" title="获取表单元素值及属性内容"></a>获取表单元素值及属性内容</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;text&quot; name=&quot;name&quot;&gt;</span><br><span class="line">&lt;select name=&quot;sex&quot; data-type=&quot;sex&quot; field=&quot;sex&quot;&gt;</span><br><span class="line">&lt;option value=&quot;man&quot;&gt;男&lt;/option&gt;</span><br><span class="line">&lt;option value=&quot;woman&quot;&gt;女&lt;/option&gt;</span><br><span class="line">&lt;/select&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">function do_submit(obj)&#123;</span><br><span class="line">    // 获取值</span><br><span class="line">var name = $(&quot;input[name=&apos;name&apos;]&quot;).val();</span><br><span class="line">var sex_value = $(&quot;select[name=&apos;sex&apos;]&quot;).val();</span><br><span class="line">// 获取特定文本值的数据</span><br><span class="line">    $(&apos;select[name=&quot;data[select]&quot;] [value=&quot;man&quot;]&apos;).val();</span><br><span class="line">// 获取文本值</span><br><span class="line">var sex_text = $(&quot;select[name=&apos;sex&apos;]&quot;).find(&apos;option:selected&apos;).text();</span><br><span class="line">// 获取data-type属性值</span><br><span class="line">var sex_type = $(&quot;select[name=&apos;sex&apos;]&quot;).data(&apos;type&apos;);</span><br><span class="line">var sex_type = $(&quot;select[name=&apos;sex&apos;]&quot;).attr(&apos;data-type&apos;);</span><br><span class="line">// 获取field属性值</span><br><span class="line">var sex_field = $(&quot;select[name=&apos;sex&apos;]&quot;).attr(&apos;field&apos;);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure><h3 id="获取多个多行文本框内容值"><a href="#获取多个多行文本框内容值" class="headerlink" title="获取多个多行文本框内容值"></a>获取多个多行文本框内容值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;textarea name=&quot;formula[]&quot; class=&quot;text&quot;&gt;&lt;/textarea&gt;</span><br><span class="line">&lt;textarea name=&quot;formula[]&quot; class=&quot;text&quot;&gt;&lt;/textarea&gt;</span><br><span class="line">&lt;textarea name=&quot;formula[]&quot; class=&quot;text&quot;&gt;&lt;/textarea&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    var formula = new Array();</span><br><span class="line">$(&quot;.text,textarea&quot;).each(function(e)&#123;</span><br><span class="line">    formula.push($(this).val());</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt;平时前端在处理表单数据的时候，总是需要通过表单属性或者值来进行一些用户看不到的处理。&lt;br&gt;比如：联动选项的处理、数据的验证过滤等。&lt;br&gt;本节针对不同的表单内容进行了不同的获取方式。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;获取当前表
       
     
     </summary>
