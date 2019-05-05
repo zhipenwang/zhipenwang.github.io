@@ -86,22 +86,22 @@
     </url>
 
     <url>
+        <loc>https://zhipenwang.github.io/tags/redis/</loc>
+        <lastmod>2019-04-23T08:21:51.944Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://zhipenwang.github.io/tags/PHP/</loc>
-        <lastmod>2019-04-18T09:18:05.977Z</lastmod>
+        <lastmod>2019-05-05T09:18:10.105Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://zhipenwang.github.io/tags/Nginx/</loc>
-        <lastmod>2019-04-18T09:18:05.977Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://zhipenwang.github.io/tags/redis/</loc>
-        <lastmod>2019-04-23T08:21:51.944Z</lastmod>
+        <lastmod>2019-05-05T09:18:10.105Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
