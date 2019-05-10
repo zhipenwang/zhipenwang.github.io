@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[PHP错误及异常处理]]></title>
+    <url>%2F2019%2F05%2F10%2F2019_05_10%2F</url>
+    <content type="text"><![CDATA[set_error_handler() 捕获错误，只能捕获系统产生的一些Warning、Notice级别错误12345678代码：set_error_handler(&apos;func_error&apos;);function func_error($type, $message, $file, $line) &#123; var_dump(&quot;&lt;b&gt;set_error_handler: &quot; . $type . &quot;:&quot; . $message . &quot; in &quot; . $file . &quot; on &quot; . $line . &quot; line .&lt;/b&gt;&lt;br /&gt;&quot;);&#125;echo $name;执行结果：string(108) &quot;set_error_handler: 8:Undefined variable: name in /data/code/www/test/exception.php on 10 line .&quot; register_shutdown_function() PHP执行结束前最后一个调用的函数只在parse-time出错时是不会调用本函数的。只有在run-time出错的时候，才会调用本函数error_get_last() 可以拿到本次执行产生的所有错误 123456789101112131415代码：register_shutdown_function(&apos;func_shutdown&apos;);function func_shutdown() &#123; if ($error = error_get_last()) &#123; var_dump(&quot;&lt;b&gt;register_shutdown_function: Type:&quot; . $error[&apos;type&apos;] . &quot; Msg:&quot; . $error[&apos;message&apos;] . &quot; in &quot; . $error[&apos;file&apos;] . &quot;on line &quot; . $error[&apos;line&apos;] . &quot;&lt;/b&gt;&lt;br /&gt;&quot;); &#125;&#125;require_once(&quot;error.php&quot;);error.php: echo 23++--;执行结果：Parse error: syntax error, unexpected &apos;++&apos; (T_INC), expecting &apos;,&apos; or &apos;;&apos; in /data/code/www/test/error.php on line 2string(153) &quot;register_shutdown_function: Type:4 Msg:syntax error, unexpected &apos;++&apos; (T_INC), expecting &apos;,&apos; or &apos;;&apos; in /data/code/www/test/error.phpon line 2&quot; set_exception_handler() 没有用try/catch块来捕获的异常或没有被捕获的异常就会进入此方法，回调函数执行后异常会中止 12345678910代码set_exception_handler(&apos;func_exception&apos;);function func_exception(Exception $e) &#123; var_dump(&quot;&lt;b&gt;set_exception_handler: Exception: &quot; . $e-&gt;getMessage() . &quot;&lt;/b&gt;&lt;br /&gt;&quot;);&#125;throw new Exception(&quot;Error Processing Request&quot;, 1);执行结果：string(71) &quot;set_exception_handler: Exception: Error Processing Request&quot;]]></content>
+      <categories>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[URL在Nginx与Apache下的重写规则]]></title>
     <url>%2F2019%2F05%2F04%2F2019_05_04%2F</url>
     <content type="text"><![CDATA[nginx下的url重写修改nginx的配置文件，nginx.conf修改某个站点目录下的url重写规则1234567server &#123; location /zhipeng/ &#123; if (!-e $request_filename)&#123; rewrite ^/zhipeng/(.*)$ /zhipeng/index.php?s=$1 last; &#125; &#125;&#125; 修改整站的url重写规则1234server &#123; rewrite ^/zhipeng/(.*)$ /zhipeng/index.php?s=$1 last; //rewrite 规则 定向路径 重写类型&#125; 规则：可以是字符串或者正则来表示想匹配的目标url定向路径：表示匹配到规则后要定向的路径，如果规则里有正则，则可以使用$index来表示正则里的捕获分组重写类型： last ：相当于Apache里德(L)标记，表示完成rewrite，浏览器地址栏URL地址不变 break；本条规则匹配完成后，终止匹配，不再匹配后面的规则，浏览器地址栏URL地址不变 redirect：返回302临时重定向，浏览器地址会显示跳转后的URL地址 permanent：返回301永久重定向，浏览器地址栏会显示跳转后的URL地址 apache下的url重写修改apache的配置文件http.conf开启 rewrite模块：1LoadModule rewrite_module modules/mod_rewrite.so 自定义站点目录的重写规则12在要支持url rewrite的目录启用： Options FollowSymLinks 和 AllowOverride All 站点目录下添加 .htaccess文件,添加内容：12345678&lt;IfModule mod_rewrite.c&gt; Options +FollowSymlinks RewriteEngine On RewriteCond %&#123;REQUEST_FILENAME&#125; !-d RewriteCond %&#123;REQUEST_FILENAME&#125; !-f RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]&lt;/IfModule&gt; %{REQUEST_FILENAME}获得一个服务器变量的值!-f是正则，其中感叹号表否定，-f用来检测当前值所代表的路径是否是一个常规文件$1代表引用RewriteRule中的第一个正则(.*)代表的字符]]></content>
