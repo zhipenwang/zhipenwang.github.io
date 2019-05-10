@@ -326,7 +326,8 @@ livere_uid: MTAyMC8zNTI3NS8xMTgxMQ==
 
 # Google Webmaster tools verification setting
 # See: https://www.google.com/webmasters/
-#google_site_verification:
+google_site_verification: h7iI3SYLzaYstLGv2FM9nDJvjiHXcaSVcxmtWWgN5NM
+baidu_site_verification: MiJx1CN4qE
 
 # Google Analytics
 #google_analytics:

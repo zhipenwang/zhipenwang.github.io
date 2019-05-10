@@ -301,9 +301,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[composer构建PHP框架——初始化]]></title>
-    <url>%2F2017%2F04%2F21%2Fcomposer-2%2F</url>
-    <content type="text"><![CDATA[“一个时代结束了，另一个时代开始了。”Framework Interoperability Group（框架可互用性小组），简称 FIG，成立于 2009 年。FIG 最初由几位知名 PHP 框架开发者发起，在吸纳了许多优秀的大脑和强健的体魄后，提出了 PSR-0 到 PSR-4 五套 PHP 非官方规范： 123456789* PSR-0 (Autoloading Standard) 自动加载标准* PSR-1 (Basic Coding Standard) 基础编码标准* PSR-2 (Coding Style Guide) 编码风格向导* PSR-3 (Logger Interface) 日志接口* PSR-4 (Improved Autoloading) 自动加载优化标准 创建composer.json在网站根目录下创建新文件夹 my-framework （My First Framework based on Composer），然后在此文件夹内创建 composer.json 文件12345&#123; &quot;require&quot;:&#123; &#125;&#125; 初始化composer打开命令行cmd，进入刚刚新建的目录 my_framework，执行命令1composer update 执行成功后生成了扩展包vendor 此时目录为： 到此，composer初始化完成！]]></content>
+    <title><![CDATA[composer构建PHP框架——构建路由]]></title>
+    <url>%2F2017%2F04%2F21%2Fcomposer-3%2F</url>
+    <content type="text"><![CDATA[路由选择安装本节开始构建路由，先去 GitHub 搜一下：点此查看搜索结果 推荐 https://github.com/NoahBuscher/Macaw，对应的 Composer 包为 noahbuscher/macaw 。 下面开始安装它，更改 composer.json：12345&#123; &quot;require&quot;:&#123; &quot;noahbuscher/macaw&quot;: &quot;dev-master&quot; &#125;&#125; 运行 composer update，成功之后将得到以下目录： 至此，Macaw安装成功！ 站点入口文件与环境在项目目录下新建public 文件夹，这个文件夹将是用户唯一可见的部分。在文件夹下新建 index.php 文件：1234567&lt;?php// Autoload 自动载入require &apos;../vendor/autoload.php&apos;;// 路由配置require &apos;../config/routes.php&apos;; 上面一行表示引入 Composer 的自动载入功能，下面一行表示载入路由配置文件。然后继续在项目目录下新建config文件夹，在config文件夹内新建 routs.php 文件，内容如下：12345678910111213&lt;?phpuse NoahBuscher\Macaw\Macaw;Macaw::get(&apos;fuck&apos;, function() &#123; echo &quot;成功！&quot;;&#125;);Macaw::get(&apos;(:all)&apos;, function($fu) &#123; echo &apos;未匹配到路由&lt;br&gt;&apos;.$fu;&#125;);Macaw::dispatch(); 然后访问你的地址即可：http://127.0.0.66/index.php/fuck 注意：如果要配置域名地址进行映射要指向 public/index.php 文件]]></content>
       <categories>
         <category>composer使用</category>
       </categories>
@@ -312,9 +312,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[composer构建PHP框架——构建路由]]></title>
-    <url>%2F2017%2F04%2F21%2Fcomposer-3%2F</url>
-    <content type="text"><![CDATA[路由选择安装本节开始构建路由，先去 GitHub 搜一下：点此查看搜索结果 推荐 https://github.com/NoahBuscher/Macaw，对应的 Composer 包为 noahbuscher/macaw 。 下面开始安装它，更改 composer.json：12345&#123; &quot;require&quot;:&#123; &quot;noahbuscher/macaw&quot;: &quot;dev-master&quot; &#125;&#125; 运行 composer update，成功之后将得到以下目录： 至此，Macaw安装成功！ 站点入口文件与环境在项目目录下新建public 文件夹，这个文件夹将是用户唯一可见的部分。在文件夹下新建 index.php 文件：1234567&lt;?php// Autoload 自动载入require &apos;../vendor/autoload.php&apos;;// 路由配置require &apos;../config/routes.php&apos;; 上面一行表示引入 Composer 的自动载入功能，下面一行表示载入路由配置文件。然后继续在项目目录下新建config文件夹，在config文件夹内新建 routs.php 文件，内容如下：12345678910111213&lt;?phpuse NoahBuscher\Macaw\Macaw;Macaw::get(&apos;fuck&apos;, function() &#123; echo &quot;成功！&quot;;&#125;);Macaw::get(&apos;(:all)&apos;, function($fu) &#123; echo &apos;未匹配到路由&lt;br&gt;&apos;.$fu;&#125;);Macaw::dispatch(); 然后访问你的地址即可：http://127.0.0.66/index.php/fuck 注意：如果要配置域名地址进行映射要指向 public/index.php 文件]]></content>
+    <title><![CDATA[composer构建PHP框架——初始化]]></title>
+    <url>%2F2017%2F04%2F21%2Fcomposer-2%2F</url>
+    <content type="text"><![CDATA[“一个时代结束了，另一个时代开始了。”Framework Interoperability Group（框架可互用性小组），简称 FIG，成立于 2009 年。FIG 最初由几位知名 PHP 框架开发者发起，在吸纳了许多优秀的大脑和强健的体魄后，提出了 PSR-0 到 PSR-4 五套 PHP 非官方规范： 123456789* PSR-0 (Autoloading Standard) 自动加载标准* PSR-1 (Basic Coding Standard) 基础编码标准* PSR-2 (Coding Style Guide) 编码风格向导* PSR-3 (Logger Interface) 日志接口* PSR-4 (Improved Autoloading) 自动加载优化标准 创建composer.json在网站根目录下创建新文件夹 my-framework （My First Framework based on Composer），然后在此文件夹内创建 composer.json 文件12345&#123; &quot;require&quot;:&#123; &#125;&#125; 初始化composer打开命令行cmd，进入刚刚新建的目录 my_framework，执行命令1composer update 执行成功后生成了扩展包vendor 此时目录为： 到此，composer初始化完成！]]></content>
       <categories>
         <category>composer使用</category>
       </categories>
