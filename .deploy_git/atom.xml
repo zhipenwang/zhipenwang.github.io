@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhipenwang.github.io/"/>
-  <updated>2019-05-14T07:25:38.390Z</updated>
+  <updated>2019-05-26T04:04:35.117Z</updated>
   <id>https://zhipenwang.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Nginx配置80、443端口</title>
+    <link href="https://zhipenwang.github.io/2019/05/24/2019_05_24/"/>
+    <id>https://zhipenwang.github.io/2019/05/24/2019_05_24/</id>
+    <published>2019-05-23T16:00:00.000Z</published>
+    <updated>2019-05-26T04:04:35.117Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>nginx server 上 80、443端口，http与https共存<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    listen 443 ssl;</span><br><span class="line">    server_name www.test.com</span><br><span class="line">    </span><br><span class="line">    #ssl on; 这里要注释掉</span><br><span class="line">    ssl_certificate /usr/local/nginx/conf/ssl/www_iamle_com.crt;</span><br><span class="line">    ssl_certificate_key /usr/local/nginx/conf/ssl/www_iamle_com.key;</span><br><span class="line"></span><br><span class="line">    #以下配置省略...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p></blockquote><blockquote><p>nginx 80端口重定向到443端口<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name www.test.com;</span><br><span class="line">    rewrite ^(.*)$ https://$&#123;server_name&#125;$1 permanent; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen 443;</span><br><span class="line">    server_name www.test.com;</span><br><span class="line">    ssl on;</span><br><span class="line">    ssl_certificate   /etc/pki/CA/certs/214321311540956.pem;</span><br><span class="line">    ssl_certificate_key  /etc/pki/CA/certs/214321311540956.key;</span><br><span class="line">    ssl_session_timeout 5m;</span><br><span class="line">    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;</span><br><span class="line">    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">    ssl_prefer_server_ciphers on;   </span><br><span class="line">    index index.php index.htm index.html;</span><br><span class="line">    error_page 404 /404.html;</span><br><span class="line">    error_page 500 502 503 504 /50x.html;</span><br><span class="line"></span><br><span class="line">    location ~ \.php &#123;</span><br><span class="line">    root /alidata/www/html;</span><br><span class="line">    fastcgi_pass unix:/tmp/php-cgi.sock;</span><br><span class="line">    fastcgi_index index.php;</span><br><span class="line">    include   fastcgi.conf;</span><br><span class="line"></span><br><span class="line">    set $path_info &quot;&quot;;</span><br><span class="line">    set $fastcgi_script_name_new $fastcgi_script_name;</span><br><span class="line"></span><br><span class="line">        if ($fastcgi_script_name ~*   &quot;^(.+\.php)(/.+)$&quot;  ) &#123;</span><br><span class="line">            set $fastcgi_script_name_new $1;</span><br><span class="line">        set $path_info $2;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fastcgi_param   SCRIPT_FILENAME   $document_root$fastcgi_script_name_new;</span><br><span class="line">    fastcgi_param   SCRIPT_NAME   $fastcgi_script_name_new;                    </span><br><span class="line">    fastcgi_param   PATH_INFO $path_info;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">    root /alidata/www/html;</span><br><span class="line">    index index.php index.html index.htm;</span><br><span class="line">    if (!-e  $request_filename)&#123;</span><br><span class="line">        rewrite ^(.*)$ /index.php$1 last;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;nginx server 上 80、443端口，http与https共存&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line
+      
+    
+    </summary>
+    
+      <category term="Nginx" scheme="https://zhipenwang.github.io/categories/Nginx/"/>
+    
+    
+      <category term="Nginx" scheme="https://zhipenwang.github.io/tags/Nginx/"/>
+    
+  </entry>
   
   <entry>
     <title>redis的两种高可用方案：主从复制与哨兵机制</title>
@@ -518,34 +544,6 @@
       
       
         &lt;h3 id=&quot;on-events-selector-data-fn&quot;&gt;&lt;a href=&quot;#on-events-selector-data-fn&quot; class=&quot;headerlink&quot; title=&quot;on(events,[selector],[data],fn)&quot;&gt;&lt;/a&gt;on(
-      
-    
-    </summary>
-    
-      <category term="jQuery" scheme="https://zhipenwang.github.io/categories/jQuery/"/>
-    
-    
-      <category term="Web前端" scheme="https://zhipenwang.github.io/tags/Web%E5%89%8D%E7%AB%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>js 比较几种遍历数组及对象的方式</title>
-    <link href="https://zhipenwang.github.io/2018/05/13/js_4/"/>
-    <id>https://zhipenwang.github.io/2018/05/13/js_4/</id>
-    <published>2018-05-13T12:21:01.000Z</published>
-    <updated>2019-04-09T14:57:32.972Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>通常我们会用循环的方式来遍历数组。但是循环是 导致js 性能问题的原因之一。<br>一般我们会采用下几种方式来进行数组的遍历：</p></blockquote><h3 id="方式1：for-in-循环"><a href="#方式1：for-in-循环" class="headerlink" title="方式1：for in 循环"></a>方式1：for in 循环</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1,2,3,4,5];</span><br><span class="line">var obj = &#123; a : 1, b : 2, c : 3 &#125;;</span><br><span class="line">for( var item in arr|obj )&#123;</span><br><span class="line">        fn(item)&#123;</span><br><span class="line">                // do sth with arr[item];</span><br><span class="line">                //do sth wtih obj[item];</span><br><span class="line">        &#125;;</span><br><span class="line">&#125;</span><br><span class="line">这里的 item：</span><br><span class="line">        array 的索引值，对应于 arr 的下标值；</span><br><span class="line">        object 的 key 值，对应于 obj 的 a,b,c；</span><br></pre></td></tr></table></figure><h3 id="方式2：for-循环"><a href="#方式2：for-循环" class="headerlink" title="方式2：for 循环"></a>方式2：for 循环</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for (var i=0; i&lt;arr.length; i++)&#123;</span><br><span class="line">        //do sth with arr[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><blockquote><p>这两种方法应该非常常见且使用很频繁。但实际上，这两种方法都存在性能问题。<br>在方式1中，for-in 需要分析出array 的每个属性，这个操作性能开销很大。用在 key 已知的数组上是非常不划算的。所以尽量不要用 for-in，除非你不清楚要处理哪些属性，例如 JSON 对象这样的情况。<br>在方式2中，循环每进行一次，就要检查一下数组长度。读取属性（数组长度）要比读局部变量慢，尤其是当 array 里存放的都是 DOM 元素，因为每次读取都会扫描一遍页面上的选择器相关元素，速度会大大降低。<br>所以这时候我们就有必要对方式2进行优化。</p></blockquote><h4 id="加速的"><a href="#加速的" class="headerlink" title="加速的"></a>加速的</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1,2,3,4,5];</span><br><span class="line">var length =arr.length;</span><br><span class="line">for(var i=0; i&lt;length; i++)&#123;</span><br><span class="line">　　fn(arr[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><blockquote><p>现在只需要读取一次 array 的 length 属性，速度已经加快了。但是还能不能更快呢？<br>事实是，如果循环终止条件不进行比较运算，那么循环的速度还可以更快。</p></blockquote><h4 id="加速且优雅的"><a href="#加速且优雅的" class="headerlink" title="加速且优雅的"></a>加速且优雅的</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1,2,3,4,5];</span><br><span class="line">var i = arr.length;</span><br><span class="line">while(i--)&#123;</span><br><span class="line">        fn(arr[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="方式-3：forEach"><a href="#方式-3：forEach" class="headerlink" title="方式 3：forEach"></a>方式 3：forEach</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1,2,3,4,5];</span><br><span class="line">arr.forEach(</span><br><span class="line">        fn(value,index)&#123;</span><br><span class="line">                //Do sth with value ;</span><br><span class="line">        &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure><blockquote><p>注意：<br>这里的 forEach回调中两个参数分别为 value，index，其位置刚好和 jQuery 的$.each 相反；<br>forEach 无法遍历对象；<br>IE不支持该方法；Firefox 和 chrome 支持；<br>forEach 无法使用 break，continue 跳出循环，且使用 return 是跳过本次循环；<br>可以添加第二个参数，为一个数组，回调中的 this 会指向这个数组，若没有添加，则是指向 window；</p></blockquote><p>关于跳出循环的几种方式：</p><ol><li>return ==》结束循环并中断函数执行；</li><li>break ==》结束循环函数继续执行；</li><li>continue ==》跳过本次循环；</li></ol><blockquote><p>for 循环中的变量 i，由于 ES5并没有块级作用域的存在，它在循环结束以后仍然存在于内存中，所以建议使用函数自执行的方式来避免。</p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt;通常我们会用循环的方式来遍历数组。但是循环是 导致js 性能问题的原因之一。&lt;br&gt;一般我们会采用下几种方式来进行数组的遍历：&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;方式1：for-in-循环&quot;&gt;&lt;a href=&quot;#方式1：for-i
       
     
     </summary>
