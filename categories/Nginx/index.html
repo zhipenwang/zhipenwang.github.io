@@ -75,7 +75,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="redis," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -93,18 +93,16 @@
 
 
 
-<meta name="description" content="redis是纯内存，key-value的数据库。  解决方法：  增加内存 使用内存淘汰策略（LRU） Redis集群  第一点是最笨的方法，耗钱耗资源，适合有钱的大佬😂，本文主要讲解第二点跟第三点。 使用内存淘汰策略（LRU） redis设置配置文件的maxmemory参数，可以控制其最大可以用的内存大小（字节）。当所需内存超过了maxmemory后，需要去修改配置文件的maxmemory-">
-<meta name="keywords" content="redis">
-<meta property="og:type" content="article">
-<meta property="og:title" content="redis：内存满了你能怎么办">
-<meta property="og:url" content="https://zhipenwang.github.io/2019/04/23/2019_04_23/index.html">
+<meta name="description" content="紫禁城占得地方好大呀——杀死那个子进程">
+<meta property="og:type" content="website">
+<meta property="og:title" content="王志鹏">
+<meta property="og:url" content="https://zhipenwang.github.io/categories/Nginx/index.html">
 <meta property="og:site_name" content="王志鹏">
-<meta property="og:description" content="redis是纯内存，key-value的数据库。  解决方法：  增加内存 使用内存淘汰策略（LRU） Redis集群  第一点是最笨的方法，耗钱耗资源，适合有钱的大佬😂，本文主要讲解第二点跟第三点。 使用内存淘汰策略（LRU） redis设置配置文件的maxmemory参数，可以控制其最大可以用的内存大小（字节）。当所需内存超过了maxmemory后，需要去修改配置文件的maxmemory-">
+<meta property="og:description" content="紫禁城占得地方好大呀——杀死那个子进程">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-23T08:21:51.944Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="redis：内存满了你能怎么办">
-<meta name="twitter:description" content="redis是纯内存，key-value的数据库。  解决方法：  增加内存 使用内存淘汰策略（LRU） Redis集群  第一点是最笨的方法，耗钱耗资源，适合有钱的大佬😂，本文主要讲解第二点跟第三点。 使用内存淘汰策略（LRU） redis设置配置文件的maxmemory参数，可以控制其最大可以用的内存大小（字节）。当所需内存超过了maxmemory后，需要去修改配置文件的maxmemory-">
+<meta name="twitter:title" content="王志鹏">
+<meta name="twitter:description" content="紫禁城占得地方好大呀——杀死那个子进程">
 
 
 
@@ -132,7 +130,7 @@
 
 
 
-  <link rel="canonical" href="https://zhipenwang.github.io/2019/04/23/2019_04_23/"/>
+  <link rel="canonical" href="https://zhipenwang.github.io/categories/Nginx/"/>
 
 
 
@@ -147,7 +145,7 @@
   daovoice('update');
   </script>
 
-  <title> redis：内存满了你能怎么办 | 王志鹏 </title>
+  <title> 分类: Nginx | 王志鹏 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -182,7 +180,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -330,296 +328,47 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://zhipenwang.github.io/2019/04/23/2019_04_23/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王志鹏">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/headimg.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="王志鹏">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                redis：内存满了你能怎么办
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-23T00:00:00+08:00">
-                2019-04-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/redis/" itemprop="url" rel="index">
-                    <span itemprop="name">redis</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-            <span class="post-meta-divider">|</span>
-            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
-            </span>
-          
-
-          
-            <div class="post-wordcount">
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  855 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  3 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <blockquote>
-<p>redis是纯内存，key-value的数据库。</p>
-</blockquote>
-<p>解决方法：</p>
-<ol>
-<li>增加内存</li>
-<li>使用内存淘汰策略（LRU）</li>
-<li>Redis集群</li>
-</ol>
-<p><em>第一点是最笨的方法，耗钱耗资源，适合有钱的大佬😂，本文主要讲解第二点跟第三点。</em></p>
-<h3 id="使用内存淘汰策略（LRU）"><a href="#使用内存淘汰策略（LRU）" class="headerlink" title="使用内存淘汰策略（LRU）"></a>使用内存淘汰策略（LRU）</h3><blockquote>
-<p>redis设置配置文件的maxmemory参数，可以控制其最大可以用的内存大小（字节）。<br>当所需内存超过了maxmemory后，需要去修改配置文件的maxmemory-policy参数了。</p>
-</blockquote>
-<p>maxmemory-policy，默认值为【noeviction】，下列为删除redis键具有的淘汰规则。</p>
-<blockquote>
-<p>LRU算法，least RecentlyUsed，最近最少使用算法。也就是说默认删除最近最少使用的键。</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>规则名称</th>
-<th>规则说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>volatile-lru</td>
-<td>使用LRU算法删除一个键（只对设置了生存时间的键），最少使用的</td>
-</tr>
-<tr>
-<td>allkeys-lru</td>
-<td>使用LRU算法删除一个键，最少使用的</td>
-</tr>
-<tr>
-<td>volatile-random</td>
-<td>随机删除一个键（只对设置了生存长时间的键）</td>
-</tr>
-<tr>
-<td>allkeys-random</td>
-<td>随机删除一个键</td>
-</tr>
-<tr>
-<td>volatile-ttl</td>
-<td>删除生存时间最近的一个键</td>
-</tr>
-<tr>
-<td>noeviction</td>
-<td>不删除键，只返回错误</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>作为内存数据库，出于对性能和内存消耗的考虑，Redis 的淘汰算法实际实现上并非针对所有 key，而是抽样一小部分并且从中选出被淘汰的 key。</p>
-<p>使用 Redis 缓存数据时，为了提高缓存命中率，需要保证缓存数据都是热点数据。可以将内存最大使用量设置为热点数据占用的内存量，然后启用 allkeys-lru 淘汰策略，将最近最少使用的数据淘汰。</p>
-<p>Redis 4.0 引入了 volatile-lfu 和 allkeys-lfu 淘汰策略，LFU 策略通过统计访问频率，将访问频率最少的键值对淘汰。</p>
-</blockquote>
-<p>但是一定要注意一点！redis中并不会准确的删除所有键中最近最少使用的键，而是随机抽取3个键，删除这三个键中最近最少使用的键。<br>那么3这个数字也是可以设置的，对应位置是配置文件中的maxmeory-samples.</p>
-<h3 id="Redis集群"><a href="#Redis集群" class="headerlink" title="Redis集群"></a>Redis集群</h3><p><em>Redis仅支持单实例，内存一般最多10~20GB。对于内存动辄100~200GB的系统，就需要通过集群来支持了。</em></p>
-<p>Redis集群有三种方式：客户端分片、代理分片、RedisCluster。</p>
-<h4 id="客户端分片"><a href="#客户端分片" class="headerlink" title="客户端分片"></a>客户端分片</h4><p>通过业务代码自己实现路由</p>
-<blockquote>
-<p>优势：可以自己控制分片算法、性能比代理的好<br>劣势：维护成本高、扩容/缩容等运维操作都需要自己研发</p>
-</blockquote>
-<h4 id="代理分片（redis中间件）"><a href="#代理分片（redis中间件）" class="headerlink" title="代理分片（redis中间件）"></a>代理分片（redis中间件）</h4><p>代理程序接收到来自业务程序的数据请求，根据路由规则，将这些请求分发给正确的Redis实例并返回给业务程序。使用类似Twemproxy、Codis等中间件实现。</p>
-<blockquote>
-<p>优势：运维方便、程序不用关心如何链接Redis实例<br>劣势：会带来性能消耗（大概20%）、无法平滑扩容/缩容，需要执行脚本迁移数据，不方便(Codis在Twemproxy基础上优化并实现了预分片来达到Auto Rebalance)。</p>
-</blockquote>
-<h4 id="Redis-Cluster"><a href="#Redis-Cluster" class="headerlink" title="Redis Cluster"></a>Redis Cluster</h4><blockquote>
-<p>优势：官方集群解决方案、无中心节点，和客户端直连，性能较好<br>劣势：方案太重、无法平滑扩容/缩容，需要执行相应的脚本，不方便、太新，没有相应成熟的解决案例</p>
-</blockquote>
-
-      
+  <section id="posts" class="posts-collapse">
+    <div class="collection-title">
+      <h2 >
+        Nginx
+        <small>分类</small>
+      </h2>
     </div>
 
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        <div>
     
-        <div style="text-align:center;color: #ccc;font-size:22px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
-    
-</div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/redis/" rel="tag"># redis</a>
-          
-        </div>
       
 
-      
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
         
-      
+            <a class="post-title-link" href="/2019/05/24/2019_05_24/" itemprop="url">
+              
+                <span itemprop="name">Nginx配置80、443端口</span>
+              
+            </a>
+        
+      </h1>
 
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/04/18/2019_04_18/" rel="next" title="深入理解cgi与fastcgi：nginx与fpm的工作机制">
-                <i class="fa fa-chevron-left"></i> 深入理解cgi与fastcgi：nginx与fpm的工作机制
-              </a>
-            
-          </div>
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2019-05-24T00:00:00+08:00"
+              content="2019-05-24" >
+          05-24
+        </time>
+      </div>
 
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/04/2019_05_04/" rel="prev" title="URL在Nginx与Apache下的重写规则">
-                URL在Nginx与Apache下的重写规则 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
+    </header>
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+
 
           
           </div>
@@ -627,12 +376,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNTI3NS8xMTgxMQ=="></div>
-    
-  </div>
-
 
         </div>
         
@@ -652,17 +395,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/img/headimg.jpg"
@@ -742,22 +476,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用内存淘汰策略（LRU）"><span class="nav-number">1.</span> <span class="nav-text">使用内存淘汰策略（LRU）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis集群"><span class="nav-number">2.</span> <span class="nav-text">Redis集群</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#客户端分片"><span class="nav-number">2.1.</span> <span class="nav-text">客户端分片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代理分片（redis中间件）"><span class="nav-number">2.2.</span> <span class="nav-text">代理分片（redis中间件）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis-Cluster"><span class="nav-number">2.3.</span> <span class="nav-text">Redis Cluster</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -887,10 +605,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
-
-
 
   
 

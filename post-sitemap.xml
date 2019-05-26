@@ -7,8 +7,8 @@
     </url>
 
     <url>
-        <loc>https://zhipenwang.github.io/2019/05/26/2019_05_24/</loc>
-        <lastmod>2019-05-26T04:02:38.833Z</lastmod>
+        <loc>https://zhipenwang.github.io/2019/05/24/2019_05_24/</loc>
+        <lastmod>2019-05-26T04:04:35.117Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -159,7 +159,7 @@
     </url>
 
     <url>
-        <loc>https://zhipenwang.github.io/2018/05/05/js_3/</loc>
+        <loc>https://zhipenwang.github.io/2018/05/01/js_2/</loc>
         <lastmod>2019-04-09T14:57:32.971Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -167,7 +167,7 @@
     </url>
 
     <url>
-        <loc>https://zhipenwang.github.io/2018/05/01/js_2/</loc>
+        <loc>https://zhipenwang.github.io/2018/05/05/js_3/</loc>
         <lastmod>2019-04-09T14:57:32.971Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -207,7 +207,7 @@
     </url>
 
     <url>
-        <loc>https://zhipenwang.github.io/2018/03/28/git_recover_branch/</loc>
+        <loc>https://zhipenwang.github.io/2018/06/16/design_patterns/</loc>
         <lastmod>2019-04-09T14:57:32.968Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -215,7 +215,7 @@
     </url>
 
     <url>
-        <loc>https://zhipenwang.github.io/2018/06/16/design_patterns/</loc>
+        <loc>https://zhipenwang.github.io/2018/03/28/git_recover_branch/</loc>
         <lastmod>2019-04-09T14:57:32.968Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -239,14 +239,6 @@
     </url>
 
     <url>
-        <loc>https://zhipenwang.github.io/2017/04/20/connect/</loc>
-        <lastmod>2019-04-09T14:57:32.966Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://zhipenwang.github.io/2017/04/21/composer-2/</loc>
         <lastmod>2019-04-09T14:57:32.966Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -256,6 +248,14 @@
 
     <url>
         <loc>https://zhipenwang.github.io/2017/04/21/composer-3/</loc>
+        <lastmod>2019-04-09T14:57:32.966Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://zhipenwang.github.io/2017/04/20/connect/</loc>
         <lastmod>2019-04-09T14:57:32.966Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
