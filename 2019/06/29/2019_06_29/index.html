@@ -75,7 +75,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="KAFKA,Zookeeper," />
 
 
 
@@ -93,16 +93,18 @@
 
 
 
-<meta name="description" content="紫禁城占得地方好大呀——杀死那个子进程">
-<meta property="og:type" content="website">
-<meta property="og:title" content="王志鹏">
-<meta property="og:url" content="https://zhipenwang.github.io/archives/page/5/index.html">
+<meta name="description" content="概念 kafka节点在zookeeper中表示为：/brokerskafka-topics为：/brokers/topics    kafka删除topic1234567891011121314151、修改配置文件server.properties    添加如下配置：    delete.topic.enable=true   说明：官方-此项配置必须为true，默认为false。配置完重启ka">
+<meta name="keywords" content="KAFKA,Zookeeper">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zookeeper操作KAFKA">
+<meta property="og:url" content="https://zhipenwang.github.io/2019/06/29/2019_06_29/index.html">
 <meta property="og:site_name" content="王志鹏">
-<meta property="og:description" content="紫禁城占得地方好大呀——杀死那个子进程">
+<meta property="og:description" content="概念 kafka节点在zookeeper中表示为：/brokerskafka-topics为：/brokers/topics    kafka删除topic1234567891011121314151、修改配置文件server.properties    添加如下配置：    delete.topic.enable=true   说明：官方-此项配置必须为true，默认为false。配置完重启ka">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-13T04:42:53.238Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="王志鹏">
-<meta name="twitter:description" content="紫禁城占得地方好大呀——杀死那个子进程">
+<meta name="twitter:title" content="zookeeper操作KAFKA">
+<meta name="twitter:description" content="概念 kafka节点在zookeeper中表示为：/brokerskafka-topics为：/brokers/topics    kafka删除topic1234567891011121314151、修改配置文件server.properties    添加如下配置：    delete.topic.enable=true   说明：官方-此项配置必须为true，默认为false。配置完重启ka">
 
 
 
@@ -130,7 +132,7 @@
 
 
 
-  <link rel="canonical" href="https://zhipenwang.github.io/archives/page/5/"/>
+  <link rel="canonical" href="https://zhipenwang.github.io/2019/06/29/2019_06_29/"/>
 
 
 
@@ -145,7 +147,7 @@
   daovoice('update');
   </script>
 
-  <title> 归档 | 王志鹏 </title>
+  <title> zookeeper操作KAFKA | 王志鹏 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -180,7 +182,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -328,180 +330,227 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-    <span class="archive-page-counter">
-      
-      
-       
-      
-      OK! 目前共计 44 篇日志。 继续努力。
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://zhipenwang.github.io/2019/06/29/2019_06_29/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王志鹏">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/headimg.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王志鹏">
     </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                zookeeper操作KAFKA
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-29T00:00:00+08:00">
+                2019-06-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/KAFKA/" itemprop="url" rel="index">
+                    <span itemprop="name">KAFKA</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  146 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
 
       
       
-      
 
+      
+        <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><blockquote>
+<p>kafka节点在zookeeper中表示为：<br>/brokers<br>kafka-topics为：<br>/brokers/topics  </p>
+</blockquote>
+<h3 id="kafka删除topic"><a href="#kafka删除topic" class="headerlink" title="kafka删除topic"></a>kafka删除topic</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">1、修改配置文件server.properties</span><br><span class="line">    添加如下配置：</span><br><span class="line">    delete.topic.enable=true</span><br><span class="line">   说明：官方-此项配置必须为true，默认为false。配置完重启kafka、zookeeper</span><br><span class="line">2、通过zookeeper删除</span><br><span class="line">    进入zookeeper客户端 ./zkCli.sh  -server 127.0.0.1:2182</span><br><span class="line">    找到topic目录</span><br><span class="line">        ls   /brokers/topics</span><br><span class="line">    删掉对应topic</span><br><span class="line">        rmr  /brokers/topic/topic-name</span><br><span class="line">    找到目录</span><br><span class="line">        ls    /config/topics</span><br><span class="line">    删掉对应topic</span><br><span class="line">        rmr  /config/topics/topic-name  </span><br><span class="line">以上两步全部执行才算彻底删除topic</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
       
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:22px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/KAFKA/" rel="tag"># KAFKA</a>
+          
+            <a href="/tags/Zookeeper/" rel="tag"># Zookeeper</a>
+          
         </div>
       
+
+      
+        
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/23/2019_06_23/" rel="next" title="PHP与KAFKA的两种消费方式">
+                <i class="fa fa-chevron-left"></i> PHP与KAFKA的两种消费方式
+              </a>
+            
+          </div>
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          <span class="post-nav-divider"></span>
 
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/20/hexo_change_system/" itemprop="url">
-              
-                <span itemprop="name">hexo在其他设备或系统上续写</span>
-              
-            </a>
-        
-      </h1>
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-20T18:21:01+08:00"
-              content="2017-03-20" >
-          03-20
-        </time>
-      </div>
-
-    </header>
+      
+      
+    </footer>
   </article>
 
 
 
-    
-
+    <div class="post-spread">
       
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/19/hexo_new_blog/" itemprop="url">
-              
-                <span itemprop="name">hexo发布文章</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-19T18:21:01+08:00"
-              content="2017-03-19" >
-          03-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/18/create-blog/" itemprop="url">
-              
-                <span itemprop="name">github+hexo搭建个人博客</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-18T19:21:01+08:00"
-              content="2017-03-18" >
-          03-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/17/blog/" itemprop="url">
-              
-                <span itemprop="name">博客的意义</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-17T19:21:01+08:00"
-              content="2017-03-17" >
-          03-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/4/">4</a><span class="page-number current">5</span>
-  </nav>
-
-
+    </div>
+  </div>
 
           
           </div>
@@ -509,6 +558,12 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNTI3NS8xMTgxMQ=="></div>
+    
+  </div>
+
 
         </div>
         
@@ -528,8 +583,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/img/headimg.jpg"
@@ -609,6 +673,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kafka删除topic"><span class="nav-number">2.</span> <span class="nav-text">kafka删除topic</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -738,11 +818,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
 
 
   
