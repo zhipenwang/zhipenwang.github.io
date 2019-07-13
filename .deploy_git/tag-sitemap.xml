@@ -108,7 +108,14 @@
 
     <url>
         <loc>https://zhipenwang.github.io/tags/Nginx/</loc>
-        <lastmod>2019-05-26T04:04:35.117Z</lastmod>
+        <lastmod>2019-07-13T04:14:45.861Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://zhipenwang.github.io/tags/KAFKA/</loc>
+        <lastmod>2019-07-13T04:18:16.376Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

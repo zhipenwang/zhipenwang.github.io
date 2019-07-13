@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[KAFKA单机器单节点部署]]></title>
+    <url>%2F2019%2F06%2F05%2F2019_06_05%2F</url>
+    <content type="text"><![CDATA[概述 Kafka是最初由Linkedin公司开发，是一个分布式、分区的、多副本的、多订阅者，基于zookeeper协调的分布式日志系统（也可以当做MQ系统），常见可以用于web/nginx日志、访问日志，消息服务等等，Linkedin于2010年贡献给了Apache基金会并成为顶级开源项目。 主要应用场景是：日志收集系统和消息系统。 Kafka主要设计目标如下： 以时间复杂度为O(1)的方式提供消息持久化能力，即使对TB级以上数据也能保证常数时间的访问性能。 高吞吐率。即使在非常廉价的商用机器上也能做到单机支持每秒100K条消息的传输。 支持Kafka Server间的消息分区，及分布式消费，同时保证每个partition内的消息顺序传输。 同时支持离线数据处理和实时数据处理。 Scale out:支持在线水平扩展 下载安装下载地址：http://kafka.apache.org/downloads.html直接下载解压即可 启动启动zookeeper前提：如果安装了zookeeper则需要启动zookeeper，这样就不需要启动KAFKA自带的zookeeper了1sh bin/zookeeper-server-start.sh config/zookeeper.properties &amp; 启动KAFKA123456789kafka配置文件：/config/zookeeper.properties中包含了zookeeper的监听地址： zookeeper.connect=127.0.0.1:2181配置中其他主要信息： broker.id=0 listeners=PLAINTEXT://:9092sh bin/kafka-server-start.sh config/server.properties守护进程后台启动：sh bin/kafka-server-start.sh config/server.properties 1&gt;/dev/null 2&gt;&amp;1 &amp; 启动生产者1sh bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test 启动消费者12340.90版本之前启动方式：sh bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic test --from-beginning0.90版本之后启动方式：bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning 生产者窗口发送消息，消费者窗口接收消息]]></content>
+      <categories>
+        <category>KAFKA</category>
+      </categories>
+      <tags>
+        <tag>KAFKA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[nginx支持多域名]]></title>
+    <url>%2F2019%2F05%2F30%2F2019_05_30%2F</url>
+    <content type="text"><![CDATA[场景 某个域名支持http和https访问某个域名只支持https访问这种情况无法支持，因为加载的配置文件中，包含了listen 80支持http所以另外一个域名也一样支持http建议：将80的重定向到https，这样所有的http访问都会重定向的定义的重定向https域名 1234567891011121314151617181920212223242526272829303132如：所有的http，不管什么域名,访问80端口都会重定向到https://www.test.comserver &#123; listen 80; server_name www.test.com; rewrite ^(.*)$ https://$&#123;server_name&#125;$1 permanent;&#125;test1.confserver &#123; listen 80; listen 443 ssl; server_name www.test1.com #ssl on; 这里要注释掉 ssl_certificate /usr/local/nginx/conf/ssl/www_test1_com.crt; ssl_certificate_key /usr/local/nginx/conf/ssl/www_test1_com.key; #以下配置省略...&#125;test2.confserver &#123; listen 80; listen 443 ssl; server_name www.test2.com #ssl on; 这里要注释掉 ssl_certificate /usr/local/nginx/conf/ssl/www_test2_com.crt; ssl_certificate_key /usr/local/nginx/conf/ssl/www_test2_com.key; #以下配置省略...&#125;]]></content>
+      <categories>
+        <category>Nginx</category>
+      </categories>
+      <tags>
+        <tag>Nginx</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Nginx配置80、443端口]]></title>
     <url>%2F2019%2F05%2F24%2F2019_05_24%2F</url>
     <content type="text"><![CDATA[nginx server 上 80、443端口，http与https共存1234567891011server &#123; listen 80; listen 443 ssl; server_name www.test.com #ssl on; 这里要注释掉 ssl_certificate /usr/local/nginx/conf/ssl/www_iamle_com.crt; ssl_certificate_key /usr/local/nginx/conf/ssl/www_iamle_com.key; #以下配置省略...&#125; nginx 80端口重定向到443端口1234567891011121314151617181920212223242526272829303132333435363738394041424344454647server &#123; listen 80; server_name www.test.com; rewrite ^(.*)$ https://$&#123;server_name&#125;$1 permanent; &#125;server &#123; listen 443; server_name www.test.com; ssl on; ssl_certificate /etc/pki/CA/certs/214321311540956.pem; ssl_certificate_key /etc/pki/CA/certs/214321311540956.key; ssl_session_timeout 5m; ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4; ssl_protocols TLSv1 TLSv1.1 TLSv1.2; ssl_prefer_server_ciphers on; index index.php index.htm index.html; error_page 404 /404.html; error_page 500 502 503 504 /50x.html; location ~ \.php &#123; root /alidata/www/html; fastcgi_pass unix:/tmp/php-cgi.sock; fastcgi_index index.php; include fastcgi.conf; set $path_info &quot;&quot;; set $fastcgi_script_name_new $fastcgi_script_name; if ($fastcgi_script_name ~* &quot;^(.+\.php)(/.+)$&quot; ) &#123; set $fastcgi_script_name_new $1; set $path_info $2; &#125; fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name_new; fastcgi_param SCRIPT_NAME $fastcgi_script_name_new; fastcgi_param PATH_INFO $path_info; &#125; location / &#123; root /alidata/www/html; index index.php index.html index.htm; if (!-e $request_filename)&#123; rewrite ^(.*)$ /index.php$1 last; &#125; &#125;&#125;]]></content>
