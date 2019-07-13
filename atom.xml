@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhipenwang.github.io/"/>
-  <updated>2019-07-13T04:18:16.376Z</updated>
+  <updated>2019-07-13T04:30:20.601Z</updated>
   <id>https://zhipenwang.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PHP使用KAFKA</title>
+    <link href="https://zhipenwang.github.io/2019/06/15/2019_06_15/"/>
+    <id>https://zhipenwang.github.io/2019/06/15/2019_06_15/</id>
+    <published>2019-06-14T16:00:00.000Z</published>
+    <updated>2019-07-13T04:30:20.601Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="环境部署（PHP-RdKafka扩展）"><a href="#环境部署（PHP-RdKafka扩展）" class="headerlink" title="环境部署（PHP-RdKafka扩展）"></a>环境部署（PHP-RdKafka扩展）</h3><p><em>上一节说了KAFKA的单节点部署，本节就不再细述了。</em><br>为了允许KAFKA被PHP远程调用，需要修改KAFKA配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">在kafka的server.properties中修改如下kafka配置项：</span><br><span class="line">    advertised.listeners=PLAINTEXT://ip:port</span><br><span class="line">默认该项配置是注释掉的，如果不修改的话，kafka默认使用listeners配置项或者localhost+port来生产或者消费消息</span><br><span class="line">重启KAFKA</span><br></pre></td></tr></table></figure></p><p>安装lib库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/edenhill/librdkafka.git</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure></p><p>安装php-kafka扩展<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/arnaud-lb/php-rdkafka.git</span><br><span class="line">cd php-rdkafka</span><br><span class="line">phpize</span><br><span class="line">./configure --with-php-config=/usr/local/bin/php-config</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line">在php.ini中加入：</span><br><span class="line">extension=rdkafka.so</span><br><span class="line">重启php-fpm</span><br></pre></td></tr></table></figure></p><h3 id="PHP-RdKAFKA使用"><a href="#PHP-RdKAFKA使用" class="headerlink" title="PHP-RdKAFKA使用"></a>PHP-RdKAFKA使用</h3><p>PHP-生产<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">try &#123;</span><br><span class="line">$rcf = new RdKafka\Conf();</span><br><span class="line">$rcf-&gt;set(&apos;group.id&apos;, &apos;test&apos;);</span><br><span class="line">$cf = new RdKafka\TopicConf();</span><br><span class="line">$cf-&gt;set(&apos;offset.store.method&apos;, &apos;broker&apos;);</span><br><span class="line">$cf-&gt;set(&apos;auto.offset.reset&apos;, &apos;smallest&apos;);</span><br><span class="line"></span><br><span class="line">$rk = new RdKafka\Producer($rcf);</span><br><span class="line">$rk-&gt;setLogLevel(LOG_DEBUG);</span><br><span class="line">$rk-&gt;addBrokers(&quot;127.0.0.1:9092&quot;);</span><br><span class="line">$topic = $rk-&gt;newTopic(&quot;test&quot;, $cf);</span><br><span class="line"></span><br><span class="line">for($i = 0; $i &lt; 10; $i++) &#123;</span><br><span class="line">$topic-&gt;produce(0,0,&apos;test&apos; . $i);</span><br><span class="line">&#125; </span><br><span class="line">&#125;catch (Exception $e) &#123;</span><br><span class="line">echo $e-&gt;getMessage();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>PHP-消费<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">try &#123;</span><br><span class="line">    $rcf = new RdKafka\Conf();</span><br><span class="line">    $rcf-&gt;set(&apos;group.id&apos;, &apos;test&apos;);</span><br><span class="line">$cf = new RdKafka\TopicConf();</span><br><span class="line">    $cf-&gt;set(&apos;auto.offset.reset&apos;, &apos;smallest&apos;);</span><br><span class="line">    $cf-&gt;set(&apos;auto.commit.enable&apos;, true);</span><br><span class="line"> </span><br><span class="line">    $rk = new RdKafka\Consumer($rcf);</span><br><span class="line">    $rk-&gt;setLogLevel(LOG_DEBUG);</span><br><span class="line">    $rk-&gt;addBrokers(&quot;127.0.0.1:9092&quot;);</span><br><span class="line">    $topic = $rk-&gt;newTopic(&quot;test&quot;, $cf);</span><br><span class="line">    while (true) &#123;</span><br><span class="line">        $topic-&gt;consumeStart(0, RD_KAFKA_OFFSET_STORED);</span><br><span class="line">        $msg = $topic-&gt;consume(0, 1000);</span><br><span class="line">        var_dump($msg);</span><br><span class="line">        if (isset($msg-&gt;err) &amp;&amp; $msg-&gt;err) &#123;</span><br><span class="line">            echo $msg-&gt;errstr(), &quot;\n&quot;;</span><br><span class="line">        &#125; elseif(isset($msg-&gt;payload)) &#123;</span><br><span class="line">            echo $msg-&gt;payload, &quot;\n&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        $topic-&gt;consumeStop(0);</span><br><span class="line">        sleep(1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125; catch (Exception $e) &#123;</span><br><span class="line">    echo $e-&gt;getMessage();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><p>PHP-RdKAKFA消费KAFKA的时候，有两种方式，低级方式与高级方式，在下节会展开讨论。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;环境部署（PHP-RdKafka扩展）&quot;&gt;&lt;a href=&quot;#环境部署（PHP-RdKafka扩展）&quot; class=&quot;headerlink&quot; title=&quot;环境部署（PHP-RdKafka扩展）&quot;&gt;&lt;/a&gt;环境部署（PHP-RdKafka扩展）&lt;/h3&gt;&lt;p&gt;&lt;e
+      
+    
+    </summary>
+    
+      <category term="KAFKA" scheme="https://zhipenwang.github.io/categories/KAFKA/"/>
+    
+    
+      <category term="PHP" scheme="https://zhipenwang.github.io/tags/PHP/"/>
+    
+      <category term="KAFKA" scheme="https://zhipenwang.github.io/tags/KAFKA/"/>
+    
+  </entry>
   
   <entry>
     <title>KAFKA单机器单节点部署</title>
@@ -517,32 +544,6 @@
       
         &lt;h3 id=&quot;工厂模式&quot;&gt;&lt;a href=&quot;#工厂模式&quot; class=&quot;headerlink&quot; title=&quot;工厂模式&quot;&gt;&lt;/a&gt;工厂模式&lt;/h3&gt;&lt;blockquote&gt;
 &lt;p&gt;定义一个创建对象的接口，让其子类决定去实例化哪一个工厂类&lt;br&gt;创建的过程是在子类中执行&lt;br&gt;&lt;
-      
-    
-    </summary>
-    
-      <category term="设计模式" scheme="https://zhipenwang.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-      <category term="设计模式" scheme="https://zhipenwang.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PHP设计模式（design patterns of PHP）</title>
-    <link href="https://zhipenwang.github.io/2018/06/16/design_patterns/"/>
-    <id>https://zhipenwang.github.io/2018/06/16/design_patterns/</id>
-    <published>2018-06-16T09:21:01.000Z</published>
-    <updated>2019-04-09T14:57:32.968Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="23种设计模式"><a href="#23种设计模式" class="headerlink" title="23种设计模式"></a>23种设计模式</h3><blockquote><p>以下包含java设计模式的思想（共25种设计模式）<br>三大类：创建型模式（creational patterns）、结构型模式（structural patterns）、行为型模式（behavioral patterns）  </p></blockquote><h3 id="创建型模式（creational-patterns）-："><a href="#创建型模式（creational-patterns）-：" class="headerlink" title="创建型模式（creational patterns）:："></a><strong>创建型模式（creational patterns）:</strong>：</h3><blockquote><ol><li>工厂模式 – factory pattern  </li><li>抽象工厂模式 – abstract factory pattern  </li><li>单例模式 – singleton pattern  </li><li>建造者模式 – builder pattern  </li><li>原型模式 – prototype pattern  </li></ol></blockquote><h3 id="结构型模式（structural-patterns）"><a href="#结构型模式（structural-patterns）" class="headerlink" title="结构型模式（structural patterns）:"></a><strong>结构型模式（structural patterns）:</strong></h3><blockquote><ol><li>适配器模式  –  adapter pattern</li><li>桥接模式    –  bridge pattern</li><li>过滤器模式/标准模式  –  filter pattern / criteria pattern</li><li>组合模式    –  composite pattern</li><li>装饰器模式  –  decorator pattern</li><li>外观模/门面模式  –  facade pattern</li><li>享元模式    –  flyweight pattern</li><li>代理模式    –  proxy pattern</li></ol></blockquote><h3 id="行为型模式（behavioral-patterns）："><a href="#行为型模式（behavioral-patterns）：" class="headerlink" title="行为型模式（behavioral patterns）："></a><strong>行为型模式（behavioral patterns）：</strong></h3><blockquote><ol><li>责任链模式  –  responsibility pattern</li><li>命令模式    –  command pattern</li><li>解释器模式  –  expression pattern</li><li>迭代器模式  –  iterator pattern</li><li>中介者模式  – mediator pattern</li><li>备忘录模式  –  memento pattern</li><li>观察者模式  –  observer pattern</li><li>状态模式    –  state pattern</li><li>空对象模式  –  null object pattern</li><li>策略模式   –  strategy pattern</li><li>模板模式   –  template pattern</li><li>访问者模式 –  visitor pattern</li></ol></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;23种设计模式&quot;&gt;&lt;a href=&quot;#23种设计模式&quot; class=&quot;headerlink&quot; title=&quot;23种设计模式&quot;&gt;&lt;/a&gt;23种设计模式&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;以下包含java设计模式的思想（共25种设计模式）&lt;br&gt;三大类：创建型模
       
     
     </summary>
