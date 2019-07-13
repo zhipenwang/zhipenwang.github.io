@@ -93,13 +93,6 @@
     </url>
 
     <url>
-        <loc>https://zhipenwang.github.io/tags/PHP/</loc>
-        <lastmod>2019-05-10T08:58:26.320Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://zhipenwang.github.io/tags/Redis/</loc>
         <lastmod>2019-05-14T07:25:38.390Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -114,8 +107,15 @@
     </url>
 
     <url>
+        <loc>https://zhipenwang.github.io/tags/PHP/</loc>
+        <lastmod>2019-07-13T04:30:20.601Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://zhipenwang.github.io/tags/KAFKA/</loc>
-        <lastmod>2019-07-13T04:18:16.376Z</lastmod>
+        <lastmod>2019-07-13T04:30:20.601Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
